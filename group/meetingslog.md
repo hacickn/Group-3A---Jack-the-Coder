@@ -44,10 +44,18 @@ During this meeting, the technology that will be used in our client implementati
 **ToDo:** Each member should install Flatter to their computers.
 
 ****
-### Meeting ~ (09.10.2021, XX min)
+### Meeting ~ (09.10.2021, 240 min)
 ****
-**Present:** Everyone
+**Present:** Everyone (FACE TO FACE)
 
-**Discussion:**
+**Discussion:** During this meeting, we designed our README.md file of our project. Also, we started to design the database of the system. The screenshot of the last version of our database design was attached to the README.md file as well. 
+
+Last but not least, as a group, we came out with new features that might be added to our project. These features can be found as list below:
+
+- Survey add/update/delete feature. (ADDITIONAL)
+- Meetings room and class arrangements. (ADDITIONAL)
+- Multi-Language attribute. (ADDITIONAL)
+- Attendance traction via QR Code. (MANDATORY)
+- Survey and attendance track for voting Club hierarchy, elections. (MANDATORY) 
 
 **ToDo:**

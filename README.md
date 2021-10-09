@@ -15,15 +15,15 @@
 BillBoard is a cross-platform mobile application project that is designed for student-centred club activities. This project will be utilized by club members, club presidents, board members, students, and academics. This application offers various options for the users regarding club events & meetings, club management, surveys, daily event notifications.
 Specifically;
 ## Project detailed description
-+ ** Board members can add an event to the system with a specified number of students                              completed (?.09.2021)
-+ ** Students can follow the clubs  over the application, and turn into club members,                              completed (?.09.2021)
-+*** 1. Club members can activate the event notifications      
-+*** 2. Club members can join the WhatsApp groups of the clubs by scanning the QR code      
-+*** 3. Club members can be informed about event time and place and make reservations ( Face to face and Online Meetings are available)    
-+*** 4. Club members can participate in surveys     
-+ ** Board members can arrange  surveys                                                                             completed (?.09.2021)
-+ ** Board members can  take attendance list from the QR code arranged for specified each event                     completed (?.09.2021)
-+ ** Based on the attendance amount, club members can turn into an active members and give a vote for the election  completed (?.09.2021)
++ **Board members can add an event to the system with a specified number of students**                              completed (?.09.2021)
++ **Students can follow the clubs  over the application, and turn into club members;**                              completed (?.09.2021)
++***1. Club members can activate the event notifications***     
++***2. Club members can join the WhatsApp groups of the clubs by scanning the QR code***      
++***3. Club members can be informed about event time and place and make reservations ( Face to face and Online Meetings are available)***    
++***4. Club members can participate in surveys***     
++ **Board members can arrange  surveys**                                                                             completed (?.09.2021)
++ **Board members can  take attendance list from the QR code arranged for specified each event**                     completed (?.09.2021)
++ **Based on the attendance amount, club members can turn into an active members and give a vote for the election**  completed (?.09.2021)
 
 In this project the following technologies will be used:
 

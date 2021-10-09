@@ -4,7 +4,7 @@
 ### ~ Group 3A - Jack the Coder ~
 
 [Group Meetings Log](group/meetingslog.md)
-#### Group Members
+## Group Members
 - HACI ÇAKIN
 - METEHAN SAÇAKÇI
 - İLKE DOĞAN

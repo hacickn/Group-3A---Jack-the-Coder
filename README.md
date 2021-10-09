@@ -52,3 +52,6 @@ Backend Side
 - **Club Board Members** will be able to do described abilities above and additionally can share, remove and edit events and surveys of clubs.
 - **Club President** will be able to do described abilities above and additionally be able to edit the board members of club.
 - **Admin** is a special position that manage the whole app and be able to give auth to club presidents.
+
+## Database Design at 09.10.2021 - 16:45
+![Mysql Table Design](/mysql_models.png)

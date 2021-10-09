@@ -13,8 +13,8 @@
 
 ## Project Description
 BillBoard is a cross-platform mobile application project that is designed for student-centred club activities. This project will be utilized by club members, club presidents, board members, students, and academics. This application offers various options for the users regarding club events & meetings, club management, surveys, daily event notifications.
-Specifically;
-## Project detailed description
+
+### Project detailed description
 + **Board members can add an event to the system with a specified number of students**                              completed (?.09.2021)
 + **Students can follow the clubs  over the application, and turn into club members;**                              <br />
 ***1. Club members can activate the event notifications***     

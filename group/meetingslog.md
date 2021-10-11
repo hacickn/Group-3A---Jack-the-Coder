@@ -13,7 +13,7 @@ In the meeting, as a group it was also discussed that in which platform we would
 
 Last but not least, we created a list of technologies that we have potential to use during the development of our project. Our potential technologies that can bu used for project are listed below:
 
-- For app development: "Flatter" for client, "Java" for Backend
+- For app development: "Flutter" for client, "Java" for Backend
 - For web development: "React" for client, ".NET" or "Java" for Backend
 
 **ToDo:**
@@ -38,10 +38,10 @@ Whether our project topic was not announced, we made a brainstorm about what fea
 - Joining with bilkent mails to application. (MANDATORY)
 - Implementation of "club following" attribute. (MANDATORY)
 
-During this meeting, the technology that will be used in our client implementation of project was decided as well. We decided to use "Flatter with version 2.5.2" during the client implementation.
+During this meeting, the technology that will be used in our client implementation of project was decided as well. We decided to use "Flutter with version 2.5.2" during the client implementation.
 
 
-**ToDo:** Each member should install Flatter to their computers.
+**ToDo:** Each member should install Flutter to their computers.
 
 ****
 ### Meeting ~ (09.10.2021, 240 min)

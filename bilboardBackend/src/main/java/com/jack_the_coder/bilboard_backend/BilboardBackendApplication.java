@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author Hacı Çakın
  * @created 11.10.2021
- * @update 11.10.2021
+ * @updated 11.10.2021
  */
 @SpringBootApplication
 public class BilboardBackendApplication {

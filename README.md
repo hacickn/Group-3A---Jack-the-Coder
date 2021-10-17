@@ -25,6 +25,14 @@ BillBoard is a cross-platform mobile application project that is designed for st
 + **Board members can  take attendance list from the QR code arranged for specified each event**                     
 + **Based on the attendance amount, club members can turn into an active members and give a vote for the election**  
 
+There will be 6 number of user types: Admin, Club Presidents, Club Board Members, Club Members, Academics and Students.
+
+- **Student** and **Academics** will be able to see and attend events of clubs, be member of clubs.
+- **Club Members** will be able to do described abilities above and additionally directly see the events of joined club on the home main thread.
+- **Club Board Members** will be able to do described abilities above and additionally can share, remove and edit events and surveys of clubs.
+- **Club President** will be able to do described abilities above and additionally be able to edit the board members of club.
+- **Admin** is a special position that manage the whole app and be able to give auth to club presidents.
+
 In this project the following technologies will be used:
 
 ```
@@ -42,16 +50,6 @@ Backend Side
 
 ## Project Status
 + **Iteration-1 Analysis Report** In Progress
-
-
-## Features
-1) There will be 6 number of user types: Admin, Club Presidents, Club Board Members, Club Members, Academics and Students.
-
-- **Student** and **Academics** will be able to see and attend events of clubs, be member of clubs.
-- **Club Members** will be able to do described abilities above and additionally directly see the events of joined club on the home main thread.
-- **Club Board Members** will be able to do described abilities above and additionally can share, remove and edit events and surveys of clubs.
-- **Club President** will be able to do described abilities above and additionally be able to edit the board members of club.
-- **Admin** is a special position that manage the whole app and be able to give auth to club presidents.
 
 ## Database Design at 09.10.2021 - 16:45
 ![Mysql Table Design](/mysql_models.png)

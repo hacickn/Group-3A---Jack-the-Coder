@@ -16,8 +16,6 @@ Last but not least, we created a list of technologies that we have potential to 
 - For app development: "Flutter" for client, "Java" for Backend
 - For web development: "React" for client, ".NET" or "Java" for Backend
 
-**ToDo:**
-
 ****
 ### Meeting ~ (02.10.2021, 60 min)
 ****
@@ -58,4 +56,67 @@ Last but not least, as a group, we came out with new features that might be adde
 - Attendance traction via QR Code. (MANDATORY)
 - Survey and attendance track for voting Club hierarchy, elections. (MANDATORY) 
 
-**ToDo:**
+****
+### Meeting ~ (17.10.2021, 120 min)
+****
+**Present:** Everyone (ONLINE)
+
+**Discussion:** In this online meeting, we started to design each screen of the BilBoard mobile application project. Based on our design, physical diagram of the all planned screens was drafted. The pdf version of this phsical diagram can be found via following link: https://drive.google.com/file/d/13K4YX46Y5y3n8WQMniAC-qL2XsbxAfKD/view?usp=sharing
+
+Also, during this meeting, the Analysis Report was divided into the sub tasks. Some of these tasks are assigned to specific members of the teams. Details can be found below:
+
+ - **TASK 1** - 
+
+    - Writing "Functional Requirement" sub heading of the report.
+    - Assigned to Metehan Saçakçı, İlke Doğan
+    - Start Date: 17.10.2021 - 12:00
+    - Deadline: 18.10.2021 - 23:59
+
+- **TASK 2** -
+
+    - Designing "USE CASE" model of the report.
+    - Assigned to Metehan Saçakçı, İlke Doğan
+    - Start Date: 19.10.2021 - 15:30
+    - Deadline: TBA
+
+- **TASK 3** -
+
+    - Designing "OBJECT AND CLASS" model of the report.
+    - Assigned to Aslı Dinç, Hacı Çakın
+    - Start Date: 19.10.2021 - 17:30
+    - Deadline: TBA
+
+- **TASK 4** -
+
+    - Designing "USER INTERFACE" model of the report.
+    - Assigned to Muhammet Abullah Koç, Hacı Çakın
+    - Start Date: 19.10.2021 - 17:30
+    - Deadline: TBA
+
+- **TASK 5** -
+
+    - Designing "DYNAMIC" models of the report.
+    - Assigned to ALL MEMBERS
+    - Start Date: 19.10.2021 - 17:30
+    - Deadline: TBA
+
+- **TASK 6** -
+
+    - Writing "Pseudo Requirement" sub heading of the report.
+    - NOT ASSIGNED
+    - Start Date: TBA
+    - Deadline: TBA
+
+- **TASK 7** -
+
+    - Writing "Introduction" sub heading of the report.
+    - NOT ASSIGNED
+    - Start Date: TBA
+    - Deadline: TBA
+
+- **TASK 8** -
+
+    - Writing "Scenarios" sub heading of the report.
+    - NOT ASSIGNED
+    - Start Date: TBA
+    - Deadline: TBA

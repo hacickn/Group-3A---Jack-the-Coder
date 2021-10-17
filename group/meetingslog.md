@@ -65,56 +65,56 @@ Last but not least, as a group, we came out with new features that might be adde
 
 Also, during this meeting, the Analysis Report was divided into the sub tasks. Some of these tasks are assigned to specific members of the teams. Details can be found below:
 
- - **TASK 1** - 
+ - **TASK 1**  
 
     - Writing "Functional Requirement" sub heading of the report.
     - Assigned to Metehan Saçakçı, İlke Doğan
     - Start Date: 17.10.2021 - 12:00
     - Deadline: 18.10.2021 - 23:59
 
-- **TASK 2** -
+- **TASK 2** 
 
     - Designing "USE CASE" model of the report.
     - Assigned to Metehan Saçakçı, İlke Doğan
     - Start Date: 19.10.2021 - 15:30
     - Deadline: TBA
 
-- **TASK 3** -
+- **TASK 3** 
 
     - Designing "OBJECT AND CLASS" model of the report.
     - Assigned to Aslı Dinç, Hacı Çakın
     - Start Date: 19.10.2021 - 17:30
     - Deadline: TBA
 
-- **TASK 4** -
+- **TASK 4** 
 
     - Designing "USER INTERFACE" model of the report.
     - Assigned to Muhammet Abullah Koç, Hacı Çakın
     - Start Date: 19.10.2021 - 17:30
     - Deadline: TBA
 
-- **TASK 5** -
+- **TASK 5** 
 
     - Designing "DYNAMIC" models of the report.
     - Assigned to ALL MEMBERS
     - Start Date: 19.10.2021 - 17:30
     - Deadline: TBA
 
-- **TASK 6** -
+- **TASK 6** 
 
     - Writing "Pseudo Requirement" sub heading of the report.
     - NOT ASSIGNED
     - Start Date: TBA
     - Deadline: TBA
 
-- **TASK 7** -
+- **TASK 7** 
 
     - Writing "Introduction" sub heading of the report.
     - NOT ASSIGNED
     - Start Date: TBA
     - Deadline: TBA
 
-- **TASK 8** -
+- **TASK 8** 
 
     - Writing "Scenarios" sub heading of the report.
     - NOT ASSIGNED

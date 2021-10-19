@@ -25,7 +25,7 @@ BillBoard is a cross-platform mobile application project that is designed for st
 + **Board members can  take attendance list from the 6 character code arranged for specified each event**                     
 + **Based on the attendance amount, club members can turn into an active members and give a vote for the election**  
 
-+ **The whatsapp group links of the clubs will be reachable from the club page for following: Club Members, Club Board Members, Club Presidents, Admin**
++ **The Whatsapp group links of the clubs will be reachable from the club page for following: Club Members, Club Board Members, Club Presidents, Admin**
 
 + **There will be "Home Page" where user can see the events of the clubs where he/she is Club Member or Club Board Member or Club President. Also this events on this page can be filtered as well.**
 + **"Discover Clubs Page" will be another page of the project. In this page, user will be able to see other popular events of the clubs where he/she is not member. This page will be used by users to find new potential clubs or events. Upcoming events and potential clubs will be able to filter.**

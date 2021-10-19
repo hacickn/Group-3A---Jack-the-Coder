@@ -25,6 +25,8 @@ BillBoard is a cross-platform mobile application project that is designed for st
 + **Board members can  take attendance list from the 6 character code arranged for specified each event**                     
 + **Based on the attendance amount, club members can turn into an active members and give a vote for the election**  
 
++ **The whatsapp group links of the clubs will be reachable from the club page for following: Club Members, Club Board Members, Club Presidents, Admin**
+
 + **There will be "Home Page" where user can see the events of the clubs where he/she is Club Member or Club Board Member or Club President. Also this events on this page can be filtered as well.**
 + **"Discover Clubs Page" will be another page of the project. In this page, user will be able to see other popular events of the clubs where he/she is not member. This page will be used by users to find new potential clubs or events. Upcoming events and potential clubs will be able to filter.**
 + **Each club will have "Club Profile Page" where their member counts', their upcoming events', their Board Members' and Presidents' information can be found.**
@@ -38,6 +40,7 @@ There will be 6 number of user types: Admin, Club Presidents, Club Board Members
 - **Club Members** will be able to do described abilities above and additionally directly see the events of joined club on the home main thread.
 - **Club Board Members** will be able to do described abilities above and additionally can share, remove and edit events and surveys of clubs.
 - **Club President** will be able to do described abilities above and additionally be able to edit the board members of club.
+- **Club Advisor** will be have same authority with the Club President. However, it should be seen that each club must have an academic advisor from the University itself. 
 - **Admin** is a special position that manage the whole app and be able to give auth to club presidents.
 
 In this project the following technologies will be used:

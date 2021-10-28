@@ -135,3 +135,18 @@ Last but not least, during this meeting we decided to add/modify the following f
 - Attendees of an event will be able to grade the event out of five.
 
 - Club Members will have special event feedback system other than the grading system that is mentioned above.
+
+****
+### Meeting ~ (26.10.2021, 240 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** In this online meeting, we started to design of remaining diagrams that is required for our Analysis Report. In this meeting, sequence diagrams were assigned to Metehan and İlke. Class Diagram was assigned to Hacı. Activiy diagrams were assigned to Aslı. State diagrams were assigned to Abdullah.
+
+During this four hour long meeting, as team we proceed with our objectives with fully organization, just like the previous meeting.
+
+Last but not least, during this meeting we decided to add/modify the following features:
+
+- Using string code for attendance taking purposes.
+
+- Each event should have "isVisible" boolean method to hide them from the user.

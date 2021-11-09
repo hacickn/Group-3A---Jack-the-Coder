@@ -61,5 +61,5 @@ Backend Side
 ## Project Status
 + **Iteration-1 Analysis Report** In Progress
 
-## Database Design at 09.10.2021 - 16:45
+## Database Design at 09.11.2021 - 11:45 made by Hacı Çakın
 ![Mysql Table Design](/mysql_models.png)

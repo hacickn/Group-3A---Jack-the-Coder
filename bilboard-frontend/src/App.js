@@ -1,7 +1,6 @@
-import './App.css';
-import LoginRegister from './screens/LoginRegister';
-
-
+import "./App.css";
+import LoginRegister from "./screens/LoginRegister";
+import Grid from "@mui/material/Grid";
 
 function App() {
   return (

@@ -2,10 +2,17 @@ import BilboardButton from "../components/BilboardButton";
 import Colors from "../utils/Colors";
 import { makeStyles } from "@mui/styles";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import BilboardTextField from "../components/BilboardTextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
 
 const useStyles = makeStyles({
   root: {
@@ -25,7 +32,17 @@ const useStyles = makeStyles({
 
 const LoginRegister = () => {
   const [loginOrRegister, setLoginOrRegister] = useState(true);
-  
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+
+  useEffect(()=>{
+    if(isAlertOpen){
+      setTimeout(()=>{
+        setIsAlertOpen(false);
+      }, 3000);
+    }
+  }, [isAlertOpen]);
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -101,8 +118,39 @@ const LoginRegister = () => {
                 variant="text"
                 color="white"
                 textColor={Colors.BILBOARD_BLUE}
+                onClick={() => setIsDialogOpen(true)}
               />
             </Grid>
+            <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+              <DialogTitle>Forgot Password</DialogTitle>
+              <DialogContent>
+                <DialogContentText style={{ textAlign: "justify" }}>
+                  To reset your password, please enter your Bilkent mail and
+                  click "Reset Password" button.
+                </DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Email Address"
+                  type="email"
+                  fullWidth
+                  variant="standard"
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+                <Button
+                  onClick={() => {
+                    setIsDialogOpen(false);
+                    setIsAlertOpen(true);
+                  }}
+                >
+                  Reset Password
+                </Button>
+              </DialogActions>
+            </Dialog>
+            {isAlertOpen && <Alert severity="info">If you provided a valid info, a mail was sent to your email.</Alert>}
           </div>
         ) : (
           <div>

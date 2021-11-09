@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import BilboardButton from './components/BilboardButton';
+import Colors from './utils/Colors';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: Colors.BILBOARD_BLACK,
+    height: '100vh',
+    width: '100vw',
+  },
+});
 
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={classes.root}>
+        
+      </div>
     </div>
   );
 }

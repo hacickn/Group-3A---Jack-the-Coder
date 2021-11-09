@@ -3,9 +3,10 @@ package com.jack_the_coder.bilboard_backend.io.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
- * @author Hacı Çakın
+ * @author Hacı Çakın, Aslı Dinç
  * @since  09.11.2021
  * @apiNote This class is base structure of the users table in database
  * @implNote After completing relations, getters and setters should be implemented
@@ -57,9 +58,12 @@ public class UserEntity implements Serializable {
 
     // todo many-to-one => university,
 
-    // todo one-to-many => eventParticipants, surveyParticipants, clubFeedbacks, eventPoints, eventQuestions,
+    // todo one-to-many => eventParticipants, surveyParticipants, clubFeedbacks, eventQuestions,
     //  clubBoardMembers, clubMembers, eventAttendNumbers,
 
     // todo one-to-one => clubs(president-advisor)
+
+    @OneToMany( targetEntity = EventPointEntity.class, mappedBy = "user" )
+    private List<EventPointEntity> eventPoints;
 
 }

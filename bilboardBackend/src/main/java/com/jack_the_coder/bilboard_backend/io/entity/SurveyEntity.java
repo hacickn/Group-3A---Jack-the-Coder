@@ -47,7 +47,7 @@ public class SurveyEntity implements Serializable {
     private Boolean isForActiveMembers;
 
     // todo
-    //  one-to-many => survey participants
+    //  one-to-many => surveyparticipants
     //  many-to-one => clubs
     @OneToMany( targetEntity = SurveyChoiceEntity.class, mappedBy = "survey" )
     private List<SurveyChoiceEntity> choices;

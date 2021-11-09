@@ -1,17 +1,13 @@
 import './App.css';
 import Colors from './utils/Colors';
+import LoginRegister from './screens/LoginRegister';
 import { makeStyles } from '@mui/styles';
 import BilboardTextField from './components/BilboardTextField';
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: Colors.BILBOARD_BLACK,
-    height: '100vh',
-    width: '100vw',
-  },
-});
+
 
 function App() {
+<<<<<<< Updated upstream
   const classes = useStyles()
 
   return (
@@ -19,6 +15,12 @@ function App() {
       <div className={classes.root}>
         <BilboardTextField />
       </div>
+=======
+  
+  return (
+    <div className="App">
+      <LoginRegister />
+>>>>>>> Stashed changes
     </div>
   );
 }

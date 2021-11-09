@@ -9,7 +9,6 @@ import java.io.Serializable;
  * @implNote After completing relations, getters and setters should be implemented
  * @since 09.11.2021
  */
-
 @Entity( name = "event_points" )
 public class EventPointEntity implements Serializable {
 
@@ -24,10 +23,66 @@ public class EventPointEntity implements Serializable {
     private int point;
 
     @ManyToOne( targetEntity = UserEntity.class )
-    @JoinColumn( name = "user ")
+    @JoinColumn( name = "user" )
     private UserEntity user;
 
-    // todo ManyToOne => Event
+    @ManyToOne( targetEntity = EventEntity.class )
+    @JoinColumn( name = "event" )
+    private EventEntity event;
 
+    /**
+     * Get id method
+     * @return long
+     */
+    public long getId () {
+        return id;
+    }
 
+    /**
+     * Get point method
+     * @return int
+     */
+    public int getPoint () {
+        return point;
+    }
+
+    /**
+     * Set point method
+     * @param point is an int
+     */
+    public void setPoint ( int point ) {
+        this.point = point;
+    }
+
+    /**
+     * get user method
+     * @return UserEntity object
+     */
+    public UserEntity getUser () {
+        return user;
+    }
+
+    /**
+     * set user method
+     * @param user is userEntity instance
+     */
+    public void setUser ( UserEntity user ) {
+        this.user = user;
+    }
+
+    /**
+     * get event method
+     * @return EventEntity object
+     */
+    public EventEntity getEvent () {
+        return event;
+    }
+
+    /**
+     * set event method
+     * @param event is EventEntity instance
+     */
+    public void setEvent ( EventEntity event ) {
+        this.event = event;
+    }
 }

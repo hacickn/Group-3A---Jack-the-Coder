@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Hacı Çakın
+ * @author Hacı Çakın, Aslı Dinç
  * @apiNote This class is base structure of the surveys table in database
  * @implNote After completing relations, getters and setters should be implemented
  * @since 09.11.2021
@@ -33,10 +33,10 @@ public class SurveyEntity implements Serializable {
     @Column( name = "photo", length = 100 )
     private String photo;
 
-    @Column( name = "start_date" )
+    @Column( name = "start_date", nullable = false )
     private Date startDate;
 
-    @Column( name = "end_date" )
+    @Column( name = "end_date", nullable = false )
     private Date endDate;
 
     @Enumerated( EnumType.STRING )
@@ -49,6 +49,7 @@ public class SurveyEntity implements Serializable {
     // todo
     //  one-to-many => surveyparticipants
     //  many-to-one => clubs
+
     @OneToMany( targetEntity = SurveyChoiceEntity.class, mappedBy = "survey" )
     private List<SurveyChoiceEntity> choices;
 

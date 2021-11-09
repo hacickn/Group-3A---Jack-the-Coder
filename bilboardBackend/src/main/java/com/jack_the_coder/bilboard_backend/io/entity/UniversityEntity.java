@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 /**
  * @author Hacı Çakın
- * @since  09.11.2021
  * @apiNote This class is base structure of the universities table in database
  * @implNote After completing relations, getters and setters should be implemented
+ * @since 09.11.2021
  */
 @Entity( name = "universities" )
 public class UniversityEntity implements Serializable {

@@ -7,9 +7,9 @@ import java.util.List;
 
 /**
  * @author Hacı Çakın, Aslı Dinç
- * @since  09.11.2021
  * @apiNote This class is base structure of the users table in database
  * @implNote After completing relations, getters and setters should be implemented
+ * @since 09.11.2021
  */
 @Entity( name = "users" )
 public class UserEntity implements Serializable {

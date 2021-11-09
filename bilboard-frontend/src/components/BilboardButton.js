@@ -8,9 +8,9 @@ const BilboardButton = (props) => {
       variant={props.variant}
       size={props.size}
       style={{
-        width: props.width? props.width : "auto",
+        minWidth: props.width? props.width : "auto",
         height: props.height? props.height : "auto", 
-        background: props.color? props.color : Colors.BILBOARD_RED,
+        background: props.color? props.color : Colors.BILBOARD_BLUE,
         color: props.textColor? props.textColor : Colors.WHITE,
         borderRadius: Constants.BORDER_RADIUS,
         fontSize: props.fontSize? props.fontSize : "12px",

@@ -8,12 +8,16 @@ const BilboardTextField = (props) => {
         <div>
             <TextField id="outlined-basic"
                 value={value}
+                size="small"
                 onChange={(event) => { setValue(event.target.value) }}
+                type={props.type}
                 label={props.label}
                 variant={props.variant ? props.variant : "outlined"}
                 style={{
                     color: props.color,
-                    fontSize: props.fontSize
+                    fontSize: props.fontSize,
+                    borderRadius: "10px",
+                    width: props.width,
                 }}
             />
         </div>

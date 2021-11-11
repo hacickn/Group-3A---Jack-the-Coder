@@ -26,7 +26,9 @@ const useStyles = makeStyles({
     width: "34%",
     height: "80%",
     margin: "auto",
-    border: "1px solid white",
+    border: "5px solid #EEEEEE",
+    borderRadius: "10px",
+    backgroundColor: "#F5F5F5"
   },
 });
 
@@ -51,13 +53,14 @@ const LoginRegister = () => {
           <Grid item xs={12}>
             <p
               style={{
-                color: Colors.BILBOARD_BLUE,
+                color: "#616161",
                 fontSize: "44px",
-                fontWeight: "lighter",
                 marginBottom: "30px",
+                fontFamily: "Oxygen",
+                letterSpacing: "4px"
               }}
             >
-              Welcome to Bilboard!
+              BilBoard
             </p>
             <ButtonGroup
               variant="contained"
@@ -67,7 +70,7 @@ const LoginRegister = () => {
               <Button
                 style={{
                   background: Colors.BILBOARD_BLUE,
-                  width: "200px",
+                  width: "160px",
                   borderRadius: "10px 0px 0px 10px",
                 }}
                 onClick={() => setLoginOrRegister(true)}
@@ -77,7 +80,7 @@ const LoginRegister = () => {
               <Button
                 style={{
                   background: Colors.BILBOARD_BLUE,
-                  width: "200px",
+                  width: "160px",
                   borderRadius: "0px 10px 10px 0px",
                 }}
                 onClick={() => setLoginOrRegister(false)}
@@ -116,7 +119,7 @@ const LoginRegister = () => {
               <BilboardButton
                 text="Forgot Password?"
                 variant="text"
-                color="white"
+                color="#F5F5F5"
                 textColor={Colors.BILBOARD_BLUE}
                 onClick={() => setIsDialogOpen(true)}
               />
@@ -155,7 +158,7 @@ const LoginRegister = () => {
         ) : (
           <div>
             <Grid container>
-              <Grid item xs={12} style={{ marginTop: "40px" }}>
+              <Grid item xs={12} style={{ marginTop: "20px" }}>
                 <BilboardTextField
                   label="Name"
                   type="name"

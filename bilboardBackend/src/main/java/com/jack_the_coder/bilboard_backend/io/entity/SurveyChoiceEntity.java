@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity( name = "survey_choices" )
 public class SurveyChoiceEntity implements Serializable {
 
-    private static final long serialVersionUID = -7804357298300782894L;
+    private static final long serialVersionUID = -2340163411490305735L;
 
     @GeneratedValue
     @Id

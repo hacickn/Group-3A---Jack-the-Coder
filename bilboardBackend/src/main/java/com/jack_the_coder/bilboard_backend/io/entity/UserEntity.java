@@ -21,7 +21,7 @@ public class UserEntity implements Serializable {
         administrativeAssistants,
     }
 
-    private static final long serialVersionUID = -6395963018803738532L;
+    private static final long serialVersionUID = 8585888063588545565L;
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
@@ -56,14 +56,24 @@ public class UserEntity implements Serializable {
     @Column( name = "jwt_expiration" )
     private Date jwtExpirationTime;
 
-    // todo many-to-one => university,
-
     // todo one-to-many => eventParticipants, surveyParticipants, clubFeedbacks, eventQuestions,
-    //  clubBoardMembers, clubMembers, eventAttendNumbers,
 
-    // todo one-to-one => clubs(president-advisor)
+    @OneToOne( targetEntity = ClubEntity.class, mappedBy = "president" )
+    private ClubEntity presidentOf;
+
+    @OneToOne( targetEntity = ClubEntity.class, mappedBy = "advisor" )
+    private ClubEntity advisorOf;
 
     @OneToMany( targetEntity = EventPointEntity.class, mappedBy = "user" )
     private List<EventPointEntity> eventPoints;
 
+    @OneToMany( targetEntity = ClubMemberEntity.class, mappedBy = "user" )
+    private List<ClubMemberEntity> clubMemberShips;
+
+    @OneToMany( targetEntity = ClubBoardMemberEntity.class, mappedBy = "user" )
+    private List<ClubBoardMemberEntity> clubBoardMemberships;
+
+    @ManyToOne( targetEntity = UniversityEntity.class )
+    @JoinColumn( name = "university" )
+    private UniversityEntity university;
 }

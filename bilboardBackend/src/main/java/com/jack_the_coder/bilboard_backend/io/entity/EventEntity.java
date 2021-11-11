@@ -14,7 +14,7 @@ import java.util.List;
 @Entity( name = "events" )
 public class EventEntity implements Serializable {
 
-    private static final long serialVersionUID = -7804457299300092894L;
+    private static final long serialVersionUID = -3291404561366889311L;
 
     @GeneratedValue
     @Id
@@ -64,7 +64,9 @@ public class EventEntity implements Serializable {
     private List<EventPointEntity> eventPoints;
 
     // todo one-to-one => locationrequeststatus
-    // todo many-to-one => clubs
 
+    @ManyToOne( targetEntity = ClubEntity.class )
+    @JoinColumn( name = "club" )
+    private ClubEntity club;
 
 }

@@ -20,7 +20,7 @@ public class SurveyEntity implements Serializable {
         done
     }
 
-    private static final long serialVersionUID = -4024738873745817001L;
+    private static final long serialVersionUID = -3256397832358851326L;
 
     @GeneratedValue
     @Id
@@ -48,9 +48,13 @@ public class SurveyEntity implements Serializable {
 
     // todo
     //  one-to-many => surveyparticipants
-    //  many-to-one => clubs
 
     @OneToMany( targetEntity = SurveyChoiceEntity.class, mappedBy = "survey" )
     private List<SurveyChoiceEntity> choices;
+
+    @ManyToOne( targetEntity = ClubEntity.class )
+    @JoinColumn( name = "club" )
+    private ClubEntity club;
+
 
 }

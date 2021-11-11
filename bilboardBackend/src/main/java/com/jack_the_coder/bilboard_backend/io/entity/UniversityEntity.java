@@ -1,10 +1,8 @@
 package com.jack_the_coder.bilboard_backend.io.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Hacı Çakın
@@ -15,7 +13,7 @@ import java.io.Serializable;
 @Entity( name = "universities" )
 public class UniversityEntity implements Serializable {
 
-    private static final long serialVersionUID = 7317275210550090252L;
+    private static final long serialVersionUID = 1615442836719692232L;
 
     @GeneratedValue
     @Id
@@ -25,5 +23,11 @@ public class UniversityEntity implements Serializable {
     @Column( name = "name", length = 100, nullable = false )
     private String name;
 
-    // todo one-to-many => buildings, users, clubs
+    // todo one-to-many => buildings,
+
+    @OneToMany( targetEntity = UserEntity.class, mappedBy = "university" )
+    private List<UserEntity> users;
+
+    @OneToMany( targetEntity = ClubEntity.class, mappedBy = "university" )
+    private List<ClubEntity> clubs;
 }

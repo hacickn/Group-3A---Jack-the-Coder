@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * @author Hacı Çakın
  * @apiNote This class is base structure of the survey_choices table in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @implNote DONE
  * @since 09.11.2021
  */
 @Entity( name = "survey_choices" )
@@ -35,6 +35,14 @@ public class SurveyChoiceEntity implements Serializable {
      */
     public long getId () {
         return id;
+    }
+
+    /**
+     * Set id method
+     * @param id is an long parameter
+     */
+    public void setId ( long id ) {
+        this.id = id;
     }
 
     /**

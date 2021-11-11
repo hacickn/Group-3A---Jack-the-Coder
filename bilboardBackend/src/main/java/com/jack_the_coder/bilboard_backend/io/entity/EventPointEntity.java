@@ -6,13 +6,13 @@ import java.io.Serializable;
 /**
  * @author Aslı Dinç
  * @apiNote This class is base structure of the event_points table in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @implNote DONE
  * @since 09.11.2021
  */
 @Entity( name = "event_points" )
 public class EventPointEntity implements Serializable {
 
-    private static final long serialVersionUID = 8318276210650090252L;
+    private static final long serialVersionUID = -4702982175549963977L;
 
     @GeneratedValue
     @Id
@@ -36,6 +36,14 @@ public class EventPointEntity implements Serializable {
      */
     public long getId () {
         return id;
+    }
+
+    /**
+     * set id method
+     * @param id is a long parameter
+     */
+    public void setId ( long id ) {
+        this.id = id;
     }
 
     /**

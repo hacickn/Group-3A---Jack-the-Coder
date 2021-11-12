@@ -150,3 +150,17 @@ Last but not least, during this meeting we decided to add/modify the following f
 - Using string code for attendance taking purposes.
 
 - Each event should have "isVisible" boolean method to hide them from the user.
+
+****
+### Meeting ~ (02.11.2021, 240 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** Will be shared!
+
+****
+### Meeting ~ (09.11.2021, 240 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** Will be shared!

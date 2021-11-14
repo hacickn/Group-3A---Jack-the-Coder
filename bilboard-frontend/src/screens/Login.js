@@ -16,6 +16,8 @@ import Alert from "@mui/material/Alert";
 const Login = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     return (
         <div>
@@ -23,7 +25,9 @@ const Login = () => {
                 <Grid item xs={12} style={{marginTop: "60px"}}>
                     <BilboardTextField
                         label="Bilkent Mail"
+                        onChange={(e) => setEmail(e.target.value)}
                         type="email"
+                        value={email}
                         width="300px"
                         style={{marginTop: "30px"}}
                     />
@@ -32,6 +36,8 @@ const Login = () => {
                     <BilboardTextField
                         label="Password"
                         type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                         width="300px"
                         style={{marginTop: "30px"}}
                     />

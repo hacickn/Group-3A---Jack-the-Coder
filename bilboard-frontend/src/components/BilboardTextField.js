@@ -2,14 +2,13 @@ import TextField from '@mui/material/TextField';
 import React from 'react';
 
 const BilboardTextField = (props) => {
-    const [value, setValue] = React.useState("")
 
     return (
         <div>
             <TextField id="outlined-basic"
-                value={value}
+                value={props.value}
                 size="small"
-                onChange={(event) => { setValue(event.target.value) }}
+                onChange={props.onChange}
                 type={props.type}
                 label={props.label}
                 variant={props.variant ? props.variant : "outlined"}

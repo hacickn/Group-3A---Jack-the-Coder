@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
     container: {
         width: "34%",
-        height: "80%",
+        height: "600px",
         margin: "auto",
         border: "5px solid #EEEEEE",
         borderRadius: "10px",

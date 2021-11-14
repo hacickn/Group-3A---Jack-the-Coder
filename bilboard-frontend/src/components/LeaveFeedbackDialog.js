@@ -1,5 +1,5 @@
 import Grid  from "@mui/material/Grid";
-import BilboardTextField from "../components/BilboardTextField";
+import BilboardMultilineTextField from "./BilboardMultilineTextField";
 import BilboardButton from "../components/BilboardButton";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -8,13 +8,13 @@ import Button from "@mui/material/Button";
 import React, {useState} from "react";
 
 /**
- * Attend Event Dialog
+ * Leave Feedback Dialog
  * 
- * Date: 13.11.2021
+ * Date: 14.11.2021
  * Metehan Saçakçı
  */
 
-const AttendEventDialog  = () => {
+const LeaveFeedbackDialog  = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(true);
     
     return (
@@ -29,41 +29,42 @@ const AttendEventDialog  = () => {
                                 fontSize: "44px",
                                 marginBottom: "30px",
                                 fontFamily: "Oxygen",
-                                letterSpacing: "4px",
                                 display: "flex",
                                 justifyContent: "center",
                             }}
                         >
-                            Attend An Event
+                            Leave Feedback
                         </p>                       
-                        <p
-                        style={{
-                            color: "#616161",
-                            fontSize: "18px",
-                            marginBottom: "1px",
-                            fontFamily: "Oxygen",
-                            align: "center",
-                            letterSpacing: "1px",
-                            display: "flex",
-                            justifyContent: "center",
-                        }}      
-                    >Please enter 8-digit event code</p>
                     </Grid>
                     <Grid item xs={12} style={{marginTop: "20px",
                         display: "flex",
                         justifyContent: "center",
                         }}>
-                        <BilboardTextField
-                            label="Code"
-                            type="attendanceCode"
+                        <BilboardMultilineTextField
+                            label="Your Feedback"
+                            type="feedback"
                             width="300px"
+                            rows="10"
                             style={{marginTop: "30px"}}
                         />
                     </Grid>
-                    <Grid item xs={12} style={{marginTop: "40px",                  
+                    <Grid item xs={12}>                    
+                        <p
+                        style={{
+                            color: "#616161",
+                            fontSize: "16px",
+                            marginBottom: "1px",
+                            fontFamily: "Oxygen",
+                            align: "center",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}      
+                    >Your feedback will be anonymous and only board members can see your feedback.</p>                    
+                    </Grid>
+                    <Grid item xs={12} style={{marginTop: "50px",                  
                         display: "flex",
                         justifyContent: "center"}}>                         
-                        <BilboardButton width="100px" fontSize="14px" text="Submit"/>
+                        <BilboardButton width="100px" fontSize="11px" text="Send Feedback"/>
                     </Grid>
                 </Grid>
             </DialogContent>
@@ -80,4 +81,4 @@ const AttendEventDialog  = () => {
     )
 }
 
-export default AttendEventDialog;
+export default LeaveFeedbackDialog;

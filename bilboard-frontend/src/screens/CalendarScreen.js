@@ -26,11 +26,11 @@ const useStyles = makeStyles({
   },
 });
 
-const MainScreen = () => {
+const CalendarScreen = () => {
   const classes = useStyles();
   return (
     <>
-      <BilboardNavbar />
+      <BilboardNavbar currentScreen="calendar"/>
       <div>
         <Grid container direction="column">
           <Grid item xs={6}>
@@ -43,7 +43,7 @@ const MainScreen = () => {
                     fontSize: "28px",
                   }}
                 >
-                  Events of Following Clubs
+                  Future Events
                 </p>
               </Grid>
               <Grid item xs={12}>
@@ -95,7 +95,7 @@ const MainScreen = () => {
                     fontSize: "28px",
                   }}
                 >
-                  Discover
+                  Past Events
                 </p>
               </Grid>
               <Grid item xs={12}>
@@ -129,4 +129,4 @@ const MainScreen = () => {
   );
 };
 
-export default MainScreen;
+export default CalendarScreen;

@@ -4,6 +4,7 @@ import BilboardButton from "../components/BilboardButton";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
+import Constants from "../utils/Constants";
 import Button from "@mui/material/Button";
 import React, {useState} from "react";
 
@@ -28,7 +29,7 @@ const AttendEventDialog  = () => {
                                 color: "#616161",
                                 fontSize: "44px",
                                 marginBottom: "30px",
-                                fontFamily: "Oxygen",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 letterSpacing: "4px",
                                 display: "flex",
                                 justifyContent: "center",
@@ -41,7 +42,7 @@ const AttendEventDialog  = () => {
                             color: "#616161",
                             fontSize: "18px",
                             marginBottom: "1px",
-                            fontFamily: "Oxygen",
+                            fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             align: "center",
                             letterSpacing: "1px",
                             display: "flex",

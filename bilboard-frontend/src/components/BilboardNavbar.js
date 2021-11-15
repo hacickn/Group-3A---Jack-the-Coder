@@ -6,9 +6,11 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
+import Constants from "../utils/Constants";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import TodayIcon from "@mui/icons-material/Today";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import clsx from "clsx";
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +19,7 @@ const useStyles = makeStyles({
     background: Colors.BILBOARD_BLUE,
   },
   logo: {
-    fontFamily: "Oxygen",
+    fontFamily: Constants.OXYGEN_FONT_FAMILY,
     fontSize: "32px",
     display: "flex",
     alignItems: "center",
@@ -39,10 +41,23 @@ const useStyles = makeStyles({
     height: "68px",
     marginTop: "2px",
   },
+  anIcon: {
+    color: "white",
+    minWidth: "40px",
+    minHeight: "40px",
+    borderRadius: "50px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconBg: {
+    backgroundColor: "rgba(0,0,0,0.05)"
+  },
 });
 
 const BilboardNavbar = (props) => {
   const classes = useStyles();
+  const currentScreen = props.currentScreen;
   return (
     <div className={classes.root}>
       <Grid container>
@@ -72,26 +87,44 @@ const BilboardNavbar = (props) => {
             <Grid item xs={2}>
               <IconButton size="large">
                 <Badge badgeContent={props.surveyCount} color="error">
-                  <div style={{ color: "white" }}>
-                    <AssignmentIcon />
-                  </div>
+                  {currentScreen === "survey" ? (
+                    <div className={clsx(classes.anIcon, classes.iconBg)}>
+                      <AssignmentIcon />
+                    </div>
+                  ) : (
+                    <div className={classes.anIcon}>
+                      <AssignmentIcon />
+                    </div>
+                  )}
                 </Badge>
               </IconButton>
             </Grid>
             <Grid item xs={2}>
               <IconButton size="large">
                 <Badge badgeContent={props.calendarCount} color="error">
-                  <div style={{ color: "white" }}>
-                    <TodayIcon />
-                  </div>
+                  {currentScreen === "calendar" ? (
+                    <div className={clsx(classes.anIcon, classes.iconBg)}>
+                      <TodayIcon />
+                    </div>
+                  ) : (
+                    <div className={classes.anIcon}>
+                      <TodayIcon />
+                    </div>
+                  )}
                 </Badge>
               </IconButton>
             </Grid>
             <Grid item xs={2}>
               <IconButton size="large">
-                <div style={{ color: "white" }}>
-                  <AccountCircleIcon />
-                </div>
+                {currentScreen === "account" ? (
+                  <div className={clsx(classes.anIcon, classes.iconBg)}>
+                    <AccountCircleIcon />
+                  </div>
+                ) : (
+                  <div className={classes.anIcon}>
+                    <AccountCircleIcon />
+                  </div>
+                )}
               </IconButton>
             </Grid>
           </Grid>

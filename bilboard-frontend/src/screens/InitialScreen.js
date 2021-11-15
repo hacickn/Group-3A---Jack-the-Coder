@@ -3,6 +3,7 @@ import {makeStyles} from "@mui/styles";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import {useState, useEffect} from "react";
 import Button from "@mui/material/Button";
+import Constants from "../utils/Constants";
 import Grid from "@mui/material/Grid";
 import Login from "./Login";
 import Register from "./Register";
@@ -48,7 +49,7 @@ const LoginRegister = () => {
                                 color: "#616161",
                                 fontSize: "44px",
                                 marginBottom: "30px",
-                                fontFamily: "Oxygen",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 letterSpacing: "4px"
                             }}
                         >

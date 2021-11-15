@@ -5,6 +5,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
+import Constants from "../utils/Constants";
 import React, {useState} from "react";
 
 /**
@@ -28,7 +29,7 @@ const LeaveFeedbackDialog  = () => {
                                 color: "#616161",
                                 fontSize: "44px",
                                 marginBottom: "30px",
-                                fontFamily: "Oxygen",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 display: "flex",
                                 justifyContent: "center",
                             }}
@@ -54,7 +55,7 @@ const LeaveFeedbackDialog  = () => {
                             color: "#616161",
                             fontSize: "16px",
                             marginBottom: "1px",
-                            fontFamily: "Oxygen",
+                            fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             align: "center",
                             display: "flex",
                             justifyContent: "center",

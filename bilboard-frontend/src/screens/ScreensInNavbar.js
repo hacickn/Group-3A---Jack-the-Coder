@@ -6,7 +6,7 @@ import UserScreen from "./UserScreen";
 const ScreensInNavbar = ({currentScreen}) => {
     return (
         <div>
-        {currentScreen === "main" ? <MainScreen /> : currentScreen === "survey" ? <MainScreen/>: currentScreen === "calendar" ? <CalendarScreen/>: currentScreen === "user" ? <UserScreen/>: <MainScreen/>}
+        {currentScreen === "main" ? <MainScreen /> : currentScreen === "survey" ? <MainScreen/>: currentScreen === "calendar" ? <CalendarScreen/>: currentScreen === "user" ? <UserScreen image="https://picsum.photos/300"/>: <MainScreen/>}
 
         </div>
     );

@@ -86,4 +86,16 @@ const AttendEventDialog = (props) => {
     )
 }
 
-export default AttendEventDialog;
+const mapStateToProps = (state) => {
+    return {
+        isAttendDialogOpen: state.isAttendDialogOpen
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setIsAttendDialogOpen: (isAttendDialogOpen) => dispatch({type: "SET_IS_ATTEND_DIALOG_OPEN", isAttendDialogOpen: isAttendDialogOpen})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (AttendEventDialog);

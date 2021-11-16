@@ -10,6 +10,8 @@ import Constants from "../utils/Constants";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import TodayIcon from "@mui/icons-material/Today";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import BilboardButton from "./BilboardButton";
+import AttendEventDialog from "./AttendEventDialog";
 import clsx from "clsx";
 import React from "react";
 import BilboardButton from "./BilboardButton";
@@ -150,4 +152,18 @@ const BilboardNavbar = (props) => {
     );
 };
 
-export default BilboardNavbar;
+const mapStateToProps = (state) => {
+  return { isAttendDialogOpen: state.isAttendDialogOpen };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setIsAttendDialogOpen: (value) =>
+      dispatch({
+        type: "SET_IS_ATTEND_DIALOG_OPEN",
+        isAttendDialogOpen: value,
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BilboardNavbar);

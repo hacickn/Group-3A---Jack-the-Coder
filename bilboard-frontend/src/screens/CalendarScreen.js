@@ -117,7 +117,7 @@ const CalendarScreen = () => {
                   <div className={classes.eventCard}>
                     <EventCard />
                   </div>
-                  
+
                 </div>
               </Grid>
             </Grid>

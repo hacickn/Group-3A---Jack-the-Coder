@@ -30,7 +30,7 @@ const CalendarScreen = () => {
   const classes = useStyles();
   return (
     <>
-      <BilboardNavbar currentScreen="calendar"/>
+      <BilboardNavbar currentScreen="calendar" attendActive/>
       <div>
         <Grid container direction="column">
           <Grid item xs={6}>

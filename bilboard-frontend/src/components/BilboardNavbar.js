@@ -10,7 +10,11 @@ import Constants from "../utils/Constants";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import TodayIcon from "@mui/icons-material/Today";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import BilboardButton from "./BilboardButton";
+import AttendEventDialog from "./AttendEventDialog";
 import clsx from "clsx";
+import { useState } from "react";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -51,20 +55,27 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   iconBg: {
-    backgroundColor: "rgba(0,0,0,0.05)"
+    backgroundColor: "rgba(0,0,0,0.05)",
   },
 });
 
-const BilboardNavbar = (props) => {
+const BilboardNavbar = ({
+  currentScreen,
+  attendActive,
+  surveyCount,
+  calendarCount,
+  isAttendDialogOpen,
+  setIsAttendDialogOpen,
+}) => {
   const classes = useStyles();
-  const currentScreen = props.currentScreen;
   return (
     <div className={classes.root}>
+      {isAttendDialogOpen && <AttendEventDialog />}
       <Grid container>
         <Grid item xs={3}>
           <div className={classes.logo}>BilBoard</div>
         </Grid>
-        <Grid item xs={5} className={classes.searchBar}>
+        <Grid item xs={4} className={classes.searchBar}>
           <div style={{ backgroundColor: "white", borderRadius: "5px" }}>
             <TextField
               color="info"
@@ -80,13 +91,31 @@ const BilboardNavbar = (props) => {
             />
           </div>
         </Grid>
-        <Grid item xs={1}></Grid>
+        <Grid
+          item
+          xs={2}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {attendActive && (
+            <BilboardButton
+              onClick={() => setIsAttendDialogOpen(true)}
+              width="160px"
+              fontSize="13px"
+              text="Attend an Event"
+              color="#00C853"
+            />
+          )}
+        </Grid>
         <Grid item xs={3}>
           <Grid container className={classes.icons}>
             <Grid item xs={4} />
             <Grid item xs={2}>
               <IconButton size="large">
-                <Badge badgeContent={props.surveyCount} color="error">
+                <Badge badgeContent={surveyCount} color="error">
                   {currentScreen === "survey" ? (
                     <div className={clsx(classes.anIcon, classes.iconBg)}>
                       <AssignmentIcon />
@@ -101,7 +130,7 @@ const BilboardNavbar = (props) => {
             </Grid>
             <Grid item xs={2}>
               <IconButton size="large">
-                <Badge badgeContent={props.calendarCount} color="error">
+                <Badge badgeContent={calendarCount} color="error">
                   {currentScreen === "calendar" ? (
                     <div className={clsx(classes.anIcon, classes.iconBg)}>
                       <TodayIcon />
@@ -134,4 +163,18 @@ const BilboardNavbar = (props) => {
   );
 };
 
-export default BilboardNavbar;
+const mapStateToProps = (state) => {
+  return { isAttendDialogOpen: state.isAttendDialogOpen };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setIsAttendDialogOpen: (value) =>
+      dispatch({
+        type: "SET_IS_ATTEND_DIALOG_OPEN",
+        isAttendDialogOpen: value,
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BilboardNavbar);

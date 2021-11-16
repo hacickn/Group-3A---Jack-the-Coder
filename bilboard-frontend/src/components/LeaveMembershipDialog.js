@@ -49,7 +49,7 @@ import React, {useState} from "react";
                             display: "flex",
                             justifyContent: "center",
                         }}      
-                    >Do you would like to leave your membership?</p>                    
+                    >Would you like to leave your membership?</p>                    
                     </Grid>
 
                     <Grid container style={{marginBottom: "15px"}}>

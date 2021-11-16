@@ -7,6 +7,7 @@ import reducer from "./reducer";
 import { createStore } from "redux";
 import BilboardNavbar from "./components/BilboardNavbar";
 import ScreensInNavbar from "./screens/ScreensInNavbar";
+import EventDetailScreen from "./screens/EventDetailScreen";
 
 function App() {
 
@@ -22,8 +23,8 @@ function App() {
       <div className="App" style={{ overflowX: "hidden" }}>
         <div>
           <BilboardNavbar attendActive/>
-          <ScreensInNavbar/>
-        </div>
+          <EventDetailScreen></EventDetailScreen>
+          </div>
       </div>
     </Provider>
   );

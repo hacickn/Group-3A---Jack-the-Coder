@@ -23,7 +23,7 @@ function App() {
       <div className="App" style={{ overflowX: "hidden" }}>
         <div>
           <BilboardNavbar attendActive/>
-          <EventDetailScreen></EventDetailScreen>
+          <ScreensInNavbar/>
           </div>
       </div>
     </Provider>

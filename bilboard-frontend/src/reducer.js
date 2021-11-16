@@ -5,7 +5,14 @@ const reducer = (state, action) => {
       isAttendDialogOpen: action.isAttendDialogOpen,
     };
   }
+  else if (action.type=== "SET_CURRENT_SCREEN"){
+    return {
+      ...state,
+      currentScreen: action.currentScreen
+    }
+  }
   return state;
+
 };
 
 export default reducer;

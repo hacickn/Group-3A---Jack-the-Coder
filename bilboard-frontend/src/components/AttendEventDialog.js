@@ -7,6 +7,7 @@ import Dialog from "@mui/material/Dialog";
 import Constants from "../utils/Constants";
 import Button from "@mui/material/Button";
 import React, {useState} from "react";
+import {connect} from "react-redux"
 
 /**
  * Attend Event Dialog
@@ -15,12 +16,11 @@ import React, {useState} from "react";
  * Metehan Saçakçı
  */
 
-const AttendEventDialog  = () => {
-    const [isDialogOpen, setIsDialogOpen] = useState(true);
+const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
     
     return (
-        <Dialog open={isDialogOpen} fullWidth maxWidth={"sm"}
-                onClose={() => setIsDialogOpen(false)}>
+        <Dialog open={isAttendDialogOpen} fullWidth maxWidth={"sm"}
+                onClose={() => setIsAttendDialogOpen(false)}>
             <DialogContent>            
                 <Grid container>
                     <Grid item xs={12}>
@@ -70,7 +70,7 @@ const AttendEventDialog  = () => {
             </DialogContent>
             <DialogActions>
                 <Button 
-                    onClick={() => setIsDialogOpen(false)}
+                    onClick={() => setIsAttendDialogOpen(false)}
                     style= {{
                         display: "flex",
                         justifyContent: "center"
@@ -81,4 +81,16 @@ const AttendEventDialog  = () => {
     )
 }
 
-export default AttendEventDialog;
+const mapStateToProps = (state) => {
+    return {
+        isAttendDialogOpen: state.isAttendDialogOpen
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setIsAttendDialogOpen: (isAttendDialogOpen) => dispatch({type: "SET_IS_ATTEND_DIALOG_OPEN", isAttendDialogOpen: isAttendDialogOpen})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (AttendEventDialog);

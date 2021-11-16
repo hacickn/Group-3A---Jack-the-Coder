@@ -21,6 +21,7 @@ public class ClassroomDayEntity implements Serializable {
     @Column( name = "id" )
     private long id;
 
+    @Column( name = "day_date", nullable = false )
     private Date dayDate;
 
     @OneToMany( targetEntity = TimeSlotEntity.class, mappedBy = "classroomDay" )
@@ -79,7 +80,7 @@ public class ClassroomDayEntity implements Serializable {
     }
 
     /**
-     * Get time classroom method
+     * Get classroom method
      * @return ClassroomEntity
      */
     public ClassroomEntity getClassroom () {
@@ -87,7 +88,7 @@ public class ClassroomDayEntity implements Serializable {
     }
 
     /**
-     * Set time slots method
+     * Set classroom method
      * @param classroom is ClassroomEntity
      */
     public void setClassroom ( ClassroomEntity classroom ) {

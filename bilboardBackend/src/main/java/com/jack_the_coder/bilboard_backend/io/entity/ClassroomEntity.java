@@ -1,6 +1,7 @@
 package com.jack_the_coder.bilboard_backend.io.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @since 11.11.2021
  */
 @Entity( name = "classrooms" )
-public class ClassroomEntity {
+public class ClassroomEntity implements Serializable {
 
     private static final long serialVersionUID = -7994542806569385225L;
 

@@ -8,6 +8,7 @@ import Constants from "../utils/Constants";
 import Button from "@mui/material/Button";
 import React, {useState} from "react";
 import {connect} from "react-redux"
+import Colors from "../utils/Colors";
 
 /**
  * Attend Event Dialog

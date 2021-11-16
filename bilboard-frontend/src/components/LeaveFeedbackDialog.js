@@ -7,6 +7,7 @@ import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import Constants from "../utils/Constants";
 import React, {useState} from "react";
+import Colors from "../utils/Colors";
 
 /**
  * Leave Feedback Dialog

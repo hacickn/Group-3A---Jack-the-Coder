@@ -13,6 +13,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BilboardButton from "./BilboardButton";
 import AttendEventDialog from "./AttendEventDialog";
 import clsx from "clsx";
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { useState } from "react";
 import { connect } from "react-redux";
 
@@ -115,7 +116,7 @@ const BilboardNavbar = ({
         </Grid>
         <Grid item xs={3}>
           <Grid container className={classes.icons}>
-            <Grid item xs={4} />
+            <Grid item xs={3} />
             <Grid item xs={2}>
               <IconButton size="large" onClick={()=> setCurrentScreen("survey")}>
                 <Badge badgeContent={surveyCount} color="error">
@@ -155,6 +156,20 @@ const BilboardNavbar = ({
                 ) : (
                   <div className={classes.anIcon}>
                     <AccountCircleIcon />
+                  </div>
+                )}
+              </IconButton>
+            </Grid>
+
+            <Grid item xs={2}>
+              <IconButton size="large" onClick={()=> setCurrentScreen("clubManagement")}>
+                {currentScreen === "clubManagement" ? (
+                  <div className={clsx(classes.anIcon, classes.iconBg)}>
+                    <SettingsApplicationsIcon />
+                  </div>
+                ) : (
+                  <div className={classes.anIcon}>
+                    <SettingsApplicationsIcon />
                   </div>
                 )}
               </IconButton>

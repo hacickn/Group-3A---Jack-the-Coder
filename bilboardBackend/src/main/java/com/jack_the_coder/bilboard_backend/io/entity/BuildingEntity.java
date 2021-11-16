@@ -3,6 +3,7 @@ package com.jack_the_coder.bilboard_backend.io.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Aslı Dinç
@@ -20,12 +21,14 @@ public class BuildingEntity implements Serializable {
     @Column( name = "id" )
     private long id;
 
+    @Column( name = "name", length = 45, nullable = false )
     private String name;
 
     @ManyToOne( targetEntity = UniversityEntity.class )
     @JoinColumn( name = "university" )
     private UniversityEntity university;
 
-    // todo one-to-many classrooms
+    @OneToMany( targetEntity = ClassroomEntity.class, mappedBy = "building" )
+    private List<ClassroomEntity> classrooms;
 
 }

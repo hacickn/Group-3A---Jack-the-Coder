@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Hacı Çakın
+ * @author Hacı Çakın and Aslı Dinç
  * @apiNote This class is base structure of the clubs in database
  * @implNote After completing relations, getters and setters should be implemented
  * @since 11.11.2021
@@ -20,14 +20,19 @@ public class ClubEntity implements Serializable {
     @Column( name = "id" )
     private long id;
 
+    @Column( name = "name", length = 45, nullable = false )
     private String name;
 
+    @Column( name = "shortName", length = 45, nullable = false )
     private String shortName;
 
+    @Column( name = "wpLink", length = 45 )
     private String wpLink;
 
+    @Column( name = "instaLink", length = 45 )
     private String instaLink;
 
+    @Column( name = "photo", length = 45 )
     private String photo;
 
     //  todo oneToMany =>  clubFeedbacks, clubSponsorships,

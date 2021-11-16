@@ -1,4 +1,4 @@
-import Grid  from "@mui/material/Grid";
+import Grid from "@mui/material/Grid";
 import BilboardTextField from "../components/BilboardTextField";
 import BilboardButton from "../components/BilboardButton";
 import DialogContent from "@mui/material/DialogContent";
@@ -7,22 +7,21 @@ import Dialog from "@mui/material/Dialog";
 import Constants from "../utils/Constants";
 import Button from "@mui/material/Button";
 import React, {useState} from "react";
-import {connect} from "react-redux"
 import Colors from "../utils/Colors";
 
 /**
  * Attend Event Dialog
- * 
+ *
  * Date: 13.11.2021
  * Metehan Saçakçı
  */
 
-const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
-    
+const AttendEventDialog = (props) => {
+
     return (
-        <Dialog open={isAttendDialogOpen} fullWidth maxWidth={"sm"}
-                onClose={() => setIsAttendDialogOpen(false)}>
-            <DialogContent>            
+        <Dialog open={props.isOpen} fullWidth maxWidth={"sm"}
+                onClose={() => props.setOpen(false)}>
+            <DialogContent>
                 <Grid container>
                     <Grid item xs={12}>
                         <p
@@ -37,24 +36,25 @@ const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
                             }}
                         >
                             Attend An Event
-                        </p>                       
+                        </p>
                         <p
-                        style={{
-                            color: Colors.BILBOARD_LIGHT_GREY,
-                            fontSize: "18px",
-                            marginBottom: "1px",
-                            fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                            align: "center",
-                            letterSpacing: "1px",
-                            display: "flex",
-                            justifyContent: "center",
-                        }}      
-                    >Please enter 8-digit event code</p>
+                            style={{
+                                color: Colors.BILBOARD_LIGHT_GREY,
+                                fontSize: "18px",
+                                marginBottom: "1px",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                align: "center",
+                                letterSpacing: "1px",
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >Please enter 8-digit event code</p>
                     </Grid>
-                    <Grid item xs={12} style={{marginTop: "20px",
+                    <Grid item xs={12} style={{
+                        marginTop: "20px",
                         display: "flex",
                         justifyContent: "center",
-                        }}>
+                    }}>
                         <BilboardTextField
                             label="Code"
                             type="attendanceCode"
@@ -62,21 +62,25 @@ const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
                             style={{marginTop: "30px"}}
                         />
                     </Grid>
-                    <Grid item xs={12} style={{marginTop: "40px",                  
+                    <Grid item xs={12} style={{
+                        marginTop: "40px",
                         display: "flex",
-                        justifyContent: "center"}}>                         
+                        justifyContent: "center"
+                    }}>
                         <BilboardButton width="100px" fontSize="14px" text="Submit"/>
                     </Grid>
                 </Grid>
             </DialogContent>
             <DialogActions>
-                <Button 
-                    onClick={() => setIsAttendDialogOpen(false)}
-                    style= {{
+                <Button
+                    onClick={() => props.setOpen(false)}
+                    style={{
                         display: "flex",
                         justifyContent: "center"
                     }}
-                    >Cancel</Button>
+                >
+                    Cancel
+                </Button>
             </DialogActions>
         </Dialog>
     )

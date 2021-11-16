@@ -80,7 +80,9 @@ const LeaveFeedbackDialog = () => {
                         display: "flex",
                         justifyContent: "center"
                     }}
-                >Cancel</Button>
+                >
+                    Cancel
+                </Button>
             </DialogActions>
         </Dialog>
     )

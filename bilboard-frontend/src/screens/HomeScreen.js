@@ -1,6 +1,7 @@
-import {makeStyles} from "@mui/styles";
-import EventCard from "../components/EventCard";
 import Grid from "@mui/material/Grid";
+import EventCard from "../components/EventCard";
+import React from "react";
+import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles({
     root: {
@@ -25,8 +26,9 @@ const useStyles = makeStyles({
     },
 });
 
-const HomeScreen = () => {
+const HomeScreen = () =>{
     const classes = useStyles();
+
     return (<div>
         <Grid container direction="column">
             <Grid item xs={6}>
@@ -120,7 +122,7 @@ const HomeScreen = () => {
                 </Grid>
             </Grid>
         </Grid>
-    </div>)
+    </div>);
 }
 
 export default HomeScreen;

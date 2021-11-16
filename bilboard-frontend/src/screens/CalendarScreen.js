@@ -30,7 +30,6 @@ const CalendarScreen = () => {
   const classes = useStyles();
   return (
     <>
-      <BilboardNavbar currentScreen="calendar" attendActive/>
       <div>
         <Grid container direction="column">
           <Grid item xs={6}>
@@ -118,7 +117,7 @@ const CalendarScreen = () => {
                   <div className={classes.eventCard}>
                     <EventCard />
                   </div>
-                  
+
                 </div>
               </Grid>
             </Grid>

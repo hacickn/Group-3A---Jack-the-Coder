@@ -28,7 +28,7 @@ import React, {useState} from "react";
                             style={{
                                 color: "#616161",
                                 fontSize: "44px",
-                                marginTop: "30px",
+                                marginTop: "10px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 display: "flex",
                                 justifyContent: "center",
@@ -52,7 +52,7 @@ import React, {useState} from "react";
                     >Do you would like to leave your membership?</p>                    
                     </Grid>
 
-                    <Grid container>
+                    <Grid container style={{marginBottom: "15px"}}>
                         <Grid item xs={6} style={{marginTop: "50px",                  
                             display: "flex",
                             justifyContent: "center"}}>                         

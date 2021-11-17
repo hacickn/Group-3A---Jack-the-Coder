@@ -15,7 +15,7 @@ const RoomRequestScreen = (props) => {
 
     return (
         <Grid container
-            style= {{marginLeft: 10, borderRadius: Constants.BORDER_RADIUS}}>
+            style= {{borderRadius: Constants.BORDER_RADIUS}}>
 
             <Grid item xs={12}>
                 <BilboardNavbar/>

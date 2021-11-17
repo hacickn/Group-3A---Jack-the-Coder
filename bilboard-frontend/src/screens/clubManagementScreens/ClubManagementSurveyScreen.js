@@ -14,7 +14,12 @@ const ClubManagementSurveyScreen = () => {
 
 
     return (
-        <Grid container>
+        <Grid container style={{
+            marginLeft: 20,
+            marginRight: 10,
+            marginTop: 10,
+            marginBottom: 10,
+        }}>
             <Grid style={{
                 marginTop: 15,
                 fontFamily: Constants.OXYGEN_FONT_FAMILY,

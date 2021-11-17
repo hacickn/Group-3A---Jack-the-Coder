@@ -60,7 +60,42 @@ const BilboardRoomRequests = (props) => {
             eventName: "kariyer.net example event",
             numberOfParticipants: "100",
             prefferedRoom: "BZ-08",
-        }
+        },
+
+        {
+            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
+            eventName: "kariyer.net example event",
+            numberOfParticipants: "100",
+            prefferedRoom: "BZ-08",
+        },
+
+        {
+            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
+            eventName: "kariyer.net example event",
+            numberOfParticipants: "100",
+            prefferedRoom: "BZ-08",
+        },
+
+        {
+            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
+            eventName: "kariyer.net example event",
+            numberOfParticipants: "100",
+            prefferedRoom: "BZ-08",
+        },
+
+        {
+            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
+            eventName: "kariyer.net example event",
+            numberOfParticipants: "100",
+            prefferedRoom: "BZ-08",
+        },
+
+        {
+            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
+            eventName: "kariyer.net example event",
+            numberOfParticipants: "100",
+            prefferedRoom: "BZ-08",
+        },
     ]
 
     function addRoomRequest( roomRequestObject)
@@ -76,7 +111,7 @@ const BilboardRoomRequests = (props) => {
     }
 
     return (
-        <Grid container style={{maxHeight: "100vh", overflowY: "scroll"}}>
+        <Grid container style={{maxHeight: "100vh", overflowY: "scroll", marginLeft: 15, marginRight: 10}}>
             {roomRequestList.map( roomRequest => {
 
                 return (<Grid container 

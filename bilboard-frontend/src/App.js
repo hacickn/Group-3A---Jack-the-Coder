@@ -20,7 +20,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className="App" style={{ overflowX: "hidden" }}>
+      <div className="App">
         <div>
           <BilboardNavbar attendActive/>
           <ScreensInNavbar/>

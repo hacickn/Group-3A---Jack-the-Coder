@@ -10,7 +10,7 @@ const ScreensInNavbar = ({currentScreen}) => {
             {currentScreen === "main" ? <MainScreen/> :
                 currentScreen === "survey" ? <MainScreen/> :
                     currentScreen === "calendar" ? <CalendarScreen/> :
-                        currentScreen === "user" ? <UserScreen/> :
+                        currentScreen === "user" ? <UserScreen image="https://picsum.photos/300"/> :
                             currentScreen === "clubManagement" ? <ClubManagementScreen/>
                                 : <MainScreen/>}
 

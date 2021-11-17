@@ -17,48 +17,48 @@ const ClubManagementScreen = () => {
     const [openedScreen, setOpenedScreen] = React.useState("General")
 
 
-    return (<Grid container style={{padding: 20}}>
+    return (<Grid container style={{padding: 20, height: "88vh"}}>
         <Grid style={{
-            height: "88vh",
+            height: "85vh",
             borderRadius: Constants.BORDER_RADIUS,
-            padding:4,
+            padding: 4,
         }}
               item xs={3}>
-           <Card elevation={4} style={{borderRadius:Constants.BORDER_RADIUS}}>
-               {pages.map(page => <Grid item xs={12} style={{
-                   paddingTop: 5,
-                   paddingBottom: 5,
-               }}>
-                   {openedScreen === page ?
-                       <BilboardButton text={page}
-                                       fontSize={16}
-                                       width="23vw"
-                                       height={"4vh"}
-                                       color={Colors.BILBOARD_BLUE}
-                                       textColor={Colors.WHITE}
-                       />
-                       :
-                       <BilboardButton text={page}
-                                       fontSize={16}
-                                       width="23vw"
-                                       height={"4vh"}
-                                       color={Colors.WHITE}
-                                       textColor={Colors.BILBOARD_BLUE}
-                                       onClick={() => setOpenedScreen(page)}
-                       />}
-               </Grid>)}
-           </Card>
+            <Card elevation={4} style={{borderRadius: Constants.BORDER_RADIUS}}>
+                {pages.map(page => <Grid item xs={12} style={{
+                    paddingTop: 5,
+                    paddingBottom: 5,
+                }}>
+                    {openedScreen === page ?
+                        <BilboardButton text={page}
+                                        fontSize={16}
+                                        width="23vw"
+                                        height={"4vh"}
+                                        color={Colors.BILBOARD_BLUE}
+                                        textColor={Colors.WHITE}
+                        />
+                        :
+                        <BilboardButton text={page}
+                                        fontSize={16}
+                                        width="23vw"
+                                        height={"4vh"}
+                                        color={Colors.WHITE}
+                                        textColor={Colors.BILBOARD_BLUE}
+                                        onClick={() => setOpenedScreen(page)}
+                        />}
+                </Grid>)}
+            </Card>
 
         </Grid>
-        <Grid item xs={9} style={{padding:4}}>
-           <Card elevation={4} style={{borderRadius:Constants.BORDER_RADIUS}}>
-               {openedScreen === "General" ? <ClubManagementGeneralScreen/> :
-                   openedScreen === "Add Events" ? <ClubManagementAddEventScreen/> :
-                       openedScreen === "Feedbacks" ? <ClubManagementFeedbackScreen/> :
-                           openedScreen === "Surveys" ? <ClubManagementSurveyScreen/> :
-                               openedScreen === "Club Hierarchy" ? <ClubManagementHierarchyScreen/> :
-                                   openedScreen === "Sponsors" ? <ClubManagementSponsorScreen/> : <div/>}
-           </Card>
+        <Grid item xs={9} style={{padding: 4}}>
+            <Card elevation={4} style={{borderRadius: Constants.BORDER_RADIUS, height: "85vh"}}>
+                {openedScreen === "General" ? <ClubManagementGeneralScreen/> :
+                    openedScreen === "Add Events" ? <ClubManagementAddEventScreen/> :
+                        openedScreen === "Feedbacks" ? <ClubManagementFeedbackScreen/> :
+                            openedScreen === "Surveys" ? <ClubManagementSurveyScreen/> :
+                                openedScreen === "Club Hierarchy" ? <ClubManagementHierarchyScreen/> :
+                                    openedScreen === "Sponsors" ? <ClubManagementSponsorScreen/> : <div/>}
+            </Card>
         </Grid>
     </Grid>)
 }

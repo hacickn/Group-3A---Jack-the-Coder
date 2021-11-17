@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * @author Hacı Çakın
- * @apiNote This class is base structure of the club members in database
+ * @apiNote This class is base structure of the club_members in database
  * @implNote DONE
  * @since 11.11.2021
  */
@@ -19,6 +19,7 @@ public class ClubMemberEntity implements Serializable {
     @Column( name = "id" )
     private long id;
 
+    @Column( name = "attended_event_count" )
     private int attendedEventCount;
 
     @ManyToOne( targetEntity = UserEntity.class )
@@ -92,4 +93,5 @@ public class ClubMemberEntity implements Serializable {
     public void setClub ( ClubEntity club ) {
         this.club = club;
     }
+
 }

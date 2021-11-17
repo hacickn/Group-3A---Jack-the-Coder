@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * @author Hacı Çakın and Aslı Dinç
- * @apiNote This class is base structure of the classroom days in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @apiNote This class is base structure of the classroom_days in database
+ * @implNote DONE
  * @since 11.11.2021
  */
 @Entity( name = "classroom_days" )

@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 /**
  * @author Aslı Dinç
- * @apiNote This class is base structure of the survey participants in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @apiNote This class is base structure of the survey_participants in database
+ * @implNote DONE
  * @since 11.11.2021
  */
 @Entity( name = "survey_participants" )

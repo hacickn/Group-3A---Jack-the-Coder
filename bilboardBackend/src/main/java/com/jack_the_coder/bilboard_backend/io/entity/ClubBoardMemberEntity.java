@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * @author Hacı Çakın
- * @apiNote This class is base structure of the club board members in database
+ * @apiNote This class is base structure of the club_board_members in database
  * @implNote DONE
  * @since 11.11.2021
  */

@@ -6,8 +6,8 @@ import java.util.Date;
 
 /**
  * @author Aslı Dinç
- * @apiNote This class is base structure of the buildings in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @apiNote This class is base structure of the club_feedbacks in database
+ * @implNote DONE
  * @since 11.11.2021
  */
 @Entity( name = "club_feedbacks" )

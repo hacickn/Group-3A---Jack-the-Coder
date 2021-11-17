@@ -2,12 +2,11 @@ package com.jack_the_coder.bilboard_backend.io.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author Aslı Dinç
- * @apiNote This class is base structure of the club sponsorship in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @apiNote This class is base structure of the club_sponsorships in database
+ * @implNote DONE
  * @since 11.11.2021
  */
 @Entity( name = "club_sponsorships" )

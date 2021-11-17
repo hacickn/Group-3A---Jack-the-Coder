@@ -3,6 +3,7 @@ package com.jack_the_coder.bilboard_backend.io.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Hacı Çakın
@@ -29,6 +30,9 @@ public class TimeSlotEntity implements Serializable {
     @ManyToOne( targetEntity = ClassroomDayEntity.class )
     @JoinColumn( name = "classroom_day" )
     private ClassroomDayEntity classroomDay;
+
+    @OneToMany( targetEntity = LocationRequestTimeSlotEntity.class, mappedBy = "time_slot" )
+    private List<LocationRequestTimeSlotEntity> locationRequestTimeSlots;
 
     /**
      * get id method
@@ -71,7 +75,7 @@ public class TimeSlotEntity implements Serializable {
     }
 
     /**
-     * set ent time method
+     * set end time method
      * @param endTime is an Date, refers to end time of the time slot
      */
     public void setEndTime ( Date endTime ) {
@@ -92,6 +96,23 @@ public class TimeSlotEntity implements Serializable {
      */
     public void setClassroomDay ( ClassroomDayEntity classroomDay ) {
         this.classroomDay = classroomDay;
+    }
+
+    /**
+     * get location request time slots method
+     * @return locationRequestTimeSlots which this time slot instance belongs to
+     */
+    public List<LocationRequestTimeSlotEntity> getLocationRequestTimeSlots () {
+        return locationRequestTimeSlots;
+    }
+
+    /**
+     * set location request time slots method
+     * @param locationRequestTimeSlots is a LocationRequestTimeSlotEntity instance
+     */
+    public void setLocationRequestTimeSlots (
+            List<LocationRequestTimeSlotEntity> locationRequestTimeSlots ) {
+        this.locationRequestTimeSlots = locationRequestTimeSlots;
     }
 }
 

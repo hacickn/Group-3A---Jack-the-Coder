@@ -69,4 +69,9 @@ public class EventEntity implements Serializable {
     @JoinColumn( name = "club" )
     private ClubEntity club;
 
+    @OneToMany( targetEntity = EventQuestionEntity.class, mappedBy = "event" )
+    private List<EventQuestionEntity> eventQuestions;
+
+    @OneToMany( targetEntity = EventParticipantEntity.class, mappedBy = "event" )
+    private List<EventParticipantEntity> eventParticipants;
 }

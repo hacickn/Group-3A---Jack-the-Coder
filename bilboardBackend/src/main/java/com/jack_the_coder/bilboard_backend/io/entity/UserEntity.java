@@ -56,7 +56,7 @@ public class UserEntity implements Serializable {
     @Column( name = "jwt_expiration" )
     private Date jwtExpirationTime;
 
-    // todo one-to-many => eventParticipants, surveyParticipants, clubFeedbacks, eventQuestions,
+    // todo one-to-many => surveyParticipants, eventQuestions,
 
     @OneToOne( targetEntity = ClubEntity.class, mappedBy = "president" )
     private ClubEntity presidentOf;
@@ -76,4 +76,10 @@ public class UserEntity implements Serializable {
     @ManyToOne( targetEntity = UniversityEntity.class )
     @JoinColumn( name = "university" )
     private UniversityEntity university;
+
+    @OneToMany( targetEntity = EventParticipantEntity.class, mappedBy = "user" )
+    private List<EventParticipantEntity> eventParticipants;
+
+    @OneToMany( targetEntity = ClubFeedbackEntity.class, mappedBy = "user" )
+    private List<ClubFeedbackEntity> clubFeedbacks;
 }

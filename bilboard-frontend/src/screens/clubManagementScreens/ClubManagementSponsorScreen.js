@@ -94,7 +94,7 @@ const ClubManagementSponsorScreen = (props) => {
     }
 
     return <Grid container
-                 style={{marginLeft: 10, borderRadius: Constants.BORDER_RADIUS}}>
+                 style={{margin: 10, padding: 10, borderRadius: Constants.BORDER_RADIUS}}>
         <Grid style={{
             fontFamily: Constants.OXYGEN_FONT_FAMILY,
             fontSize: 48,
@@ -102,10 +102,11 @@ const ClubManagementSponsorScreen = (props) => {
         }} item xs={12}>
             Sponsors
         </Grid>
-        <Grid container style={{maxHeight: "60vh", overflowY: "scroll"}}>
+        <Grid container style={{maxHeight: "60vh", overflowY: "scroll", paddingBottom:10,paddingTop:10,}}>
             {sponsorList.map(sponsor => {
                 return <Grid container
                              style={{
+                                 width:"70vw",
                                  marginBottom: 5,
                                  marginTop: 5,
                                  paddingTop: 20,

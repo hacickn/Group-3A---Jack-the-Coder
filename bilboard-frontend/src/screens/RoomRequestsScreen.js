@@ -114,12 +114,15 @@ const RoomRequestScreen = (props) => {
         <Grid container
             style= {{borderRadius: Constants.BORDER_RADIUS}}>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{
+                marginBottom: 25,
+                paddingBottom: 20,
+            }}>
                 <BilboardNavbar/>
             </Grid>
 
             <Grid style={{
-                marginTop: 15,
+                marginTop: 35,
                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                 fontSize: 48,
                 paddingBottom: 20,
@@ -127,7 +130,7 @@ const RoomRequestScreen = (props) => {
                 Room Requests
             </Grid>
 
-            <Grid container style={{maxHeight: "100vh", overflowY: "scroll", marginLeft: 15, marginRight: 10}}>
+            <Grid container xs={12} style={{maxHeight: "100vh", overflowY: "scroll", marginLeft: 15, marginRight: 10}}>
                 {roomRequestList.map( roomRequest => <BilboardRoomRequest roomRequest={roomRequest}/> )}
             </Grid>
         </Grid>

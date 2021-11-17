@@ -1,9 +1,11 @@
-import {Grid} from "@mui/material";
+import {Grid, IconButton} from "@mui/material";
 import React from 'react';
 import Constants from "../../utils/Constants";
 import BilboardButton from "../../components/BilboardButton";
 import BilboardTextField from "../../components/BilboardTextField";
 import SponsorCard from "./clubManagementComponents/SponsorCard";
+import Colors from "../../utils/Colors";
+import {AddOutlined, Image} from "@mui/icons-material";
 
 const ClubManagementSponsorScreen = (props) => {
 
@@ -83,7 +85,7 @@ const ClubManagementSponsorScreen = (props) => {
     ]
 
     return <Grid container
-                 style={{margin: 10, padding: 10, borderRadius: Constants.BORDER_RADIUS}}>
+                 style={{margin: 0, padding: 10, borderRadius: Constants.BORDER_RADIUS}}>
         <Grid style={{
             fontFamily: Constants.OXYGEN_FONT_FAMILY,
             fontSize: 48,
@@ -96,9 +98,18 @@ const ClubManagementSponsorScreen = (props) => {
                 return <SponsorCard sponsor={sponsor}/>
             })}
         </Grid>
-        <Grid container style={{marginTop: 20, alignItems: "center",}}>
+        <Grid container style={{
+            marginTop: 20,
+            height:"10vh",
+            padding: 12,
+            borderRadius: Constants.BORDER_RADIUS,
+            alignItems: "center",
+            background: Colors.BILBOARD_BLUE_ALTERNATIVE
+        }}>
             <Grid item xs={1}>
-                add photo(todo)
+                <IconButton>
+                    <Image style={{color: Colors.BILBOARD_BLUE}}/>
+                </IconButton>
             </Grid>
             <Grid item xs={3}>
                 <BilboardTextField width={"14vw"} label={"Name"}/>

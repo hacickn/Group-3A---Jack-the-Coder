@@ -120,7 +120,7 @@ const ClubManagementSurveyScreen = () => {
             <Grid item xs={12} style={{
                 marginTop: 50,
             }}>
-                <BilboardButton width="200px" fontSize="20px" text="Add Survey"/>
+                <BilboardButton width="220px" fontSize="14px" text="Add Survey"/>
             </Grid>
 
         </Grid>

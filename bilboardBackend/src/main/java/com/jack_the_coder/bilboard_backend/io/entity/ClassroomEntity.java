@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Aslı Dinç
  * @apiNote This class is base structure of the classrooms in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @implNote DONE
  * @since 11.11.2021
  */
 @Entity( name = "classrooms" )

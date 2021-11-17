@@ -6,8 +6,8 @@ import java.util.Date;
 
 /**
  * @author Aslı Dinç
- * @apiNote This class is base structure of the event question table in database
- * @implNote After completing relations, getters and setters should be implemented
+ * @apiNote This class is base structure of the event_question table in database
+ * @implNote DONE
  * @since 09.11.2021
  */
 @Entity( name = "event_questions" )

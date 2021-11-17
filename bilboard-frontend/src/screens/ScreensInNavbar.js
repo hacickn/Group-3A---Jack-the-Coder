@@ -6,7 +6,7 @@ import ClubManagementScreen from "./ClubManagementScreen";
 
 const ScreensInNavbar = ({currentScreen}) => {
     return (
-        <div>
+        <div style={{marginTop: "68px"}}>
             {currentScreen === "main" ? <MainScreen/> :
                 currentScreen === "survey" ? <MainScreen/> :
                     currentScreen === "calendar" ? <CalendarScreen/> :

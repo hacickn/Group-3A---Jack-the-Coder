@@ -22,6 +22,9 @@ const useStyles = makeStyles({
     width: "100vw",
     height: "68px",
     background: Colors.BILBOARD_BLUE,
+    zIndex: "1000",
+    position: "fixed",
+    top: "0"
   },
   logo: {
     fontFamily: Constants.OXYGEN_FONT_FAMILY,

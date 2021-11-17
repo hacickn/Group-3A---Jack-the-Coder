@@ -102,7 +102,7 @@ const ClubManagementSponsorScreen = (props) => {
         }} item xs={12}>
             Sponsors
         </Grid>
-        <Grid container style={{maxHeight: "60vh", overflowY: "scroll", paddingBottom:10,paddingTop:10,}}>
+        <Grid container style={{maxHeight: "60vh", overflowY: "scroll"}}>
             {sponsorList.map(sponsor => {
                 return <Grid container
                              style={{
@@ -136,21 +136,21 @@ const ClubManagementSponsorScreen = (props) => {
                 </Grid>
             })}
         </Grid>
-        <Grid container>
+        <Grid container style={{marginTop:20, alignItems:"center",}} >
             <Grid item xs={1}>
-                add photo
+                add photo(todo)
             </Grid>
             <Grid item xs={3}>
-                <BilboardTextField/>
+                <BilboardTextField width={"14vw"} label={"Name"}/>
             </Grid>
             <Grid item xs={3}>
-                <BilboardTextField/>
+                <BilboardTextField width={"14vw"} label={"Amount"}/>
             </Grid>
             <Grid item xs={3}>
-                <BilboardTextField/>
+                <BilboardTextField width={"14vw"} label={"Type"}/>
             </Grid>
             <Grid item xs={2}>
-                <BilboardButton text={"Add"}/>
+                <BilboardButton text={"Add"} width={"8vw"}/>
             </Grid>
         </Grid>
     </Grid>

@@ -15,63 +15,75 @@ const ClubManagementSurveyScreen = () => {
     const surveyCardsList = [
 
         {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            surveyQuestion: "What will o will our next event be What will our next event be? ",
+            endDate: "28 Oct 2021",
+            voteCount: 25,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 1125,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 125,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 225,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 425,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 125,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 325,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 2,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 5,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 125,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 215,
         },
 
         {
             surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021"
+            endDate: "28 Oct 2021",
+            voteCount: 225,
         },
     ]
 

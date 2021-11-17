@@ -9,7 +9,6 @@ const SurveyCard = (props) => {
                   style={{
                       minWidth: "300px",
                       minHeight: "300px",
-                      cursor: "pointer",
                       borderRadius: Constants.BORDER_RADIUS,
                       background: Colors.BILBOARD_BLUE_ALTERNATIVE,
                       marginBottom: 5,
@@ -22,30 +21,33 @@ const SurveyCard = (props) => {
                   }}>
         <Grid item xs={12} style={{
             marginTop: 20,
-            marginBottom: 45,
             fontFamily: Constants.OXYGEN_FONT_FAMILY,
-            fontSize: 24,
+            fontSize: 20,
         }}>
             {props.survey.surveyQuestion}
         </Grid>
+        <Grid container style={{alignItems: "end"}}>
+            <Grid item xs={6} style={{
+                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                fontSize: 15,
+            }}>
+                Due: {props.survey.endDate}
+            </Grid>
+            <Grid item xs={6} style={{
+                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                fontSize: 15,
+            }}>
+                Vote: {props.survey.voteCount}
+            </Grid>
 
-        <Grid item xs={12} style={{
-            marginBottom: 45,
-            fontFamily: Constants.OXYGEN_FONT_FAMILY,
-            fontSize: 15,
+            <Grid item xs={6}>
+                <BilboardButton width="140px" color={Colors.BILBOARD_RED} fontSize="12px" text="Cancel"/>
+            </Grid>
 
-        }}>
-            Planned End Date: {props.survey.endDate}
+            <Grid item xs={6}>
+                <BilboardButton width="140px" fontSize="12px" text="Results"/>
+            </Grid>
         </Grid>
-
-        <Grid item xs={6}>
-            <BilboardButton width="100px" fontSize="13px" text="End Survey"/>
-        </Grid>
-
-        <Grid item xs={6}>
-            <BilboardButton width="100px" fontSize="13px" text="See Results"/>
-        </Grid>
-
     </Grid>)
 }
 

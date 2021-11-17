@@ -46,9 +46,6 @@ public class SurveyEntity implements Serializable {
     @Column( name = "is_for_active_members" )
     private Boolean isForActiveMembers;
 
-    // todo
-    //  one-to-many => surveyparticipants
-
     @OneToMany( targetEntity = SurveyChoiceEntity.class, mappedBy = "survey" )
     private List<SurveyChoiceEntity> choices;
 
@@ -56,5 +53,6 @@ public class SurveyEntity implements Serializable {
     @JoinColumn( name = "club" )
     private ClubEntity club;
 
-
+    @OneToMany( targetEntity = SurveyParticipantEntity.class, mappedBy = "survey" )
+    private List<SurveyParticipantEntity> surveyParticipants;
 }

@@ -63,10 +63,16 @@ public class EventEntity implements Serializable {
     @OneToMany( targetEntity = EventPointEntity.class, mappedBy = "event" )
     private List<EventPointEntity> eventPoints;
 
-    // todo one-to-one => locationrequeststatus
-
     @ManyToOne( targetEntity = ClubEntity.class )
     @JoinColumn( name = "club" )
     private ClubEntity club;
 
+    @OneToMany( targetEntity = EventQuestionEntity.class, mappedBy = "event" )
+    private List<EventQuestionEntity> eventQuestions;
+
+    @OneToMany( targetEntity = EventParticipantEntity.class, mappedBy = "event" )
+    private List<EventParticipantEntity> eventParticipants;
+
+    @OneToMany( targetEntity = LocationRequestEntity.class, mappedBy = "event" )
+    private List<LocationRequestEntity> locationRequests;
 }

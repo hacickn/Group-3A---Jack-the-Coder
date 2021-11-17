@@ -62,7 +62,7 @@ public class SurveyChoiceEntity implements Serializable {
     }
 
     /**
-     * get vote count method
+     * Get vote count method
      * @return int
      */
     public int getVoteCount () {
@@ -70,7 +70,7 @@ public class SurveyChoiceEntity implements Serializable {
     }
 
     /**
-     * set vote count method
+     * Set vote count method
      * @param voteCount is int
      */
     public void setVoteCount ( int voteCount ) {
@@ -78,7 +78,7 @@ public class SurveyChoiceEntity implements Serializable {
     }
 
     /**
-     * get survey method
+     * Get survey method
      * @return SurveyEntity object
      */
     public SurveyEntity getSurvey () {
@@ -86,7 +86,7 @@ public class SurveyChoiceEntity implements Serializable {
     }
 
     /**
-     * set survey method
+     * Set survey method
      * @param survey is SurveyEntity instance
      */
     public void setSurvey ( SurveyEntity survey ) {

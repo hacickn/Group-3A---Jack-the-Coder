@@ -1,9 +1,9 @@
 import {Grid} from "@mui/material";
 import React from 'react';
 import Constants from "../../utils/Constants";
-import Colors from "../../utils/Colors";
 import BilboardButton from "../../components/BilboardButton";
 import BilboardTextField from "../../components/BilboardTextField";
+import SponsorCard from "./clubManagementComponents/SponsorCard";
 
 const ClubManagementSponsorScreen = (props) => {
 
@@ -82,17 +82,6 @@ const ClubManagementSponsorScreen = (props) => {
         }
     ]
 
-    function addSponsor(sponsorObject) {
-        let temp = [...sponsorList]
-
-        temp.push({
-            name: sponsorObject.name,
-            amount: sponsorObject.amount,
-            photo: sponsorObject.photo,
-            type: sponsorObject.type
-        })
-    }
-
     return <Grid container
                  style={{margin: 10, padding: 10, borderRadius: Constants.BORDER_RADIUS}}>
         <Grid style={{
@@ -104,39 +93,10 @@ const ClubManagementSponsorScreen = (props) => {
         </Grid>
         <Grid container style={{maxHeight: "60vh", overflowY: "scroll"}}>
             {sponsorList.map(sponsor => {
-                return <Grid container
-                             style={{
-                                 width:"70vw",
-                                 marginBottom: 5,
-                                 marginTop: 5,
-                                 paddingTop: 20,
-                                 paddingBottom: 20,
-                                 borderRadius: Constants.BORDER_RADIUS,
-                                 background: Colors.BILBOARD_BLUE_ALTERNATIVE,
-                                 alignItems: "center",
-                             }}>
-                    <Grid item xs>
-                        <img
-                            src={sponsor.photo}
-                            style={{maxHeight: 50, maxWidth: 60}}
-                        />
-                    </Grid>
-                    <Grid item xs>
-                        {sponsor.name}
-                    </Grid>
-                    <Grid item xs>
-                        {sponsor.amount}
-                    </Grid>
-                    <Grid item xs>
-                        <img
-                            src={sponsor.type}
-                            style={{maxHeight: 50, maxWidth: 60}}
-                        />
-                    </Grid>
-                </Grid>
+                return <SponsorCard sponsor={sponsor}/>
             })}
         </Grid>
-        <Grid container style={{marginTop:20, alignItems:"center",}} >
+        <Grid container style={{marginTop: 20, alignItems: "center",}}>
             <Grid item xs={1}>
                 add photo(todo)
             </Grid>

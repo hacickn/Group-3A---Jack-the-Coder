@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
-import BilboardNavbar from "../components/BilboardNavbar";
 import EventCard from "../components/EventCard";
+import { MockData } from "../MockData";
 
 const useStyles = makeStyles({
   root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     justifyContent: "start",
     marginRight: "20px",
     paddingBottom: "10px",
-    marginTop: "10px"
+    marginTop: "10px",
   },
   eventCard: {
     width: "20%",
@@ -27,6 +27,7 @@ const useStyles = makeStyles({
 });
 
 const CalendarScreen = () => {
+  const {eventsFuture, eventsPast} = MockData();
   const classes = useStyles();
   return (
     <>
@@ -47,39 +48,13 @@ const CalendarScreen = () => {
               </Grid>
               <Grid item xs={12}>
                 <div className={classes.eventsContainer}>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
+                  {eventsFuture.map((event) => {
+                    return (
+                      <div className={classes.eventCard}>
+                        <EventCard key={event.id} title={event.title} image={event.image} location={event.location} club={event.club} participantCount={event.participantCount} />
+                      </div>
+                    );
+                  })}
                 </div>
               </Grid>
             </Grid>
@@ -99,25 +74,13 @@ const CalendarScreen = () => {
               </Grid>
               <Grid item xs={12}>
                 <div className={classes.eventsContainer}>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  <div className={classes.eventCard}>
-                    <EventCard />
-                  </div>
-                  
+                {eventsPast.map((event) => {
+                    return (
+                      <div className={classes.eventCard}>
+                        <EventCard key={event.id} title={event.title} image={event.image} location={event.location} club={event.club} participantCount={event.participantCount} />
+                      </div>
+                    );
+                  })}
                 </div>
               </Grid>
             </Grid>

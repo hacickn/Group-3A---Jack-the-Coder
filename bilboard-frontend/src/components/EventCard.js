@@ -38,24 +38,25 @@ const EventCard = (props) => {
         container
         style={{
           minHeight: "16%",
-          backgroundColor: "rgba(0,0,0,0.1)",
+          backgroundColor: "rgba(0,0,0,0.3)",
           borderRadius: "16px 16px 4px 4px",
         }}
       >
         <Grid
           item
-          xs={4}
+          xs={6}
           style={{
             color: "white",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "start",
+            paddingLeft: "10px",
             alignItems: "center",
           }}
         >
           <LocationOnIcon />
           <div style={{ fontSize: "120%" }}>{props.location}</div>
         </Grid>
-        <Grid item xs={4} />
+        <Grid item xs={2} />
         <Grid
           item
           xs={4}
@@ -78,7 +79,7 @@ const EventCard = (props) => {
             position: "fixed",
             bottom: "0%",
             color: "white",
-            backgroundColor: "rgba(0,0,0,0.1)",
+            backgroundColor: "rgba(0,0,0,0.4)",
             borderRadius: "4px 4px 16px 16px",
           }}
         >

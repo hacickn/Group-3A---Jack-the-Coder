@@ -1,13 +1,10 @@
-import { TenMp } from "@mui/icons-material";
 import {Grid} from "@mui/material";
-import BilboardNavbar from "../components/BilboardNavbar";
-import BilboardRoomRequest from "../components/BilboardRoomRequest";
 import Constants from "../utils/Constants";
-import BilboardSurvey from "../components/BilboardSurvey";
+import BilboardSurveyCard from "../components/BilboardSurveyCard";
 
 /**
  * Survey Screen
- * 
+ *
  * Metehan Saçakçı
  * 17.11.2021
  */
@@ -81,8 +78,7 @@ const SurveyScreen = (props) => {
         },
     ]
 
-    function addSurvey( surveyObject)
-    {
+    function addSurvey(surveyObject) {
         let temp = [...surveyList]
 
         temp.push({
@@ -91,19 +87,12 @@ const SurveyScreen = (props) => {
         })
     }
 
-    return(
+    return (
         <Grid container
-            style= {{borderRadius: Constants.BORDER_RADIUS}}>
-
-            <Grid item xs={12} style={{
-                marginBottom: 25,
-                paddingBottom: 20,
-            }}>
-                <BilboardNavbar/>
-            </Grid>
+              style={{borderRadius: Constants.BORDER_RADIUS, height: '89vh'}}>
 
             <Grid style={{
-                marginTop: 35,
+                marginTop: 25,
                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                 fontSize: 48,
                 paddingBottom: 20,
@@ -111,8 +100,8 @@ const SurveyScreen = (props) => {
                 Surveys
             </Grid>
 
-            <Grid container xs={12} style={{maxHeight: "100vh", overflowY: "scroll", marginLeft: 15, marginRight: 10}}>
-                {surveyList.map( survey => <BilboardSurvey survey={survey}/> )}
+            <Grid container xs={12} style={{height: '79vh', overflowX: "scroll"}}>
+                {surveyList.map(survey => <BilboardSurveyCard survey={survey}/>)}
             </Grid>
         </Grid>
     )

@@ -1,7 +1,9 @@
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import Constants from "../../utils/Constants";
 import BilboardButton from "../../components/BilboardButton";
 import SurveyCard from "./clubManagementComponents/SurveyCard";
+import AddSurveyDialog from "../../components/AddSurveyDialog";
+import React from 'react'
 
 /**
  * Club Management Survey Screen
@@ -11,6 +13,7 @@ import SurveyCard from "./clubManagementComponents/SurveyCard";
  */
 
 const ClubManagementSurveyScreen = () => {
+    const [ addSurveyDialog, setAddSurveyDialog ] = React.useState( false )
 
     const surveyCardsList = [
 
@@ -88,19 +91,19 @@ const ClubManagementSurveyScreen = () => {
     ]
 
     return (
-        <Grid container style={{
+        <Grid container style={ {
             padding: 20,
-        }}>
-            <Grid style={{
+        } }>
+            <Grid style={ {
                 marginTop: 15,
                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                 fontSize: 48,
                 paddingBottom: 20,
-            }} item xs={12}>
+            } } item xs={ 12 }>
                 Active Surveys
             </Grid>
 
-            <Grid container style={{
+            <Grid container style={ {
                 display: "flex",
                 alignItems: "center",
                 minHeight: "340px",
@@ -113,16 +116,19 @@ const ClubManagementSurveyScreen = () => {
                 marginRight: "20px",
                 paddingBottom: "10px",
                 marginTop: "10px",
-            }}>
-                {surveyCardsList.map(survey => <SurveyCard survey={survey}/>)}
+            } }>
+                { surveyCardsList.map( survey => <SurveyCard survey={ survey }/> ) }
             </Grid>
 
-            <Grid item xs={12} style={{
+            <Grid item xs={ 12 } style={ {
                 marginTop: 50,
-            }}>
-                <BilboardButton width="220px" fontSize="14px" text="Add Survey"/>
+            } }>
+                <BilboardButton onClick={ () => {
+                    setAddSurveyDialog( true )
+                } } width="220px" fontSize="14px"
+                                text="Add Survey"/>
             </Grid>
-
+            <AddSurveyDialog open={ addSurveyDialog } setOpen={ ( val ) => setAddSurveyDialog( val ) }/>
         </Grid>
 
     )

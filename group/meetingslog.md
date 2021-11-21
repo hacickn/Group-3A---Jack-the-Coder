@@ -179,10 +179,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 
 **Discussion:** Tasks of Design Report is assigned to group members.
 
-(1) İlke
-(2) Metehan
-(3.1) Abdullah
-(3.2) Aslı, Hacı
-(3.3.1) Abdullah, İlke
-(3.3.2) Aslı, Hacı
-(3.3.3) Aslı, Hacı
+- (1) İlke
+- (2) Metehan
+- (3.1) Abdullah
+- (3.2) Aslı, Hacı
+- (3.3.1) Abdullah, İlke
+- (3.3.2) Aslı, Hacı
+- (3.3.3) Aslı, Hacı

@@ -164,3 +164,25 @@ Last but not least, during this meeting we decided to add/modify the following f
 **Present:** Everyone (FACE TO FACE)
 
 **Discussion:** Will be shared!
+
+****
+### Meeting ~ (16.11.2021, 240 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** Will be shared!
+
+****
+### Meeting ~ (21.11.2021, 60 min)
+****
+**Present:** Everyone (ONLINE)
+
+**Discussion:** Tasks of Design Report is assigned to group members.
+
+(1) İlke
+(2) Metehan
+(3.1) Abdullah
+(3.2) Aslı, Hacı
+(3.3.1) Abdullah, İlke
+(3.3.2) Aslı, Hacı
+(3.3.3) Aslı, Hacı

@@ -1,8 +1,18 @@
 package com.jack_the_coder.bilboard_backend.exception;
 
+
 /**
  * @author Hacı Çakın
- * @date 14.10.2021
+ * @apiNote Common error service
+ * @implNote DONE
+ * @since 22.11.2021
  */
-public class UserServiceException {
+public class UserServiceException extends RuntimeException{
+
+    private static final long serialVersionUID = 1348771109171435607L;
+
+    public UserServiceException(String message)
+    {
+        super(message);
+    }
 }

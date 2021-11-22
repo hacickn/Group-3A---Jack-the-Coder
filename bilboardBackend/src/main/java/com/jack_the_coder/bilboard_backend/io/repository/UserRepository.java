@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author Hacı Çakın
- * @since  09.11.2021
  * @apiNote This class provides communication between databases and related class(basically for the queries)
+ * @since 09.11.2021
  */
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   root: {
     width: "100vw",
     height: "68px",
-    background: Colors.BILBOARD_BLUE,
+    background: Colors.BILBOARD_MAIN,
     zIndex: "1000",
     position: "fixed",
     top: "0"

@@ -181,7 +181,7 @@ const AddSurveyDialog = ( props ) => {
                             width: "460px",
                             marginTop: 10,
                             borderRadius: Constants.BORDER_RADIUS,
-                            background: Colors.BILBOARD_BLUE_ALTERNATIVE
+                            background: Colors.BILBOARD_MAIN_ALTERNATIVE
                         } }>
                             <Grid container style={ { alignItems: "stretch" } }>
                                 <Grid item xs={ 10 }
@@ -191,7 +191,7 @@ const AddSurveyDialog = ( props ) => {
                                 </Grid>
                                 <Grid item xs
                                       style={ {
-                                          background: Colors.BILBOARD_BLUE,
+                                          background: Colors.BILBOARD_MAIN,
                                           alignItems: "center",
                                           justifyItems: "center",
                                           display: "flex",

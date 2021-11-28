@@ -7,7 +7,7 @@ const useStyles = makeStyles( {
     root: {
         minHeight: "100px",
         borderRadius: "10px",
-        background: "#E0F2F1",
+        background: Colors.BILBOARD_MAIN_ALTERNATIVE,
     },
     clubLogo: {
         width: "300px",

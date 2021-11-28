@@ -10,7 +10,7 @@ const BilboardButton = (props) => {
             style={{
                 minWidth: props.width ? props.width : "auto",
                 height: props.height ? props.height : "auto",
-                background: props.color ? props.color : Colors.BILBOARD_BLUE,
+                background: props.color ? props.color : Colors.BILBOARD_MAIN,
                 color: props.textColor ? props.textColor : Colors.WHITE,
                 borderRadius: Constants.BORDER_RADIUS,
                 fontFamily: Constants.OXYGEN_FONT_FAMILY,

@@ -24,7 +24,7 @@ const BilboardFeedbackCard = ( props ) => {
                   paddingTop: 20,
                   paddingBottom: 20,
                   borderRadius: Constants.BORDER_RADIUS,
-                  background: Colors.BILBOARD_BLUE_ALTERNATIVE,
+                  background: Colors.BILBOARD_MAIN_ALTERNATIVE,
                   alignItems: "center",
               } }>
             <Grid item xs={ 9 }>
@@ -70,7 +70,7 @@ const BilboardFeedbackCard = ( props ) => {
                 } }>
                     <Grid item xs={ 12 } style={ { paddingBottom: 14 } }>
                         <BilboardButton text={ "Accept" } width={ "200px" } fontSize={ "14px" }
-                                        color={ Colors.BILBOARD_BLUE }/>
+                                        color={ Colors.BILBOARD_MAIN }/>
                     </Grid>
                     <Grid item xs={ 12 }>
                         <BilboardButton text={ "Delete" } width={ "200px" } fontSize={ "14px" }

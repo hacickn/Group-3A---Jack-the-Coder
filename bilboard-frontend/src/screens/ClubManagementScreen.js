@@ -34,7 +34,7 @@ const ClubManagementScreen = () => {
                                         fontSize={16}
                                         width="23vw"
                                         height={"4vh"}
-                                        color={Colors.BILBOARD_BLUE}
+                                        color={Colors.BILBOARD_MAIN}
                                         textColor={Colors.WHITE}
                         />
                         :
@@ -43,7 +43,7 @@ const ClubManagementScreen = () => {
                                         width="23vw"
                                         height={"4vh"}
                                         color={Colors.WHITE}
-                                        textColor={Colors.BILBOARD_BLUE}
+                                        textColor={Colors.BILBOARD_MAIN}
                                         onClick={() => setOpenedScreen(page)}
                         />}
                 </Grid>)}

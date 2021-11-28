@@ -11,6 +11,12 @@ const reducer = (state, action) => {
       currentScreen: action.currentScreen
     }
   }
+  else if (action.type === "SET_IS_ABOUT_SCREEN"){
+    return{
+      ...state,
+      isAboutScreen: action.isAboutScreen
+    }
+  }
   return state;
 
 };

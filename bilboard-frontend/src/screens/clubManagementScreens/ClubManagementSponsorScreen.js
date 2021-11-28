@@ -104,11 +104,11 @@ const ClubManagementSponsorScreen = (props) => {
             padding: 12,
             borderRadius: Constants.BORDER_RADIUS,
             alignItems: "center",
-            background: Colors.BILBOARD_BLUE_ALTERNATIVE
+            background: Colors.BILBOARD_MAIN_ALTERNATIVE
         }}>
             <Grid item xs={1}>
                 <IconButton>
-                    <Image style={{color: Colors.BILBOARD_BLUE}}/>
+                    <Image style={{color: Colors.BILBOARD_MAIN}}/>
                 </IconButton>
             </Grid>
             <Grid item xs={3}>

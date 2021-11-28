@@ -21,7 +21,7 @@ const BilboardSurveyCard = (props) => {
                   paddingTop: 20,
                   paddingBottom: 20,
                   borderRadius: Constants.BORDER_RADIUS,
-                  background: Colors.BILBOARD_BLUE_ALTERNATIVE,
+                  background: Colors.BILBOARD_MAIN_ALTERNATIVE,
                   alignItems: "center",
               }}>
 

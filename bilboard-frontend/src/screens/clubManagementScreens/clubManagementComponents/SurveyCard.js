@@ -10,7 +10,7 @@ const SurveyCard = (props) => {
                       minWidth: "300px",
                       minHeight: "300px",
                       borderRadius: Constants.BORDER_RADIUS,
-                      background: Colors.BILBOARD_BLUE_ALTERNATIVE,
+                      background: Colors.BILBOARD_MAIN_ALTERNATIVE,
                       marginBottom: 5,
                       marginTop: 5,
                       marginLeft: 5,

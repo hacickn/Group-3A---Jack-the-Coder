@@ -62,7 +62,7 @@ const LoginRegister = () => {
                         >
                             <Button
                                 style={{
-                                    background: Colors.BILBOARD_BLUE,
+                                    background: Colors.BILBOARD_MAIN,
                                     width: "160px",
                                     borderRadius: "10px 0px 0px 10px",
                                 }}
@@ -72,7 +72,7 @@ const LoginRegister = () => {
                             </Button>
                             <Button
                                 style={{
-                                    background: Colors.BILBOARD_BLUE,
+                                    background: Colors.BILBOARD_MAIN,
                                     width: "160px",
                                     borderRadius: "0px 10px 10px 0px",
                                 }}

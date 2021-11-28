@@ -6,8 +6,8 @@ class Colors {
     static BILBOARD_LIGHT_GREY = "#4d4d4d";
     static BILBOARD_RED = "#f44336";
     static BILBOARD_RED_ALTERNATIVE = "#f3dfde";
-    static BILBOARD_BLUE = "#00897B";
-    static BILBOARD_BLUE_ALTERNATIVE = "#E0F2F1";
+    static BILBOARD_MAIN = "#f55c5b";
+    static BILBOARD_MAIN_ALTERNATIVE = "#fcf5f5";
 }
 
 export default Colors;

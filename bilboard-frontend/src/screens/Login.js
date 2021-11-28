@@ -53,7 +53,7 @@ const Login = () => {
                     text="Forgot Password?"
                     variant="text"
                     color="#F5F5F5"
-                    textColor={Colors.BILBOARD_BLUE}
+                    textColor={Colors.BILBOARD_MAIN}
                     onClick={() => setIsDialogOpen(true)}
                 />
             </Grid>

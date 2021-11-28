@@ -50,7 +50,7 @@ const ClubManagementAddEventScreen = () => {
                         </Grid>
                         <Grid item xs={ 7 } className={ classes.inputGrid }>
                             <IconButton>
-                                <ImageOutlined style={ { color: Colors.BILBOARD_BLUE } }/>
+                                <ImageOutlined style={ { color: Colors.BILBOARD_MAIN } }/>
                             </IconButton>
                         </Grid>
                     </Grid>

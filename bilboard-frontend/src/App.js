@@ -11,12 +11,12 @@ import EventDetailScreen from "./screens/EventDetailScreen";
 
 function App() {
 
-  const initialStore = {
-    isAttendDialogOpen: false,
-    currentScreen: "main",
-  };
+    const initialStore = {
+        isAttendDialogOpen: false,
+        currentScreen: "main",
+    };
 
-  const store = createStore(reducer, initialStore);
+    const store = createStore( reducer, initialStore );
 
   return (
     <Provider store={store}>
@@ -29,7 +29,6 @@ function App() {
     </Provider>
   );
 }
-
 
 
 export default App;

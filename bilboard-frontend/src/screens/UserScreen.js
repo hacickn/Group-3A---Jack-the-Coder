@@ -9,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Colors from "../utils/Colors";
 import { Card } from "@mui/material";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles( {
     root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const UserScreen = ( props ) => {
+const UserScreen = ( {image, setScreenNoNavbar } ) => {
     const classes = useStyles();
     return (
         <div className={ classes.root }>
@@ -48,7 +49,7 @@ const UserScreen = ( props ) => {
                             } }>
                                 <div
                                     className={ classes.userImage }
-                                    style={ { backgroundImage: `url(${ props.image })` } }
+                                    style={ { backgroundImage: `url(${ image })` } }
                                 />
                             </Grid>
                             <Grid item xs={ 8 }>
@@ -91,7 +92,7 @@ const UserScreen = ( props ) => {
 
                                     <Grid item xs={ 12 } style={ { marginTop: "10px" } }>
                                         <BilboardButton color={ Colors.BILBOARD_RED } text="Sign Out" width="160px"
-                                                        fontSize="12px"/>
+                                                        fontSize="12px" onClick={() => setScreenNoNavbar("login")}/>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -136,4 +137,10 @@ const UserScreen = ( props ) => {
     );
 };
 
-export default UserScreen;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        setScreenNoNavbar: (value) => dispatch({type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(UserScreen);

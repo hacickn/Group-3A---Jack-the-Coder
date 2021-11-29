@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AboutScreen = ({setIsAboutScreen}) => {
+const AboutScreen = ({setScreenNoNavbar}) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -72,7 +72,7 @@ const AboutScreen = ({setIsAboutScreen}) => {
                     fontSize="20px"
                     width="300px"
                     fontFamily="Oxygen, sans-serif"
-                    onClick={() => setIsAboutScreen(false)}
+                    onClick={() => setScreenNoNavbar("login")}
                   />
                 </div>
               </Grid>
@@ -93,7 +93,7 @@ const AboutScreen = ({setIsAboutScreen}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        setIsAboutScreen: (value) => dispatch({type: "SET_IS_ABOUT_SCREEN", isAboutScreen: value})
+        setScreenNoNavbar: (value) => dispatch({type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value})
     }
 }
 

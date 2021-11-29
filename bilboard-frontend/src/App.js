@@ -8,7 +8,7 @@ function App() {
   const initialStore = {
     isAttendDialogOpen: false,
     currentScreen: "main",
-    isAboutScreen: true,
+    screenNoNavbar: "about",
   };
 
   const store = createStore(reducer, initialStore);

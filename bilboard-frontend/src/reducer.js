@@ -11,10 +11,10 @@ const reducer = (state, action) => {
       currentScreen: action.currentScreen
     }
   }
-  else if (action.type === "SET_IS_ABOUT_SCREEN"){
+  else if (action.type === "SET_SCREEN_NO_NAVBAR"){
     return{
       ...state,
-      isAboutScreen: action.isAboutScreen
+      screenNoNavbar: action.screenNoNavbar
     }
   }
   return state;

@@ -11,9 +11,10 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
+import { connect } from "react-redux";
 
 
-const Login = () => {
+const Login = ({setScreenNoNavbar}) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
     const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ const Login = () => {
             </Grid>
 
             <Grid item xs={12} style={{marginTop: "40px"}}>
-                <BilboardButton width="100px" fontSize="14px" text="Login"/>
+                <BilboardButton width="100px" fontSize="14px" text="Login" onClick={() => setScreenNoNavbar("others")}/>
             </Grid>
 
             <Grid item xs={12} style={{marginTop: "30px"}}>
@@ -96,5 +97,10 @@ const Login = () => {
 
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return{
+        setScreenNoNavbar: (value) => dispatch({type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value})
+    }
+}
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);

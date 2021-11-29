@@ -6,13 +6,14 @@ import ClubManagementScreen from "./ClubManagementScreen";
 import SurveyScreen from "./SurveyScreen";
 import BilboardNavbar from "../components/BilboardNavbar";
 import AboutScreen from "./AboutScreen";
+import InitialScreen from "./InitialScreen";
 
-const ScreensInNavbar = ({ currentScreen, isAboutScreen }) => {
+const ScreensInNavbar = ({ currentScreen, screenNoNavbar }) => {
   return (
     <div>
-      {isAboutScreen ? (
+      {screenNoNavbar === "about" ? (
         <AboutScreen />
-      ) : (
+      ) : screenNoNavbar === "login" ? <InitialScreen/> : (
         <div>
           <BilboardNavbar attendActive />
           <div style={{ marginTop: "68px" }}>
@@ -39,7 +40,7 @@ const ScreensInNavbar = ({ currentScreen, isAboutScreen }) => {
 const mapStateToProps = (state) => {
   return {
     currentScreen: state.currentScreen,
-    isAboutScreen: state.isAboutScreen,
+    screenNoNavbar: state.screenNoNavbar,
   };
 };
 

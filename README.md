@@ -61,7 +61,8 @@ Backend Side
 ## Project Status
 + ✅**Iteration-1 Analysis Report**                 
 + ✅**Iteration-1 Analysis Report Peer Review**   
-+ ⏳**Iteration-1 Design Report**                
++ ✅**Iteration-1 Design Report**
++ ⏳**Presentation**                     
 
 ## Database Design at 09.11.2021 - 11:45 made by Hacı Çakın
 ![Mysql Table Design](/mysql_models.png)

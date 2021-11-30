@@ -85,7 +85,7 @@ const LoginRegister = ({setScreenNoNavbar}) => {
           </Grid>
         </Grid>
         {loginOrRegister ? <Login /> : <Register />}
-        <div style={{ marginTop: "70px" }}>
+        <div style={{ marginTop: "20px" }}>
           <Button variant="text" color="inherit" onClick={()=> setScreenNoNavbar("about")}>About Bilboard</Button>
         </div>
       </div>

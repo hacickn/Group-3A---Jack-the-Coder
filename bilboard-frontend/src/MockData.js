@@ -49,6 +49,30 @@ export const MockData = () => {
             title: "Derin Uzayda Bilim",
             club: "IEEE Bilkent",
         },
+        {
+            id: 8,
+            image: "https://pbs.twimg.com/media/FD0x6C1WUAEw9j2?format=jpg&name=small",
+            location: "FFB-06",
+            participantCount: "60",
+            title: "P&G-Marketing Days",
+            club: "OR Bilkent",
+        },
+        {
+            id: 9,
+            image: "https://ci4.googleusercontent.com/proxy/PTTnN-HJ07H4vZajgAD2_ifLU2Y0y4Covie4ZAAgd-3WkmpZTs2zcVqaGhhSfUA85GGpdyzMBhK6XvcKm5w49F-hZHXn70Ik7YYkncDqNrFwxEKBg2o5f83KeFXj=s0-d-e1-ft#https://s3.eu-west-1.amazonaws.com/diycdnbucket/1636553451080-Deloitte.jpg",
+            location: "Online",
+            participantCount: "250",
+            title: "Deloitte",
+            club: "OR Bilkent",
+        }, 
+        {
+            id: 10,
+            image: "https://media-exp1.licdn.com/dms/image/C4E22AQEQF1oCD-JLRA/feedshare-shrink_800/0/1637246772043?e=1640217600&v=beta&t=tH2X46Zk9z6R7cWMDkJ8eZRMk5TOCKXZWqdjdpnsUQg",
+            location: "Online",
+            participantCount: "250",
+            title: "Meltem Metin - StartMe",
+            club: "OR Bilkent",
+        },  
     ];
     const eventsFuture = [
         
@@ -68,6 +92,7 @@ export const MockData = () => {
             title: "Deloitte",
             club: "OR Bilkent",
         },
+        
     ];
 
     const eventsPast = [
@@ -97,6 +122,70 @@ export const MockData = () => {
             title: "Art Arda Show",
             club: "Radyo Bilkent",
         },
+        {
+            id: 2,
+            image: "https://pbs.twimg.com/media/FD0x6C1WUAEw9j2?format=jpg&name=small",
+            location: "FFB-06",
+            participantCount: "60",
+            title: "P&G-Marketing Days",
+            club: "OR Bilkent",
+        },
+        {
+            id: 3,
+            image: "https://thumbs.dreamstime.com/b/silhouette-people-raised-hands-concer-crowd-music-show-171619919.jpg",
+            location: "Online",
+            participantCount: "250",
+            title: "Career 101",
+            club: "IEEE Bilkent",
+        },
+        {
+            id: 4,
+            image: "https://static3.depositphotos.com/1003543/169/i/600/depositphotos_1690185-stock-photo-crowd-at-a-concert.jpg",
+            location: "Online",
+            participantCount: "250",
+            title: "Peak Meetup",
+            club: "IEEE Bilkent",
+        },
+        {
+            id: 5,
+            image: "https://ci4.googleusercontent.com/proxy/PTTnN-HJ07H4vZajgAD2_ifLU2Y0y4Covie4ZAAgd-3WkmpZTs2zcVqaGhhSfUA85GGpdyzMBhK6XvcKm5w49F-hZHXn70Ik7YYkncDqNrFwxEKBg2o5f83KeFXj=s0-d-e1-ft#https://s3.eu-west-1.amazonaws.com/diycdnbucket/1636553451080-Deloitte.jpg",
+            location: "Online",
+            participantCount: "250",
+            title: "Deloitte",
+            club: "OR Bilkent",
+        },        
+        {
+            id: 7,
+            image: "https://pbs.twimg.com/media/EJv-iR8XUAAYCYF?format=jpg&name=large",
+            location: "MSSF Concert Hall",
+            participantCount: "100",
+            title: "Derin Uzayda Bilim",
+            club: "IEEE Bilkent",
+        },
+        {
+            id: 8,
+            image: "https://pbs.twimg.com/media/FD0x6C1WUAEw9j2?format=jpg&name=small",
+            location: "FFB-06",
+            participantCount: "60",
+            title: "P&G-Marketing Days",
+            club: "OR Bilkent",
+        },
+        {
+            id: 9,
+            image: "https://ci4.googleusercontent.com/proxy/PTTnN-HJ07H4vZajgAD2_ifLU2Y0y4Covie4ZAAgd-3WkmpZTs2zcVqaGhhSfUA85GGpdyzMBhK6XvcKm5w49F-hZHXn70Ik7YYkncDqNrFwxEKBg2o5f83KeFXj=s0-d-e1-ft#https://s3.eu-west-1.amazonaws.com/diycdnbucket/1636553451080-Deloitte.jpg",
+            location: "Online",
+            participantCount: "250",
+            title: "Deloitte",
+            club: "OR Bilkent",
+        }, 
+        {
+            id: 10,
+            image: "https://media-exp1.licdn.com/dms/image/C4E22AQEQF1oCD-JLRA/feedshare-shrink_800/0/1637246772043?e=1640217600&v=beta&t=tH2X46Zk9z6R7cWMDkJ8eZRMk5TOCKXZWqdjdpnsUQg",
+            location: "Online",
+            participantCount: "250",
+            title: "Meltem Metin - StartMe",
+            club: "OR Bilkent",
+        }, 
     ]
 
     return {eventsFollowing, eventsFuture, eventsPast, eventsDiscover}

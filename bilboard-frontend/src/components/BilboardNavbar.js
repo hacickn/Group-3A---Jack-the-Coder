@@ -83,20 +83,7 @@ const BilboardNavbar = ({
           <div className={classes.logo} onClick={()=> setCurrentScreen("main")}>BilBoard</div>
         </Grid>
         <Grid item xs={4} className={classes.searchBar}>
-          <div style={{ backgroundColor: "white", borderRadius: "5px" }}>
-            <TextField
-              color="info"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-              size="small"
-              style={{ width: "420px" }}
-            />
-          </div>
+          
         </Grid>
         <Grid
           item

@@ -100,7 +100,7 @@ const BilboardNavbar = ({
               width="160px"
               fontSize="13px"
               text="Attend an Event"
-              color="#00C853"
+              color="#00e676"
             />
           )}
         </Grid>

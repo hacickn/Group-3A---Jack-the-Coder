@@ -35,7 +35,7 @@ public class LocationRequestEntity implements Serializable {
     @JoinColumn( name = "event" )
     private EventEntity event;
 
-    @OneToMany( targetEntity = LocationRequestTimeSlotEntity.class, mappedBy = "location_request" )
+    @OneToMany( targetEntity = LocationRequestTimeSlotEntity.class, mappedBy = "locationRequest" )
     private List<LocationRequestTimeSlotEntity> locationRequestTimeSlots;
 
     /**

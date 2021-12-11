@@ -30,6 +30,9 @@ public class EventParticipantEntity implements Serializable {
     @JoinColumn( name = "event" )
     private EventEntity event;
 
+    @Column( name = "point" )
+    private int point;
+
     /**
      * Get id method
      * @return long
@@ -92,5 +95,14 @@ public class EventParticipantEntity implements Serializable {
      */
     public void setEvent ( EventEntity event ) {
         this.event = event;
+    }
+
+    // todo
+    public int getPoint () {
+        return point;
+    }
+
+    public void setPoint ( int point ) {
+        this.point = point;
     }
 }

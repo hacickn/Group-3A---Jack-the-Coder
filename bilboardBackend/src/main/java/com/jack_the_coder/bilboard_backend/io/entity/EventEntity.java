@@ -54,14 +54,17 @@ public class EventEntity implements Serializable {
     @Column( name = "is_visible" )
     private Boolean isVisible;
 
-    @Column( name = "point" )
-    private int point;
+    @Column( name = "gePoint" )
+    private int gePoint;
 
     @Column( name = "event_code_expire" )
     private Date eventCodeExpire;
 
-    @OneToMany( targetEntity = EventPointEntity.class, mappedBy = "event" )
-    private List<EventPointEntity> eventPoints;
+    @Column( name = "averageRate" )
+    private int averageRate;
+
+    @Column( name = "rateCount" )
+    private int rateCount;
 
     @ManyToOne( targetEntity = ClubEntity.class )
     @JoinColumn( name = "club" )
@@ -269,22 +272,6 @@ public class EventEntity implements Serializable {
     }
 
     /**
-     * get point method
-     * @return point is int
-     */
-    public int getPoint () {
-        return point;
-    }
-
-    /**
-     * set point method
-     * @param point is int
-     */
-    public void setPoint ( int point ) {
-        this.point = point;
-    }
-
-    /**
      * get event code expire method
      * @return eventCodeExpire is Date
      */
@@ -298,22 +285,6 @@ public class EventEntity implements Serializable {
      */
     public void setEventCodeExpire ( Date eventCodeExpire ) {
         this.eventCodeExpire = eventCodeExpire;
-    }
-
-    /**
-     * get event points method
-     * @return eventPoints is EventPointEntity list
-     */
-    public List<EventPointEntity> getEventPoints () {
-        return eventPoints;
-    }
-
-    /**
-     * set event points method
-     * @param eventPoints is EventPointEntity list
-     */
-    public void setEventPoints ( List<EventPointEntity> eventPoints ) {
-        this.eventPoints = eventPoints;
     }
 
     /**
@@ -381,5 +352,30 @@ public class EventEntity implements Serializable {
     public void setLocationRequests (
             List<LocationRequestEntity> locationRequests ) {
         this.locationRequests = locationRequests;
+    }
+
+    // todo
+    public int getGePoint () {
+        return gePoint;
+    }
+
+    public void setGePoint ( int gePoint ) {
+        this.gePoint = gePoint;
+    }
+
+    public int getAverageRate () {
+        return averageRate;
+    }
+
+    public void setAverageRate ( int averageRate ) {
+        this.averageRate = averageRate;
+    }
+
+    public int getRateCount () {
+        return rateCount;
+    }
+
+    public void setRateCount ( int rateCount ) {
+        this.rateCount = rateCount;
     }
 }

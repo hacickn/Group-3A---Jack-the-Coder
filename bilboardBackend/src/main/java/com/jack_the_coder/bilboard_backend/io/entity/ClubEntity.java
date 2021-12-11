@@ -35,10 +35,10 @@ public class ClubEntity implements Serializable {
     @Column( name = "photo", length = 45 )
     private String photo;
 
-    @OneToOne( targetEntity = UserEntity.class, mappedBy = "presidentOf" )
+    @OneToOne( targetEntity = UserEntity.class )
     private UserEntity president;
 
-    @OneToOne( targetEntity = UserEntity.class, mappedBy = "advisorOf" )
+    @OneToOne( targetEntity = UserEntity.class )
     private UserEntity advisor;
 
     @OneToMany( targetEntity = ClubMemberEntity.class, mappedBy = "club" )
@@ -62,6 +62,9 @@ public class ClubEntity implements Serializable {
 
     @OneToMany( targetEntity = ClubSponsorshipEntity.class, mappedBy = "club" )
     private List<ClubSponsorshipEntity> clubSponsorships;
+
+    @OneToMany( targetEntity = EnrollRequestEntity.class, mappedBy = "club" )
+    private List<EnrollRequestEntity> enrollRequests;
 
     /**
      * Get id method
@@ -304,5 +307,15 @@ public class ClubEntity implements Serializable {
     public void setClubSponsorships (
             List<ClubSponsorshipEntity> clubSponsorships ) {
         this.clubSponsorships = clubSponsorships;
+    }
+
+    // todo
+    public List<EnrollRequestEntity> getEnrollRequests () {
+        return enrollRequests;
+    }
+
+    public void setEnrollRequests (
+            List<EnrollRequestEntity> enrollRequests ) {
+        this.enrollRequests = enrollRequests;
     }
 }

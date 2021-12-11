@@ -36,7 +36,7 @@ public class UserEntity implements Serializable {
 
     @Enumerated( EnumType.STRING )
     @Column( name = "type" )
-    private UserTypes type;
+    private UserEntity.UserTypes type;
 
     @Column( length = 80, name = "password", nullable = false )
     private String password;
@@ -56,14 +56,11 @@ public class UserEntity implements Serializable {
     @Column( name = "jwt_expiration" )
     private Date jwtExpirationTime;
 
-    @OneToOne( targetEntity = ClubEntity.class, mappedBy = "president" )
+    @OneToOne( targetEntity = ClubEntity.class )
     private ClubEntity presidentOf;
 
-    @OneToOne( targetEntity = ClubEntity.class, mappedBy = "advisor" )
+    @OneToOne( targetEntity = ClubEntity.class )
     private ClubEntity advisorOf;
-
-    @OneToMany( targetEntity = EventPointEntity.class, mappedBy = "user" )
-    private List<EventPointEntity> eventPoints;
 
     @OneToMany( targetEntity = ClubMemberEntity.class, mappedBy = "user" )
     private List<ClubMemberEntity> clubMemberShips;
@@ -86,6 +83,10 @@ public class UserEntity implements Serializable {
 
     @OneToMany( targetEntity = EventQuestionEntity.class, mappedBy = "user" )
     private List<EventQuestionEntity> eventQuestions;
+
+    @OneToMany( targetEntity = EnrollRequestEntity.class, mappedBy = "user" )
+    private List<EnrollRequestEntity> enrollRequests;
+
 
     /**
      * get id method
@@ -139,7 +140,7 @@ public class UserEntity implements Serializable {
      * Get type method
      * @return UserTypes
      */
-    public UserTypes getType () {
+    public UserEntity.UserTypes getType () {
         return type;
     }
 
@@ -147,7 +148,7 @@ public class UserEntity implements Serializable {
      * Set type method
      * @param type is UserTypes
      */
-    public void setType ( UserTypes type ) {
+    public void setType ( UserEntity.UserTypes type ) {
         this.type = type;
     }
 
@@ -279,21 +280,6 @@ public class UserEntity implements Serializable {
         this.advisorOf = advisorOf;
     }
 
-    /**
-     * get event points method
-     * @return eventPoints is EventPointEntity list
-     */
-    public List<EventPointEntity> getEventPoints () {
-        return eventPoints;
-    }
-
-    /**
-     * set event point method
-     * @param eventPoints is EventPointEntity list
-     */
-    public void setEventPoints ( List<EventPointEntity> eventPoints ) {
-        this.eventPoints = eventPoints;
-    }
 
     /**
      * get club memberships method
@@ -411,5 +397,15 @@ public class UserEntity implements Serializable {
     public void setEventQuestions (
             List<EventQuestionEntity> eventQuestions ) {
         this.eventQuestions = eventQuestions;
+    }
+
+    // todo
+    public List<EnrollRequestEntity> getEnrollRequests () {
+        return enrollRequests;
+    }
+
+    public void setEnrollRequests (
+            List<EnrollRequestEntity> enrollRequests ) {
+        this.enrollRequests = enrollRequests;
     }
 }

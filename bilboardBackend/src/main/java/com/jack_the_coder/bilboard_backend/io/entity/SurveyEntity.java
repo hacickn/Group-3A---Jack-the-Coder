@@ -46,8 +46,8 @@ public class SurveyEntity implements Serializable {
     @Column( name = "is_for_active_members" )
     private Boolean isForActiveMembers;
 
-    @OneToMany( targetEntity = SurveyChoiceEntity.class, mappedBy = "survey" )
-    private List<SurveyChoiceEntity> choices;
+    @OneToMany( targetEntity = SurveyQuestionEntity.class, mappedBy = "survey" )
+    private List<SurveyQuestionEntity> questions;
 
     @ManyToOne( targetEntity = ClubEntity.class )
     @JoinColumn( name = "club" )
@@ -168,20 +168,13 @@ public class SurveyEntity implements Serializable {
         isForActiveMembers = forActiveMembers;
     }
 
-    /**
-     * get choices method
-     * @return choices is SurveyChoiceEntity list
-     */
-    public List<SurveyChoiceEntity> getChoices () {
-        return choices;
+    // todo
+    public List<SurveyQuestionEntity> getQuestions () {
+        return questions;
     }
 
-    /**
-     * set choices method
-     * @param choices is SurveyChoiceEntity list
-     */
-    public void setChoices ( List<SurveyChoiceEntity> choices ) {
-        this.choices = choices;
+    public void setQuestions ( List<SurveyQuestionEntity> questions ) {
+        this.questions = questions;
     }
 
     /**

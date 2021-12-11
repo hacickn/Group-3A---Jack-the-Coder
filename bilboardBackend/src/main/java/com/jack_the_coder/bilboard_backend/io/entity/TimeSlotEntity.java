@@ -31,7 +31,7 @@ public class TimeSlotEntity implements Serializable {
     @JoinColumn( name = "classroom_day" )
     private ClassroomDayEntity classroomDay;
 
-    @OneToMany( targetEntity = LocationRequestTimeSlotEntity.class, mappedBy = "time_slot" )
+    @OneToMany( targetEntity = LocationRequestTimeSlotEntity.class, mappedBy = "timeSlot" )
     private List<LocationRequestTimeSlotEntity> locationRequestTimeSlots;
 
     /**

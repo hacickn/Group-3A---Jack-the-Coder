@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.Random;
  * @implNote DONE
  * @since 22.11.2021
  */
+@Service
 public class Utils {
 
     private final Random RANDOM = new SecureRandom();

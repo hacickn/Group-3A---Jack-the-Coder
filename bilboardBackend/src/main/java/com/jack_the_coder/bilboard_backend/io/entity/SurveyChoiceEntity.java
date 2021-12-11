@@ -25,9 +25,9 @@ public class SurveyChoiceEntity implements Serializable {
     @Column( name = "vote_count" )
     private int voteCount;
 
-    @ManyToOne( targetEntity = SurveyEntity.class )
-    @JoinColumn( name = "survey" )
-    private SurveyEntity survey;
+    @ManyToOne( targetEntity = SurveyQuestionEntity.class )
+    @JoinColumn( name = "question" )
+    private SurveyQuestionEntity question;
 
     /**
      * Get id method
@@ -77,19 +77,14 @@ public class SurveyChoiceEntity implements Serializable {
         this.voteCount = voteCount;
     }
 
-    /**
-     * Get survey method
-     * @return SurveyEntity object
-     */
-    public SurveyEntity getSurvey () {
-        return survey;
+
+    // todo
+
+    public SurveyQuestionEntity getQuestion () {
+        return question;
     }
 
-    /**
-     * Set survey method
-     * @param survey is SurveyEntity instance
-     */
-    public void setSurvey ( SurveyEntity survey ) {
-        this.survey = survey;
+    public void setQuestion ( SurveyQuestionEntity question ) {
+        this.question = question;
     }
 }

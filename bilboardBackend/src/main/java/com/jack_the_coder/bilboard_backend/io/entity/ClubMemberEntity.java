@@ -22,6 +22,9 @@ public class ClubMemberEntity implements Serializable {
     @Column( name = "attended_event_count" )
     private int attendedEventCount;
 
+    @Column( name = "ge_point" )
+    private int gePoint;
+
     @ManyToOne( targetEntity = UserEntity.class )
     @JoinColumn( name = "user" )
     private UserEntity user;
@@ -94,4 +97,11 @@ public class ClubMemberEntity implements Serializable {
         this.club = club;
     }
 
+    public int getGePoint () {
+        return gePoint;
+    }
+
+    public void setGePoint ( int gePoint ) {
+        this.gePoint = gePoint;
+    }
 }

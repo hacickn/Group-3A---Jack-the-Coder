@@ -2,6 +2,7 @@ package com.jack_the_coder.bilboard_backend.shared.dto;
 
 import com.jack_the_coder.bilboard_backend.io.entity.*;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserDto implements Serializable {
     private String password;
     private String bilkentId;
     private String email;
+    private boolean geTaken;
     private boolean emailConfirmation = false;
     private String emailConfirmationToken;
     private Date jwtExpirationTime;
@@ -196,5 +198,13 @@ public class UserDto implements Serializable {
     public void setEnrollRequests (
             List<EnrollRequestEntity> enrollRequests ) {
         this.enrollRequests = enrollRequests;
+    }
+
+    public boolean isGeTaken () {
+        return geTaken;
+    }
+
+    public void setGeTaken ( boolean geTaken ) {
+        this.geTaken = geTaken;
     }
 }

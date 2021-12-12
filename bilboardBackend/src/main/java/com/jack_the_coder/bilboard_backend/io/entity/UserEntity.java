@@ -23,6 +23,7 @@ public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 8585888063588545565L;
 
+
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     @Column( name = "id" )
@@ -46,6 +47,9 @@ public class UserEntity implements Serializable {
 
     @Column( nullable = false, length = 120, unique = true, name = "email" )
     private String email;
+
+    @Column( name = "ge_taken" )
+    private boolean geTaken;
 
     @Column( name = "email_confirmation" )
     private boolean emailConfirmation;
@@ -407,5 +411,13 @@ public class UserEntity implements Serializable {
     public void setEnrollRequests (
             List<EnrollRequestEntity> enrollRequests ) {
         this.enrollRequests = enrollRequests;
+    }
+
+    public boolean isGeTaken () {
+        return geTaken;
+    }
+
+    public void setGeTaken ( boolean geTaken ) {
+        this.geTaken = geTaken;
     }
 }

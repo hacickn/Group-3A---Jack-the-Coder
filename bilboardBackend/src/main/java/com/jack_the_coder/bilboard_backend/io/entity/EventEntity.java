@@ -54,16 +54,16 @@ public class EventEntity implements Serializable {
     @Column( name = "is_visible" )
     private Boolean isVisible;
 
-    @Column( name = "gePoint" )
+    @Column( name = "ge_point" )
     private int gePoint;
 
     @Column( name = "event_code_expire" )
     private Date eventCodeExpire;
 
-    @Column( name = "averageRate" )
+    @Column( name = "average_rate" )
     private int averageRate;
 
-    @Column( name = "rateCount" )
+    @Column( name = "rate_count" )
     private int rateCount;
 
     @ManyToOne( targetEntity = ClubEntity.class )

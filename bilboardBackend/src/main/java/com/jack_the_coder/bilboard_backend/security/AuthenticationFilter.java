@@ -1,7 +1,7 @@
 package com.jack_the_coder.bilboard_backend.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jack_the_coder.bilboard_backend.model.requestModel.SignInRequestModel;
+import com.jack_the_coder.bilboard_backend.model.requestModel.SignInRequest;
 import com.jack_the_coder.bilboard_backend.service.UserService;
 import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import com.jack_the_coder.bilboard_backend.util.SpringApplicationContext;
@@ -42,8 +42,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         try {
             contentType = req.getHeader( "Accept" );
 
-            SignInRequestModel creds = new ObjectMapper()
-                    .readValue( req.getInputStream() , SignInRequestModel.class );
+            SignInRequest creds = new ObjectMapper()
+                    .readValue( req.getInputStream() , SignInRequest.class );
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

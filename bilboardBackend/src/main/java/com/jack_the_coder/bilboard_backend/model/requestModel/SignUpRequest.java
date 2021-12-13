@@ -2,14 +2,23 @@ package com.jack_the_coder.bilboard_backend.model.requestModel;
 
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 
-public class SignUpRequestModel {
+public class SignUpRequest {
     // todo
+    private long university;
     private String name;
     private String surname;
     private String password;
     private String bilkentId;
     private String email;
     private UserEntity.UserTypes type;
+
+    public long getUniversity () {
+        return university;
+    }
+
+    public void setUniversity ( long university ) {
+        this.university = university;
+    }
 
     public UserEntity.UserTypes getType () {
         return type;

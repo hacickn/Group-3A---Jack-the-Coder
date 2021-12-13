@@ -5,6 +5,7 @@ import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 public class SignUpResponse {
     // todo
     private long id;
+    private CreateUniversityResponse university;
     private String name;
     private String surname;
     private String email;
@@ -18,6 +19,14 @@ public class SignUpResponse {
 
     public void setId ( long id ) {
         this.id = id;
+    }
+
+    public CreateUniversityResponse getUniversity () {
+        return university;
+    }
+
+    public void setUniversity ( CreateUniversityResponse university ) {
+        this.university = university;
     }
 
     public String getName () {

@@ -1,6 +1,6 @@
 package com.jack_the_coder.bilboard_backend.model.requestModel;
 
-public class SignInRequestModel {
+public class SignInRequest {
     private String password;
     private String email;
 

@@ -1,103 +1,193 @@
 import Grid from "@mui/material/Grid";
+import Rating from '@mui/material/Rating';
+import Constants from "../utils/Constants";
+import QuestionAnswerCard from "../components/QuestionAnswerCard";
+import BilboardButton from "../components/BilboardButton";
+import React from 'react'
+import BilboardNavbar from "../components/BilboardNavbar";
 
 const EventDetailScreen = () => {
+
+    const questionAnswerList = [
+        {
+            question: "Question text",
+            answer: "Answer text",
+        },
+        {
+            question: "Question text",
+            answer: "Answer text",
+        },
+        {
+            question: "Question text",
+            answer: "Answer text",
+        },
+        {
+            question: "Question text",
+            answer: "Answer text",
+        },
+    ]
+
+    function addQuestionAnswer(questionAnswerObject) {
+        let temp = [...questionAnswerList]
+
+        temp.push({
+            question: questionAnswerObject.question,
+            answer: questionAnswerObject.answer,
+        })
+    }
+
     return (
 
         <div>
-            <Grid container>
-                <Grid item xs={4}>
+            <Grid container style={{ marginTop: 10}}>
+                <Grid item xs={5} style={{ marginTop: 50}}>
                     <Grid container>
                         <Grid container>
-                            <Grid item xs={4} style={
+                            <Grid item xs={12} style={
                                 {
-                                    marginTop: "20px",
-                                    marginLeft: "20px",
+                                    paddingLeft: 12,
+                                    marginTop: "5px",
+                                    marginLeft: "100px",
                                     color: "black",
                                     display: "flex",
                                     justifyContent: "left",
                                     alignItems: "left",
-                                    fontSize: "120%",
+                                    fontSize: "80%",
 
                                 }}>
-                                Event Name      
+                                <div style={{
+                                    fontSize: "30px",
+                                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                }}>Event Name</div>
+                                <Rating name="read-only" defaultValue={2} style={{ marginLeft: "20px" }} readOnly size="large" />
                             </Grid>
-                            <Grid item xs={8} style={
-                                {
-                                    marginRight: "20px",
-                                    color: "black",
-                                    display: "flex",
-                                    justifyContent: "right",
-                                    alignItems: "right",
-                                    fontSize: "120%",
 
-                                }}>
-                              🔯 🔯  🔯  🔯  🔯
 
-                            </Grid>
+
                         </Grid>
                         <Grid item xs={12} style={
                             {
-                                marginTop: "20px",
-                                marginLeft: "20px",
+                                paddingLeft: 12,
+                                marginTop: "5px",
+                                marginLeft: "100px",
                                 color: "black",
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "120%",
+                                fontSize: "80%",
                             }}>
-                            Club Name
+                            <div style={{
+                                fontSize: "30px",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                            }}>Club Name</div>
                         </Grid>
                         <Grid item xs={12} style={
                             {
-                                marginTop: "20px",
-                                marginLeft: "20px",
+                                paddingLeft: 12,
+                                marginTop: "5px",
+                                marginLeft: "100px",
                                 color: "black",
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "120%",
+                                fontSize: "40%",
 
                             }}>
-                            No. of
+                            <div style={{
+                                fontSize: "30px",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                            }}>No.of</div>
                         </Grid>
-                    </Grid>
-                    <Grid item >              
-                        <img src ="
-                        https://relearnalanguage.com/wp-content/uploads/2021/01/language-club-activities.jpg"style ={
-                            {
-                                marginTop: "40px",
-                                marginLeft: "20px",
-                                backgroundSize: "cover",
-                                width: "460px",
-                                height: "460px",
-                                borderRadius: "10px",
 
-                            }}>  
+                        <Grid item xs={12}
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}>
+                            <img src="
+                        https://relearnalanguage.com/wp-content/uploads/2021/01/language-club-activities.jpg"style={
+                                    {
+
+                                        marginLeft: "20px",
+                                        backgroundSize: "cover",
+                                        width: "600px",
+                                        height: "600px",
+                                        borderRadius: "10px",
+
+                                    }}>
                             </img>
+                        </Grid>
                     </Grid>
+
                 </Grid>
-                <Grid item xs={8}>
-                    <Grid container style ={
-                            {
-                                marginTop: "40px",
-                                marginLeft: "20px",                           
-                             }}>  
-
-                    </Grid >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-                    <Grid container style ={
-                            {
-                                marginTop: "40px",
-                                marginLeft: "20px", 
-                                fontWeight: "bold",                          
-                             }}>  
-                    EVENT LOCATION
-                    </Grid>
-
+                <Grid item xs={7}>
                     <Grid container>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <Grid item xs={12} style={
+                            {
+                                padding: 20,
+                                fontSize: 48,
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                marginTop: "20px",
+                                marginLeft: "100px",
+                                color: "black",
+                                display: "flex",
+                                justifyContent: "left",
+                                alignItems: "left",
+                                fontSize: "120%",
+
+                            }}>
+                            <Grid >
+                                <div style={{ fontSize: 28, fontWeight:"bold", fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify"}}>
+                                Event Details
+                                </div>
+                                <div style={{ fontSize: 18, fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify", marginRight: 70 }}>
+                                     Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.
+                                </div>
+
+                            </Grid>
+
+                        </Grid>
+                        <Grid item xs={12} style={
+                            {
+                                padding: 20,
+                                fontSize: 48,
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                marginTop: "20px",
+                                marginLeft: "100px",
+                                color: "black",
+                                display: "flex",
+                                justifyContent: "left",
+                                alignItems: "left",
+                                fontSize: "120%",
+
+                            }}>
+                             <div style={{ fontSize: 28, fontWeight:"bold", fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify", marginRight: 70}}>
+                                Event Location: Online
+                                </div>
+                        </Grid>
+                        <Grid item xs={12} >
+                            <Grid container
+                                style={{ borderRadius: Constants.BORDER_RADIUS }}>
+                                <Grid item xs={12} style={{ padding: 20, fontSize: 38, fontFamily: Constants.OXYGEN_FONT_FAMILY, fontWeight:"bold" }}>
+                                    Question and Answer
+                                </Grid>
+                                <Grid container style={{ maxHeight: "100vh", overflowY: "scroll", marginLeft: 80, marginRight: 70 }}>
+                                    {questionAnswerList.map(questionAnswer => <QuestionAnswerCard questionAnswer={questionAnswer} />)}
+                                </Grid>
+
+                                <Grid item xs={12} style={{
+                                    marginTop: "25px",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+
+                                }}>
+                                    <BilboardButton width="160px" height="40px" fontSize="16px" text="Ask a question" />
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

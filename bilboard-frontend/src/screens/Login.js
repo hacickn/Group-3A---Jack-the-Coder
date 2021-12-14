@@ -70,7 +70,7 @@ const Login = ( { setScreenNoNavbar } ) => {
             </Grid>
 
             <Grid item xs={ 12 } style={ { marginTop: "40px" } }>
-                <BilboardButton width="100px" fontSize="14px" text="Login" onClick={ () => handleLoginRequest() }/>
+                <BilboardButton width="100px" fontSize="14px" text="Login" onClick={ () => setScreenNoNavbar("main") }/>
             </Grid>
 
             <Grid item xs={ 12 } style={ { marginTop: "30px" } }>

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
     UserEntity findByEmail ( String email );
-
+    UserEntity findUserByEmailConfirmationToken(String token);
     UserEntity findByBilkentId ( String bilkentId );
 }

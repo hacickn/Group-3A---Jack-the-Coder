@@ -76,6 +76,10 @@ public class UserEntity implements Serializable {
     @JoinColumn( name = "university" )
     private UniversityEntity university;
 
+    @OneToOne( targetEntity = PasswordResetTokenEntity.class )
+    @JoinColumn( name = "reset_token_id" )
+    private PasswordResetTokenEntity resetTokenEntity;
+
     @OneToMany( targetEntity = EventParticipantEntity.class, mappedBy = "user" )
     private List<EventParticipantEntity> eventParticipants;
 
@@ -419,5 +423,13 @@ public class UserEntity implements Serializable {
 
     public void setGeTaken ( boolean geTaken ) {
         this.geTaken = geTaken;
+    }
+
+    public PasswordResetTokenEntity getResetTokenEntity () {
+        return resetTokenEntity;
+    }
+
+    public void setResetTokenEntity ( PasswordResetTokenEntity resetTokenEntity ) {
+        this.resetTokenEntity = resetTokenEntity;
     }
 }

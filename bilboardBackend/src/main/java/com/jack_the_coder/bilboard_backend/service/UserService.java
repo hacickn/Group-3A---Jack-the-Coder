@@ -11,6 +11,14 @@ public interface UserService extends UserDetailsService {
 
     UserDto getUserByEmail ( String email );
 
+    UserDto getUserById ( long id );
+
+    boolean verifyEmailToken ( String token );
+
+    boolean requestPasswordReset ( String email );
+
+    boolean resetPassword ( String token , String password );
+
     @Override
     UserDetails loadUserByUsername ( String s ) throws UsernameNotFoundException;
 }

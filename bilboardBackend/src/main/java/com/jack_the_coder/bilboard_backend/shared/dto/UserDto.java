@@ -32,6 +32,7 @@ public class UserDto implements Serializable {
     private List<ClubMemberEntity> clubMemberShips;
     private List<ClubBoardMemberEntity> clubBoardMemberships;
     private UniversityEntity university;
+    private PasswordResetTokenEntity resetTokenEntity;
     private List<EventParticipantEntity> eventParticipants;
     private List<ClubFeedbackEntity> clubFeedbacks;
     private List<SurveyParticipantEntity> surveyParticipants;
@@ -211,5 +212,13 @@ public class UserDto implements Serializable {
 
     public void setGeTaken ( boolean geTaken ) {
         this.geTaken = geTaken;
+    }
+
+    public PasswordResetTokenEntity getResetTokenEntity () {
+        return resetTokenEntity;
+    }
+
+    public void setResetTokenEntity ( PasswordResetTokenEntity resetTokenEntity ) {
+        this.resetTokenEntity = resetTokenEntity;
     }
 }

@@ -76,6 +76,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         PrintWriter out = res.getWriter();
         res.setContentType( "application/json" );
         res.setCharacterEncoding( "UTF-8" );
-        out.print( "{\"token\":\"" + token + "\", \"email\":\"" + userDto.getEmail() + "\"}" );
+        out.print( "{\"token\":\"" + token + "\", \"email\":\"" + userDto.getEmail() + "\", \"id\":\"" + userDto.getId() + "\"}" );
     }
 }

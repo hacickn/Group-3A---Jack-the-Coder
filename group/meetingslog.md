@@ -201,10 +201,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 
 **Discussion:** In this meeting as a group, we started to design our presentation for our first demo. Every member of the group is assigned to a part of the presentation. The tasks can be found below:
 
-Slides 1 - 4, İlke
-Slides 5 - 7, Abdullah
-Slides 8 - 10, Aslı
-Slides 11 - 17, Metehan
-Slides 18 - 21, Hacı
-Slides 22 - 23, Aslı
-Slides 24, Abdullah
+- Slides 1 - 4, İlke
+- Slides 5 - 7, Abdullah
+- Slides 8 - 10, Aslı
+- Slides 11 - 17, Metehan
+- Slides 18 - 21, Hacı
+- Slides 22 - 23, Aslı
+- Slides 24, Abdullah

@@ -222,3 +222,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 **Present:** Everyone (FACE TO FACE)
 
 **Discussion:** In this meeting as a group, we practiced our first demo presentation for last time before the actual performance which is tomorrow.
+
+****
+### Meeting ~ (03.11.2021, 60 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** In this meeting we evalutated our sibling group's iteration 1 design report.

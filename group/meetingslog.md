@@ -186,3 +186,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 - (3.3.1) Abdullah, İlke
 - (3.3.2) Aslı, Hacı
 - (3.3.3) Aslı, Hacı
+
+****
+### Meeting ~ (23.11.2021, 240 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** In this meeting as a group, we gathered up to complete our Design Report with sync-up process. The each part of our report which was assigned different group members were discussed and the entire iteration 1 of Design Report is completed.

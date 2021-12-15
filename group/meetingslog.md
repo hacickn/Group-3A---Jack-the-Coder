@@ -208,3 +208,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 - Slides 18 - 21, Hacı
 - Slides 22 - 23, Aslı
 - Slides 24, Abdullah
+
+****
+### Meeting ~ (30.11.2021, 240 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** In this meeting as a group, we practiced and made some changes on our demo presentation which is on Friday 03.12.2021-08.05. Also, we revised all of our diagrams.

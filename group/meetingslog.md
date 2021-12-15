@@ -193,3 +193,18 @@ Last but not least, during this meeting we decided to add/modify the following f
 **Present:** Everyone (FACE TO FACE)
 
 **Discussion:** In this meeting as a group, we gathered up to complete our Design Report with sync-up process. The each part of our report which was assigned different group members were discussed and the entire iteration 1 of Design Report is completed.
+
+****
+### Meeting ~ (28.11.2021, 120 min)
+****
+**Present:** Everyone (ONLINE)
+
+**Discussion:** In this meeting as a group, we started to design our presentation for our first demo. Every member of the group is assigned to a part of the presentation. The tasks can be found below:
+
+Slides 1 - 4, İlke
+Slides 5 - 7, Abdullah
+Slides 8 - 10, Aslı
+Slides 11 - 17, Metehan
+Slides 18 - 21, Hacı
+Slides 22 - 23, Aslı
+Slides 24, Abdullah

@@ -236,3 +236,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 **Present:** Everyone (ONLINE)
 
 **Discussion:** In this meeting we created required tasks for finishing our design, analysis report and code implementation. Each member is assigned to a task and also each member is assigned as "last checker" to an required job such as documents, trailer, code implementation.
+
+****
+### Meeting ~ (14.11.2021, 60 min)
+****
+**Present:** Everyone (FACE TO FACE)
+
+**Discussion:** In this meeting we focussed on our code implementation and started to connect our backend with the frontend. Also, we fixed some of detected problematic diagrams of ours.

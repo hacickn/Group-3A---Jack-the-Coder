@@ -229,3 +229,10 @@ Last but not least, during this meeting we decided to add/modify the following f
 **Present:** Everyone (FACE TO FACE)
 
 **Discussion:** In this meeting we evalutated our sibling group's iteration 1 design report.
+
+****
+### Meeting ~ (09.11.2021, 60 min)
+****
+**Present:** Everyone (ONLINE)
+
+**Discussion:** In this meeting we created required tasks for finishing our design, analysis report and code implementation. Each member is assigned to a task and also each member is assigned as "last checker" to an required job such as documents, trailer, code implementation.

@@ -156,21 +156,21 @@ Last but not least, during this meeting we decided to add/modify the following f
 ****
 **Present:** Everyone (FACE TO FACE)
 
-**Discussion:** Will be shared!
+**Discussion:** First iteration Analysis Report of our sibling group is evaluated.
 
 ****
 ### Meeting ~ (09.11.2021, 240 min)
 ****
 **Present:** Everyone (FACE TO FACE)
 
-**Discussion:** Will be shared!
+**Discussion:** We started to implement the frontend of our project.
 
 ****
 ### Meeting ~ (16.11.2021, 240 min)
 ****
 **Present:** Everyone (FACE TO FACE)
 
-**Discussion:** Will be shared!
+**Discussion:** We focussed on code implementation of both frontend and backend.
 
 ****
 ### Meeting ~ (21.11.2021, 60 min)

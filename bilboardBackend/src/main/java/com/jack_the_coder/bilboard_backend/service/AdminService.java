@@ -2,7 +2,7 @@ package com.jack_the_coder.bilboard_backend.service;
 
 import com.jack_the_coder.bilboard_backend.shared.dto.UniversityDto;
 
-public interface UniversityService {
+public interface AdminService {
 
     UniversityDto createUniversity ( UniversityDto universityDto );
 

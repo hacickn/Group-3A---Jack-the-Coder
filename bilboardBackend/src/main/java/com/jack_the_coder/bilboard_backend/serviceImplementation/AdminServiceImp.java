@@ -2,7 +2,7 @@ package com.jack_the_coder.bilboard_backend.serviceImplementation;
 
 import com.jack_the_coder.bilboard_backend.io.entity.UniversityEntity;
 import com.jack_the_coder.bilboard_backend.io.repository.UniversityRepository;
-import com.jack_the_coder.bilboard_backend.service.UniversityService;
+import com.jack_the_coder.bilboard_backend.service.AdminService;
 import com.jack_the_coder.bilboard_backend.shared.dto.UniversityDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UniversityServiceImp implements UniversityService {
+public class AdminServiceImp implements AdminService {
 
     @Autowired
     UniversityRepository universityRepository;

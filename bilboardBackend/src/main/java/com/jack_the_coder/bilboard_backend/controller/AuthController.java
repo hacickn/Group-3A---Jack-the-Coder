@@ -7,7 +7,7 @@ import com.jack_the_coder.bilboard_backend.model.StatusResponse;
 import com.jack_the_coder.bilboard_backend.model.requestModel.ResetPasswordRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.SignUpRequest;
 import com.jack_the_coder.bilboard_backend.model.responseModel.SignUpResponse;
-import com.jack_the_coder.bilboard_backend.service.UniversityService;
+import com.jack_the_coder.bilboard_backend.service.AdminService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
 import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import org.modelmapper.ModelMapper;
@@ -24,13 +24,13 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
     UserService userService;
 
     @Autowired
-    UniversityService universityService;
+    AdminService adminService;
 
     @PostMapping( path = "/signUp" )  // http://localhost:8080/bilboard-app/v1/auth/signUp
     public SignUpResponse signUp ( @RequestBody SignUpRequest requestModel ) {
         ModelMapper modelMapper = new ModelMapper();
         UserDto userDto = modelMapper.map( requestModel , UserDto.class );   // modelMapper.map(source, target.class);
-        userDto.setUniversity( modelMapper.map( universityService.getUniversity( requestModel.getUniversity() ) ,
+        userDto.setUniversity( modelMapper.map( adminService.getUniversity( requestModel.getUniversity() ) ,
                 UniversityEntity.class ) );
 
         UserDto createdDto = userService.createUser( userDto );
@@ -40,7 +40,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     // email verification   http://localhost:8080/auth/emailVerification
     @PostMapping(path = "/emailVerification")
-    public StatusResponse emailVerification( @RequestParam(value = "token") String token) {
+    public StatusResponse signUpConfirmation( @RequestParam(value = "token") String token) {
         StatusResponse returnValue = new StatusResponse();
         returnValue.setOperationName( OperationName.VERIFY_EMAIL.name());
 
@@ -57,7 +57,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     // reset passwordRequest    http://localhost:8080/auth/resetPasswordRequest
     @PostMapping(path = "/resetPasswordRequest")
-    public StatusResponse signUp(@RequestParam(value = "email") String email) {
+    public StatusResponse forgetPassword(@RequestParam(value = "email") String email) {
         StatusResponse returnValue = new StatusResponse();
 
         boolean operationResult = userService.requestPasswordReset(email);
@@ -74,7 +74,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     // reset password   http://localhost:8080/auth/resetPassword
     @PostMapping(path = "/resetPassword")
-    public StatusResponse StatusResponse(@RequestBody ResetPasswordRequest requestModel) {
+    public StatusResponse changePassword(@RequestBody ResetPasswordRequest requestModel) {
         StatusResponse returnValue = new StatusResponse();
 
         boolean operationResult = userService.resetPassword(

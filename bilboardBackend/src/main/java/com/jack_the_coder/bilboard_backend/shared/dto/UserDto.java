@@ -27,6 +27,7 @@ public class UserDto implements Serializable {
     private boolean emailConfirmation = false;
     private String emailConfirmationToken;
     private Date jwtExpirationTime;
+    private String photo;
     private ClubEntity presidentOf;
     private ClubEntity advisorOf;
     private List<ClubMemberEntity> clubMemberShips;
@@ -220,5 +221,13 @@ public class UserDto implements Serializable {
 
     public void setResetTokenEntity ( PasswordResetTokenEntity resetTokenEntity ) {
         this.resetTokenEntity = resetTokenEntity;
+    }
+
+    public String getPhoto () {
+        return photo;
+    }
+
+    public void setPhoto ( String photo ) {
+        this.photo = photo;
     }
 }

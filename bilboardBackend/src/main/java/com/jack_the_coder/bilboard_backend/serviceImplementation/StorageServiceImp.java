@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class StorageServiceImp implements StorageService {
 
     @Override
-    public String save ( MultipartFile file , String fileType , String fileName ) {
+    public String saveEventPhoto ( MultipartFile file , String fileType , String fileName ) {
 
         try {
 
@@ -35,13 +35,6 @@ public class StorageServiceImp implements StorageService {
             ObjectMetadata meta = new ObjectMetadata();
             meta.setContentLength( IOUtils.toByteArray( file.getInputStream() ).length );
 
-            /*
-            s3client.putObject( new PutObjectRequest( "localization-bucket" , projectEntity.getCompany().getName() + "/"
-                    + projectEntity.getName() + "/"
-                    + millis + "." + file.getContentType().split( "/" )[ 1 ] , file.getInputStream() , meta )
-                    .withCannedAcl( CannedAccessControlList.PublicRead ) );
-             */
-
             String newFileName = fileType + "/" + fileName + "/" +
                     millis + "." + file.getContentType().split( "/" )[ 1 ];
 
@@ -49,7 +42,36 @@ public class StorageServiceImp implements StorageService {
                     new PutObjectRequest( "bilboard" , newFileName , file.getInputStream() , meta )
                             .withCannedAcl( CannedAccessControlList.PublicRead ) );
 
-            //ObjectListing objectListing = s3client.listObjects( "localization-bucket" );
+            return newFileName;
+        } catch ( Exception e ) {
+            throw new RuntimeException( "Could not store the file. Error: " + e.getMessage() );
+        }
+    }
+
+
+    @Override
+    public String saveProfilePhoto ( MultipartFile file , String fileType , long id ) {
+        try {
+
+
+            AWSCredentials credentials =
+                    new BasicAWSCredentials( "AKIAYZNHCDMMVNUAYCOY" , "Iv5QLogCJQlyx42xQjoQomsIMvphNilHSPS1P8ho" );
+            AmazonS3 s3client = AmazonS3ClientBuilder
+                    .standard()
+                    .withCredentials( new AWSStaticCredentialsProvider( credentials ) )
+                    .withRegion( Regions.EU_CENTRAL_1 )
+                    .build();
+
+            ObjectMetadata meta = new ObjectMetadata();
+            meta.setContentLength( IOUtils.toByteArray( file.getInputStream() ).length );
+
+
+            String newFileName = fileType + "/" + id + "." + file.getContentType().split( "/" )[ 1 ];
+
+            s3client.putObject(
+                    new PutObjectRequest( "bilboard" , newFileName , file.getInputStream() , meta )
+                            .withCannedAcl( CannedAccessControlList.PublicRead ) );
+
 
             return newFileName;
         } catch ( Exception e ) {

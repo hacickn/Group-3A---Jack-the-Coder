@@ -72,7 +72,7 @@ public class EventServiceImp implements EventService {
         eventDto.setGePoint( gePoint );
         eventDto.setRestrictionForMember( restrictionForMember );
         eventDto.setVisible( isVisible );
-        String fileName = storageService.save( eventPhoto , "event" , clubId + "" );
+        String fileName = storageService.saveEventPhoto( eventPhoto , "event" , clubId + "" );
         eventDto.setEventPhoto( fileName );
         EventEntity eventEntity = modelMapper.map( eventDto , EventEntity.class );
         EventEntity createdEvent = eventRepository.save( eventEntity );

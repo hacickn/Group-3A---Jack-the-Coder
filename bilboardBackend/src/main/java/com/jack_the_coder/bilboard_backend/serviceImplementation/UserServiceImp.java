@@ -5,6 +5,7 @@ import com.jack_the_coder.bilboard_backend.io.entity.PasswordResetTokenEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.io.repository.PasswordResetTokenRepository;
 import com.jack_the_coder.bilboard_backend.io.repository.UserRepository;
+import com.jack_the_coder.bilboard_backend.service.StorageService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
 import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import com.jack_the_coder.bilboard_backend.util.Utils;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -34,6 +36,9 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     Utils utils;
+
+    @Autowired
+    StorageService storageService;
 
     @Override
     public UserDto createUser ( UserDto user ) {
@@ -104,7 +109,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean verifyEmailToken ( String token ) {
+    public Boolean verifyEmailToken ( String token ) {
 
         boolean returnValue = false;
 
@@ -124,7 +129,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean requestPasswordReset ( String email ) {
+    public Boolean requestPasswordReset ( String email ) {
         try {
             UserEntity userEntity = userRepository.findByEmail( email );
 
@@ -151,7 +156,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean resetPassword ( String token , String password ) {
+    public Boolean resetPassword ( String token , String password ) {
         boolean returnValue = false;
 
         if ( Utils.hasTokenExpired( token ) ) {
@@ -181,6 +186,80 @@ public class UserServiceImp implements UserService {
         passwordResetTokenRepository.delete( passwordResetTokenEntity );
 
         return returnValue;
+    }
+
+    @Override
+    public Boolean changeGeStatus ( long userId , boolean geStatus ) {
+        try {
+            Optional<UserEntity> optionalUserEntity = userRepository.findById( userId );
+
+            if ( optionalUserEntity.isPresent() ) {
+                optionalUserEntity.get().setGeTaken( geStatus );
+                userRepository.save( optionalUserEntity.get() );
+                return true;
+            } else {
+                throw new UserServiceException( "User is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public Boolean changeNameSurname ( long userId , String name , String surname ) {
+        try {
+            Optional<UserEntity> optionalUserEntity = userRepository.findById( userId );
+
+            if ( optionalUserEntity.isPresent() ) {
+                optionalUserEntity.get().setName( name );
+                optionalUserEntity.get().setSurname( surname );
+                userRepository.save( optionalUserEntity.get() );
+                return true;
+            } else {
+                throw new UserServiceException( "User is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public Boolean changeId ( long userId , String id ) {
+        try {
+            Optional<UserEntity> optionalUserEntity = userRepository.findById( userId );
+
+            if ( optionalUserEntity.isPresent() ) {
+                UserEntity optionalEntity = userRepository.findByBilkentId( id );
+                if ( optionalEntity == null ) {
+                    optionalUserEntity.get().setBilkentId( id );
+                    userRepository.save( optionalUserEntity.get() );
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new UserServiceException( "User is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public Boolean changePhoto ( long userId , MultipartFile photo ) {
+        try {
+            Optional<UserEntity> optionalUserEntity = userRepository.findById( userId );
+            if ( optionalUserEntity.isPresent() ) {
+                String newPath = storageService.saveProfilePhoto( photo , "users" , userId );
+                optionalUserEntity.get().setPhoto( newPath );
+                userRepository.save( optionalUserEntity.get() );
+                return true;
+            } else {
+                throw new UserServiceException( "User is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
     }
 }
 

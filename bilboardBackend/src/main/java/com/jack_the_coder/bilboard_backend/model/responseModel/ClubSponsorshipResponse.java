@@ -1,14 +1,11 @@
-package com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel;
+package com.jack_the_coder.bilboard_backend.model.responseModel;
 
-import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
-
-public class BasicUserResponse {
-
+public class ClubSponsorshipResponse {
     private long id;
     private String name;
-    private String surname;
     private String photo;
-    private UserEntity.UserTypes type;
+    private int amount;
+    private String type;
 
     public long getId () {
         return id;
@@ -26,14 +23,6 @@ public class BasicUserResponse {
         this.name = name;
     }
 
-    public String getSurname () {
-        return surname;
-    }
-
-    public void setSurname ( String surname ) {
-        this.surname = surname;
-    }
-
     public String getPhoto () {
         return photo;
     }
@@ -42,11 +31,19 @@ public class BasicUserResponse {
         this.photo = photo;
     }
 
-    public UserEntity.UserTypes getType () {
+    public int getAmount () {
+        return amount;
+    }
+
+    public void setAmount ( int amount ) {
+        this.amount = amount;
+    }
+
+    public String getType () {
         return type;
     }
 
-    public void setType ( UserEntity.UserTypes type ) {
+    public void setType ( String type ) {
         this.type = type;
     }
 }

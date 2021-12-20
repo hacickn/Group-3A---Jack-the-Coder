@@ -1,20 +1,17 @@
 package com.jack_the_coder.bilboard_backend.serviceImplementation;
 
 import com.jack_the_coder.bilboard_backend.exception.UserServiceException;
-import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
-import com.jack_the_coder.bilboard_backend.io.entity.ClubMemberEntity;
-import com.jack_the_coder.bilboard_backend.io.entity.EnrollRequestEntity;
-import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
-import com.jack_the_coder.bilboard_backend.io.repository.ClubMemberRepository;
-import com.jack_the_coder.bilboard_backend.io.repository.ClubRepository;
-import com.jack_the_coder.bilboard_backend.io.repository.EnrollRequestRepository;
-import com.jack_the_coder.bilboard_backend.io.repository.UserRepository;
+import com.jack_the_coder.bilboard_backend.io.entity.*;
+import com.jack_the_coder.bilboard_backend.io.repository.*;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
+import com.jack_the_coder.bilboard_backend.service.StorageService;
 import com.jack_the_coder.bilboard_backend.shared.dto.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +31,12 @@ public class ClubServiceImp implements ClubService {
     @Autowired
     ClubMemberRepository clubMemberRepository;
 
+    @Autowired
+    ClubSponsorshipRepository clubSponsorshipRepository;
+
+    @Autowired
+    StorageService storageService;
+
     @Override
     public ClubDto createClub ( ClubDto clubDto ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -52,8 +55,6 @@ public class ClubServiceImp implements ClubService {
                 ModelMapper modelMapper = new ModelMapper();
                 return modelMapper.map( optionalClubEntity.get() , ClubDto.class );
             } else {
-
-
                 throw new UserServiceException( "Club is not found!" );
             }
         } catch ( Exception e ) {
@@ -92,11 +93,6 @@ public class ClubServiceImp implements ClubService {
     }
 
     @Override
-    public ClubSponsorshipDto addSponsorship ( ClubSponsorshipDto clubSponsorshipDto , long clubId ) {
-        return null;
-    }
-
-    @Override
     public Boolean deleteSponsorship ( long sponsorshipId ) {
         return null;
     }
@@ -113,7 +109,25 @@ public class ClubServiceImp implements ClubService {
 
     @Override
     public List<EventDto> getEvents ( long clubId ) {
-        return null;
+        try {
+            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
+
+            if ( optionalClubEntity.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                List<EventDto> eventDtoList = new ArrayList<>();
+
+                optionalClubEntity.get().getEvents().forEach( eventEntity -> {
+                    eventDtoList.add( modelMapper.map( eventEntity , EventDto.class ) );
+                } );
+
+                return eventDtoList;
+            } else {
+                throw new UserServiceException( "Club is not found!" );
+            }
+        } catch ( Exception e ) {
+
+            throw new UserServiceException( "Club is not found!" );
+        }
     }
 
     @Override
@@ -170,6 +184,50 @@ public class ClubServiceImp implements ClubService {
             }
         } catch ( Exception e ) {
             throw new UserServiceException( "Something went wrong. Try it later!" );
+        }
+    }
+
+    @Override
+    public Boolean updatePhoto ( long clubId , MultipartFile photo ) {
+        try {
+            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
+            if ( optionalClubEntity.isPresent() ) {
+                String newPath = storageService.saveProfilePhoto( photo , "clubs" , clubId );
+                optionalClubEntity.get().setPhoto( newPath );
+                clubRepository.save( optionalClubEntity.get() );
+                return true;
+            } else {
+                throw new UserServiceException( "Club is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public ClubSponsorshipDto addSponsorship ( long clubId , String name , MultipartFile photo , int amount ,
+                                               String type ) {
+        try {
+            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
+            if ( optionalClubEntity.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                ClubSponsorshipDto clubSponsorshipDto = new ClubSponsorshipDto();
+                clubSponsorshipDto.setName( name );
+                clubSponsorshipDto.setClub( optionalClubEntity.get() );
+                clubSponsorshipDto.setAmount( amount );
+                clubSponsorshipDto.setType( type );
+                ClubSponsorshipEntity created = clubSponsorshipRepository.save( modelMapper.map( clubSponsorshipDto ,
+                        ClubSponsorshipEntity.class ) );
+                String newPath = storageService.saveProfilePhoto( photo , "sponsors" , created.getId() );
+                created.setPhoto( newPath );
+                ClubSponsorshipEntity saved = clubSponsorshipRepository.save( created );
+                return modelMapper.map( saved , ClubSponsorshipDto.class );
+            } else {
+                throw new UserServiceException( "Club is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+
         }
     }
 }

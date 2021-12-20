@@ -60,6 +60,9 @@ public class UserEntity implements Serializable {
     @Column( name = "jwt_expiration" )
     private Date jwtExpirationTime;
 
+    @Column( name = "photo" )
+    private String photo;
+
     @OneToOne( targetEntity = ClubEntity.class )
     private ClubEntity presidentOf;
 
@@ -431,5 +434,13 @@ public class UserEntity implements Serializable {
 
     public void setResetTokenEntity ( PasswordResetTokenEntity resetTokenEntity ) {
         this.resetTokenEntity = resetTokenEntity;
+    }
+
+    public String getPhoto () {
+        return photo;
+    }
+
+    public void setPhoto ( String photo ) {
+        this.photo = photo;
     }
 }

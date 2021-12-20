@@ -3,6 +3,7 @@ package com.jack_the_coder.bilboard_backend.model.responseModel;
 import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.UniversityEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
+import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicClubResponse;
 
 public class UserResponse {
 
@@ -11,10 +12,11 @@ public class UserResponse {
     private String surname;
     private UserEntity.UserTypes type;
     private String bilkentId;
+    private String photo;
     private String email;
     private boolean geTaken;
-    private ClubEntity presidentOf;
-    private ClubEntity advisorOf;
+    private BasicClubResponse presidentOf;
+    private BasicClubResponse advisorOf;
     private CreateUniversityResponse university;
 
     public long getId () {
@@ -73,19 +75,21 @@ public class UserResponse {
         this.geTaken = geTaken;
     }
 
-    public ClubEntity getPresidentOf () {
+    public BasicClubResponse getPresidentOf () {
         return presidentOf;
     }
 
-    public void setPresidentOf ( ClubEntity presidentOf ) {
+    public void setPresidentOf (
+            BasicClubResponse presidentOf ) {
         this.presidentOf = presidentOf;
     }
 
-    public ClubEntity getAdvisorOf () {
+    public BasicClubResponse getAdvisorOf () {
         return advisorOf;
     }
 
-    public void setAdvisorOf ( ClubEntity advisorOf ) {
+    public void setAdvisorOf (
+            BasicClubResponse advisorOf ) {
         this.advisorOf = advisorOf;
     }
 
@@ -95,5 +99,13 @@ public class UserResponse {
 
     public void setUniversity ( CreateUniversityResponse university ) {
         this.university = university;
+    }
+
+    public String getPhoto () {
+        return photo;
+    }
+
+    public void setPhoto ( String photo ) {
+        this.photo = photo;
     }
 }

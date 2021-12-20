@@ -1,5 +1,6 @@
 package com.jack_the_coder.bilboard_backend.model.responseModel;
 
+import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicEventResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicUserResponse;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ public class EventQuestionResponse {
     private String answer;
     private Date date;
     private BasicUserResponse userResponse;
+    private BasicEventResponse event;
 
     public long getId () {
         return id;
@@ -51,5 +53,13 @@ public class EventQuestionResponse {
     public void setUserResponse (
             BasicUserResponse userResponse ) {
         this.userResponse = userResponse;
+    }
+
+    public BasicEventResponse getEvent () {
+        return event;
+    }
+
+    public void setEvent ( BasicEventResponse event ) {
+        this.event = event;
     }
 }

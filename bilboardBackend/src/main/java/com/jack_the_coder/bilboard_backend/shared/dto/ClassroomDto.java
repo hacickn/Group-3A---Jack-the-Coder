@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Aslı Dinç
+ * @author Aslı Dinç and Hacı Çakın
  * @apiNote This class is data transfer object of the classrooms
  * @implNote NOT Completed
  * @since 20.12.2021
@@ -19,6 +19,7 @@ public class ClassroomDto implements Serializable {
     private long id;
     private String name;
     private BuildingEntity building;
+    private int capacity;
     private List<ClassroomDayEntity> classroomDays;
 
     public long getId () {
@@ -52,5 +53,13 @@ public class ClassroomDto implements Serializable {
     public void setClassroomDays (
             List<ClassroomDayEntity> classroomDays ) {
         this.classroomDays = classroomDays;
+    }
+
+    public int getCapacity () {
+        return capacity;
+    }
+
+    public void setCapacity ( int capacity ) {
+        this.capacity = capacity;
     }
 }

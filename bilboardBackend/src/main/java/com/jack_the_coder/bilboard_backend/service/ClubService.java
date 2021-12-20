@@ -26,4 +26,8 @@ public interface ClubService {
 
     List<EventDto> getEvents ( long clubId );
 
+    Boolean enrollClub ( long userId , long clubId );
+
+    Boolean respondEnrollRequest(long enrollmentId, String status);
+
 }

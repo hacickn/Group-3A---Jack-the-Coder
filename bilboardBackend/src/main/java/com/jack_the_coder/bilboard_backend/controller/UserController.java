@@ -7,6 +7,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This is club controller that consists of user operations. Client interacts with that router.
+ * It's path is /bilboard-app/v1/user
+ * @implNote NOT Completed
+ * @since 11.12.2021
+ */
 @CrossOrigin
 @RestController
 @RequestMapping( "/user" )

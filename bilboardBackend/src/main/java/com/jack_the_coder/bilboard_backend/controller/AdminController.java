@@ -13,6 +13,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This is admin controller that consists of create club or university, assign president or advisor. Client
+ * interacts with that router.
+ * It's path is /bilboard-app/v1/admin
+ * @implNote NOT Completed
+ * @since 13.12.2021
+ */
 @CrossOrigin
 @RestController
 @RequestMapping( "/admin" )

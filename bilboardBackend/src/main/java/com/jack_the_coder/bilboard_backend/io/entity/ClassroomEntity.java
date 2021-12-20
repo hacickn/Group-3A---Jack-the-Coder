@@ -27,8 +27,27 @@ public class ClassroomEntity implements Serializable {
     @JoinColumn( name = "building" )
     private BuildingEntity building;
 
+    @Column( name = "capacity" )
+    private int capacity;
+
     @OneToMany( targetEntity = ClassroomDayEntity.class, mappedBy = "classroom" )
     private List<ClassroomDayEntity> classroomDays;
+
+    /**
+     * get Capacity of class method
+     * @return capacity as an integer
+     */
+    public int getCapacity () {
+        return capacity;
+    }
+
+    /**
+     * set capacity of class method
+     * @param capacity is an integer
+     */
+    public void setCapacity ( int capacity ) {
+        this.capacity = capacity;
+    }
 
     /**
      * Get id method

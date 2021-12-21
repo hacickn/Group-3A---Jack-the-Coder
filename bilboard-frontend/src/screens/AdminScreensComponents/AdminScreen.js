@@ -56,11 +56,67 @@ const AdminScreen = (props) => {
       advisor: null,
       president: "President 7",
     },
+    {
+      name: "Club 8",
+      id: 8,
+      advisor: "Advisor 8",
+      president: "President 8",
+    },
+    {
+      name: "Club 9",
+      id: 9,
+      advisor: "Advisor 9",
+      president: "President 9",
+    },
+    {
+      name: "Club 10",
+      id: 10,
+      advisor: "Advisor 10",
+      president: "President 10",
+    },
+    {
+      name: "Club 11",
+      id: 11,
+      advisor: "Advisor 11",
+      president: "President 11",
+    },
+    {
+      name: "Club 12",
+      id: 12,
+      advisor: "Advisor 12",
+      president: "President 12",
+    },
+    {
+      name: "Club 13",
+      id: 13,
+      advisor: "Advisor 13",
+      president: "President 13",
+    },
+    {
+      name: "Club 14",
+      id: 14,
+      advisor: "Advisor 14",
+      president: "President 14",
+    },
+    {
+      name: "Club 15",
+      id: 15,
+      advisor: "Advisor 15",
+      president: "President 15",
+    },
+    {
+      name: "Club 16",
+      id: 16,
+      advisor: "Advisor 16",
+      president: "President 16",
+    },
   ]
   const [openedScreen, setOpenedScreen] = React.useState("Add Club");
 
   return (
-    <Grid container style={{ padding: 20, height: "88vh" }}>
+   <div>
+     <div style={{minHeight: "68px", background: Colors.BILBOARD_MAIN, display: "flex", alignItems: "center", fontSize: "40px", justifyContent: "center", fontFamily: Constants.OXYGEN_FONT_FAMILY, color: "white"}}>Admin Panel</div>
+      <Grid container style={{ padding: 20, height: "88vh"}}>
       <Grid
         style={{
           height: "85vh",
@@ -119,6 +175,7 @@ const AdminScreen = (props) => {
         </Card>
       </Grid>
     </Grid>
+   </div>
   );
 };
 

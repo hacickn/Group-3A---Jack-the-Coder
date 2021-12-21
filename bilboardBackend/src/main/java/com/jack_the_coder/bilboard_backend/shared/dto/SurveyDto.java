@@ -25,7 +25,8 @@ public class SurveyDto implements Serializable {
     private Date startDate;
     private Date endDate;
     private SurveyEntity.SurveyStatus status;
-    private Boolean isForActiveMembers;
+    private Boolean forActiveMembers;
+
     private List<SurveyQuestionEntity> questions;
     private ClubEntity club;
     private List<SurveyParticipantEntity> surveyParticipants;
@@ -79,11 +80,11 @@ public class SurveyDto implements Serializable {
     }
 
     public Boolean getForActiveMembers () {
-        return isForActiveMembers;
+        return forActiveMembers;
     }
 
     public void setForActiveMembers ( Boolean forActiveMembers ) {
-        isForActiveMembers = forActiveMembers;
+        this.forActiveMembers = forActiveMembers;
     }
 
     public List<SurveyQuestionEntity> getQuestions () {

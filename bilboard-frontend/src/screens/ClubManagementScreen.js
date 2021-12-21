@@ -9,11 +9,13 @@ import ClubManagementSponsorScreen from "./clubManagementScreens/ClubManagementS
 import ClubManagementHierarchyScreen from "./clubManagementScreens/ClubManagementHierarchyScreen";
 import ClubManagementSurveyScreen from "./clubManagementScreens/ClubManagementSurveyScreen";
 import ClubManagementFeedbackScreen from "./clubManagementScreens/ClubManagementFeedbackScreen";
+import ClubManagementMembersScreen from "./clubManagementScreens/ClubManagementMembersScreen";
+import ClubManagementMembershipRequestsScreen from "./clubManagementScreens/ClubManagementMembershipRequestsScreen";
 import {Card} from "@mui/material";
 
 const ClubManagementScreen = () => {
 
-    const pages = ["General", "Add Events", "Feedbacks", "Surveys", "Club Hierarchy", "Sponsors",];
+    const pages = ["General", "Add Events", "Members", "Membership Requests", "Feedbacks", "Surveys", "Club Hierarchy", "Sponsors"];
     const [openedScreen, setOpenedScreen] = React.useState("General")
 
 
@@ -51,13 +53,15 @@ const ClubManagementScreen = () => {
 
         </Grid>
         <Grid item xs={9} style={{padding: 4}}>
-            <Card elevation={4} style={{borderRadius: Constants.BORDER_RADIUS, height: "85vh"}}>
+            <Card elevation={4} style={{borderRadius: Constants.BORDER_RADIUS, height: "85vh", overflowY: "scroll"}}>
                 {openedScreen === "General" ? <ClubManagementGeneralScreen/> :
                     openedScreen === "Add Events" ? <ClubManagementAddEventScreen/> :
-                        openedScreen === "Feedbacks" ? <ClubManagementFeedbackScreen/> :
-                            openedScreen === "Surveys" ? <ClubManagementSurveyScreen/> :
-                                openedScreen === "Club Hierarchy" ? <ClubManagementHierarchyScreen/> :
-                                    openedScreen === "Sponsors" ? <ClubManagementSponsorScreen/> : <div/>}
+                        openedScreen === "Members" ? <ClubManagementMembersScreen/> :
+                            openedScreen === "Membership Requests" ? <ClubManagementMembershipRequestsScreen/> :
+                                openedScreen === "Feedbacks" ? <ClubManagementFeedbackScreen/> :
+                                    openedScreen === "Surveys" ? <ClubManagementSurveyScreen/> :
+                                        openedScreen === "Club Hierarchy" ? <ClubManagementHierarchyScreen/> :
+                                            openedScreen === "Sponsors" ? <ClubManagementSponsorScreen/> : <div/>}
             </Card>
         </Grid>
     </Grid>)

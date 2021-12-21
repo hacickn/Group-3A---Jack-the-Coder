@@ -142,7 +142,6 @@ const EventDetailScreen = (
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "120%",
 
                             }}>
                             <Grid >
@@ -167,7 +166,6 @@ const EventDetailScreen = (
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "120%",
 
                             }}>
                             <div style={{ fontSize: 28, fontWeight: "bold", fontFamily: Constants.OXYGEN_FONT_FAMILY, textAlign: "justify", marginRight: 70 }}>

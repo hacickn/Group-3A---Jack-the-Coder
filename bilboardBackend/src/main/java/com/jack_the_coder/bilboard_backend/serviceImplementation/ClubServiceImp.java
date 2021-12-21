@@ -40,6 +40,7 @@ public class ClubServiceImp implements ClubService {
     @Autowired
     StorageService storageService;
 
+
     @Override
     public ClubDto createClub ( ClubDto clubDto ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -124,6 +125,29 @@ public class ClubServiceImp implements ClubService {
                 } );
 
                 return eventDtoList;
+            } else {
+                throw new UserServiceException( "Club is not found!" );
+            }
+        } catch ( Exception e ) {
+
+            throw new UserServiceException( "Club is not found!" );
+        }
+    }
+
+    @Override
+    public List<ClubFeedbackDto> getFeedbacks ( long clubId ) {
+        try {
+            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
+
+            if ( optionalClubEntity.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                List<ClubFeedbackDto> clubFeedbackDtoList = new ArrayList<>();
+
+                optionalClubEntity.get().getClubFeedbacks().forEach( clubFeedbackEntity -> {
+                    clubFeedbackDtoList.add( modelMapper.map( clubFeedbackEntity , ClubFeedbackDto.class ) );
+                } );
+
+                return clubFeedbackDtoList;
             } else {
                 throw new UserServiceException( "Club is not found!" );
             }

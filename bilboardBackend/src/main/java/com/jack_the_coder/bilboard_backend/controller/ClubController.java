@@ -62,6 +62,18 @@ public class ClubController {
         return eventResponseList;
     }
 
+    @GetMapping( path = "/feedback" )
+    public List<ClubFeedbackResponse> getFeedbacks ( @RequestParam( value = "clubId" ) long clubId ) {
+        ModelMapper modelMapper = new ModelMapper();
+        List<ClubFeedbackResponse> feedbackResponseList = new ArrayList<>();
+
+        clubService.getFeedbacks( clubId ).forEach( clubFeedbackDto -> {
+            feedbackResponseList.add( modelMapper.map( clubFeedbackDto , ClubFeedbackResponse.class ) );
+        } );
+
+        return feedbackResponseList;
+    }
+
     @PostMapping( path = "/update" )
     public StatusResponse updateClub ( @RequestBody UpdateClubRequest updateClubRequest ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -77,6 +89,7 @@ public class ClubController {
 
         return statusResponse;
     }
+
 
     @PostMapping( path = "/updatePhoto" )
     public StatusResponse updateClubPhoto ( @RequestParam( value = "clubId" ) long clubId ,

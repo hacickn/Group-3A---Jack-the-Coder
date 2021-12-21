@@ -27,6 +27,8 @@ public interface ClubService {
 
     List<EventDto> getEvents ( long clubId );
 
+    List<ClubFeedbackDto> getFeedbacks ( long clubId );
+
     Boolean updatePhoto ( long clubId , MultipartFile photo );
 
     Boolean enrollClub ( long userId , long clubId );
@@ -36,5 +38,6 @@ public interface ClubService {
     ClubSponsorshipDto addSponsorship ( long clubId , String name , MultipartFile photo , int amount , String type );
 
     ClubFeedbackDto createClubFeedback ( ClubFeedbackDto clubFeedbackDto);
+
 
 }

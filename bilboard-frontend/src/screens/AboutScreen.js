@@ -58,17 +58,17 @@ const AboutScreen = ({setScreenNoNavbar}) => {
           <div>
             <Grid container>
               <Grid item xs={12}>
-                <div className={classes.bilboardText}>BilBoard.</div>
+                <div className={classes.bilboardText}>BilBoard</div>
               </Grid>
               <Grid item xs={12}>
                 <div className={classes.bilboardAltText}>
-                  Your helper for student clubs.
+                  Your assistant for student clubs.
                 </div>
               </Grid>
               <Grid item xs={12}>
                 <div className={classes.bilboardInfoText}>
                   BilBoard helps you discovering, finding and attending all
-                  events in the Bilkent University.
+                  events in Bilkent University.
                 </div>
               </Grid>
               <Grid item xs={12}>

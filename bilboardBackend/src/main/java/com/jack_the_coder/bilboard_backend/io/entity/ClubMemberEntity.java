@@ -97,10 +97,18 @@ public class ClubMemberEntity implements Serializable {
         this.club = club;
     }
 
+    /**
+     * get ge point method
+     * @return gePoint is an integer
+     */
     public int getGePoint () {
         return gePoint;
     }
 
+    /**
+     * set ge point method
+     * @param gePoint is an integer parameter
+     */
     public void setGePoint ( int gePoint ) {
         this.gePoint = gePoint;
     }

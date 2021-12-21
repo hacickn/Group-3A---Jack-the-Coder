@@ -43,14 +43,14 @@ const useStyles = makeStyles({
     },
 });
 
-const EditEventDialog = () => {
+const EditEventDialog = ( {open, setOpen} ) => {
     const classes = useStyles();
     const [isOnline, setIsOnline] = React.useState("online");
     const [isForMember, setIsForMember] = React.useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(true);
 
     return (
-        <Dialog open={isDialogOpen} fullWidth maxWidth={"lg"}
+        <Dialog open={open} fullWidth maxWidth={"lg"}
             onClose={() => setIsDialogOpen(false)}>
             <DialogContent>
                 <Grid
@@ -194,7 +194,7 @@ const EditEventDialog = () => {
             </DialogContent>
             <DialogActions>
                 <Button
-
+                    onClick={ () => setOpen( false ) }
                     style={{
                         display: "flex",
                         justifyContent: "center"

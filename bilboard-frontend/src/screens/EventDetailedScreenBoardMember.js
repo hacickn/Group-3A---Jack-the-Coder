@@ -1,11 +1,13 @@
 import Grid from "@mui/material/Grid";
 import Rating from '@mui/material/Rating';
 import Constants from "../utils/Constants";
+import EditEventDialog from "../components/EditEventDialog";
 import BilboardQuestionCard from "../components/BilboardQuestionCard";
 import BilboardButton from "../components/BilboardButton";
 import React from 'react'
 
 const EventDetailedScreenBoardMember = () => {
+    const [ editEventDialog, setEditEventDialog ] = React.useState( false )
 
     const questionList = [
         {
@@ -53,6 +55,9 @@ const EventDetailedScreenBoardMember = () => {
     return (
 
         <div>
+            { <EditEventDialog open={ editEventDialog } setOpen={ ( status ) => {
+                setEditEventDialog( status )
+            } }/> }
             <Grid container style={{ marginTop: 10}}>
                 <Grid item xs={5} style={{ marginTop: 50}}>
                     <Grid container>
@@ -178,6 +183,7 @@ const EventDetailedScreenBoardMember = () => {
                             }}>
                             
                             <BilboardButton
+                                onClick={ () => setEditEventDialog( true ) }
                                 width="180px"
                                 fontSize="20px"
                                 text= "Edit Event"

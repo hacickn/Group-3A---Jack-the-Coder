@@ -35,6 +35,9 @@ public class ClubServiceImp implements ClubService {
     ClubSponsorshipRepository clubSponsorshipRepository;
 
     @Autowired
+    ClubFeedbackRepository clubFeedbackRepository;
+
+    @Autowired
     StorageService storageService;
 
     @Override
@@ -229,5 +232,13 @@ public class ClubServiceImp implements ClubService {
             throw new UserServiceException( "Something went wrong!" );
 
         }
+    }
+
+    @Override
+    public ClubFeedbackDto createClubFeedback ( ClubFeedbackDto clubFeedbackDto ) {
+        ModelMapper modelMapper = new ModelMapper();
+        ClubFeedbackEntity clubFeedbackEntity = modelMapper.map( clubFeedbackDto, ClubFeedbackEntity.class );
+        ClubFeedbackEntity createdEntity = clubFeedbackRepository.save( clubFeedbackEntity );
+        return modelMapper.map( createdEntity, ClubFeedbackDto.class );
     }
 }

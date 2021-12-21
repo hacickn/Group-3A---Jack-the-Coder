@@ -1,15 +1,22 @@
 package com.jack_the_coder.bilboard_backend.controller;
 
+import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.model.OperationName;
 import com.jack_the_coder.bilboard_backend.model.OperationStatus;
 import com.jack_the_coder.bilboard_backend.model.StatusResponse;
+import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClubFeedbackRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.UpdateClubRequest;
+import com.jack_the_coder.bilboard_backend.model.responseModel.ClubFeedbackResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.ClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.ClubSponsorshipResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.EventResponse;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
+import com.jack_the_coder.bilboard_backend.service.UserService;
 import com.jack_the_coder.bilboard_backend.shared.dto.ClubDto;
+import com.jack_the_coder.bilboard_backend.shared.dto.ClubFeedbackDto;
 import com.jack_the_coder.bilboard_backend.shared.dto.ClubSponsorshipDto;
+import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +39,9 @@ public class ClubController {
 
     @Autowired
     ClubService clubService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public ClubResponse getClub ( @RequestParam( value = "clubId" ) long clubId ) {
@@ -122,6 +132,19 @@ public class ClubController {
         ClubSponsorshipDto clubSponsorshipDto = clubService.addSponsorship( clubId , name , photo , amount , type );
 
         return modelMapper.map( clubSponsorshipDto , ClubSponsorshipResponse.class );
+    }
+
+    @PostMapping( path = "/feedback/create" )
+    public ClubFeedbackResponse createFeedback ( @RequestBody CreateClubFeedbackRequest createClubFeedbackRequest ) {
+        ModelMapper modelMapper = new ModelMapper();
+        ClubFeedbackDto clubFeedbackDto = modelMapper.map( createClubFeedbackRequest, ClubFeedbackDto.class );
+        UserDto userDto = userService.getUserById( createClubFeedbackRequest.getUser() );
+        ClubDto clubDto = clubService.getClub( createClubFeedbackRequest.getClub() );
+        clubFeedbackDto.setClub( modelMapper.map( clubDto, ClubEntity.class ) );
+        clubFeedbackDto.setUser( modelMapper.map( userDto, UserEntity.class ) );
+        ClubFeedbackDto created = clubService.createClubFeedback( clubFeedbackDto );
+        return modelMapper.map( created, ClubFeedbackResponse.class );
+
     }
 
 }

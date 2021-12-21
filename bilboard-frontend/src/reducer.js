@@ -17,6 +17,12 @@ const reducer = (state, action) => {
       screenNoNavbar: action.screenNoNavbar
     }
   }
+  else if (action.type === "SET_IS_ASK_QUESTION_DIALOG_OPEN") {
+    return {
+      ...state,
+      isAskQuestionDialogOpen: action.isAskQuestionDialogOpen,
+    };
+  }
   return state;
 
 };

@@ -40,6 +40,13 @@ const useStyles = makeStyles({
     marginTop: "40px",
     marginLeft: "80px",
   },
+  credits:{
+    float: "left",
+    marginTop: "40px",
+    marginLeft: "80px",
+    fontSize: "110%",
+    color: "#f0f4fd",
+  }
 });
 
 const AboutScreen = ({setScreenNoNavbar}) => {
@@ -77,6 +84,7 @@ const AboutScreen = ({setScreenNoNavbar}) => {
                 </div>
               </Grid>
             </Grid>
+            <p className={classes.credits}>Credits: Aslı Dinç, Hacı Çakın, İlke Doğan, Metehan Saçakçı, Muhammet Abdullah Koç</p>
           </div>
         </Grid>
         <Grid item xs={6}>

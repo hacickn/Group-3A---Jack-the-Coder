@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import reducer from "./reducer";
 import { createStore } from "redux";
 import ScreensInNavbar from "./screens/ScreensInNavbar";
+import EventDetailedScreenBoardMember from "./screens/EventDetailedScreenBoardMember";
 
 function App() {
   const initialStore = {
@@ -17,7 +18,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <div>
-          <ScreensInNavbar />
+          <EventDetailedScreenBoardMember />
         </div>
       </div>
     </Provider>

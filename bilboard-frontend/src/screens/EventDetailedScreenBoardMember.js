@@ -140,7 +140,6 @@ const EventDetailedScreenBoardMember = () => {
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "120%",
 
                             }}>
                             <Grid xs={9}>
@@ -179,7 +178,6 @@ const EventDetailedScreenBoardMember = () => {
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "120%",
 
                             }}>
                              <div style={{ fontSize: 28, fontWeight:"bold", fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify", marginRight: 70}}>

@@ -22,11 +22,31 @@ const EventDetailedScreenBoardMember = () => {
         },
     ]
 
+    const editedEventList = [
+
+        {
+            title: "Yas yas yaas",
+            description: "Yaas, yas yyas!!",
+            numberOfParticipants: 125,
+            Ge2501: 15,
+        }
+
+    ]
+
     function addQuestion(questionObject) {
         let temp = [...questionList]
 
         temp.push({
             content: questionObject.content,
+        })
+    }
+
+    function addEditedEvent(editedEventObject) {
+        let temp = [...editedEventList]
+
+        temp.push({
+            title: editedEventObject.title,
+            description: editedEventObject.description,
         })
     }
 

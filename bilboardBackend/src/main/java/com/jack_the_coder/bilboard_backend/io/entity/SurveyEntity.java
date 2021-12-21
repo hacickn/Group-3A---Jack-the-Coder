@@ -43,8 +43,8 @@ public class SurveyEntity implements Serializable {
     @Column( name = "status" )
     private SurveyStatus status;
 
-    @Column( name = "is_for_active_members" )
-    private Boolean isForActiveMembers;
+    @Column( name = "for_active_members" )
+    private Boolean forActiveMembers;
 
     @OneToMany( targetEntity = SurveyQuestionEntity.class, mappedBy = "survey" )
     private List<SurveyQuestionEntity> questions;
@@ -157,7 +157,7 @@ public class SurveyEntity implements Serializable {
      * @return isForActiveMembers is Boolean
      */
     public Boolean getForActiveMembers () {
-        return isForActiveMembers;
+        return forActiveMembers;
     }
 
     /**
@@ -165,7 +165,7 @@ public class SurveyEntity implements Serializable {
      * @param forActiveMembers is Boolean
      */
     public void setForActiveMembers ( Boolean forActiveMembers ) {
-        isForActiveMembers = forActiveMembers;
+        this.forActiveMembers = forActiveMembers;
     }
 
     // todo

@@ -1,30 +1,20 @@
-package com.jack_the_coder.bilboard_backend.model.responseModel;
+package com.jack_the_coder.bilboard_backend.model.requestModel;
 
 import com.jack_the_coder.bilboard_backend.io.entity.SurveyEntity;
-import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicClubResponse;
 
 import java.util.Date;
 import java.util.List;
 
-public class SurveyResponse {
+public class CreateSurveyRequest {
 
-    private long id;
     private String title;
-    private String photo;
     private Date startDate;
     private Date endDate;
     private SurveyEntity.SurveyStatus status;
-    private Boolean forActiveMembers;
-    private List<SurveyQuestionResponse> questions;
-    private BasicClubResponse club;
-
-    public long getId () {
-        return id;
-    }
-
-    public void setId ( long id ) {
-        this.id = id;
-    }
+    private Boolean isForActiveMembers;
+    private List<CreateSurveyQuestionRequest> questions;
+    private long club;
+    private int point;
 
     public String getTitle () {
         return title;
@@ -32,14 +22,6 @@ public class SurveyResponse {
 
     public void setTitle ( String title ) {
         this.title = title;
-    }
-
-    public String getPhoto () {
-        return photo;
-    }
-
-    public void setPhoto ( String photo ) {
-        this.photo = photo;
     }
 
     public Date getStartDate () {
@@ -67,27 +49,35 @@ public class SurveyResponse {
     }
 
     public Boolean getForActiveMembers () {
-        return forActiveMembers;
+        return isForActiveMembers;
     }
 
     public void setForActiveMembers ( Boolean forActiveMembers ) {
-        this.forActiveMembers = forActiveMembers;
+        isForActiveMembers = forActiveMembers;
     }
 
-    public List<SurveyQuestionResponse> getQuestions () {
+    public long getClub () {
+        return club;
+    }
+
+    public void setClub ( long club ) {
+        this.club = club;
+    }
+
+    public List<CreateSurveyQuestionRequest> getQuestions () {
         return questions;
     }
 
     public void setQuestions (
-            List<SurveyQuestionResponse> questions ) {
+            List<CreateSurveyQuestionRequest> questions ) {
         this.questions = questions;
     }
 
-    public BasicClubResponse getClub () {
-        return club;
+    public int getPoint () {
+        return point;
     }
 
-    public void setClub ( BasicClubResponse club ) {
-        this.club = club;
+    public void setPoint ( int point ) {
+        this.point = point;
     }
 }

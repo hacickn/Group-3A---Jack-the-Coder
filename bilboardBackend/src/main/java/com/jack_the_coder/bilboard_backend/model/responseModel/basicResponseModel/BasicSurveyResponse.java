@@ -11,7 +11,7 @@ public class BasicSurveyResponse {
     private Date startDate;
     private Date endDate;
     private SurveyEntity.SurveyStatus status;
-    private Boolean isForActiveMembers;
+    private Boolean forActiveMembers;
 
     public long getId () {
         return id;
@@ -62,10 +62,10 @@ public class BasicSurveyResponse {
     }
 
     public Boolean getForActiveMembers () {
-        return isForActiveMembers;
+        return forActiveMembers;
     }
 
     public void setForActiveMembers ( Boolean forActiveMembers ) {
-        isForActiveMembers = forActiveMembers;
+        this.forActiveMembers = forActiveMembers;
     }
 }

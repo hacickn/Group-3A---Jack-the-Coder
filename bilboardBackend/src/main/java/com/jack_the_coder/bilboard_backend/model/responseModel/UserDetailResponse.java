@@ -21,7 +21,7 @@ public class UserDetailResponse {
     private List<ClubBoardMemberResponse> clubBoardMemberships;
     private List<EventParticipantResponse> eventParticipants;
     private List<ClubFeedbackResponse> clubFeedbacks;
-    private List<SurveyResponse> surveyParticipants;
+    private List<SurveyParticipantResponse> surveyParticipants;
     private List<EventQuestionResponse> eventQuestions;
     private List<EnrollRequestResponse> enrollRequests;
 
@@ -143,12 +143,12 @@ public class UserDetailResponse {
         this.clubFeedbacks = clubFeedbacks;
     }
 
-    public List<SurveyResponse> getSurveyParticipants () {
+    public List<SurveyParticipantResponse> getSurveyParticipants () {
         return surveyParticipants;
     }
 
     public void setSurveyParticipants (
-            List<SurveyResponse> surveyParticipants ) {
+            List<SurveyParticipantResponse> surveyParticipants ) {
         this.surveyParticipants = surveyParticipants;
     }
 

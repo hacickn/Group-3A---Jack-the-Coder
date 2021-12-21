@@ -1,9 +1,20 @@
 package com.jack_the_coder.bilboard_backend.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
+import com.jack_the_coder.bilboard_backend.model.OperationName;
+import com.jack_the_coder.bilboard_backend.model.OperationStatus;
+import com.jack_the_coder.bilboard_backend.model.StatusResponse;
+import com.jack_the_coder.bilboard_backend.model.requestModel.CreateSurveyRequest;
+import com.jack_the_coder.bilboard_backend.model.requestModel.VoteRequest;
+import com.jack_the_coder.bilboard_backend.model.responseModel.SurveyResponse;
+import com.jack_the_coder.bilboard_backend.service.ClubService;
+import com.jack_the_coder.bilboard_backend.service.SurveyService;
+import com.jack_the_coder.bilboard_backend.shared.dto.ClubDto;
+import com.jack_the_coder.bilboard_backend.shared.dto.SurveyDto;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Hacı Çakın
@@ -16,4 +27,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping( "/survey" )
 public class SurveyController {
+
+    @Autowired
+    SurveyService surveyService;
+
+    @Autowired
+    ClubService clubService;
+
+    @GetMapping
+    public SurveyResponse getSurvey ( @RequestParam( value = "surveyId" ) long surveyId ) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map( surveyService.getSurvey( surveyId ) , SurveyResponse.class );
+    }
+
+    @PostMapping
+    public SurveyResponse createSurvey ( @RequestBody CreateSurveyRequest createSurveyRequest ) {
+        ModelMapper modelMapper = new ModelMapper();
+
+        ClubDto clubDto = clubService.getClub( createSurveyRequest.getClub() );
+        SurveyDto surveyDto = modelMapper.map( createSurveyRequest , SurveyDto.class );
+        surveyDto.setClub( modelMapper.map( clubDto , ClubEntity.class ) );
+        SurveyDto createdDto = surveyService.createSurvey( surveyDto , createSurveyRequest.getPoint() );
+        return modelMapper.map( createdDto , SurveyResponse.class );
+    }
+
+    @PostMapping(path = "/vote")
+    public StatusResponse voteSurvey ( @RequestBody VoteRequest voteRequest ) {
+        StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setOperationName( OperationName.UPDATE.name() );
+
+        if ( surveyService.voteSurvey( voteRequest ) ) {
+            statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
+        } else {
+            statusResponse.setOperationResult( OperationStatus.ERROR.name() );
+        }
+        return statusResponse;
+    }
+
 }

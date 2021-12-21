@@ -23,6 +23,12 @@ const reducer = (state, action) => {
       isAskQuestionDialogOpen: action.isAskQuestionDialogOpen,
     };
   }
+  else if (action.type === "SET_IS_ANSWER_QUESTION_DIALOG_OPEN") {
+    return {
+      ...state,
+      isAnswerQuestionDialogOpen: action.isAnswerQuestionDialogOpen,
+    };
+  }
   return state;
 
 };

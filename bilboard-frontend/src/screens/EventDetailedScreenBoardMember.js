@@ -5,20 +5,20 @@ import BilboardQuestionCard from "../components/BilboardQuestionCard";
 import BilboardButton from "../components/BilboardButton";
 import React from 'react'
 
-const EventDetailScreen = () => {
+const EventDetailedScreenBoardMember = () => {
 
     const questionList = [
         {
-            content: "Yaaaaaaaaaaaaaaaaaaas?",
+            content: "Which would you rather do: wash dishes, mow the lawn, clean the bathroom, or vacuum the house?",
         },
         {
-            content: "Yaaaaaaaaaaaaaaaaaaas?",
+            content: "If you could hire someone to help you, would it be with cleaning, cooking, or yard work?2",
         },
         {
-            content: "Yaaaaaaaaaaaaaaaaaaas?",
+            content: "If you could hire someone to help you, would it be with cleaning, cooking, or yard work?3",
         },
         {
-            content: "Yaaaaaaaaaaaaaaaaaaas?",
+            content: "What is your proudest accomplishment?",
         },
     ]
 
@@ -204,4 +204,4 @@ const EventDetailScreen = () => {
     )
 }
 
-export default EventDetailScreen;
+export default EventDetailedScreenBoardMember;

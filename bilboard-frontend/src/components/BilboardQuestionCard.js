@@ -4,6 +4,8 @@ import Constants from "../utils/Constants";
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BilboardButton from "./BilboardButton";
+import AnswerQuestionDialog from "./AnswerQuestionDialog";
+import { connect } from "react-redux";
 
 /**
  * Feedback Card
@@ -12,9 +14,11 @@ import BilboardButton from "./BilboardButton";
  * 18.11.2021
  */
 
-const BilboardQuestionCard = ( props ) => {
+const BilboardQuestionCard = ( {question, isAnswerQuestionDialogOpen, setAnswerQuestionDialogOpen} ) => {
 
     return (
+        <div>
+        {isAnswerQuestionDialogOpen && <AnswerQuestionDialog question={question}/>}
         <Grid container
               style={ {
                   marginBottom: 5,
@@ -36,7 +40,7 @@ const BilboardQuestionCard = ( props ) => {
                             textAlign: "start",
                             fontFamily: Constants.OXYGEN_FONT_FAMILY,
                         } }>
-                            Q: {props.question.content}
+                            Q: {question.content}
                         </Grid>
 
                     </Grid>
@@ -60,13 +64,16 @@ const BilboardQuestionCard = ( props ) => {
                     margin: "20px"
                 } }>
                     <Grid item xs={ 12 } style={ { paddingBottom: 14 } }>
-                        <BilboardButton text={ "Answer" } width={ "200px" } fontSize={ "14px" }
+                        <BilboardButton 
+                        onClick = {() => setAnswerQuestionDialogOpen(true) }
+                        text={ "Answer" } width={ "200px" } fontSize={ "14px" }
                                         color={ Colors.BILBOARD_MAIN }/>
                     </Grid>
                 </Grid>
             </Grid>
 
         </Grid>
+        </div>
     )
 }
 

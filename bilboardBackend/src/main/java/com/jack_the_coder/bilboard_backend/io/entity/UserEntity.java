@@ -410,36 +410,67 @@ public class UserEntity implements Serializable {
         this.eventQuestions = eventQuestions;
     }
 
-    // todo
+    /**
+     * get enroll requests method
+     * @return enrollRequests is EnrollRequestEntity list
+     */
     public List<EnrollRequestEntity> getEnrollRequests () {
         return enrollRequests;
     }
 
+    /**
+     * set enroll requests method
+     * @param enrollRequests is EnrollRequestEntity list
+     */
     public void setEnrollRequests (
             List<EnrollRequestEntity> enrollRequests ) {
         this.enrollRequests = enrollRequests;
     }
 
+    /**
+     * is ge taken method
+     * @return geTaken is boolean
+     */
     public boolean isGeTaken () {
         return geTaken;
     }
 
+    /**
+     * set ge taken method
+     * @param geTaken is boolean
+     */
     public void setGeTaken ( boolean geTaken ) {
         this.geTaken = geTaken;
     }
 
+    /**
+     * get reset token entity method
+     * @return resetTokenEntity is PasswordResetTokenEntity
+     */
     public PasswordResetTokenEntity getResetTokenEntity () {
         return resetTokenEntity;
     }
 
+    /**
+     * set reset token entity method
+     * @param resetTokenEntity is PasswordResetTokenEntity
+     */
     public void setResetTokenEntity ( PasswordResetTokenEntity resetTokenEntity ) {
         this.resetTokenEntity = resetTokenEntity;
     }
 
+    /**
+     * get photo method
+     * @return photo is String
+     */
     public String getPhoto () {
         return photo;
     }
 
+    /**
+     * set photo method
+     * @param photo is String
+     */
     public void setPhoto ( String photo ) {
         this.photo = photo;
     }

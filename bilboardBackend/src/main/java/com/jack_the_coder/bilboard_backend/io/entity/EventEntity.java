@@ -354,27 +354,50 @@ public class EventEntity implements Serializable {
         this.locationRequests = locationRequests;
     }
 
-    // todo
+    /**
+     * get event question answers method
+     * @return eventQuestionAnswers is EventQuestionAnswerEntity list
+     */
     public int getGePoint () {
         return gePoint;
     }
 
+    /**
+     * set event question answers method
+     * @param gePoint is EventQuestionAnswerEntity list
+     */
     public void setGePoint ( int gePoint ) {
         this.gePoint = gePoint;
     }
 
+    /**
+     * get event question answers method
+     * @return eventQuestionAnswers is EventQuestionAnswerEntity list
+     */
     public int getAverageRate () {
         return averageRate;
     }
 
+    /**
+     * set event question answers method
+     * @param averageRate is EventQuestionAnswerEntity list
+     */
     public void setAverageRate ( int averageRate ) {
         this.averageRate = averageRate;
     }
 
+    /**
+     * get event question answers method
+     * @return eventQuestionAnswers is EventQuestionAnswerEntity list
+     */
     public int getRateCount () {
         return rateCount;
     }
 
+    /**
+     * set event question answers method
+     * @param rateCount is EventQuestionAnswerEntity list
+     */
     public void setRateCount ( int rateCount ) {
         this.rateCount = rateCount;
     }

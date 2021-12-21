@@ -30,35 +30,66 @@ public class SurveyQuestionEntity implements Serializable {
     @OneToMany( targetEntity = SurveyChoiceEntity.class, mappedBy = "question" )
     private List<SurveyChoiceEntity> choices;
 
-    // todo
+    /**
+     * Get id method
+     * @return long
+     */
     public long getId () {
         return id;
     }
 
+    /**
+     * Set id method
+     * @param id is an long parameter
+     */
     public void setId ( long id ) {
         this.id = id;
     }
 
+    /**
+     * Get question method
+     * @return String
+     */
     public String getQuestion () {
         return question;
     }
 
+    /**
+     * Set question method
+     * @param question is String
+     */
     public void setQuestion ( String question ) {
         this.question = question;
     }
 
+    /**
+     * Get survey method
+     * @return SurveyEntity
+     */
     public SurveyEntity getSurvey () {
         return survey;
     }
 
+    /**
+     * Set survey method
+     * @param survey is SurveyEntity
+     */
     public void setSurvey ( SurveyEntity survey ) {
         this.survey = survey;
     }
 
+    /**
+     * Get choices method
+     * @return List<SurveyChoiceEntity>
+     */
     public List<SurveyChoiceEntity> getChoices () {
         return choices;
     }
 
+    /**
+     * Set choices method
+     * @param choices is List<SurveyChoiceEntity>
+     */
     public void setChoices ( List<SurveyChoiceEntity> choices ) {
         this.choices = choices;
     }

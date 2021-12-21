@@ -77,13 +77,18 @@ public class SurveyChoiceEntity implements Serializable {
         this.voteCount = voteCount;
     }
 
-
-    // todo
-
+    /**
+     * Get question method
+     * @return SurveyQuestionEntity
+     */
     public SurveyQuestionEntity getQuestion () {
         return question;
     }
 
+    /**
+     * Set question method
+     * @param question is SurveyQuestionEntity
+     */
     public void setQuestion ( SurveyQuestionEntity question ) {
         this.question = question;
     }

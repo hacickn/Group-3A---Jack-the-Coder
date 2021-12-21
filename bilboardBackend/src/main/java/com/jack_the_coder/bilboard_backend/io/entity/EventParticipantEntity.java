@@ -97,11 +97,18 @@ public class EventParticipantEntity implements Serializable {
         this.event = event;
     }
 
-    // todo
+    /**
+     * Get point method
+     * @return int
+     */
     public int getPoint () {
         return point;
     }
 
+    /**
+     * Set point method
+     * @param point is an int parameter
+     */
     public void setPoint ( int point ) {
         this.point = point;
     }

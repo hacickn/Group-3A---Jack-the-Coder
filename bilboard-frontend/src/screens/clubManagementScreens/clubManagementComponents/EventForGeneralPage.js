@@ -3,6 +3,8 @@ import { makeStyles } from "@mui/styles";
 import Colors from "../../../utils/Colors";
 import BilboardButton from "../../../components/BilboardButton";
 import EventCard from "../../../components/EventCard";
+import EventParticipantsDialog from "../../../components/EventParticipantsDialog";
+import React from 'react'
 
 const useStyles = makeStyles({
   container: {
@@ -13,9 +15,14 @@ const useStyles = makeStyles({
 });
 
 const EventForGeneralPage = () => {
+  const [ eventParticipantsDialog, setEventParticipantsDialog ] = React.useState( false )
+
   const classes = useStyles();
   return (
     <div className={classes.container}>
+      { <EventParticipantsDialog open={ eventParticipantsDialog } setOpen={ ( status ) => {
+                setEventParticipantsDialog( status )
+            } }/> }
       <Grid container>
 
         <Grid item xs={12} style={{paddingTop:"50px"}}>
@@ -39,11 +46,12 @@ const EventForGeneralPage = () => {
               textColor="white"
             />
             <BilboardButton
+              onClick = {() => setEventParticipantsDialog(true) }
               text="Participants"
               width="75px"
               fontSize={10}
               color="#20d62c"
-              textColor="white"
+              textColor="white"        
             />
           </Grid>
         </Grid>

@@ -26,7 +26,7 @@ const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
                     <Grid item xs={12}>
                         <p
                             style={{
-                                color: "#616161",
+                                color: Colors.BILBOARD_LIGHT_GREY,
                                 fontSize: "44px",
                                 marginBottom: "30px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
@@ -39,7 +39,7 @@ const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
                         </p>                       
                         <p
                         style={{
-                            color: "#616161",
+                            color: Colors.BILBOARD_LIGHT_GREY,
                             fontSize: "18px",
                             marginBottom: "1px",
                             fontFamily: Constants.OXYGEN_FONT_FAMILY,

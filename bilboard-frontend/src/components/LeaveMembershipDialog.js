@@ -26,7 +26,7 @@ import React, {useState} from "react";
                     <Grid item xs={12}>
                         <p
                             style={{
-                                color: "#616161",
+                                color: Colors.BILBOARD_LIGHT_GREY,
                                 fontSize: "44px",
                                 marginTop: "10px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
@@ -41,7 +41,7 @@ import React, {useState} from "react";
                     <Grid item xs={12}>                    
                         <p
                         style={{
-                            color: "#616161",
+                            color: Colors.BILBOARD_LIGHT_GREY,
                             fontSize: "16px",
                             marginBottom: "1px",
                             fontFamily: Constants.OXYGEN_FONT_FAMILY,

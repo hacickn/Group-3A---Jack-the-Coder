@@ -47,7 +47,7 @@ const LoginRegister = ({setScreenNoNavbar}) => {
           <Grid item xs={12}>
             <p
               style={{
-                color: "#616161",
+                color: Colors.BILBOARD_LIGHT_GREY,
                 fontSize: "44px",
                 marginBottom: "30px",
                 fontFamily: Constants.OXYGEN_FONT_FAMILY,

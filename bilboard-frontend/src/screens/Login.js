@@ -30,7 +30,6 @@ const Login = ( { setScreenNoNavbar } ) => {
         } )
              .then( function ( response ) {
                  if ( response.status === 200 ) {
-                     //  response.data burdaki datalar localstroge ta tutulmalı
                      setSubmitted( false )
                      setScreenNoNavbar( "others" )
                  } else {

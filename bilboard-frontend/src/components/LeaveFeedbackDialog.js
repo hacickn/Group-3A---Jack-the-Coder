@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import Constants from "../utils/Constants";
+import Colors from "../utils/Colors"
 import React, {useState} from "react";
 
 /**
@@ -26,7 +27,7 @@ const LeaveFeedbackDialog  = () => {
                     <Grid item xs={12}>
                         <p
                             style={{
-                                color: "#616161",
+                                color: Colors.BILBOARD_LIGHT_GREY,
                                 fontSize: "44px",
                                 marginBottom: "30px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
@@ -52,7 +53,7 @@ const LeaveFeedbackDialog  = () => {
                     <Grid item xs={12}>                    
                         <p
                         style={{
-                            color: "#616161",
+                            color: Colors.BILBOARD_LIGHT_GREY,
                             fontSize: "16px",
                             marginBottom: "1px",
                             fontFamily: Constants.OXYGEN_FONT_FAMILY,

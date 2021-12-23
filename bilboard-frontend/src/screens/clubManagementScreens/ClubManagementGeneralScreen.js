@@ -91,8 +91,9 @@ const ClubManagementGeneralScreen = ({ image }) => {
       <div
         style={{
           fontSize: "30px",
-          marginTop: "40px",
+          marginTop: "50px",
           fontWeight: "bold",
+          fontStyle: "italic",
           marginBottom: "40px",
           fontFamily: "Oxygen, sans-serif",
           color: Colors.BILBOARD_LIGHT_GREY,
@@ -101,10 +102,36 @@ const ClubManagementGeneralScreen = ({ image }) => {
         Posts
       </div>
       <Grid container>
-      <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
-              <EventCard />
+        <Grid item xs={3} style={{ marginBottom: "20px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
+              <EventCard
+              />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -116,16 +143,39 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
+
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -137,16 +187,37 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white" />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -158,16 +229,38 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px"}}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -179,16 +272,38 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -200,16 +315,38 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -221,16 +358,38 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -242,16 +401,38 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} style={{ justifyContent: "left" }}>
               <EventCard />
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -263,16 +444,38 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{marginBottom: "20px"}}>
-          <Grid container style={{marginLeft: "10px"}}>
-            <Grid item xs={8}>
-              <EventCard />
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} >
+              <EventCard/>
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -284,13 +487,138 @@ const ClubManagementGeneralScreen = ({ image }) => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained">Edit</Button>
-              <div style={{marginBottom: "10px"}}></div>
-              <Button variant="contained" color="error">Delete</Button>
             </Grid>
           </Grid>
         </Grid>
-        
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} >
+              <EventCard/>
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} >
+              <EventCard/>
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={3} style={{ marginBottom: "20px", paddingTop: "80px" }}>
+          <Grid container style={{ marginLeft: "10px" }}>
+            <Grid item xs={12} >
+              <EventCard/>
+              <Grid item xs={12} style={{ marginTop: "10px",  marginRight: "85px" }}>
+                <BilboardButton
+                  text="Edit"
+                  width="85px"
+                  fontWeight="bold"
+                  fontSize={10}
+                  color="#2f1da3"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Delete"
+                  width="85px"
+                  font-weight="bold"
+                  fontSize={10}
+                  color="#cc0a0a"
+                  textColor="white"
+                />
+                <BilboardButton
+                  text="Participants"
+                  width="85px"
+                  fontSize={10}
+                  color="#20d62c"
+                  textColor="white"
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </div>
   );

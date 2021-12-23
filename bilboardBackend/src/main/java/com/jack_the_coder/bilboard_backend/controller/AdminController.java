@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * @apiNote This is admin controller that consists of create club or university, assign president or advisor. Client
  * interacts with that router.
  * It's path is /bilboard-app/v1/admin
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 13.12.2021
  */
 @CrossOrigin
@@ -40,6 +40,11 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    /**
+     * @apiNote This method creates a club.
+     * @param createClubRequest
+     * @return CreateClubResponse
+     */
     @PostMapping( path = "/createClub" )
     public CreateClubResponse createClub ( @RequestBody CreateClubRequest createClubRequest ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -52,6 +57,11 @@ public class AdminController {
         return modelMapper.map( createdDto , CreateClubResponse.class );
     }
 
+    /**
+     * @apiNote This method creates a university.
+     * @param createUniversityRequest
+     * @return
+     */
     @PostMapping( path = "/createUniversity" )
     public CreateUniversityResponse createUniversity ( @RequestBody CreateUniversityRequest createUniversityRequest ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -60,6 +70,13 @@ public class AdminController {
         return modelMapper.map( createdDto , CreateUniversityResponse.class );
     }
 
+    /**
+     * @apiNote This method assigns president to a club.
+     * @param operationName
+     * @param clubName
+     * @param userName
+     * @return StatusResponse
+     */
     @PostMapping( path = "/president" )
     public StatusResponse assignPresident ( @RequestParam( value = "clubId" ) long clubId ,
                                             @RequestParam( value = "userId" ) long userId ) {
@@ -78,6 +95,13 @@ public class AdminController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method assigns advisor to a club.
+     * @param operationName
+     * @param clubName
+     * @param userName
+     * @return StatusResponse
+     */
     @PostMapping( path = "/advisor" )
     public StatusResponse assignAdvisor ( @RequestParam( value = "clubId" ) long clubId ,
                                           @RequestParam( value = "userId" ) long userId ) {

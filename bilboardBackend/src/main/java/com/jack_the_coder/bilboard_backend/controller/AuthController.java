@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @apiNote This is auth controller that consists of signUp/signIn, reset password, account confirmation. Client
  * interacts with that router.
  * It's path is /bilboard-app/v1/auth
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 11.12.2021
  */
 @CrossOrigin
@@ -34,6 +34,11 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
     @Autowired
     AdminService adminService;
 
+    /**
+     * @apiNote This method is used to sign up a new user.
+     * @param signUpRequest
+     * @ return SignUpResponse
+     */
     @PostMapping( path = "/signUp" )  // http://localhost:8080/bilboard-app/v1/auth/signUp
     public SignUpResponse signUp ( @RequestBody SignUpRequest requestModel ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -46,6 +51,11 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
     }
 
 
+    /**
+     * @apiNote This method is used to verify email.
+     * @param resetPasswordRequest
+     * @return StatusResponse
+     */
     // email verification   http://localhost:8080/auth/emailVerification
     @PostMapping( path = "/emailVerification" )
     public StatusResponse signUpConfirmation ( @RequestParam( value = "token" ) String token ) {
@@ -63,6 +73,11 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
         return returnValue;
     }
 
+    /**
+     * @apiNote This method is used to request resetting password.
+     * @param resetPasswordRequest
+     * @return StatusResponse
+     */
     // reset passwordRequest    http://localhost:8080/auth/resetPasswordRequest
     @PostMapping( path = "/resetPasswordRequest" )
     public StatusResponse forgetPassword ( @RequestParam( value = "email" ) String email ) {
@@ -80,6 +95,11 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
         return returnValue;
     }
 
+    /**
+     * @apiNote This method is used to reset password.
+     * @param resetPassword
+     * @return StatusResponse
+     */
     // reset password   http://localhost:8080/auth/resetPassword
     @PostMapping( path = "/resetPassword" )
     public StatusResponse changePassword ( @RequestBody ResetPasswordRequest requestModel ) {

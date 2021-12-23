@@ -25,7 +25,7 @@ import java.util.List;
  * @author Hacı Çakın
  * @apiNote This is club controller that consists of club operations. Client interacts with that router.
  * It's path is /bilboard-app/v1/club
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 11.12.2021
  */
 @CrossOrigin
@@ -39,6 +39,11 @@ public class ClubController {
     @Autowired
     UserService userService;
 
+    /**
+     * @apiNote This method is used to get club.
+     * @param long clubId
+     * @return ClubResponse
+     */
     @GetMapping
     public ClubResponse getClub ( @RequestParam( value = "clubId" ) long clubId ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -46,6 +51,11 @@ public class ClubController {
         return modelMapper.map( clubDto , ClubResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to search clubs.
+     * @param String name
+     * @return List<BasicClubResponse>
+     */
     @GetMapping( path = "/search" )
     public List<BasicClubResponse> searchClub ( @RequestParam( value = "name" ) String name ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -57,6 +67,11 @@ public class ClubController {
         return basicClubResponseList;
     }
 
+    /**
+     * @apiNote This method is used to update clubs.
+     * @param UpdateClubRequest updateClubRequest
+     * @return StatusResponse
+     */
     @PostMapping( path = "/update" )
     public StatusResponse updateClub ( @RequestBody UpdateClubRequest updateClubRequest ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -73,6 +88,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to update club photo
+     * @param long clubId, MultipartFile photo
+     * @return StatusResponse
+     */
     @PostMapping( path = "/updatePhoto" )
     public StatusResponse updateClubPhoto ( @RequestParam( value = "clubId" ) long clubId ,
                                             @RequestParam( value = "photo" ) MultipartFile photo ) {
@@ -88,6 +108,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to create club.
+     * @param long clubId
+     * @return List<EventResponse>
+     */
     @GetMapping( path = "/event" )
     public List<EventResponse> getEvents ( @RequestParam( value = "clubId" ) long clubId ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -100,6 +125,11 @@ public class ClubController {
         return eventResponseList;
     }
 
+    /**
+     * @apiNote This method is used to add board member.
+     * @param long clubId, long userId
+     * @return ClubBoardMemberResponse
+     */
     @PostMapping( path = "/boardMember" )
     public ClubBoardMemberResponse addBoardMember ( @RequestParam( value = "clubId" ) long clubId ,
                                                     @RequestParam( value = "userId" ) long userId ) {
@@ -116,6 +146,11 @@ public class ClubController {
         return modelMapper.map( created , ClubBoardMemberResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to delete board members.
+     * @param long boardMemberId
+     * @return StatusResponse
+     */
     @DeleteMapping( path = "/boardMember" )
     public StatusResponse deleteBoardMember ( @RequestParam( value = "boardMemberId" ) long boardMemberId ) {
         StatusResponse statusResponse = new StatusResponse();
@@ -129,6 +164,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to enroll club.
+     * @param long clubId, long clubId
+     * @return StatusResponse
+     */
     @PostMapping( path = "/enrollment/request" )
     public StatusResponse enrollClub ( @RequestParam( value = "userId" ) long userId ,
                                        @RequestParam( value = "clubId" ) long clubId ) {
@@ -143,6 +183,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to respond enroll request.
+     * @param long enrollmentId, String status
+     * @return StatusResponse
+     */
     @PostMapping( path = "/enrollment/respond" )
     public StatusResponse respondEnrollRequest ( @RequestParam( value = "enrollmentId" ) long enrollmentId ,
                                                  @RequestParam( value = "status" ) String status ) {
@@ -158,6 +203,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to delete member.
+     * @param long memberId
+     * @return StatusResponse
+     */
     @DeleteMapping( path = "/member" )
     public StatusResponse deleteMember ( @RequestParam( value = "memberId" ) long memberId ) {
         StatusResponse statusResponse = new StatusResponse();
@@ -171,6 +221,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to add sponsorhip.
+     * @param long clubId, String name, MultipartFile photo, int amount, String type
+     * @return ClubSponsorshipResponse
+     */
     @PostMapping( path = "/sponsorship" )
     public ClubSponsorshipResponse addSponsorship ( @RequestParam( value = "clubId" ) long clubId ,
                                                     @RequestParam( value = "name" ) String name ,
@@ -183,6 +238,11 @@ public class ClubController {
         return modelMapper.map( clubSponsorshipDto , ClubSponsorshipResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to delete sponsorship.
+     * @param long sponsorshipId
+     * @return StatusResponse
+     */
     @DeleteMapping( path = "/sponsorship" )
     public StatusResponse deleteSponsorship ( @RequestParam( value = "sponsorshipId" ) long sponsorshipId ) {
         StatusResponse statusResponse = new StatusResponse();
@@ -197,6 +257,11 @@ public class ClubController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to get feedbacks.
+     * @param long clubId
+     * @return List<ClubFeedbackResponse>
+     */
     @GetMapping( path = "/feedback" )
     public List<ClubFeedbackResponse> getFeedbacks ( @RequestParam( value = "clubId" ) long clubId ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -209,6 +274,11 @@ public class ClubController {
         return feedbackResponseList;
     }
 
+    /**
+     * @apiNote This method is used to add feedback.
+     * @param CreateClubFeedbackRequest createClubFeedbackRequest
+     * @return ClubFeedbackResponse
+     */
     @PostMapping( path = "/feedback" )
     public ClubFeedbackResponse createFeedback ( @RequestBody CreateClubFeedbackRequest createClubFeedbackRequest ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -224,6 +294,11 @@ public class ClubController {
 
     }
 
+    /**
+     * @apiNote This method is used to respond feedback.
+     * @param long feedbackId, boolean status
+     * @return StatusResponse
+     */
     @PostMapping( path = "/feedback/respond" )
     public StatusResponse respondFeedback ( @RequestParam( value = "feedbackId" ) long feedbackId ,
                                             @RequestParam( value = "status" ) boolean status ) {

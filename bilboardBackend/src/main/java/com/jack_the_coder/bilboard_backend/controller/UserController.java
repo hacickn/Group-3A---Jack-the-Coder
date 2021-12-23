@@ -24,7 +24,7 @@ import java.util.List;
  * @author Hacı Çakın
  * @apiNote This is club controller that consists of user operations. Client interacts with that router.
  * It's path is /bilboard-app/v1/user
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 11.12.2021
  */
 @CrossOrigin
@@ -38,6 +38,11 @@ public class UserController {
     @Autowired
     EventService eventService;
 
+    /**
+     * @apiNote This method is used to get user.
+     * @param long userId
+     * @return UserResponse
+     */
     @GetMapping
     public UserResponse getUser ( @RequestParam( value = "userId" ) long userId ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -45,6 +50,11 @@ public class UserController {
         return modelMapper.map( userDto , UserResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to search users.
+     * @param String name, String type
+     * @return List<BasicUserResponse>
+     */
     @GetMapping( path = "/search" )
     public List<BasicUserResponse> searchUser ( @RequestParam( value = "name" ) String name ,
                                                 @RequestParam( value = "type" ) String type ) {
@@ -58,6 +68,11 @@ public class UserController {
         return basicUserResponseList;
     }
 
+    /**
+     * @apiNote This method is used to get user detail.
+     * @param long userId
+     * @return UserDetailResponse
+     */
     @GetMapping( value = "/detail" )
     public UserDetailResponse getUserDetail ( @RequestParam( value = "userId" ) long userId ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -98,14 +113,23 @@ public class UserController {
         return userDetailResponse;
     }
 
+    /**
+     * @apiNote This method is used to get user ge point.
+     * @param long userId
+     * @return int
+     */
     @GetMapping( value = "/gePoint" )
     public int getUserGePoint ( @RequestParam( value = "userId" ) long userId ) {
-        ModelMapper modelMapper = new ModelMapper();
         UserDto userDto = userService.getUserById( userId );
         return userDto.getEventParticipants().stream().filter( EventParticipantEntity::getAttended )
                 .mapToInt( EventParticipantEntity::getPoint ).sum();
     }
 
+    /**
+     * @apiNote This method is used to get change ge status.
+     * @param long userId, boolean geStatus
+     * @return StatusResponse
+     */
     @PostMapping( path = "/changeGeStatus" )
     public StatusResponse changeGeStatus ( @RequestParam( value = "userId" ) long userId ,
                                            @RequestParam( value = "geStatus" ) boolean geStatus ) {
@@ -120,6 +144,11 @@ public class UserController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to change the name and surname of the user.
+     * @param long userId, String name, String surname
+     * @return StatusResponse
+     */
     @PostMapping( path = "/changeNameSurname" )
     public StatusResponse changeNameSurname ( @RequestParam( value = "userId" ) long userId ,
                                               @RequestParam( value = "name" ) String name ,
@@ -135,6 +164,11 @@ public class UserController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to change the id of the user.
+     * @param long userId, String id
+     * @return StatusResponse
+     */
     @PostMapping( path = "/changeId" )
     public StatusResponse changeId ( @RequestParam( value = "userId" ) long userId ,
                                      @RequestParam( value = "id" ) String id ) {
@@ -149,6 +183,11 @@ public class UserController {
         return statusResponse;
     }
 
+    /**
+     * @apiNote This method is used to change the email of the user.
+     * @param long userId, MultipartFile photo
+     * @return StatusResponse
+     */
     @PostMapping( path = "/changePhoto" )
     public StatusResponse changePhoto ( @RequestParam( value = "userId" ) long userId ,
                                         @RequestParam( value = "photo" ) MultipartFile photo ) {

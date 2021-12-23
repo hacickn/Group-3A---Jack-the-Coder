@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Hacı Çakın
  * @apiNote This is club controller that consists of survey operations. Client interacts with that router.
  * It's path is /bilboard-app/v1/survey
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 11.12.2021
  */
 @CrossOrigin
@@ -34,12 +34,22 @@ public class SurveyController {
     @Autowired
     ClubService clubService;
 
+    /**
+     * @apiNote This method is used to get survey.
+     * @param long surveyId
+     * @return SurveyResponse
+     */
     @GetMapping
     public SurveyResponse getSurvey ( @RequestParam( value = "surveyId" ) long surveyId ) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map( surveyService.getSurvey( surveyId ) , SurveyResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to get all surveys.
+     * @param CreateSurveyRequest createSurveyRequest
+     * @return SurveyResponse
+     */
     @PostMapping
     public SurveyResponse createSurvey ( @RequestBody CreateSurveyRequest createSurveyRequest ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -51,6 +61,11 @@ public class SurveyController {
         return modelMapper.map( createdDto , SurveyResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to vote for survey.
+     * @param VoteRequest voteRequest
+     * @return StatusResponse
+     */
     @PostMapping(path = "/vote")
     public StatusResponse voteSurvey ( @RequestBody VoteRequest voteRequest ) {
         StatusResponse statusResponse = new StatusResponse();

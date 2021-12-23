@@ -18,7 +18,7 @@ import java.util.List;
  * @author Hacı Çakın
  * @apiNote This is club controller that consists of event operations. Client interacts with that router.
  * It's path is /bilboard-app/v1/event
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 11.12.2021
  */
 @CrossOrigin
@@ -29,6 +29,11 @@ public class EventController {
     @Autowired
     EventService eventService;
 
+    /**
+     * @apiNote This method is used to get event.
+     * @param long eventId
+     * @return EventResponse
+     */
     @GetMapping
     public EventResponse getEvent ( @RequestParam( value = "eventId" ) long eventId ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -38,6 +43,14 @@ public class EventController {
         return modelMapper.map( eventDto , EventResponse.class );
     }
 
+    /**
+     * @apiNote This method is used to create an event.
+     * @param MultipartFile eventPhoto, String title, String description, String duration, 
+     *      String date, Boolean isOnline, Boolean isVisible, String location
+     *      int maxParticipantCount, int gePoint, Boolean restrictionForMember,
+     *      List <Long> timeSlotIdList, lung clubId
+     * @return EventResponse
+     */
     @PostMapping
     public EventResponse createEvent ( @RequestParam( "eventPhoto" ) MultipartFile eventPhoto ,
                                        @RequestParam( "title" ) String title ,

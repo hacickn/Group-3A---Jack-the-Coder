@@ -26,7 +26,7 @@ const Register = () => {
             "bilkentId": ID,
             "password": password,
             "type": email.includes( "ug" ) ? "student" : "academic",
-            "university": "2"
+            "university": "1"
         } )
              .then( function ( response ) {
                  console.log( response.status )

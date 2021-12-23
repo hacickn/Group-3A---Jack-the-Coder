@@ -44,7 +44,7 @@ public class SurveyController {
     public SurveyResponse createSurvey ( @RequestBody CreateSurveyRequest createSurveyRequest ) {
         ModelMapper modelMapper = new ModelMapper();
 
-        ClubDto clubDto = clubService.getClub( createSurveyRequest.getClub() );
+        ClubDto clubDto = clubService.getClubById( createSurveyRequest.getClub() );
         SurveyDto surveyDto = modelMapper.map( createSurveyRequest , SurveyDto.class );
         surveyDto.setClub( modelMapper.map( clubDto , ClubEntity.class ) );
         SurveyDto createdDto = surveyService.createSurvey( surveyDto , createSurveyRequest.getPoint() );

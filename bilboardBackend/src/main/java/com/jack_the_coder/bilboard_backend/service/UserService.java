@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface UserService extends UserDetailsService {
 
     UserDto createUser ( UserDto user );
@@ -13,6 +15,8 @@ public interface UserService extends UserDetailsService {
     UserDto getUserByEmail ( String email );
 
     UserDto getUserById ( long id );
+
+    List<UserDto> searchUser ( String name , String type );
 
     Boolean verifyEmailToken ( String token );
 

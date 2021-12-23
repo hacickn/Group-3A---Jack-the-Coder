@@ -7,6 +7,7 @@ import java.util.Date;
 public class ClubFeedbackResponse {
     private long id;
     private String content;
+    private boolean status;
     private Date date;
     private BasicClubResponse club;
 
@@ -24,6 +25,14 @@ public class ClubFeedbackResponse {
 
     public void setContent ( String content ) {
         this.content = content;
+    }
+
+    public boolean isStatus () {
+        return status;
+    }
+
+    public void setStatus ( boolean status ) {
+        this.status = status;
     }
 
     public Date getDate () {

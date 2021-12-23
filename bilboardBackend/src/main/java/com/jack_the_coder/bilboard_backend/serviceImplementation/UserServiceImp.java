@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -105,6 +106,22 @@ public class UserServiceImp implements UserService {
             return modelMapper.map( userEntity.get() , UserDto.class );
         } else {
             throw new UsernameNotFoundException( "" + id );
+        }
+    }
+
+    @Override
+    public List<UserDto> searchUser ( String name , String type ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            List<UserDto> userDtoList = new ArrayList<>();
+
+            userRepository.findByNameContainsAndType( name , UserEntity.UserTypes.valueOf( type ) )
+                    .forEach( userEntity -> {
+                        userDtoList.add( modelMapper.map( userEntity , UserDto.class ) );
+                    } );
+            return userDtoList;
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
         }
     }
 

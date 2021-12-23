@@ -8,6 +8,7 @@ public class BasicUserResponse {
     private String name;
     private String surname;
     private String photo;
+    private String bilkentId;
     private UserEntity.UserTypes type;
 
     public long getId () {
@@ -40,6 +41,14 @@ public class BasicUserResponse {
 
     public void setPhoto ( String photo ) {
         this.photo = photo;
+    }
+
+    public String getBilkentId () {
+        return bilkentId;
+    }
+
+    public void setBilkentId ( String bilkentId ) {
+        this.bilkentId = bilkentId;
     }
 
     public UserEntity.UserTypes getType () {

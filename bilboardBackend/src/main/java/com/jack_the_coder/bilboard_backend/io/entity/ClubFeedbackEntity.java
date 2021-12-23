@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Aslı Dinç
+ * @author Aslı Dinç and Hacı Çakın
  * @apiNote This class is base structure of the club_feedbacks in database
  * @implNote DONE
  * @since 11.11.2021
@@ -25,6 +25,9 @@ public class ClubFeedbackEntity implements Serializable {
 
     @Column( name = "date", nullable = false )
     private Date date;
+
+    @Column( name = "status" )
+    private boolean status;
 
     @ManyToOne( targetEntity = ClubEntity.class )
     @JoinColumn( name = "club" )
@@ -80,6 +83,22 @@ public class ClubFeedbackEntity implements Serializable {
      */
     public void setDate ( Date date ) {
         this.date = date;
+    }
+
+    /**
+     * It returns the status
+     * @return boolean is status
+     */
+    public boolean isStatus () {
+        return status;
+    }
+
+    /**
+     * It sets the status
+     * @param status is boolean
+     */
+    public void setStatus ( boolean status ) {
+        this.status = status;
     }
 
     /**

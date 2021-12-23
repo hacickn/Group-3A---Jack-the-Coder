@@ -1,6 +1,8 @@
 package com.jack_the_coder.bilboard_backend.io.repository;
 
 import com.jack_the_coder.bilboard_backend.io.entity.ClubBoardMemberEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClubBoardMemberRepository extends JpaRepository<ClubBoardMemberEntity, Long> {
+    ClubBoardMemberEntity findByClubAndUser ( ClubEntity clubEntity , UserEntity userEntity );
 }

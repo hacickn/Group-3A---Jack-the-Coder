@@ -4,6 +4,8 @@ import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author Hacı Çakın
  * @apiNote This class provides communication between databases and related class(basically for the queries)
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClubRepository extends JpaRepository<ClubEntity, Long> {
+    List<ClubEntity> findByNameContains ( String name );
 }

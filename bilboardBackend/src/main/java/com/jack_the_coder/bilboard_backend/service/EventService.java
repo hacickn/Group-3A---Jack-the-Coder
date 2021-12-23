@@ -14,4 +14,6 @@ public interface EventService {
     EventDto createEvent ( MultipartFile eventPhoto , String title , String duration , String description , Date date ,
                            Boolean isOnline , Boolean isVisible , String location , int maxParticipationCount ,
                            int gePoint , Boolean restrictionForMember , List<Long> timeSlotIdList , long clubId );
+
+    List<EventDto> getDiscover();
 }

@@ -1,13 +1,7 @@
 package com.jack_the_coder.bilboard_backend.model.requestModel;
 
-import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
-import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
-
-import java.util.Date;
-
 public class CreateClubFeedbackRequest {
     private String content;
-    private Date date;
     private long club;
     private long user;
 
@@ -17,14 +11,6 @@ public class CreateClubFeedbackRequest {
 
     public void setContent ( String content ) {
         this.content = content;
-    }
-
-    public Date getDate () {
-        return date;
-    }
-
-    public void setDate ( Date date ) {
-        this.date = date;
     }
 
     public long getClub () {

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Aslı Dinç
+ * @author Aslı Dinç and Hacı Çakın
  * @apiNote This class is data transfer object of the club feedbacks
  * @implNote NOT Completed
  * @since 20.12.2021
@@ -19,6 +19,7 @@ public class ClubFeedbackDto implements Serializable {
     private long id;
     private String content;
     private Date date;
+    private boolean status;
     private ClubEntity club;
     private UserEntity user;
 
@@ -44,6 +45,14 @@ public class ClubFeedbackDto implements Serializable {
 
     public void setDate ( Date date ) {
         this.date = date;
+    }
+
+    public boolean isStatus () {
+        return status;
+    }
+
+    public void setStatus ( boolean status ) {
+        this.status = status;
     }
 
     public ClubEntity getClub () {

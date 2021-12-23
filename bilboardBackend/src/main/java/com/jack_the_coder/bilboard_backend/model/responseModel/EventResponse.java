@@ -1,6 +1,8 @@
 package com.jack_the_coder.bilboard_backend.model.responseModel;
 
 
+import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicEventParticipantResponse;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class EventResponse {
     private int averageRate;
     private int rateCount;
     private List<EventQuestionResponse> eventQuestions;
-    private List<EventParticipantResponse> eventParticipants;
+    private List<BasicEventParticipantResponse> eventParticipants;
     private List<LocationRequestResponse> locationRequests;
 
     public long getId () {
@@ -163,12 +165,12 @@ public class EventResponse {
         this.eventQuestions = eventQuestions;
     }
 
-    public List<EventParticipantResponse> getEventParticipants () {
+    public List<BasicEventParticipantResponse> getEventParticipants () {
         return eventParticipants;
     }
 
     public void setEventParticipants (
-            List<EventParticipantResponse> eventParticipants ) {
+            List<BasicEventParticipantResponse> eventParticipants ) {
         this.eventParticipants = eventParticipants;
     }
 

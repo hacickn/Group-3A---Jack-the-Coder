@@ -24,6 +24,10 @@ public class UserDetailResponse {
     private List<SurveyParticipantResponse> surveyParticipants;
     private List<EventQuestionResponse> eventQuestions;
     private List<EnrollRequestResponse> enrollRequests;
+    private List<EventResponse> discover;
+    private List<EventResponse> followingClubsEvents;
+    private List<EventResponse> futureEvents;
+    private List<EventResponse> pastEvents;
 
     public long getId () {
         return id;
@@ -168,5 +172,40 @@ public class UserDetailResponse {
     public void setEnrollRequests (
             List<EnrollRequestResponse> enrollRequests ) {
         this.enrollRequests = enrollRequests;
+    }
+
+    public List<EventResponse> getDiscover () {
+        return discover;
+    }
+
+    public void setDiscover ( List<EventResponse> discover ) {
+        this.discover = discover;
+    }
+
+    public List<EventResponse> getFollowingClubsEvents () {
+        return followingClubsEvents;
+    }
+
+    public void setFollowingClubsEvents (
+            List<EventResponse> followingClubsEvents ) {
+        this.followingClubsEvents = followingClubsEvents;
+    }
+
+    public List<EventResponse> getFutureEvents () {
+        return futureEvents;
+    }
+
+    public void setFutureEvents (
+            List<EventResponse> futureEvents ) {
+        this.futureEvents = futureEvents;
+    }
+
+    public List<EventResponse> getPastEvents () {
+        return pastEvents;
+    }
+
+    public void setPastEvents (
+            List<EventResponse> pastEvents ) {
+        this.pastEvents = pastEvents;
     }
 }

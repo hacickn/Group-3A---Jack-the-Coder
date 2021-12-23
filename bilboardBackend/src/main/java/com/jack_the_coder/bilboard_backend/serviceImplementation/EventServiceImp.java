@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class EventServiceImp implements EventService {
                                   long clubId ) {
         ModelMapper modelMapper = new ModelMapper();
         EventDto eventDto = new EventDto();
-        ClubDto clubDto = clubService.getClub( clubId );
+        ClubDto clubDto = clubService.getClubById( clubId );
 
         eventDto.setClub( modelMapper.map( clubDto , ClubEntity.class ) );
         eventDto.setTitle( title );
@@ -82,5 +83,24 @@ public class EventServiceImp implements EventService {
         }
 
         return modelMapper.map( createdEvent , EventDto.class );
+    }
+
+    @Override
+    public List<EventDto> getDiscover () {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            List<EventDto> eventDtoList = new ArrayList<>();
+            List<EventEntity> eventEntityList = eventRepository.findFirst10ByDateAfter( new Date() );
+            int trace = 0;
+            while ( trace < eventEntityList.size() && eventDtoList.size() < 20 ) {
+                eventDtoList.add( modelMapper.map( eventEntityList.get( trace ) , EventDto.class ) );
+                trace++;
+            }
+
+
+            return eventDtoList;
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+        }
     }
 }

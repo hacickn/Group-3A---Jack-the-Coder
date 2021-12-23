@@ -32,6 +32,9 @@ public class ClubServiceImp implements ClubService {
     ClubMemberRepository clubMemberRepository;
 
     @Autowired
+    ClubBoardMemberRepository clubBoardMemberRepository;
+
+    @Autowired
     ClubSponsorshipRepository clubSponsorshipRepository;
 
     @Autowired
@@ -51,7 +54,7 @@ public class ClubServiceImp implements ClubService {
     }
 
     @Override
-    public ClubDto getClub ( long clubId ) {
+    public ClubDto getClubById ( long clubId ) {
         try {
             Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
 
@@ -63,7 +66,23 @@ public class ClubServiceImp implements ClubService {
             }
         } catch ( Exception e ) {
 
-            throw new UserServiceException( "Club is not found!" );
+            throw new UserServiceException( e.getMessage() );
+        }
+    }
+
+    @Override
+    public List<ClubDto> searchClub ( String name ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+
+            List<ClubDto> clubDtoList = new ArrayList<>();
+            clubRepository.findByNameContains( name ).forEach( clubEntity -> {
+                clubDtoList.add( modelMapper.map( clubEntity,ClubDto.class ) );
+            } );
+
+            return clubDtoList;
+        }catch ( Exception e ){
+            throw new UserServiceException( e.getMessage() );
         }
     }
 
@@ -97,18 +116,117 @@ public class ClubServiceImp implements ClubService {
     }
 
     @Override
-    public Boolean deleteSponsorship ( long sponsorshipId ) {
-        return null;
+    public Boolean assignPresident ( UserDto userDto , ClubDto clubDto ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+
+           if(userDto.getType().equals( UserEntity.UserTypes.student )){
+               if ( userDto.getPresidentOf() != null ) {
+                   userDto.getPresidentOf().setPresident( null );
+                   clubRepository.save( userDto.getPresidentOf() );
+               }
+
+               if ( clubDto.getPresident() != null ) {
+                   clubDto.getPresident().setPresidentOf( null );
+                   userRepository.save( clubDto.getPresident() );
+               }
+
+               userDto.setPresidentOf( modelMapper.map( clubDto , ClubEntity.class ) );
+               clubDto.setPresident( modelMapper.map( userDto , UserEntity.class ) );
+               userRepository.save( modelMapper.map( userDto , UserEntity.class ) );
+               clubRepository.save( modelMapper.map( clubDto , ClubEntity.class ) );
+               return true;
+           }else{
+               throw new UserServiceException( "This is not a student!" );
+           }
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+        }
     }
 
     @Override
-    public Boolean changePresident ( long userId , long clubId ) {
-        return null;
+    public Boolean assignAdvisor ( UserDto userDto , ClubDto clubDto ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            if ( userDto.getType().equals( UserEntity.UserTypes.academic ) ) {
+
+                if ( userDto.getAdvisorOf() != null ) {
+                    userDto.getAdvisorOf().setAdvisor( null );
+                    clubRepository.save( userDto.getAdvisorOf() );
+                }
+
+                if ( clubDto.getAdvisor() != null ) {
+                    clubDto.getAdvisor().setAdvisorOf( null );
+                    userRepository.save( clubDto.getAdvisor() );
+                }
+
+
+                userDto.setAdvisorOf( modelMapper.map( clubDto , ClubEntity.class ) );
+                clubDto.setAdvisor( modelMapper.map( userDto , UserEntity.class ) );
+                userRepository.save( modelMapper.map( userDto , UserEntity.class ) );
+                clubRepository.save( modelMapper.map( clubDto , ClubEntity.class ) );
+                return true;
+            } else {
+                throw new UserServiceException( "This is not an academic user!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+        }
     }
 
     @Override
-    public Boolean changeAdvisor ( long userId , long clubId ) {
-        return null;
+    public ClubSponsorshipDto getSponsorship ( long sponsorshipId ) {
+        try {
+            Optional<ClubSponsorshipEntity> optional = clubSponsorshipRepository.findById( sponsorshipId );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , ClubSponsorshipDto.class );
+            } else {
+                throw new UserServiceException( "Record is NOT found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+        }
+    }
+
+
+    @Override
+    public ClubSponsorshipDto addSponsorship ( long clubId , String name , MultipartFile photo , int amount ,
+                                               String type ) {
+        try {
+            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
+            if ( optionalClubEntity.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                ClubSponsorshipDto clubSponsorshipDto = new ClubSponsorshipDto();
+                clubSponsorshipDto.setName( name );
+                clubSponsorshipDto.setClub( optionalClubEntity.get() );
+                clubSponsorshipDto.setAmount( amount );
+                clubSponsorshipDto.setType( type );
+                ClubSponsorshipEntity created = clubSponsorshipRepository.save( modelMapper.map( clubSponsorshipDto ,
+                        ClubSponsorshipEntity.class ) );
+                String newPath = storageService.saveProfilePhoto( photo , "sponsors" , created.getId() );
+                created.setPhoto( newPath );
+                ClubSponsorshipEntity saved = clubSponsorshipRepository.save( created );
+                return modelMapper.map( saved , ClubSponsorshipDto.class );
+            } else {
+                throw new UserServiceException( "Club is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+
+        }
+    }
+
+    @Override
+    public Boolean deleteSponsorship ( ClubSponsorshipDto clubSponsorshipDto ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            clubSponsorshipRepository.delete( modelMapper.map( clubSponsorshipDto , ClubSponsorshipEntity.class ) );
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
     }
 
     @Override
@@ -130,30 +248,7 @@ public class ClubServiceImp implements ClubService {
             }
         } catch ( Exception e ) {
 
-            throw new UserServiceException( "Club is not found!" );
-        }
-    }
-
-    @Override
-    public List<ClubFeedbackDto> getFeedbacks ( long clubId ) {
-        try {
-            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
-
-            if ( optionalClubEntity.isPresent() ) {
-                ModelMapper modelMapper = new ModelMapper();
-                List<ClubFeedbackDto> clubFeedbackDtoList = new ArrayList<>();
-
-                optionalClubEntity.get().getClubFeedbacks().forEach( clubFeedbackEntity -> {
-                    clubFeedbackDtoList.add( modelMapper.map( clubFeedbackEntity , ClubFeedbackDto.class ) );
-                } );
-
-                return clubFeedbackDtoList;
-            } else {
-                throw new UserServiceException( "Club is not found!" );
-            }
-        } catch ( Exception e ) {
-
-            throw new UserServiceException( "Club is not found!" );
+            throw new UserServiceException( e.getMessage() );
         }
     }
 
@@ -182,7 +277,7 @@ public class ClubServiceImp implements ClubService {
             }
 
         } catch ( Exception e ) {
-            throw new UserServiceException( "Something went wrong. Try it later!" );
+            throw new UserServiceException( e.getMessage() );
         }
     }
 
@@ -202,7 +297,12 @@ public class ClubServiceImp implements ClubService {
                     clubMemberDto.setClub( enrollRequestEntity.get().getClub() );
                     clubMemberDto.setAttendedEventCount( 0 );
                     clubMemberDto.setGePoint( 0 );
-                    clubMemberRepository.save( modelMapper.map( clubMemberDto , ClubMemberEntity.class ) );
+                    if ( clubMemberRepository.findByClubAndUser( enrollRequestEntity.get().getClub() ,
+                            enrollRequestEntity.get().getUser() ) == null ) {
+                        clubMemberRepository.save( modelMapper.map( clubMemberDto , ClubMemberEntity.class ) );
+                    } else {
+                        throw new UserServiceException( "Record is already existing!" );
+                    }
                 }
 
                 return true;
@@ -210,7 +310,7 @@ public class ClubServiceImp implements ClubService {
                 throw new UserServiceException( "Request is missing!" );
             }
         } catch ( Exception e ) {
-            throw new UserServiceException( "Something went wrong. Try it later!" );
+            throw new UserServiceException( e.getMessage() );
         }
     }
 
@@ -227,42 +327,136 @@ public class ClubServiceImp implements ClubService {
                 throw new UserServiceException( "Club is not found!" );
             }
         } catch ( Exception e ) {
-            throw new UserServiceException( "Something went wrong!" );
+            throw new UserServiceException( e.getMessage() );
         }
     }
 
     @Override
-    public ClubSponsorshipDto addSponsorship ( long clubId , String name , MultipartFile photo , int amount ,
-                                               String type ) {
+    public ClubMemberDto getMember ( long memberId ) {
         try {
-            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
-            if ( optionalClubEntity.isPresent() ) {
+            Optional<ClubMemberEntity> optional = clubMemberRepository.findById( memberId );
+
+            if ( optional.isPresent() ) {
                 ModelMapper modelMapper = new ModelMapper();
-                ClubSponsorshipDto clubSponsorshipDto = new ClubSponsorshipDto();
-                clubSponsorshipDto.setName( name );
-                clubSponsorshipDto.setClub( optionalClubEntity.get() );
-                clubSponsorshipDto.setAmount( amount );
-                clubSponsorshipDto.setType( type );
-                ClubSponsorshipEntity created = clubSponsorshipRepository.save( modelMapper.map( clubSponsorshipDto ,
-                        ClubSponsorshipEntity.class ) );
-                String newPath = storageService.saveProfilePhoto( photo , "sponsors" , created.getId() );
-                created.setPhoto( newPath );
-                ClubSponsorshipEntity saved = clubSponsorshipRepository.save( created );
-                return modelMapper.map( saved , ClubSponsorshipDto.class );
+                return modelMapper.map( optional.get() , ClubMemberDto.class );
             } else {
-                throw new UserServiceException( "Club is not found!" );
+                throw new UserServiceException( "Member record is not found!" );
             }
         } catch ( Exception e ) {
-            throw new UserServiceException( "Something went wrong!" );
+            throw new UserServiceException( e.getMessage() );
+        }
+    }
 
+    @Override
+    public Boolean deleteMember ( ClubMemberDto clubMemberDto ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            clubMemberRepository.delete( modelMapper.map( clubMemberDto , ClubMemberEntity.class ) );
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
+
+    @Override
+    public ClubBoardMemberDto getBoardMember ( long boardMemberId ) {
+        try {
+            Optional<ClubBoardMemberEntity> optional = clubBoardMemberRepository.findById( boardMemberId );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , ClubBoardMemberDto.class );
+            } else {
+                throw new UserServiceException( "BoardMember record is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+        }
+    }
+
+    @Override
+    public ClubBoardMemberDto addBoardMember ( ClubBoardMemberDto clubBoardMemberDto ) {
+        if ( clubBoardMemberRepository
+                .findByClubAndUser( clubBoardMemberDto.getClub() , clubBoardMemberDto.getUser() ) == null ) {
+            ModelMapper modelMapper = new ModelMapper();
+            ClubBoardMemberEntity created = clubBoardMemberRepository.save( modelMapper.map( clubBoardMemberDto ,
+                    ClubBoardMemberEntity.class ) );
+
+            return modelMapper.map( created , ClubBoardMemberDto.class );
+        } else {
+            throw new UserServiceException( "Record is already exist!" );
+        }
+    }
+
+    @Override
+    public Boolean deleteBoardMember ( ClubBoardMemberDto clubBoardMemberDto ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            clubBoardMemberRepository.delete( modelMapper.map( clubBoardMemberDto , ClubBoardMemberEntity.class ) );
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
+
+    @Override
+    public ClubFeedbackDto getFeedback ( long feedbackId ) {
+        try {
+            Optional<ClubFeedbackEntity> optional = clubFeedbackRepository.findById( feedbackId );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , ClubFeedbackDto.class );
+            } else {
+                throw new UserServiceException( "Feedback record is not found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
         }
     }
 
     @Override
     public ClubFeedbackDto createClubFeedback ( ClubFeedbackDto clubFeedbackDto ) {
         ModelMapper modelMapper = new ModelMapper();
-        ClubFeedbackEntity clubFeedbackEntity = modelMapper.map( clubFeedbackDto, ClubFeedbackEntity.class );
+        ClubFeedbackEntity clubFeedbackEntity = modelMapper.map( clubFeedbackDto , ClubFeedbackEntity.class );
         ClubFeedbackEntity createdEntity = clubFeedbackRepository.save( clubFeedbackEntity );
-        return modelMapper.map( createdEntity, ClubFeedbackDto.class );
+        return modelMapper.map( createdEntity , ClubFeedbackDto.class );
+    }
+
+    @Override
+    public Boolean respondFeedback ( ClubFeedbackDto clubFeedbackDto , boolean status ) {
+
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            ClubFeedbackEntity clubFeedbackEntity = modelMapper.map( clubFeedbackDto , ClubFeedbackEntity.class );
+            clubFeedbackEntity.setStatus( status );
+            clubFeedbackRepository.save( clubFeedbackEntity );
+            return true;
+        } catch ( Exception e ) {
+            throw new UserServiceException( e.getMessage() );
+        }
+    }
+
+    @Override
+    public List<ClubFeedbackDto> getFeedbacks ( long clubId ) {
+        try {
+            Optional<ClubEntity> optionalClubEntity = clubRepository.findById( clubId );
+
+            if ( optionalClubEntity.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                List<ClubFeedbackDto> clubFeedbackDtoList = new ArrayList<>();
+
+                optionalClubEntity.get().getClubFeedbacks().forEach( clubFeedbackEntity -> {
+                    clubFeedbackDtoList.add( modelMapper.map( clubFeedbackEntity , ClubFeedbackDto.class ) );
+                } );
+
+                return clubFeedbackDtoList;
+            } else {
+                throw new UserServiceException( "Club is not found!" );
+            }
+        } catch ( Exception e ) {
+
+            throw new UserServiceException( e.getMessage() );
+        }
     }
 }

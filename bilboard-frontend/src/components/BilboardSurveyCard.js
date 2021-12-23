@@ -3,7 +3,7 @@ import Colors from "../utils/Colors";
 import Constants from "../utils/Constants";
 import BilboardButton from "./BilboardButton";
 import VoteToQuestionDialog from "./VoteToQuestionDialog";
-import React from 'react'
+import React from 'react';
 
 /**
  * Bilboard Survey Card

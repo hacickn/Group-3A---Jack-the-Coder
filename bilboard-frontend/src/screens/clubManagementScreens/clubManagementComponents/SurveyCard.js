@@ -2,10 +2,17 @@ import {Grid} from "@mui/material";
 import Constants from "../../../utils/Constants";
 import Colors from "../../../utils/Colors";
 import BilboardButton from "../../../components/BilboardButton";
+import AnswerAndResultDialog from "../../../components/AnswerAndResultDialog";
+import React from 'react';
 
 const SurveyCard = (props) => {
+    const [ answerAndResultDialog, setanswerAndResultDialog ] = React.useState( false )
 
-    return (<Grid container
+    return (
+        <div> { <AnswerAndResultDialog open={ answerAndResultDialog } setOpen={ ( status ) => {
+            setanswerAndResultDialog( status )
+            } }/> }
+        <Grid container
                   style={{
                       minWidth: "300px",
                       minHeight: "300px",
@@ -45,10 +52,15 @@ const SurveyCard = (props) => {
             </Grid>
 
             <Grid item xs={6}>
-                <BilboardButton width="140px" fontSize="12px" text="Results"/>
+                <BilboardButton 
+                    onClick = {() => setanswerAndResultDialog(true) } 
+                    width="140px" 
+                    fontSize="12px" 
+                    text="Results"/>
             </Grid>
         </Grid>
-    </Grid>)
+    </Grid>
+    </div>)
 }
 
 export default SurveyCard;

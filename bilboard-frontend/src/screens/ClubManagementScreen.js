@@ -11,98 +11,134 @@ import ClubManagementSurveyScreen from "./clubManagementScreens/ClubManagementSu
 import ClubManagementFeedbackScreen from "./clubManagementScreens/ClubManagementFeedbackScreen";
 import ClubManagementMembersScreen from "./clubManagementScreens/ClubManagementMembersScreen";
 import ClubManagementMembershipRequestsScreen from "./clubManagementScreens/ClubManagementMembershipRequestsScreen";
-import { Card } from "@mui/material";
+import { Card, CircularProgress } from "@mui/material";
+import Env from "../utils/Env";
+import axios from "axios";
+import Program from "../utils/Program";
 
-const ClubManagementScreen = () => {
-  const pages = [
-    "General",
-    "Add Events",
-    "Members",
-    "Membership Requests",
-    "Feedbacks",
-    "Surveys",
-    "Club Hierarchy",
-    "Sponsors",
-  ];
-  const [openedScreen, setOpenedScreen] = React.useState("General");
+const ClubManagementScreen = ( { currentClubId, program } ) => {
+    const pages = [
+        "General",
+        "Add Events",
+        "Members",
+        "Membership Requests",
+        "Feedbacks",
+        "Surveys",
+        "Club Hierarchy",
+        "Sponsors",
+    ];
+    const [ openedScreen, setOpenedScreen ] = React.useState( "General" );
+    const [ loading, setLoading ] = React.useState( true )
+    const [ pageError, setPageError ] = React.useState( false )
 
-  return (
-    <Grid container style={{ padding: 20, height: "88vh" }}>
-      <Grid
-        style={{
-          height: "85vh",
-          borderRadius: Constants.BORDER_RADIUS,
-          padding: 4,
-        }}
-        item
-        xs={3}
-      >
-        <Card elevation={4} style={{ borderRadius: Constants.BORDER_RADIUS }}>
-          {pages.map((page) => (
+    async function handleClubResponse( clubId ) {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+
+        await axios.get( process.env.REACT_APP_URL + "club?clubId=" + clubId, { headers } )
+                   .then( function ( response ) {
+
+                       Program.addClub( response.data, clubId )
+                       setLoading( false )
+                       setPageError( false )
+                   } )
+                   .catch( function ( error ) {
+                       setLoading( false )
+                       setPageError( true )
+                   } )
+    }
+
+    if ( Program.getClub( currentClubId ) === undefined ) {
+        handleClubResponse( currentClubId )
+    } else if ( Program.getClub( currentClubId ) !== null && loading ) {
+        console.log( Program.getClub( currentClubId ) )
+        setLoading( false )
+    }
+
+    return (
+        <Grid container style={ { padding: 20, height: "88vh" } }>
             <Grid
-              item
-              xs={12}
-              style={{
-                paddingTop: 5,
-                paddingBottom: 5,
-              }}
+                style={ {
+                    height: "85vh",
+                    borderRadius: Constants.BORDER_RADIUS,
+                    padding: 4,
+                } }
+                item
+                xs={ 3 }
             >
-              {openedScreen === page ? (
-                <BilboardButton
-                  text={page}
-                  fontSize={16}
-                  width="21vw"
-                  height={"9.36vh"}
-                  color={Colors.BILBOARD_MAIN}
-                  textColor={Colors.WHITE}
-                />
-              ) : (
-                <BilboardButton
-                  text={page}
-                  fontSize={16}
-                  width="21vw"
-                  height={"9.36vh"}
-                  color={Colors.WHITE}
-                  textColor={Colors.BILBOARD_MAIN}
-                  onClick={() => setOpenedScreen(page)}
-                />
-              )}
+                <Card elevation={ 4 } style={ { borderRadius: Constants.BORDER_RADIUS } }>
+                    { pages.map( ( page ) => (
+                        <Grid
+                            item
+                            xs={ 12 }
+                            style={ {
+                                paddingTop: 5,
+                                paddingBottom: 5,
+                            } }
+                        >
+                            { openedScreen === page ? (
+                                <BilboardButton
+                                    text={ page }
+                                    fontSize={ 16 }
+                                    width="21vw"
+                                    height={ "9.36vh" }
+                                    color={ Colors.BILBOARD_MAIN }
+                                    textColor={ Colors.WHITE }
+                                />
+                            ) : (
+                                <BilboardButton
+                                    text={ page }
+                                    fontSize={ 16 }
+                                    width="21vw"
+                                    height={ "9.36vh" }
+                                    color={ Colors.WHITE }
+                                    textColor={ Colors.BILBOARD_MAIN }
+                                    onClick={ () => setOpenedScreen( page ) }
+                                />
+                            ) }
+                        </Grid>
+                    ) ) }
+                </Card>
             </Grid>
-          ))}
-        </Card>
-      </Grid>
-      <Grid item xs={9} style={{ padding: 4 }}>
-        <Card
-          elevation={4}
-          style={{
-            borderRadius: Constants.BORDER_RADIUS,
-            height: "85vh",
-            overflowY: "scroll",
-          }}
-        >
-          {openedScreen === "General" ? (
-            <ClubManagementGeneralScreen />
-          ) : openedScreen === "Add Events" ? (
-            <ClubManagementAddEventScreen />
-          ) : openedScreen === "Members" ? (
-            <ClubManagementMembersScreen />
-          ) : openedScreen === "Membership Requests" ? (
-            <ClubManagementMembershipRequestsScreen />
-          ) : openedScreen === "Feedbacks" ? (
-            <ClubManagementFeedbackScreen />
-          ) : openedScreen === "Surveys" ? (
-            <ClubManagementSurveyScreen />
-          ) : openedScreen === "Club Hierarchy" ? (
-            <ClubManagementHierarchyScreen />
-          ) : openedScreen === "Sponsors" ? (
-            <ClubManagementSponsorScreen />
-          ) : (
-            <div />
-          )}
-        </Card>
-      </Grid>
-    </Grid>
-  );
+            <Grid item xs={ 9 } style={ { padding: 4 } }>
+                { loading ?
+                    <CircularProgress/> :
+                    !pageError ?
+                        <div> Error </div> :
+                        <Card
+                            elevation={ 4 }
+                            style={ {
+                                borderRadius: Constants.BORDER_RADIUS,
+                                height: "85vh",
+                                overflowY: "scroll",
+                            } }
+                        >
+                            { openedScreen === "General" ? (
+                                <ClubManagementGeneralScreen/>
+                            ) : openedScreen === "Add Events" ? (
+                                <ClubManagementAddEventScreen/>
+                            ) : openedScreen === "Members" ? (
+                                <ClubManagementMembersScreen/>
+                            ) : openedScreen === "Membership Requests" ? (
+                                <ClubManagementMembershipRequestsScreen/>
+                            ) : openedScreen === "Feedbacks" ? (
+                                <ClubManagementFeedbackScreen/>
+                            ) : openedScreen === "Surveys" ? (
+                                <ClubManagementSurveyScreen/>
+                            ) : openedScreen === "Club Hierarchy" ? (
+                                <ClubManagementHierarchyScreen/>
+                            ) : openedScreen === "Sponsors" ? (
+                                <ClubManagementSponsorScreen/>
+                            ) : (
+                                <div/>
+                            ) }
+                        </Card>
+                }
+            </Grid>
+        </Grid>
+    );
 };
 
 export default ClubManagementScreen;

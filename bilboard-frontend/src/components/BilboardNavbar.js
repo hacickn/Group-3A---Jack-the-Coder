@@ -1,13 +1,9 @@
 import { makeStyles } from "@mui/styles";
 import Colors from "../utils/Colors";
 import Grid from "@mui/material/Grid";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Constants from "../utils/Constants";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -16,9 +12,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BilboardButton from "./BilboardButton";
 import AttendEventDialog from "./AttendEventDialog";
 import clsx from "clsx";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import { useState } from "react";
 import { connect } from "react-redux";
+import React from "react";
+import { FormControl, InputLabel } from "@mui/material";
 
 const useStyles = makeStyles( {
     root: {
@@ -76,20 +73,47 @@ const BilboardNavbar = ( {
                              isAttendDialogOpen,
                              setIsAttendDialogOpen,
                              setCurrentScreen,
-                             program
+                             program,
+                             currentClubId,
+                             setCurrentClubId
                          } ) => {
     const classes = useStyles();
 
-    let clubs = new Map()
+    let clubs = []
 
     program.clubBoardMemberships.forEach( boardMemberShip => {
-        if ( clubs.get( boardMemberShip.club.id ) === null ) {
-            clubs.set( boardMemberShip.club.id, boardMemberShip.club );
-        }
+        clubs.push( boardMemberShip.club )
     } )
-    // todo
 
-    const [ isCMClicked, setIsCMClicked ] = useState( false );
+    if ( program.advisorOf !== null ) {
+        let check = true
+
+        for ( let a = 0; a < clubs.length; a++ ) {
+            if ( clubs[ a ].id === program.advisorOf.id ) {
+                check = false;
+            }
+        }
+
+        if ( check ) {
+            clubs.push( program.advisorOf )
+        }
+    }
+
+    if ( program.presidentOf !== null ) {
+        let check = true
+
+        for ( let a = 0; a < clubs.length; a++ ) {
+            if ( clubs[ a ].id === program.presidentOf.id ) {
+                check = false;
+            }
+        }
+
+        if ( check ) {
+            clubs.push( program.presidentOf )
+        }
+    }
+
+
     return (
         <div className={ classes.root }>
             { isAttendDialogOpen && <AttendEventDialog/> }
@@ -97,12 +121,15 @@ const BilboardNavbar = ( {
                 <Grid item xs={ 3 }>
                     <div
                         className={ classes.logo }
-                        onClick={ () => setCurrentScreen( "main" ) }
+                        onClick={ () => {
+                            setCurrentClubId(0)
+                            setCurrentScreen( "main" )
+                        } }
                     >
                         BilBoard
                     </div>
                 </Grid>
-                <Grid item xs={ 4 } className={ classes.searchBar }></Grid>
+                <Grid item xs={ 4 } className={ classes.searchBar }/>
                 <Grid
                     item
                     xs={ 2 }
@@ -124,11 +151,14 @@ const BilboardNavbar = ( {
                 </Grid>
                 <Grid item xs={ 3 }>
                     <Grid container className={ classes.icons } style={ { display: "flex", alignItems: "start" } }>
-                        <Grid item xs={ 3 }/>
+                        <Grid item xs={ 2 }/>
                         <Grid item xs={ 2 }>
                             <IconButton
                                 size="large"
-                                onClick={ () => setCurrentScreen( "survey" ) }
+                                onClick={ () => {
+                                    setCurrentClubId(0)
+                                    setCurrentScreen( "survey" )
+                                } }
                             >
                                 <Badge badgeContent={ surveyCount } color="error">
                                     { currentScreen === "survey" ? (
@@ -146,7 +176,10 @@ const BilboardNavbar = ( {
                         <Grid item xs={ 2 }>
                             <IconButton
                                 size="large"
-                                onClick={ () => setCurrentScreen( "calendar" ) }
+                                onClick={ () => {
+                                    setCurrentClubId(0)
+                                    setCurrentScreen( "calendar" )
+                                } }
                             >
                                 <Badge badgeContent={ calendarCount } color="error">
                                     { currentScreen === "calendar" ? (
@@ -162,7 +195,10 @@ const BilboardNavbar = ( {
                             </IconButton>
                         </Grid>
                         <Grid item xs={ 2 }>
-                            <IconButton size="large" onClick={ () => setCurrentScreen( "user" ) }>
+                            <IconButton size="large" onClick={ () => {
+                                setCurrentClubId(0)
+                                setCurrentScreen( "user" )
+                            } }>
                                 { currentScreen === "user" ? (
                                     <div className={ clsx( classes.anIcon, classes.iconBg ) }>
                                         <AccountCircleIcon/>
@@ -175,46 +211,35 @@ const BilboardNavbar = ( {
                             </IconButton>
                         </Grid>
 
-                        <Grid item xs={ 2 }>
-                            <IconButton
-                                size="large"
-                                onClick={ () => setIsCMClicked( !isCMClicked ) }
-                            >
-                                { currentScreen === "clubManagement" ? (
-                                    <div className={ clsx( classes.anIcon, classes.iconBg ) }>
-                                        <SettingsApplicationsIcon/>
-                                    </div>
-                                ) : (
-                                    <div className={ classes.anIcon }>
-                                        <SettingsApplicationsIcon/>
-                                    </div>
-                                ) }
-                            </IconButton>
-                            { isCMClicked && (
-                                <div style={ { zIndex: "-1" } }>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={ 10 }
-                                        label="Clubs"
-                                        onChange={ () => console.log( "aa" ) }
-                                    >
-                                        <MenuItem onClick={ () => {
+
+                        { clubs.length > 0 ? <Grid item xs={ 3 }> <FormControl sx={ { m: 1, minWidth: 120 } }>
+
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={ currentClubId }
+                                    displayEmpty
+                                    label="CLub"
+                                    onChange={ ( e ) => {
+                                        setCurrentClubId( e.target.value )
+                                        if ( e.target.value !== 0 ) {
                                             setCurrentScreen( "clubManagement" )
-                                            setIsCMClicked( false )
-                                        } }>Club 1</MenuItem>
-                                        <MenuItem onClick={ () => {
-                                            setCurrentScreen( "clubManagement" )
-                                            setIsCMClicked( false )
-                                        } }>Club 2</MenuItem>
-                                        <MenuItem onClick={ () => {
-                                            setCurrentScreen( "clubManagement" )
-                                            setIsCMClicked( false )
-                                        } }>Club 3</MenuItem>
-                                    </Select>
-                                </div>
-                            ) }
-                        </Grid>
+                                        } else {
+                                            setCurrentScreen( "main" )
+                                        }
+                                    } }
+                                >
+                                    <MenuItem value={ 0 }>
+                                        <em>None</em>
+                                    </MenuItem>
+                                    { clubs.map( club => {
+                                        return <MenuItem value={ club.id }>{ club.shortName.toUpperCase() } </MenuItem>
+                                    } ) }
+                                </Select>
+                            </FormControl>
+                            </Grid>
+                            : <div></div> }
+
                     </Grid>
                 </Grid>
             </Grid>

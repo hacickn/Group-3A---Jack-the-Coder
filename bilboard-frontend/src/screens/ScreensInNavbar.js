@@ -21,7 +21,7 @@ const ScreensInNavbar = ( {
                               isFailed,
                               setFailed
                           } ) => {
-    const [ clubMap, setClubMap ] = React.useState( null )
+    const [ currentClubId, setCurrentClubId ] = React.useState( 0 )
 
 
     function singOut() {
@@ -35,10 +35,6 @@ const ScreensInNavbar = ( {
         setScreenNoNavbar( "main" )
     }
 
-    if ( !isFailed && clubMap === null ) {
-        setClubMap( new Map() )
-    }
-
 
     return (
         <div>
@@ -50,7 +46,9 @@ const ScreensInNavbar = ( {
                 program === null ?
                     <CircularProgress/> : program.type === "student" || program.type === "academic" ?
                         <div>
-                            <BilboardNavbar attendActive program={program}/>
+                            <BilboardNavbar currentClubId={ currentClubId }
+                                            setCurrentClubId={ ( value ) => setCurrentClubId( value ) } attendActive
+                                            program={ program }/>
                             <div style={ { marginTop: "68px" } }>
                                 { currentScreen === "main" ? (
                                     <MainScreen program={ program }/>
@@ -59,10 +57,12 @@ const ScreensInNavbar = ( {
                                 ) : currentScreen === "calendar" ? (
                                     <CalendarScreen program={ program }/>
                                 ) : currentScreen === "user" ? (
-                                    <UserScreen program={ program } signOut={ () => singOut() }
-                                                image="https://picsum.photos/300"/>
+                                    <UserScreen
+                                        program={ program } signOut={ () => singOut() }
+                                        image="https://picsum.photos/300"/>
                                 ) : currentScreen === "clubManagement" ? (
-                                    <ClubManagementScreen program={ program }/>
+                                    <ClubManagementScreen currentClubId={ currentClubId }
+                                                          program={ program }/>
                                 ) : (
                                     <MainScreen/>
                                 ) }

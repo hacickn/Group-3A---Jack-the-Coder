@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ClubProfileScreen from "./screens/ClubProfileScreen";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ClubProfileScreen />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

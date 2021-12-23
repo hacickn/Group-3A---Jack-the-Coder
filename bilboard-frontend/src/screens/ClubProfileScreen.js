@@ -30,7 +30,7 @@ const ClubManagementGeneralScreen = ( { image } ) => {
 
 
         axios.post( process.env.REACT_APP_URL + "club/feedback", {
-            "content": content, // todo club.id -> club should come from 
+            "content": content, // todo club.id -> club should come from
             "club": 21,
             "user": Env.PUBLIC_ID
         }, { headers: headers } )

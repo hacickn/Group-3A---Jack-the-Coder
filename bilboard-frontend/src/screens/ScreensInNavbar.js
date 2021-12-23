@@ -20,7 +20,6 @@ const ScreensInNavbar = ( {
                               isFailed,
                               setFailed
                           } ) => {
-
     function singOut() {
         localStorage.setItem( "token", '' )
         localStorage.setItem( "publicId", '' )
@@ -46,15 +45,15 @@ const ScreensInNavbar = ( {
                             <BilboardNavbar attendActive/>
                             <div style={ { marginTop: "68px" } }>
                                 { currentScreen === "main" ? (
-                                    <MainScreen/>
+                                    <MainScreen program={program}/>
                                 ) : currentScreen === "survey" ? (
-                                    <SurveyScreen/>
+                                    <SurveyScreen  program={program}/>
                                 ) : currentScreen === "calendar" ? (
-                                    <CalendarScreen/>
+                                    <CalendarScreen  program={program}/>
                                 ) : currentScreen === "user" ? (
-                                    <UserScreen signOut={ () => singOut() } image="https://picsum.photos/300"/>
+                                    <UserScreen program={program} signOut={ () => singOut() } image="https://picsum.photos/300"/>
                                 ) : currentScreen === "clubManagement" ? (
-                                    <ClubManagementScreen/>
+                                    <ClubManagementScreen program={program}/>
                                 ) : (
                                     <MainScreen/>
                                 ) }

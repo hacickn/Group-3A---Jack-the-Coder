@@ -1,6 +1,7 @@
 package com.jack_the_coder.bilboard_backend.model.responseModel;
 
 
+import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicEventParticipantResponse;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ public class EventResponse {
     private Date eventCodeExpire;
     private int averageRate;
     private int rateCount;
+    private BasicClubResponse club;
     private List<EventQuestionResponse> eventQuestions;
     private List<BasicEventParticipantResponse> eventParticipants;
     private List<LocationRequestResponse> locationRequests;
@@ -98,6 +100,14 @@ public class EventResponse {
 
     public void setMaxParticipationCount ( int maxParticipationCount ) {
         this.maxParticipationCount = maxParticipationCount;
+    }
+
+    public BasicClubResponse getClub () {
+        return club;
+    }
+
+    public void setClub ( BasicClubResponse club ) {
+        this.club = club;
     }
 
     public String getEventPhoto () {

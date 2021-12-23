@@ -78,14 +78,6 @@ const SurveyScreen = (props) => {
         },
     ]
 
-    function addSurvey(surveyObject) {
-        let temp = [...surveyList]
-
-        temp.push({
-            photo: surveyObject.photo,
-            question: surveyObject.question,
-        })
-    }
 
     return (
         <Grid container
@@ -101,7 +93,7 @@ const SurveyScreen = (props) => {
             </Grid>
 
             <Grid container xs={12} style={{height: '79vh', overflowX: "scroll"}}>
-                {surveyList.map(survey => <BilboardSurveyCard survey={survey}/>)}
+                {props.program.surveyParticipants.map(surveyParticipants => <BilboardSurveyCard survey={surveyParticipants.survey}/>)}
             </Grid>
         </Grid>
     )

@@ -8,8 +8,9 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Colors from "../utils/Colors";
-import { Card } from "@mui/material";
+import { Card, CircularProgress, Switch } from "@mui/material";
 import { connect } from "react-redux";
+import React from "react";
 
 const useStyles = makeStyles( {
     root: {
@@ -24,7 +25,15 @@ const useStyles = makeStyles( {
     },
 } );
 
-const UserScreen = ( { image, setScreenNoNavbar, signOut } ) => {
+const UserScreen = ( { image, setScreenNoNavbar, signOut, program } ) => {
+    console.log( program )
+    const [ geStatus, setGeStatus ] = React.useState( null )
+    const [ submitted, setSubmitted ] = React.useState( false )
+
+    if ( geStatus == null ) {
+        setGeStatus( program.geTaken )
+    }
+
     const classes = useStyles();
     return (
         <div className={ classes.root }>
@@ -49,7 +58,9 @@ const UserScreen = ( { image, setScreenNoNavbar, signOut } ) => {
                             } }>
                                 <div
                                     className={ classes.userImage }
-                                    style={ { backgroundImage: `url(${ image })` } }
+                                    style={ {
+                                        backgroundImage: `url(${ process.env.REACT_APP_IMAGE_URL + program.photo })`
+                                    } }
                                 />
                             </Grid>
                             <Grid item xs={ 8 }>
@@ -77,19 +88,25 @@ const UserScreen = ( { image, setScreenNoNavbar, signOut } ) => {
                                     <Grid item xs={ 12 } style={ { marginBottom: "10px" } }>
                                         <BilboardTextField label="Retype New Password" width={ '280px' }/>
                                     </Grid>
+
+                                    <Grid item xs={ 12 } style={ { marginBottom: "10px" } }>
+                                        <BilboardButton text="Update" width={ '160px' } fontSize={ "12px" }/>
+                                    </Grid>
                                     <Grid item xs={ 12 }
                                           style={ { marginBottom: "10px", display: "flex", justifyContent: "center" } }>
                                         <FormGroup>
                                             <FormControlLabel
-                                                control={ <Checkbox/> }
+                                                control={ <Switch checked={ geStatus } onChange={ () => {
+
+                                                } }/> }
                                                 label="GE250/1"
                                             />
                                         </FormGroup>
                                     </Grid>
-                                    <Grid item xs={ 12 } style={ { marginBottom: "10px" } }>
-                                        <BilboardButton text="Update" width={ '160px' } fontSize={ "12px" }/>
+                                    <Grid item xs={ 12 }
+                                          style={ { marginBottom: "10px", display: "flex", minHeight:60, justifyContent: "center" } }>
+                                        {submitted ? <CircularProgress/> : <div/>}
                                     </Grid>
-
                                     <Grid item xs={ 12 } style={ { marginTop: "10px" } }>
                                         <BilboardButton color={ Colors.BILBOARD_RED } text="Sign Out" width="160px"
                                                         fontSize="12px" onClick={ () => {
@@ -122,24 +139,9 @@ const UserScreen = ( { image, setScreenNoNavbar, signOut } ) => {
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs
-                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                { program.clubMemberShips.map( ( membership ) => {
+                                    return <FollowedClubs club={ membership.club }/>
+                                } ) }
                             </Grid>
                         </Grid>
                     </Card>

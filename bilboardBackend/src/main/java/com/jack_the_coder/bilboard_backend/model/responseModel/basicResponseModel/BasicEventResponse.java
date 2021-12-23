@@ -19,6 +19,7 @@ public class BasicEventResponse {
     private Date eventCodeExpire;
     private int averageRate;
     private int rateCount;
+    private BasicClubResponse club;
 
     public long getId () {
         return id;
@@ -146,5 +147,13 @@ public class BasicEventResponse {
 
     public void setRateCount ( int rateCount ) {
         this.rateCount = rateCount;
+    }
+
+    public BasicClubResponse getClub () {
+        return club;
+    }
+
+    public void setClub ( BasicClubResponse club ) {
+        this.club = club;
     }
 }

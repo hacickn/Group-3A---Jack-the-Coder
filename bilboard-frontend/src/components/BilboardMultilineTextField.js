@@ -9,16 +9,15 @@ import React from 'react';
  */
 
 const BilboardMultilineTextField = ( props ) => {
-    const [ value, setValue ] = React.useState( "" )
 
     return (
         <div>
             <TextField
                 id="outlined-multiline-static"
-                value={ value }
+                value={ props.value }
                 size="small"
                 onChange={ ( event ) => {
-                    setValue( event.target.value )
+                    props.onChange(event.target.value)
                 } }
                 type={ props.type }
                 label={ props.label }

@@ -10,6 +10,7 @@ import InitialScreen from "./InitialScreen";
 import AdminScreen from "./AdminScreensComponents/AdminScreen";
 import AdministrativeAssistantScreen from "./AdministrativeAssistantComponents/AdministrativeAssistantScreen";
 import { CircularProgress } from "@mui/material";
+import React from 'react';
 
 const ScreensInNavbar = ( {
                               setScreenNoNavbar,
@@ -20,6 +21,9 @@ const ScreensInNavbar = ( {
                               isFailed,
                               setFailed
                           } ) => {
+    const [ clubMap, setClubMap ] = React.useState( null )
+
+
     function singOut() {
         localStorage.setItem( "token", '' )
         localStorage.setItem( "publicId", '' )
@@ -29,6 +33,10 @@ const ScreensInNavbar = ( {
 
     if ( !isFailed && screenNoNavbar === "login" ) {
         setScreenNoNavbar( "main" )
+    }
+
+    if ( !isFailed && clubMap === null ) {
+        setClubMap( new Map() )
     }
 
 
@@ -42,18 +50,19 @@ const ScreensInNavbar = ( {
                 program === null ?
                     <CircularProgress/> : program.type === "student" || program.type === "academic" ?
                         <div>
-                            <BilboardNavbar attendActive/>
+                            <BilboardNavbar attendActive program={program}/>
                             <div style={ { marginTop: "68px" } }>
                                 { currentScreen === "main" ? (
-                                    <MainScreen program={program}/>
+                                    <MainScreen program={ program }/>
                                 ) : currentScreen === "survey" ? (
-                                    <SurveyScreen  program={program}/>
+                                    <SurveyScreen program={ program }/>
                                 ) : currentScreen === "calendar" ? (
-                                    <CalendarScreen  program={program}/>
+                                    <CalendarScreen program={ program }/>
                                 ) : currentScreen === "user" ? (
-                                    <UserScreen program={program} signOut={ () => singOut() } image="https://picsum.photos/300"/>
+                                    <UserScreen program={ program } signOut={ () => singOut() }
+                                                image="https://picsum.photos/300"/>
                                 ) : currentScreen === "clubManagement" ? (
-                                    <ClubManagementScreen program={program}/>
+                                    <ClubManagementScreen program={ program }/>
                                 ) : (
                                     <MainScreen/>
                                 ) }

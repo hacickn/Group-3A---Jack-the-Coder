@@ -50,54 +50,54 @@ const ClubManagementHierarchyScreen = () => {
     const classes = useStyles();
     const [isOnline, setIsOnline] = React.useState("online");
     const [isForMember, setIsForMember] = React.useState(false);
-    const [ warning, setWarning ] = React.useState( "" )
-    const [ textValue, setTextValue ] = React.useState( "" )
-    const [ choices, setChoices ] = React.useState( [ {
-        title: "It was great!"
+    const [warning, setWarning] = React.useState("")
+    const [textValue, setTextValue] = React.useState("")
+    const [choices, setChoices] = React.useState([{
+        title: "İlke Doğan"
     },
-        {
-            title: "I dont like it"
-        },
-        {
-            title: "It was fantastic!"
-        },
-        {
-            title: "So far so good!So far so good!So far so good!So far so good!So far so ood!So far so good!So far so good!So far so good!So far so good!So far so gSo far so good!So far so good!So far so good!So far so good!So far so good!So far so gSo far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!So far so good!"
-        },
-        {
-            title: "So far so good!"
-        }
-    ] )
+    {
+        title: "Hacı Çakın"
+    },
+    {
+        title: "Metehan Saçakçı"
+    },
+    {
+        title: "Abdullah Koç"
+    },
+    {
+        title: "Aslı Dinç"
+    }
+    ])
 
-    function handleDeletion( title ) {
+    function handleDeletion(title) {
         title = title.trim()
         let temp = []
 
-        choices.forEach( choice => {
-            if ( choice.title !== title ) {
-                temp.push( choice )
+        choices.forEach(choice => {
+            if ((choice.title !== title)) {
+                temp.push(choice)
             }
-        } )
+        })
 
-        setChoices( temp )
+        setChoices(temp)
     }
 
-    function handleAddition( title ) {
+    function handleAddition(title) {
         let check = true
         title = title.trim()
 
-        choices.forEach( choice => {
-            if ( choice.title === title ) {
+        choices.forEach(choice => {
+            if (choice.title === title) {
                 check = false
             }
-        } )
+        })
 
-        if ( check ) {
-            let temp = [ ...choices ]
-            temp.push( { title: title } )
-            setChoices( temp )
+        if (check) {
+            let temp = [...choices]
+            temp.push({ title: title })
+            setChoices(temp)
         } else {
-            setWarning( "This choice was already added!" )
+            setWarning("This Person was already added!")
         }
     }
 
@@ -126,24 +126,24 @@ const ClubManagementHierarchyScreen = () => {
                     <Grid container>
                         <Grid container className={classes.rowGrid}>
                             <Grid item xs={5} className={classes.textGrid} style={{
-                                    fontSize: "30px",
-                                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                                    fontStyle: 'italic',
-                                    fontWeight: 'bold'
-                                }}>
+                                fontSize: "30px",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                fontStyle: 'italic',
+                                fontWeight: 'bold'
+                            }}>
                                 President
                             </Grid>
                             <Grid item xs={7} className={classes.inputGrid} style={{
-                                    fontSize: "30px",
-                                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                fontSize: "30px",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
 
-                                }}>
+                            }}>
                                 Yaaaas
                             </Grid>
                         </Grid>
                         <Grid container>
                             <Grid container className={classes.rowGrid}>
-                                <Grid item xs={5} className={classes.textGrid}  style={{
+                                <Grid item xs={5} className={classes.textGrid} style={{
                                     fontSize: "30px",
                                     fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                     fontStyle: 'italic',
@@ -151,7 +151,7 @@ const ClubManagementHierarchyScreen = () => {
                                 }}>
                                     Board members
                                 </Grid>
-                                <Grid item xs={7} className={classes.inputGrid}  style={{
+                                <Grid item xs={7} className={classes.inputGrid} style={{
                                     fontSize: "30px",
                                     fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 }}>
@@ -159,102 +159,102 @@ const ClubManagementHierarchyScreen = () => {
                                 </Grid>
                             </Grid>
 
-                            <Grid container style={ {
-                        maxHeight: "200px",
-                        overflowX: "hidden",
-                        overflowY: "scroll",
-                        marginLeft: "170px",
-                        marginRight: "170px"
-                    } }>
-                        {
-                            choices.map( choice => {
-                                return ( <Grid item xs={ 12 } style={ { display: "flex", justifyContent: "center" } }>
-                                    <Card elevation={ 0 } style={ {
-                                        width: "440px",
-                                        marginTop: 10,
-                                        borderRadius: Constants.BORDER_RADIUS,
-                                        background: Colors.BILBOARD_RED_ALTERNATIVE
-                                    } }>
-                                        <Grid container style={ { alignItems: "stretch" } }>
-                                            <Grid item xs={ 11 }
-                                                  style={ { fontSize: 12, alignItems: "center", padding: 8, } }>
-                                                { choice.title }
-                                            </Grid>
-                                            <Grid item xs={ 1 }
-                                                  style={ {
-                                                      background: Colors.BILBOARD_RED,
-                                                      alignItems: "center",
-                                                      justifyItems: "center",
-                                                      display: "flex"
-                                                  } }>
-                                                <IconButton
-                                                    onClick={ () => handleDeletion( choice.title ) }
-                                                    style={ {
-                                                        borderRadius: 0,
-                                                    } }>
-                                                    <DeleteForever/>
-                                                </IconButton>
-                                            </Grid>
-                                        </Grid>
-                                    </Card>
-                                </Grid> )
-                            } )
-                        }
-                    </Grid>
-                    <Grid container style={ { justifyContent: "center", display: "flex", marginTop: 8, } }>
-                        <Card elevation={ 0 } style={ {
-                            width: "460px",
-                            marginTop: 10,
-                            borderRadius: Constants.BORDER_RADIUS,
-                            background: Colors.BILBOARD_MAIN_ALTERNATIVE
-                        } }>
-                            <Grid container style={ { alignItems: "stretch" } }>
-                                <Grid item xs={ 10 }
-                                      style={ { fontSize: 12, alignItems: "center", padding: 8, } }>
-                                    <BilboardTextField onChange={ ( event ) => setTextValue( event.target.value ) }
-                                                       value={ textValue } width={ "360px" }/>
-                                </Grid>
-                                <Grid item xs
-                                      style={ {
-                                          background: Colors.BILBOARD_MAIN,
-                                          alignItems: "center",
-                                          justifyItems: "center",
-                                          display: "flex",
-                                          cursor: "pointer",
-                                      } }>
-                                    <IconButton
-                                        onClick={ () => {
-                                            if ( textValue.trim().length > 0 ) {
-                                                handleAddition( textValue )
-                                                setTextValue( "" )
-                                            } else {
-                                                setWarning( "Choice can not be empty!" )
-                                            }
-
-
-                                        } }
-                                        style={ {
-                                            borderRadius: 0,
-                                            width: "70px"
-                                        } }>
-                                        <AddBox/>
-                                    </IconButton>
-                                </Grid>
+                            <Grid container style={{
+                                maxHeight: "200px",
+                                overflowX: "hidden",
+                                overflowY: "scroll",
+                                marginLeft: "170px",
+                                marginRight: "170px"
+                            }}>
+                                {
+                                    choices.map(choice => {
+                                        return (<Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
+                                            <Card elevation={0} style={{
+                                                width: "440px",
+                                                marginTop: 10,
+                                                borderRadius: Constants.BORDER_RADIUS,
+                                                background: Colors.BILBOARD_RED_ALTERNATIVE
+                                            }}>
+                                                <Grid container style={{ alignItems: "stretch" }}>
+                                                    <Grid item xs={11}
+                                                        style={{ fontSize: 12, alignItems: "center", padding: 8, }}>
+                                                        {choice.title}
+                                                    </Grid>
+                                                    <Grid item xs={1}
+                                                        style={{
+                                                            background: Colors.BILBOARD_RED,
+                                                            alignItems: "center",
+                                                            justifyItems: "center",
+                                                            display: "flex"
+                                                        }}>
+                                                        <IconButton
+                                                            onClick={() => handleDeletion(choice.title)}
+                                                            style={{
+                                                                borderRadius: 0,
+                                                            }}>
+                                                            <DeleteForever />
+                                                        </IconButton>
+                                                    </Grid>
+                                                </Grid>
+                                            </Card>
+                                        </Grid>)
+                                    })
+                                }
                             </Grid>
-                        </Card>
-                    </Grid>
-                            <Grid container className={classes.rowGrid} style={{
-                                    fontSize: "30px",
-                                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                                    fontStyle: 'italic',
-                                    fontWeight: 'bold'
+                            <Grid container style={{ justifyContent: "center", display: "flex", marginTop: 8, }}>
+                                <Card elevation={0} style={{
+                                    width: "460px",
+                                    marginTop: 10,
+                                    borderRadius: Constants.BORDER_RADIUS,
+                                    background: Colors.BILBOARD_MAIN_ALTERNATIVE
                                 }}>
+                                    <Grid container style={{ alignItems: "stretch" }}>
+                                        <Grid item xs={10}
+                                            style={{ fontSize: 12, alignItems: "center", padding: 8, }}>
+                                            <BilboardTextField onChange={(event) => setTextValue(event.target.value)}
+                                                value={textValue} width={"360px"} />
+                                        </Grid>
+                                        <Grid item xs
+                                            style={{
+                                                background: Colors.BILBOARD_MAIN,
+                                                alignItems: "center",
+                                                justifyItems: "center",
+                                                display: "flex",
+                                                cursor: "pointer",
+                                            }}>
+                                            <IconButton
+                                                onClick={() => {
+                                                    if (textValue.trim().length > 0) {
+                                                        handleAddition(textValue)
+                                                        setTextValue("")
+                                                    } else {
+                                                        setWarning("Choice can not be empty!")
+                                                    }
+
+
+                                                }}
+                                                style={{
+                                                    borderRadius: 0,
+                                                    width: "70px"
+                                                }}>
+                                                <AddBox />
+                                            </IconButton>
+                                        </Grid>
+                                    </Grid>
+                                </Card>
+                            </Grid>
+                            <Grid container className={classes.rowGrid} style={{
+                                fontSize: "30px",
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                fontStyle: 'italic',
+                                fontWeight: 'bold'
+                            }}>
                                 <Grid item xs={5} className={classes.textGrid}>
                                     Add Board Member
                                 </Grid>
-                                <Grid item xs={7} className={classes.inputGrid} style={ { marginTop: "10px" } }
-                                    >
-                                    <BilboardTextField label="Name" width={ '280px' }/>
+                                <Grid item xs={7} className={classes.inputGrid} style={{ marginTop: "10px" }}
+                                >
+                                    <BilboardTextField label="Name" width={'280px'} />
 
                                 </Grid>
 
@@ -263,9 +263,9 @@ const ClubManagementHierarchyScreen = () => {
                                 <Grid item xs={5} className={classes.textGrid}>
 
                                 </Grid>
-                                <Grid item xs={7} className={classes.inputGrid} style={ { marginBottom: "10px" } }
-                                    >
-                                    <BilboardTextField label="Bilkent ID" width={ '280px' }/>
+                                <Grid item xs={7} className={classes.inputGrid} style={{ marginBottom: "10px" }}
+                                >
+                                    <BilboardTextField label="Bilkent ID" width={'280px'} />
 
                                 </Grid>
                             </Grid>

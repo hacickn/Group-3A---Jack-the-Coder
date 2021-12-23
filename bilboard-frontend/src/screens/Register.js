@@ -114,7 +114,7 @@ const Register = () => {
                                                                         } else if ( ID.trim().length === 0 ) {
                                                                             setError( "Id can not be empty!" )
                                                                         } else if ( password.trim().length <= 6 ) {
-                                                                            setError( "Password should be longer thab" +
+                                                                            setError( "Password should be longer than" +
                                                                                 " 6 characters!" )
                                                                         } else {
                                                                             handleRegisterRequest()
@@ -137,9 +137,9 @@ const Register = () => {
                 anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
                 open={ success !== '' }
                 autoHideDuration={ 5000 }
-                onClose={ () => setError( '' ) }
+                onClose={ () => setSuccess( '' ) }
             >
-                <Alert onClose={ () => setError( '' ) }
+                <Alert onClose={ () => setSuccess( '' ) }
                        severity={ "success" }
                 >
                     { success }

@@ -24,7 +24,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const UserScreen = ( {image, setScreenNoNavbar } ) => {
+const UserScreen = ( { image, setScreenNoNavbar, signOut } ) => {
     const classes = useStyles();
     return (
         <div className={ classes.root }>
@@ -92,7 +92,10 @@ const UserScreen = ( {image, setScreenNoNavbar } ) => {
 
                                     <Grid item xs={ 12 } style={ { marginTop: "10px" } }>
                                         <BilboardButton color={ Colors.BILBOARD_RED } text="Sign Out" width="160px"
-                                                        fontSize="12px" onClick={() => setScreenNoNavbar("login")}/>
+                                                        fontSize="12px" onClick={ () => {
+                                            signOut()
+                                            setScreenNoNavbar( "login" )
+                                        } }/>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -104,7 +107,7 @@ const UserScreen = ( {image, setScreenNoNavbar } ) => {
                         borderRadius: Constants.BORDER_RADIUS,
                         padding: "20px",
                         marginRight: "20px",
-                        marginTop:"40px"
+                        marginTop: "40px"
                     } }>
                         <Grid container style={ { maxHeight: "75vh", overflowX: "scroll" } }>
                             <Grid item xs={ 12 }>
@@ -119,15 +122,24 @@ const UserScreen = ( {image, setScreenNoNavbar } ) => {
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
-                                <FollowedClubs image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
+                                <FollowedClubs
+                                    image="https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png"/>
                             </Grid>
                         </Grid>
                     </Card>
@@ -137,10 +149,10 @@ const UserScreen = ( {image, setScreenNoNavbar } ) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        setScreenNoNavbar: (value) => dispatch({type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value})
+const mapDispatchToProps = ( dispatch ) => {
+    return {
+        setScreenNoNavbar: ( value ) => dispatch( { type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value } )
     }
 }
 
-export default connect(null, mapDispatchToProps)(UserScreen);
+export default connect( null, mapDispatchToProps )( UserScreen );

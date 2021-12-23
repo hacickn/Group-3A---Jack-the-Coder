@@ -7,7 +7,7 @@ import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import Constants from "../utils/Constants";
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import Colors from "../utils/Colors"
 
 /**
  * Ask Question Dialog

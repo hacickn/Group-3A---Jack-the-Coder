@@ -10,7 +10,6 @@ const useStyles = makeStyles( {
         background: Colors.BILBOARD_MAIN_ALTERNATIVE,
     },
     clubLogo: {
-        width: "300px",
         marginTop: "10px",
         marginLeft: "20px",
         height: "80px",
@@ -27,11 +26,23 @@ const FollowedClubs = ( props ) => {
             style={ { maxWidth: "100%", marginTop: "20px" } }
         >
             <Grid container>
-                <Grid item xs={ 6 }>
+                <Grid item xs={ 4 }>
                     <div
                         className={ classes.clubLogo }
-                        style={ { backgroundImage: `url(${ props.image })` } }
+                        style={ { backgroundImage: `url(${ process.env.REACT_APP_IMAGE_URL + props.club.photo })` } }
                     />
+                </Grid>
+                <Grid
+                    item
+                    xs={ 2 }
+                    style={ {
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "10px"
+                    } }
+                >
+                    {props.club.shortName.toUpperCase()}
                 </Grid>
                 <Grid
                     item
@@ -47,7 +58,7 @@ const FollowedClubs = ( props ) => {
                 </Grid>
                 <Grid
                     item
-                    xs={ 2 }
+                    xs={ 3 }
                     style={ {
                         display: "flex",
                         justifyContent: "center",

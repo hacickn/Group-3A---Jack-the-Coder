@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Constants from "../../utils/Constants";
 import BilboardButton from "../../components/BilboardButton";
 import SurveyCard from "./clubManagementComponents/SurveyCard";
-import AddSurveyDialog from "../../components/AddSurveyDialog";
+import AddSurveyDialog from "./clubManagementComponents/AddSurveyDialog";
 import React from 'react'
 
 /**

@@ -13,14 +13,17 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { connect } from "react-redux";
 import axios from "axios";
+import Env from "../utils/Env";
+import { Snackbar } from "@mui/material";
 
 
-const Login = ( { setScreenNoNavbar } ) => {
+const Login = ( { setScreenNoNavbar, setProgram, setFailed } ) => {
     const [ isDialogOpen, setIsDialogOpen ] = useState( false );
     const [ isAlertOpen, setIsAlertOpen ] = useState( false );
     const [ email, setEmail ] = useState( "" );
     const [ password, setPassword ] = useState( "" );
     const [ submitted, setSubmitted ] = useState( false )
+    const [ error, setError ] = useState( "" )
 
     async function handleLoginRequest() {
         setSubmitted( true )
@@ -30,18 +33,24 @@ const Login = ( { setScreenNoNavbar } ) => {
         } )
              .then( function ( response ) {
                  if ( response.status === 200 ) {
-                     setSubmitted( false )
-                     setScreenNoNavbar( "others" )
-                 } else {
-                     console.log( "Something went wrong" )
-                 }
+                     Env.PUBLIC_ID = response.data.id
+                     Env.TOKEN = response.data.token
+                     localStorage.setItem( "token", response.data.token )
+                     localStorage.setItem( "publicId", response.data.id )
 
+                     setSubmitted( false )
+                     setFailed( false )
+                     setScreenNoNavbar( "main" )
+                 } else {
+                     setError( "Email or password is wrong!" )
+                 }
              } )
              .catch( function ( error ) {
-                 console.log( error )
+                 setError( "Email or password is wrong!" )
                  setSubmitted( false )
              } )
     }
+
 
     return (
         <div>
@@ -69,7 +78,15 @@ const Login = ( { setScreenNoNavbar } ) => {
             </Grid>
 
             <Grid item xs={ 12 } style={ { marginTop: "40px" } }>
-                <BilboardButton width="100px" fontSize="14px" text="Login" onClick={ () => setScreenNoNavbar("main") }/>
+                <BilboardButton width="100px" fontSize="14px" text="Login" onClick={ () => {
+                    if ( password.trim().length < 6 ) {
+                        setError( "Password can not shorter than 6 characters!" )
+                    } else if ( !email.includes( "bilkent" ) ) {
+                        setError( "Please enter a valid bilkent email adress!" )
+                    } else {
+                        handleLoginRequest()
+                    }
+                } }/>
             </Grid>
 
             <Grid item xs={ 12 } style={ { marginTop: "30px" } }>
@@ -115,6 +132,18 @@ const Login = ( { setScreenNoNavbar } ) => {
                 isAlertOpen &&
                 <Alert severity="info">If you provided a valid info, a mail was sent to your email.</Alert>
             }
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 5000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
         </div>
     )
 

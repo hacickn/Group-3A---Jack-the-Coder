@@ -4,7 +4,8 @@ import BilboardTextField from "../components/BilboardTextField";
 import BilboardButton from "../components/BilboardButton";
 import { useState } from "react";
 import axios from "axios";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Snackbar } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 const Register = () => {
     const [ name, setName ] = useState( "" );
@@ -13,6 +14,8 @@ const Register = () => {
     const [ password, setPassword ] = useState( "" );
     const [ ID, setID ] = useState( "" );
     const [ submitted, setSubmitted ] = useState( false )
+    const [ error, setError ] = useState( "" )
+    const [ success, setSuccess ] = useState( "" )
 
     async function handleRegisterRequest() {
         setSubmitted( true )
@@ -26,11 +29,17 @@ const Register = () => {
             "university": "2"
         } )
              .then( function ( response ) {
-                 console.log( response.data )
+                 console.log( response.status )
+                 setName( "" )
+                 setSurname( "" )
+                 setEmail( "" )
+                 setID( "" )
+                 setPassword( "" )
                  setSubmitted( false )
+                 setSuccess( "Confirmation code is sent! Check your email box!" )
              } )
              .catch( function ( error ) {
-                 console.log( error )
+                 setError( "Email or id in usage! Please contact with system admin!" )
                  setSubmitted( false )
              } )
     }
@@ -92,8 +101,50 @@ const Register = () => {
 
             <Grid item xs={ 12 } style={ { marginTop: "40px" } }>
                 { submitted ? <CircularProgress/> : <BilboardButton width="100px" fontSize="14px" text="Register"
-                                                                    onClick={ () => handleRegisterRequest() }/> }
+                                                                    onClick={ () => {
+                                                                        if ( name.trim().length === 0 ) {
+                                                                            setError( "Name can not be empty!" )
+                                                                        } else if ( surname.trim().length === 0 ) {
+                                                                            setError( "Surname can not be empty!" )
+
+                                                                        } else if ( !email.includes( "bilkent" ) ) {
+                                                                            setError( "Enter valid bilkent mail" +
+                                                                                " adress!" )
+
+                                                                        } else if ( ID.trim().length === 0 ) {
+                                                                            setError( "Id can not be empty!" )
+                                                                        } else if ( password.trim().length <= 6 ) {
+                                                                            setError( "Password should be longer thab" +
+                                                                                " 6 characters!" )
+                                                                        } else {
+                                                                            handleRegisterRequest()
+                                                                        }
+                                                                    } }/> }
             </Grid>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 5000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ success !== '' }
+                autoHideDuration={ 5000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "success" }
+                >
+                    { success }
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

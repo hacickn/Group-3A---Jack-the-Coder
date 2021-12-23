@@ -3,7 +3,7 @@ import Colors from "../utils/Colors";
 import Constants from "../utils/Constants";
 
 /**
- * Bilboard Event Participant Card
+ * Event Participant Card
  * Metehan Saçakçı
  * 
  * 23.12.2021

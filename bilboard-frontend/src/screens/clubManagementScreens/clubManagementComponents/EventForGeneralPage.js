@@ -4,7 +4,12 @@ import Colors from "../../../utils/Colors";
 import BilboardButton from "../../../components/BilboardButton";
 import EventCard from "../../../components/EventCard";
 import EventParticipantsDialog from "../../../components/EventParticipantsDialog";
-import React from 'react'
+import React from 'react';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const useStyles = makeStyles( {
     container: {
@@ -17,6 +22,15 @@ const useStyles = makeStyles( {
 const EventForGeneralPage = ( { event } ) => {
     const [ eventParticipantsDialog, setEventParticipantsDialog ] = React.useState( false )
     const classes = useStyles();
+    const [isLeaveAlertOpen, setIsLeaveAlertOpen] = React.useState(false);
+
+    const handleDeleteEvent = () => {
+        setIsLeaveAlertOpen(true);
+      };
+    
+      const handleCloseAlert = () => {
+        setIsLeaveAlertOpen(false);
+      };
 
     return (
         <div className={ classes.container }>
@@ -37,6 +51,7 @@ const EventForGeneralPage = ( { event } ) => {
                             textColor="white"
                         />
                         <BilboardButton
+                            onClick={() => handleDeleteEvent()}
                             text="Delete"
                             width="75px"
                             font-weight="bold"
@@ -56,6 +71,19 @@ const EventForGeneralPage = ( { event } ) => {
                 </Grid>
 
             </Grid>
+
+            <Dialog open={isLeaveAlertOpen} onClose={handleCloseAlert}>
+                <DialogTitle>{"Delete Event"}</DialogTitle>
+                <DialogContent>
+                <DialogContentText>
+                    Are you sure to delete the event of the club? 
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <BilboardButton onClick={handleCloseAlert} text="Cancel" />
+                <BilboardButton onClick={handleCloseAlert} text="Delete" autoFocus/>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };

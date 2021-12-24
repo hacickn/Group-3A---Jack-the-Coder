@@ -57,6 +57,7 @@ public class UserServiceImp implements UserService {
         userEntity.setPassword( bCryptPasswordEncoder.encode( user.getPassword() ) );
         userEntity.setEmailConfirmationToken( utils.generateEmailVerificationToken( userEntity.getBilkentId() ) );
         userEntity.setEmailConfirmation( false );
+        userEntity.setPhoto( "users/default.png" );
         /*
         if ( !emailService.sendEmail( user.getEmail() , "You can confirm by using this link: \n" +
                 "https://localifyapp.com/confirmation/" + userEntity.getEmailConfirmationToken() , "Confirmation" ) ) {

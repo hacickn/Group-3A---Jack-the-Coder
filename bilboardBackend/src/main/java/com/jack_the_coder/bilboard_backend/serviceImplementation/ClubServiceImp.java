@@ -48,6 +48,8 @@ public class ClubServiceImp implements ClubService {
     public ClubDto createClub ( ClubDto clubDto ) {
         ModelMapper modelMapper = new ModelMapper();
         ClubEntity clubEntity = modelMapper.map( clubDto , ClubEntity.class );
+        clubEntity.setPhoto( "clubs/default.png" );
+
         ClubEntity savedEntity = clubRepository.save( clubEntity );
 
         return modelMapper.map( savedEntity , ClubDto.class );

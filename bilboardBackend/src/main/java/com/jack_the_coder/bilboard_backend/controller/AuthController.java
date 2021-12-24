@@ -36,7 +36,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     /**
      * @apiNote This method is used to sign up a new user.
-     * @param signUpRequest
+     * @param requestModel is a SignUpRequest instance
      * @ return SignUpResponse
      */
     @PostMapping( path = "/signUp" )  // http://localhost:8080/bilboard-app/v1/auth/signUp
@@ -53,7 +53,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     /**
      * @apiNote This method is used to verify email.
-     * @param resetPasswordRequest
+     * @param token is a string
      * @return StatusResponse
      */
     // email verification   http://localhost:8080/auth/emailVerification
@@ -75,7 +75,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     /**
      * @apiNote This method is used to request resetting password.
-     * @param resetPasswordRequest
+     * @param email is a String
      * @return StatusResponse
      */
     // reset passwordRequest    http://localhost:8080/auth/resetPasswordRequest
@@ -97,7 +97,7 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
     /**
      * @apiNote This method is used to reset password.
-     * @param resetPassword
+     * @param requestModel is a ResetPasswordRequest instance
      * @return StatusResponse
      */
     // reset password   http://localhost:8080/auth/resetPassword

@@ -55,6 +55,8 @@ const ClubManagementScreen = ( { currentClubId, program } ) => {
     } else if ( Program.getClub( currentClubId ) !== null && loading ) {
         console.log( Program.getClub( currentClubId ) )
         setLoading( false )
+    } else {
+        console.log( Program.getClub( currentClubId ) )
     }
 
     return (
@@ -105,7 +107,7 @@ const ClubManagementScreen = ( { currentClubId, program } ) => {
             <Grid item xs={ 9 } style={ { padding: 4 } }>
                 { loading ?
                     <CircularProgress/> :
-                    !pageError ?
+                    pageError ?
                         <div> Error </div> :
                         <Card
                             elevation={ 4 }
@@ -116,21 +118,21 @@ const ClubManagementScreen = ( { currentClubId, program } ) => {
                             } }
                         >
                             { openedScreen === "General" ? (
-                                <ClubManagementGeneralScreen/>
+                                <ClubManagementGeneralScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Add Events" ? (
                                 <ClubManagementAddEventScreen/>
                             ) : openedScreen === "Members" ? (
-                                <ClubManagementMembersScreen/>
+                                <ClubManagementMembersScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Membership Requests" ? (
-                                <ClubManagementMembershipRequestsScreen/>
+                                <ClubManagementMembershipRequestsScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Feedbacks" ? (
-                                <ClubManagementFeedbackScreen/>
+                                <ClubManagementFeedbackScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Surveys" ? (
-                                <ClubManagementSurveyScreen/>
+                                <ClubManagementSurveyScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Club Hierarchy" ? (
-                                <ClubManagementHierarchyScreen/>
+                                <ClubManagementHierarchyScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Sponsors" ? (
-                                <ClubManagementSponsorScreen/>
+                                <ClubManagementSponsorScreen club={ Program.getClub( currentClubId ) }/>
                             ) : (
                                 <div/>
                             ) }

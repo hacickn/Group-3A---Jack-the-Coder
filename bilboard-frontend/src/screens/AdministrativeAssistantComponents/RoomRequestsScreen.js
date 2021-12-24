@@ -1,7 +1,7 @@
 import {Grid} from "@mui/material";
-import BilboardNavbar from "../components/BilboardNavbar";
-import BilboardRoomRequest from "../components/BilboardRoomRequest";
-import Constants from "../utils/Constants";
+import BilboardNavbar from "../../components/BilboardNavbar";
+import BilboardRoomRequest from "../../components/BilboardRoomRequest";
+import Constants from "../../utils/Constants";
 
 /**
  * Room Requests Screen

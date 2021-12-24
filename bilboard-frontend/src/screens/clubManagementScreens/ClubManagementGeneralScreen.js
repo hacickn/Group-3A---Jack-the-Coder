@@ -26,7 +26,7 @@ const ClubManagementGeneralScreen = ( { club } ) => {
             <Grid container style={ { maxHeight: "300px" } }>
                 <Grid item xs={ 5 }>
                     <img
-                        src={ AboutImage }
+                        src={ process.env.REACT_APP_IMAGE_URL + club.photo }
                         alt="clubImage"
                         style={ { width: "320px", marginBottom: "-10%", marginTop: "-5%" } }
                     />

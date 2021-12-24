@@ -8,7 +8,7 @@ import BilboardNavbar from "../components/BilboardNavbar";
 import AboutScreen from "./AboutScreen";
 import InitialScreen from "./InitialScreen";
 import AdminScreen from "./AdminScreensComponents/AdminScreen";
-import AdministrativeAssistantScreen from "./AdministrativeAssistantComponents/AdministrativeAssistantScreen";
+import AdministrativeAssistantScreen from "./AdministrativeAssistantScreen";
 import { CircularProgress } from "@mui/material";
 import React from 'react';
 

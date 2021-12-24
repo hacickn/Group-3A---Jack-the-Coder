@@ -1,19 +1,19 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import Colors from "../utils/Colors";
-import Constants from "../utils/Constants";
+import Colors from "../../utils/Colors";
+import Constants from "../../utils/Constants";
 import { Card } from "@mui/material";
-import BilboardButton from "../components/BilboardButton";
+import BilboardButton from "../../components/BilboardButton";
 import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import clsx from "clsx";
 import LogoutIcon from "@mui/icons-material/Logout";
-import CreateBuildingScreen from "./AdministrativeAssistantComponents/CreateBuildingScreen";
-import CreateClassroomScreen from "./AdministrativeAssistantComponents/CreateClassroomScreen";
-import CreateClassroomDayScreen from "./AdministrativeAssistantComponents/CreateClassroomDayScreen";
-import ManageRequestsScreen from "./AdministrativeAssistantComponents/ManageRequestsScreen";
+import CreateBuildingScreen from "./CreateBuildingScreen";
+import CreateClassroomScreen from "./CreateClassroomScreen";
+import CreateClassroomDayScreen from "./CreateClassroomDayScreen";
+import RoomRequestScreen from "./RoomRequestsScreen";
 
 const useStyles = makeStyles({
   root: {
@@ -41,8 +41,8 @@ const useStyles = makeStyles({
 
 const AdministrativeAssistantScreen = () => {
   const classes = useStyles();
-  const pages = ["Create Building", "Create Classroom", "Create Classroom Day", "Manage Requests"];
-  const [openedScreen, setOpenedScreen] = React.useState("Create Building");
+  const pages = ["Create Building", "Create Classroom", "Classroom Slot Addition", "Manage Requests"];
+  const [openedScreen, setOpenedScreen] = React.useState("Manage Requests");
   const handleLogOut = () => {};
 
   return (
@@ -135,10 +135,10 @@ const AdministrativeAssistantScreen = () => {
               <CreateBuildingScreen />
             ) : openedScreen === "Create Classroom" ? (
               <CreateClassroomScreen />
-            ) : openedScreen === "Create Classroom Day" ? (
+            ) : openedScreen === "Classroom Slot Addition" ? (
               <CreateClassroomDayScreen />
             ) : openedScreen === "Manage Requests" ? (
-                <ManageRequestsScreen />) : <div/>}
+                <RoomRequestScreen />) : <div/>}
           </Card>
           </Grid>
         </Grid>

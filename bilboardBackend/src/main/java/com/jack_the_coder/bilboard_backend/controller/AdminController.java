@@ -6,6 +6,7 @@ import com.jack_the_coder.bilboard_backend.model.OperationStatus;
 import com.jack_the_coder.bilboard_backend.model.StatusResponse;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClubRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateUniversityRequest;
+import com.jack_the_coder.bilboard_backend.model.responseModel.AdminClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.CreateClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.CreateUniversityResponse;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
@@ -17,6 +18,9 @@ import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Hacı Çakın
@@ -41,9 +45,9 @@ public class AdminController {
     UserService userService;
 
     /**
-     * @apiNote This method creates a club.
      * @param createClubRequest
      * @return CreateClubResponse
+     * @apiNote This method creates a club.
      */
     @PostMapping( path = "/createClub" )
     public CreateClubResponse createClub ( @RequestBody CreateClubRequest createClubRequest ) {
@@ -58,9 +62,9 @@ public class AdminController {
     }
 
     /**
-     * @apiNote This method creates a university.
      * @param createUniversityRequest
      * @return
+     * @apiNote This method creates a university.
      */
     @PostMapping( path = "/createUniversity" )
     public CreateUniversityResponse createUniversity ( @RequestBody CreateUniversityRequest createUniversityRequest ) {
@@ -71,11 +75,10 @@ public class AdminController {
     }
 
     /**
-     * @apiNote This method assigns president to a club.
-     * @param operationName
-     * @param clubName
-     * @param userName
+     * @param clubId is a long
+     * @param userId is a long
      * @return StatusResponse
+     * @apiNote This method assigns president to a club.
      */
     @PostMapping( path = "/president" )
     public StatusResponse assignPresident ( @RequestParam( value = "clubId" ) long clubId ,
@@ -96,11 +99,10 @@ public class AdminController {
     }
 
     /**
-     * @apiNote This method assigns advisor to a club.
-     * @param operationName
-     * @param clubName
-     * @param userName
+     * @param clubId is a long
+     * @param userId is a long
      * @return StatusResponse
+     * @apiNote This method assigns advisor to a club.
      */
     @PostMapping( path = "/advisor" )
     public StatusResponse assignAdvisor ( @RequestParam( value = "clubId" ) long clubId ,
@@ -118,4 +120,17 @@ public class AdminController {
 
         return statusResponse;
     }
+
+
+    @GetMapping( path = "/clubs" )
+    public List<AdminClubResponse> getClubs () {
+        ModelMapper modelMapper = new ModelMapper();
+        List<AdminClubResponse> clubResponseList = new ArrayList<>();
+        clubService.searchClub( "" ).forEach( clubDto -> {
+            clubResponseList.add( modelMapper.map( clubDto , AdminClubResponse.class ) );
+        } );
+
+        return clubResponseList;
+    }
+
 }

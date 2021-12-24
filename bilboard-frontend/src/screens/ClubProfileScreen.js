@@ -15,12 +15,27 @@ import Env from "../utils/Env";
 import axios from "axios";
 import { Snackbar } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import BilboardButton from "../components/BilboardButton";
 
 const ClubManagementGeneralScreen = ( { image } ) => {
     const [ isLeaveFeedbackDialogOpen, setIsLeaveFeedbackDialogOpen ] = React.useState( false );
     const [ isMemberOfClub, setIsMemberOfClub ] = React.useState( false );
     const [ error, setError ] = React.useState( "" )
     const [ success, setSuccess ] = React.useState( "" )
+    const [isLeaveAlertOpen, setIsLeaveAlertOpen] = React.useState(false);
+
+    const handleSendMembershipRequest = () => {
+        setIsLeaveAlertOpen(true);
+    };
+
+    const handleCloseAlert = () => {
+        setIsLeaveAlertOpen(false);
+    };
 
     function handleFeedbackSend( content ) {
         let headers = {
@@ -89,6 +104,7 @@ const ClubManagementGeneralScreen = ( { image } ) => {
                     <div></div>
                     { !isMemberOfClub ? (
                             <Button
+                                onClick={() => handleSendMembershipRequest()}
                                 variant="contained"
                                 startIcon={ <LoyaltyIcon/> }
                                 style={ {
@@ -229,6 +245,18 @@ const ClubManagementGeneralScreen = ( { image } ) => {
                     { success }
                 </Alert>
             </Snackbar>
+            <Dialog open={isLeaveAlertOpen} onClose={handleCloseAlert}>
+                <DialogTitle>{"Send Membership Request"}</DialogTitle>
+                <DialogContent>
+                <DialogContentText>
+                    Are you sure to send a membership to the club? 
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <BilboardButton onClick={handleCloseAlert} text="Cancel" />
+                <BilboardButton onClick={handleCloseAlert} text="Send Request" autoFocus/>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };

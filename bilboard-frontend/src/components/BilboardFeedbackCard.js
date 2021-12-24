@@ -12,7 +12,7 @@ import BilboardButton from "./BilboardButton";
  * 18.11.2021
  */
 
-const BilboardFeedbackCard = ( props ) => {
+const BilboardFeedbackCard = ( { feedback } ) => {
 
     return (
         <Grid container
@@ -46,7 +46,7 @@ const BilboardFeedbackCard = ( props ) => {
                             display: "flex",
                             justifyContent: "start",
                         } }>
-                            at { props.feedback.feedbackDate }
+                            at { new Date( feedback.date ).toLocaleString() }
                         </Grid>
                     </Grid>
 
@@ -58,7 +58,7 @@ const BilboardFeedbackCard = ( props ) => {
                         minHeight: "100px",
                         textAlign: "start",
                     } }>
-                        { props.feedback.feedbackText }
+                        { feedback.content }
                     </Grid>
                 </Grid>
             </Grid>

@@ -1,14 +1,18 @@
-import {Grid, IconButton} from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import React from 'react';
 import Constants from "../../utils/Constants";
 import BilboardButton from "../../components/BilboardButton";
 import BilboardTextField from "../../components/BilboardTextField";
 import SponsorCard from "./clubManagementComponents/SponsorCard";
 import Colors from "../../utils/Colors";
-import {AddOutlined, Image} from "@mui/icons-material";
+import { AddOutlined, Image } from "@mui/icons-material";
 
-const ClubManagementSponsorScreen = (props) => {
+const ClubManagementSponsorScreen = ( { club } ) => {
+    const [ sponsorships, setSponsorships ] = React.useState( [] )
 
+    if ( sponsorships.length === 0 && club.clubSponsorships.length !== 0 ) {
+        setSponsorships( [ ...club.clubSponsorships ] )
+    }
     const sponsorList = [
         {
             name: "Garanti",
@@ -85,43 +89,43 @@ const ClubManagementSponsorScreen = (props) => {
     ]
 
     return <Grid container
-                 style={{margin: 0, padding: 10, borderRadius: Constants.BORDER_RADIUS}}>
-        <Grid style={{
+                 style={ { margin: 0, padding: 10, borderRadius: Constants.BORDER_RADIUS } }>
+        <Grid style={ {
             fontFamily: Constants.OXYGEN_FONT_FAMILY,
             fontSize: 48,
             paddingBottom: 20,
-        }} item xs={12}>
+        } } item xs={ 12 }>
             Sponsors
         </Grid>
-        <Grid container style={{maxHeight: "60vh", overflowY: "scroll"}}>
-            {sponsorList.map(sponsor => {
-                return <SponsorCard sponsor={sponsor}/>
-            })}
+        <Grid container style={ { maxHeight: "60vh", overflowY: "scroll" } }>
+            { sponsorships.map( sponsor => {
+                return <SponsorCard sponsor={ sponsor }/>
+            } ) }
         </Grid>
-        <Grid container style={{
+        <Grid container style={ {
             marginTop: 20,
-            height:"10vh",
+            height: "10vh",
             padding: 12,
             borderRadius: Constants.BORDER_RADIUS,
             alignItems: "center",
             background: Colors.BILBOARD_MAIN_ALTERNATIVE
-        }}>
-            <Grid item xs={1}>
+        } }>
+            <Grid item xs={ 1 }>
                 <IconButton>
-                    <Image style={{color: Colors.BILBOARD_MAIN}}/>
+                    <Image style={ { color: Colors.BILBOARD_MAIN } }/>
                 </IconButton>
             </Grid>
-            <Grid item xs={3}>
-                <BilboardTextField width={"14vw"} label={"Name"}/>
+            <Grid item xs={ 3 }>
+                <BilboardTextField width={ "14vw" } label={ "Name" }/>
             </Grid>
-            <Grid item xs={3}>
-                <BilboardTextField width={"14vw"} label={"Amount"}/>
+            <Grid item xs={ 3 }>
+                <BilboardTextField width={ "14vw" } label={ "Amount" }/>
             </Grid>
-            <Grid item xs={3}>
-                <BilboardTextField width={"14vw"} label={"Type"}/>
+            <Grid item xs={ 3 }>
+                <BilboardTextField width={ "14vw" } label={ "Type" }/>
             </Grid>
-            <Grid item xs={2}>
-                <BilboardButton text={"Add"} width={"8vw"}/>
+            <Grid item xs={ 2 }>
+                <BilboardButton text={ "Add" } width={ "8vw" }/>
             </Grid>
         </Grid>
     </Grid>

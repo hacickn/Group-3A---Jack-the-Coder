@@ -12,83 +12,8 @@ import React from 'react'
  * 17.11.2021
  */
 
-const ClubManagementSurveyScreen = () => {
+const ClubManagementSurveyScreen = ({club}) => {
     const [ addSurveyDialog, setAddSurveyDialog ] = React.useState( false )
-
-    const surveyCardsList = [
-
-        {
-            surveyQuestion: "What will o will our next event be What will our next event be? ",
-            endDate: "28 Oct 2021",
-            voteCount: 25,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 1125,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 125,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 225,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 425,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 125,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 325,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 2,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 5,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 125,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 215,
-        },
-
-        {
-            surveyQuestion: "What will our next event be?",
-            endDate: "28 Oct 2021",
-            voteCount: 225,
-        },
-    ]
 
     return (
         <Grid container style={ {
@@ -100,7 +25,7 @@ const ClubManagementSurveyScreen = () => {
                 fontSize: 48,
                 paddingBottom: 20,
             } } item xs={ 12 }>
-                Active Surveys
+                Surveys
             </Grid>
 
             <Grid container style={ {
@@ -117,7 +42,7 @@ const ClubManagementSurveyScreen = () => {
                 paddingBottom: "10px",
                 marginTop: "10px",
             } }>
-                { surveyCardsList.map( survey => <SurveyCard survey={ survey }/> ) }
+                { club.surveys.map( survey => <div style={{padding:4}}><SurveyCard survey={ survey }/></div> ) }
             </Grid>
 
             <Grid item xs={ 12 } style={ {

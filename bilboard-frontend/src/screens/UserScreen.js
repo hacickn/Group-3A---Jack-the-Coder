@@ -28,7 +28,6 @@ const useStyles = makeStyles( {
 } );
 
 const UserScreen = ( { image, setScreenNoNavbar, signOut, program } ) => {
-    console.log( program )
     const [ geStatus, setGeStatus ] = React.useState( null )
     const [ submitted, setSubmitted ] = React.useState( false )
     const [ name, setName ] = React.useState( null )

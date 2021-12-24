@@ -30,7 +30,6 @@ function App() {
 
                  if ( response.status === 200 ) {
                      setProgram( response.data )
-                     console.log( response.data )
                      setFailed( false )
                  } else {
                      setProgram( null )

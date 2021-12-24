@@ -18,7 +18,6 @@ export default function ResetPasswordScreen() {
   }, [newPassword, confirmPassword]);
 
   const handleResetPassword = () => {
-    console.log(newPassword)
   }
 
   return (

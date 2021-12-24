@@ -53,10 +53,8 @@ const ClubManagementScreen = ( { currentClubId, program } ) => {
     if ( Program.getClub( currentClubId ) === undefined ) {
         handleClubResponse( currentClubId )
     } else if ( Program.getClub( currentClubId ) !== null && loading ) {
-        console.log( Program.getClub( currentClubId ) )
         setLoading( false )
     } else {
-        console.log( Program.getClub( currentClubId ) )
     }
 
     return (

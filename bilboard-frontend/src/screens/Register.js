@@ -29,7 +29,6 @@ const Register = () => {
             "university": "1"
         } )
              .then( function ( response ) {
-                 console.log( response.status )
                  setName( "" )
                  setSurname( "" )
                  setEmail( "" )

@@ -53,8 +53,9 @@ const BilboardSurveyCard = ( props ) => {
                 </Grid>
                 <Grid item xs>
                     <BilboardButton
+                        disabled={props.voted}
                         onClick={ () => setVoteToQuestionDialog( true ) }
-                        width="160px" height="40px" fontSize="16px" text="Vote"
+                        width="160px" height="40px" fontSize="16px" text={props.voted ? "Completed" : "Vote" }
                     />
                 </Grid>
             </Grid>

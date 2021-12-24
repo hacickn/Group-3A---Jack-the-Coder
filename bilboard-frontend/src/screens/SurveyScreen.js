@@ -11,73 +11,7 @@ import BilboardSurveyCard from "../components/BilboardSurveyCard";
 
 const SurveyScreen = ( props ) => {
 
-    const surveyList = [
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-
-        {
-            photo: "https://upload.wikimedia.org//wikipedia/commons/thumb/2/21/IEEE_logo.svg/1200px-IEEE_logo.svg.png",
-            question: "What will our next event be?"
-        },
-    ]
-
+    console.log( props.program.surveyParticipants )
 
     return (
         <Grid container
@@ -95,6 +29,7 @@ const SurveyScreen = ( props ) => {
             <Grid container xs={ 12 } style={ { height: '79vh', overflowY: "scroll", alignContent: "start" } }>
                 { props.program.surveyParticipants.map( surveyParticipants =>
                     <Grid item xs={ 12 }><BilboardSurveyCard
+                        voted={ surveyParticipants.voted }
                         survey={ surveyParticipants.survey }/>
                     </Grid> ) }
             </Grid>

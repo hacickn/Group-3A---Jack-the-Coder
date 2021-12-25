@@ -53,7 +53,7 @@ const ClubManagementSurveyScreen = ({club}) => {
                 } } width="220px" fontSize="14px"
                                 text="Add Survey"/>
             </Grid>
-            <AddSurveyDialog open={ addSurveyDialog } setOpen={ ( val ) => setAddSurveyDialog( val ) }/>
+            <AddSurveyDialog club={club} open={ addSurveyDialog } setOpen={ ( val ) => setAddSurveyDialog( val ) }/>
         </Grid>
 
     )

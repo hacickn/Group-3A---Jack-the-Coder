@@ -18,19 +18,23 @@ const useStyles = makeStyles( {
 
 const RequestedMembership = ( { requestId, name, surname, ID } ) => {
     const classes = useStyles();
-    const [error, setError] = React.useState("")
+    const [ error, setError ] = React.useState( "" )
 
-    function handleEnrollRequest(status) {
+    function handleEnrollRequest( status ) {
         let headers = {
             "Content-Type": "application/json",
             'Authorization': "Bearer " + Env.TOKEN,
         };
 
-        axios.post(process.env.REACT_APP_URL + "club/enrollment/respond?enrollmentId=" + requestId + "&status=" + status, {}, {headers:headers})
-            .then(function (response) {
-                console.log(response)
-            })
-            .catch( function (error) {setError("Something went wrong!")})
+        axios.post(
+            process.env.REACT_APP_URL + "club/enrollment/respond?enrollmentId=" + requestId + "&status=" + status, {},
+            { headers: headers } )
+             .then( function ( response ) {
+                 console.log( response )
+             } )
+             .catch( function ( error ) {
+                 setError( "Something went wrong!" )
+             } )
     }
 
     return (
@@ -48,7 +52,7 @@ const RequestedMembership = ( { requestId, name, surname, ID } ) => {
                 </Grid>
                 <Grid item xs={ 5 } style={ { marginTop: "20px" } }>
                     <BilboardButton
-                        onClick={() => handleEnrollRequest("accepted")}
+                        onClick={ () => handleEnrollRequest( "accepted" ) }
                         text="A"
                         width="60px"
                         fontSize={ 20 }
@@ -56,7 +60,7 @@ const RequestedMembership = ( { requestId, name, surname, ID } ) => {
                         textColor="white"
                     />
                     <BilboardButton
-                        onClick={() => handleEnrollRequest("pending")}
+                        onClick={ () => handleEnrollRequest( "pending" ) }
                         text="P"
                         width="60px"
                         fontSize={ 20 }
@@ -64,7 +68,7 @@ const RequestedMembership = ( { requestId, name, surname, ID } ) => {
                         textColor="white"
                     />
                     <BilboardButton
-                        onClick={() => handleEnrollRequest("denied")}
+                        onClick={ () => handleEnrollRequest( "denied" ) }
                         text="R"
                         width="60px"
                         fontSize={ 20 }

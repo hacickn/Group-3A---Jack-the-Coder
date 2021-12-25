@@ -22,7 +22,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const EventCard = ( { event, setCurrentScreen, setCurrentEvent, fromBoardMember } ) => {
+const EventCard = ( { event, setCurrentScreen, setCurrentEvent, currentEvent ,fromBoardMember } ) => {
     const classes = useStyles();
     const [ visible, setVisible ] = useState( true );
 

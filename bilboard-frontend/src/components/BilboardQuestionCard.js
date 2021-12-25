@@ -25,8 +25,7 @@ const BilboardQuestionCard = ( { question } ) => {
                   style={ {
                       marginBottom: 5,
                       marginTop: 5,
-                      marginLeft: 24,
-                      marginRight: 24,
+
                       paddingTop: 20,
                       paddingBottom: 20,
                       borderRadius: Constants.BORDER_RADIUS,
@@ -39,24 +38,24 @@ const BilboardQuestionCard = ( { question } ) => {
                         <Grid container
                               style={ { alignItems: "end", display: "flex", justifyContent: "space-between" } }>
                             <Grid item xs={ 12 } style={ {
-                                fontSize: 24,
+                                fontSize: 20,
                                 textAlign: "start",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             } }>
-                                Q: { question.content }
+                                Q: { question.question }
                             </Grid>
 
-                        </Grid>
 
-                        <Grid item xs={ 12 } style={ {
-                            fontSize: 15,
-                            fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                            marginTop: 25,
+                            { question.answer !== null && <Grid item xs={ 12 } style={ {
+                                fontSize: 20,
+                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                marginTop: 25,
 
-                            minHeight: "60px",
-                            textAlign: "start",
-                        } }>
-
+                                minHeight: "60px",
+                                textAlign: "start",
+                            } }>
+                                A: { question.answer }
+                            </Grid> }
                         </Grid>
                     </Grid>
                 </Grid>
@@ -66,11 +65,11 @@ const BilboardQuestionCard = ( { question } ) => {
                         justifyContent: "center",
                         margin: "20px"
                     } }>
-                        <Grid item xs={ 12 } style={ { paddingBottom: 14 } }>
-                            <BilboardButton
+                        <Grid item xs={ 12 }>
+                            { question.answer === null && <BilboardButton
                                 onClick={ () => setAnswerDialog( true ) }
                                 text={ "Answer" } width={ "200px" } fontSize={ "14px" }
-                                color={ Colors.BILBOARD_MAIN }/>
+                                color={ Colors.BILBOARD_MAIN }/> }
                         </Grid>
                     </Grid>
                 </Grid>

@@ -76,7 +76,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
 
         return status
     }
-
+    console.log(currentEvent)
 
     return (
 
@@ -101,7 +101,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
 
                                 } }>
                                 <div style={ {
-                                    fontSize: "30px",
+                                    fontSize: "24px",
                                     fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 } }>{ currentEvent.title }
                                 </div>
@@ -124,7 +124,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                 fontSize: "80%",
                             } }>
                             <div style={ {
-                                fontSize: "30px",
+                                fontSize: "40px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             } }>{ currentEvent.club.name }
                             </div>
@@ -137,13 +137,13 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                 display: "flex",
                                 justifyContent: "left",
                                 alignItems: "left",
-                                fontSize: "40%",
+                                fontSize: "24px",
 
                             } }>
                             <div style={ {
                                 fontSize: "30px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                            } }>No.of
+                            } }>Participant Limit { currentEvent.eventParticipants.length }/ {currentEvent.maxParticipationCount}
                             </div>
 
 

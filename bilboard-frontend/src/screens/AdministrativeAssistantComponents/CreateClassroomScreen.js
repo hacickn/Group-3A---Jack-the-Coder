@@ -8,10 +8,13 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import React from "react";
+import Env from "../../utils/Env";
+import axios from "axios";
 
 const CreateClassroomScreen = () => {
   const [building, setBuilding] = React.useState("");
   const [classroom, setClassroom] = React.useState("");
+  const [capacity, setCapacity] = React.useState(0);
 
   const handleBuildingSelect = (e) => {
     setBuilding(e.target.value);
@@ -23,6 +26,23 @@ const CreateClassroomScreen = () => {
 
   const handleAddButton = () => {
     console.log(building, classroom)
+
+    let headers = {
+      "Content-Type": "application/json",
+      'Authorization': "Bearer " + Env.TOKEN,
+    };
+
+    axios.post(process.env.REACT_APP_URL + 'reservation/classroom', {
+      "name": classroom,
+      "capacity": capacity,
+      "building": 50
+    }, {headers: headers})
+    .then(function(response) {
+      console.log(response);
+    }) 
+    .catch( function(error) {
+      console.log(error);
+    })
   }
   return (
     <div style={{ height: "70vh", display: "flex", alignItems: "center" }}>
@@ -71,6 +91,19 @@ const CreateClassroomScreen = () => {
               <MenuItem value={"Building3"}>Building3</MenuItem>
             </Select>
           </FormControl>
+        </Grid>
+        <Grid item xs={12} style={{marginTop: "20px",
+              display: "flex",
+              justifyContent: "center",
+              }}>
+              <BilboardTextField
+                  label="Capacity"
+                  type="capacity"
+                  value={capacity}
+                  onChange={(e) => setCapacity(e.target.value)}
+                  width="300px"
+                  style={{marginTop: "30px"}}
+              />
         </Grid>
 
         {building !== "" && (

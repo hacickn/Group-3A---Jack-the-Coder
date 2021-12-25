@@ -69,8 +69,8 @@ const ScreensInNavbar = ( {
                             </div>
                         </div> :
                         program.type === "admin" ?
-                            <AdminScreen/> :
-                            <AdministrativeAssistantScreen/> }
+                            <AdminScreen signOut={ () => singOut() }/> :
+                            <AdministrativeAssistantScreen signOut={ () => singOut() }/> }
         </div>
     );
 };

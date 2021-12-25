@@ -14,6 +14,7 @@ import CreateBuildingScreen from "./CreateBuildingScreen";
 import CreateClassroomScreen from "./CreateClassroomScreen";
 import CreateClassroomDayScreen from "./CreateClassroomDayScreen";
 import RoomRequestScreen from "./RoomRequestsScreen";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -39,11 +40,15 @@ const useStyles = makeStyles({
   },
 });
 
-const AdministrativeAssistantScreen = () => {
+const AdministrativeAssistantScreen = ({signOut,setScreenNoNavbar}) => {
   const classes = useStyles();
   const pages = ["Create Building", "Create Classroom", "Classroom Slot Addition", "Manage Requests"];
-  const [openedScreen, setOpenedScreen] = React.useState("Manage Requests");
-  const handleLogOut = () => {};
+  const [openedScreen, setOpenedScreen] = React.useState("Manage Requests")
+
+  const handleLogOut = () => {
+    signOut()
+    setScreenNoNavbar( "login" )
+  };
 
   return (
     <div className={classes.root}>
@@ -147,4 +152,11 @@ const AdministrativeAssistantScreen = () => {
   );
 };
 
-export default AdministrativeAssistantScreen;
+const mapDispatchToProps = ( dispatch ) => {
+  return {
+    setScreenNoNavbar: ( value ) => dispatch( { type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value } )
+  }
+}
+
+export default connect( null, mapDispatchToProps )( AdministrativeAssistantScreen );
+

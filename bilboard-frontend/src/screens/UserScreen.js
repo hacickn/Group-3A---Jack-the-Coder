@@ -27,7 +27,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const UserScreen = ( { image, setScreenNoNavbar, signOut, program } ) => {
+const UserScreen = ( { setScreenNoNavbar, signOut, program } ) => {
     const [ geStatus, setGeStatus ] = React.useState( null )
     const [ submitted, setSubmitted ] = React.useState( false )
     const [ name, setName ] = React.useState( null )
@@ -225,7 +225,8 @@ const UserScreen = ( { image, setScreenNoNavbar, signOut, program } ) => {
                                         float: "left",
                                     } }
                                 >
-                                    Followed Clubs
+                                    Club Memberships{ program.clubMemberShips.length === 0 && " (You do not have any" +
+                                " membership)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>

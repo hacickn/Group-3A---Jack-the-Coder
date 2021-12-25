@@ -118,7 +118,7 @@ const ClubManagementScreen = ( { currentClubId, program } ) => {
                             { openedScreen === "General" ? (
                                 <ClubManagementGeneralScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Add Events" ? (
-                                <ClubManagementAddEventScreen/>
+                                <ClubManagementAddEventScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Members" ? (
                                 <ClubManagementMembersScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Membership Requests" ? (

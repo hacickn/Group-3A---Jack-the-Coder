@@ -27,7 +27,7 @@ public class EventEntity implements Serializable {
     @Column( name = "title", length = 45, nullable = false )
     private String title;
 
-    @Column( name = "description", length = 400, nullable = false )
+    @Column( name = "description", length = 800, nullable = false )
     private String description;
 
     @Column( name = "date", nullable = false )

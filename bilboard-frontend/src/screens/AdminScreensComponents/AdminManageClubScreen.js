@@ -3,28 +3,75 @@ import Colors from "../../utils/Colors";
 import BilboardButton from "../../components/BilboardButton";
 import BilboardTextField from "../../components/BilboardTextField";
 import React from "react";
-import { CircularProgress, TextField } from "@mui/material";
+import { CircularProgress, Snackbar, TextField } from "@mui/material";
 import Constants from "../../utils/Constants";
 import Env from "../../utils/Env";
 import { Autocomplete } from "@mui/lab";
+import axios from "axios";
+import Alert from "@mui/material/Alert";
 
-const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => {
+const AdminManageClubScreen = ( {  allClubs, getClubs, clubLoading, setClub } ) => {
     const [ currentClub, setCurrentClub ] = React.useState( null )
     const [ searchOpen, setSearchOpen ] = React.useState( false )
     const [ searchOpenForAdvisor, setSearchOpenForAdvisor ] = React.useState( false )
-
     const [ options, setOptions ] = React.useState( [] );
     const [ optionsForAdvisor, setOptionsForAdvisor ] = React.useState( [] );
     const loading = searchOpen && options.length === 0;
     const loadingForAdvisor = searchOpenForAdvisor && optionsForAdvisor.length === 0;
-
-
     const [ newAdvisor, setNewAdvisor ] = React.useState( "" )
     const [ newPresident, setNewPresident ] = React.useState( "" )
-
+    const [ error, setError ] = React.useState( '' )
+    const [ success, setSuccess ] = React.useState( '' )
+    const [ submitted, setSubmitted ] = React.useState( false )
 
     if ( allClubs === null ) {
         getClubs()
+    }
+
+    function handlePresidentAndAdvisorChange() {
+        setSubmitted( true )
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+
+        axios.post(
+            process.env.REACT_APP_URL + "admin/president?clubId=" + currentClub.id + "&userId=" + newPresident.id,
+            {}, { headers: headers } )
+             .then( function ( presidentResponse ) {
+                 if ( presidentResponse.status === 200 ) {
+                     axios.post( process.env.REACT_APP_URL + "admin/advisor?clubId=" + currentClub.id + "&userId=" +
+                         newAdvisor.id, {}, { headers: headers } )
+                          .then( function ( advisorResponse ) {
+                              if ( advisorResponse.status === 200 ) {
+                                  setSuccess( "Advisor and President is updated!" )
+                                  let tempClub = { ...currentClub }
+                                  tempClub.advisor = newAdvisor
+                                  tempClub.president = newPresident
+                                  setCurrentClub( tempClub )
+                                  setClub( newAdvisor, newPresident, currentClub.id )
+                                  setSubmitted( false )
+                              } else {
+                                  setSubmitted( false )
+                                  setError( "Something went wrong!" )
+                              }
+
+                          } )
+                          .catch( function ( error ) {
+                              setSubmitted( false )
+                              setError( "Something went wrong!" )
+                          } )
+                 } else {
+                     setSubmitted( false )
+                     setError( "Something went wrong!" )
+                 }
+             } )
+             .catch( function ( error ) {
+                 setError( "Something went wrong!" )
+                 setSubmitted( false )
+             } )
+
+
     }
 
 
@@ -36,17 +83,18 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
 
         ( async () => {
 
-            const response = await fetch( process.env.REACT_APP_URL + 'user/search?name=' + newPresident + '&type=student', {
-                method: 'GET', headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': 'Bearer ' + Env.TOKEN
-                }
-            }, )
+            const response = await fetch(
+                process.env.REACT_APP_URL + 'user/search?name=' + newPresident + '&type=student', {
+                    method: 'GET', headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': 'Bearer ' + Env.TOKEN
+                    }
+                }, )
 
             const temp = await response.json();
 
             if ( active ) {
-                setOptions( [...temp].map( ( user ) => {
+                setOptions( [ ...temp ].map( ( user ) => {
                     return user
                 } ) );
             }
@@ -72,17 +120,18 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
 
         ( async () => {
 
-            const response = await fetch( process.env.REACT_APP_URL + 'user/search?name=' + newAdvisor + '&type=academic', {
-                method: 'GET', headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': 'Bearer ' + Env.TOKEN
-                }
-            }, )
+            const response = await fetch(
+                process.env.REACT_APP_URL + 'user/search?name=' + newAdvisor + '&type=academic', {
+                    method: 'GET', headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': 'Bearer ' + Env.TOKEN
+                    }
+                }, )
 
             const temp = await response.json();
 
             if ( active ) {
-                setOptionsForAdvisor( [...temp].map( ( user ) => {
+                setOptionsForAdvisor( [ ...temp ].map( ( user ) => {
                     return user
                 } ) );
             }
@@ -143,6 +192,61 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
                                     <Grid item xs={ 12 } style={ { fontSize: "34px", marginTop: "40px" } }>
                                         { currentClub.name }
                                     </Grid>
+                                    <Grid item xs={ 12 } style={ { marginTop: "20px" } }>
+                                        <Grid container>
+                                            <Grid item xs={ 6 }>
+                                                <div
+                                                    style={ {
+                                                        marginTop: "12px",
+                                                        fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                                        fontSize: "14px",
+                                                        fontWeight: "bolder",
+                                                    } }
+                                                >
+                                                    Club Advisor:
+                                                </div>
+                                            </Grid>
+                                            <Grid item xs={ 4 }
+                                                  style={ {
+                                                      marginTop: "12px",
+                                                      fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                                      fontSize: "14px",
+                                                      fontWeight: "bolder",
+                                                  } }>
+                                                { currentClub.advisor !== null ?
+                                                    currentClub.advisor.name + " " + currentClub.advisor.surname +
+                                                    " " + currentClub.advisor.bilkentId : "Empty" }
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid item xs={ 12 } style={ { marginTop: "10px" } }>
+                                        <Grid container>
+                                            <Grid item xs={ 6 }>
+                                                <div
+                                                    style={ {
+                                                        marginTop: "12px",
+                                                        fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                                        fontSize: "14px",
+                                                        fontWeight: "bolder",
+                                                    } }
+                                                >
+                                                    Club President:
+                                                </div>
+                                            </Grid>
+                                            <Grid item xs={ 4 } style={ {
+                                                marginTop: "12px",
+                                                fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                                fontSize: "14px",
+                                                fontWeight: "bolder",
+                                            } }>
+                                                { currentClub.president !== null ?
+                                                    currentClub.president.name + " " + currentClub.president.surname +
+                                                    " " + currentClub.president.bilkentId : "Empty" }
+
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
                                     <Grid item xs={ 12 } style={ { marginTop: "40px" } }>
                                         <Grid container>
                                             <Grid item xs={ 6 }>
@@ -154,7 +258,7 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
                                                         fontWeight: "bolder",
                                                     } }
                                                 >
-                                                    Club Advisor:
+                                                    New Club Advisor:
                                                 </div>
                                             </Grid>
                                             <Grid item xs={ 4 }>
@@ -189,8 +293,9 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
                                                                 ...params.InputProps,
                                                                 endAdornment: (
                                                                     <React.Fragment>
-                                                                        { loadingForAdvisor ? <CircularProgress color="inherit"
-                                                                                                      size={ 20 }/> :
+                                                                        { loadingForAdvisor ?
+                                                                            <CircularProgress color="inherit"
+                                                                                              size={ 20 }/> :
                                                                             null }
                                                                         { params.InputProps.endAdornment }
                                                                     </React.Fragment>
@@ -214,7 +319,7 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
                                                         fontWeight: "bolder",
                                                     } }
                                                 >
-                                                    Club President:
+                                                    New Club President:
                                                 </div>
                                             </Grid>
                                             <Grid item xs={ 4 }>
@@ -264,13 +369,39 @@ const AdminManageClubScreen = ( { clubs, allClubs, getClubs, clubLoading } ) => 
                                     </Grid>
 
                                     <Grid item xs={ 12 } style={ { marginTop: "60px" } }>
-                                        <BilboardButton text="Save" width="100px" fontSize="16px"/>
+                                        { submitted ? <CircularProgress/> :
+                                            <BilboardButton onClick={ () => handlePresidentAndAdvisorChange() }
+                                                            text="Save" width="100px" fontSize="16px"/> }
                                     </Grid>
                                 </Grid>
                             ) }
                         </div>
                     </Grid>
                 </Grid> }
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ success !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setSuccess( '' ) }
+            >
+                <Alert onClose={ () => setSuccess( '' ) }
+                       severity={ "success" }
+                >
+                    { success }
+                </Alert>
+            </Snackbar>
         </div>
     );
 };

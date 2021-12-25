@@ -46,7 +46,8 @@ const MainScreen = ( program ) => {
                                         fontSize: "28px",
                                     } }
                                 >
-                                    Events of Following Clubs
+                                    Events of Following Clubs  { program.program.followingClubsEvents.length === 0 && "(Please follow some" +
+                                " clubs first!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>

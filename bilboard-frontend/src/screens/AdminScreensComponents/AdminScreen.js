@@ -9,121 +9,55 @@ import AdminManageClubScreen from "./AdminManageClubScreen";
 import Env from "../../utils/Env";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { makeStyles } from "@mui/styles";
+import { connect } from "react-redux";
+
+
+const useStyles = makeStyles( {
+    root: {
+        width: "100%",
+    },
+    navbar: {
+        height: "68px",
+        background: Colors.BILBOARD_MAIN,
+    },
+    navbarText: {
+        fontSize: "40px",
+        fontFamily: Constants.OXYGEN_FONT_FAMILY,
+        color: "white",
+    },
+    anIcon: {
+        color: "white",
+        minWidth: "40px",
+        minHeight: "40px",
+        borderRadius: "50px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+} );
 
 const AdminScreen = ( props ) => {
     const pages = [
         "Add Club",
         "Manage Clubs",
     ];
-    const mockClubs = [
-        {
-            name: "Club 1",
-            id: 1,
-            advisor: "Advisor 1",
-            president: "President 1",
-        },
-        {
-            name: "Club 2",
-            id: 2,
-            advisor: "Advisor 2",
-            president: "President 2",
-
-        },
-        {
-            name: "Club 3",
-            id: 3,
-            advisor: "Advisor 3",
-            president: "President 3",
-        },
-        {
-            name: "Club 4",
-            id: 4,
-            advisor: "Advisor 4",
-            president: "President 4",
-        },
-        {
-            name: "Club 5",
-            id: 5,
-            advisor: "Advisor 5",
-            president: "President 5",
-        },
-        {
-            name: "Club 6",
-            id: 6,
-            advisor: "Advisor 6",
-            president: "President 6",
-        },
-        {
-            name: "Club 7",
-            id: 7,
-            advisor: null,
-            president: "President 7",
-        },
-        {
-            name: "Club 8",
-            id: 8,
-            advisor: "Advisor 8",
-            president: "President 8",
-        },
-        {
-            name: "Club 9",
-            id: 9,
-            advisor: "Advisor 9",
-            president: "President 9",
-        },
-        {
-            name: "Club 10",
-            id: 10,
-            advisor: "Advisor 10",
-            president: "President 10",
-        },
-        {
-            name: "Club 11",
-            id: 11,
-            advisor: "Advisor 11",
-            president: "President 11",
-        },
-        {
-            name: "Club 12",
-            id: 12,
-            advisor: "Advisor 12",
-            president: "President 12",
-        },
-        {
-            name: "Club 13",
-            id: 13,
-            advisor: "Advisor 13",
-            president: "President 13",
-        },
-        {
-            name: "Club 14",
-            id: 14,
-            advisor: "Advisor 14",
-            president: "President 14",
-        },
-        {
-            name: "Club 15",
-            id: 15,
-            advisor: "Advisor 15",
-            president: "President 15",
-        },
-        {
-            name: "Club 16",
-            id: 16,
-            advisor: "Advisor 16",
-            president: "President 16",
-        },
-    ]
+    const classes = useStyles();
 
     const [ openedScreen, setOpenedScreen ] = React.useState( "Add Club" );
     const [ loading, setLoading ] = React.useState( true )
     const [ success, setSuccess ] = React.useState( "" )
     const [ error, setError ] = React.useState( "" )
     const [ clubs, setClubs ] = React.useState( null )
-
+    const handleLogOut = () => {
+        props.signOut()
+        props.setScreenNoNavbar( "login" )
+    };
 
     async function getClubs() {
-        setLoading(true)
+        setLoading( true )
         let headers = {
             "Content-Type": "application/json",
             'Authorization': 'Bearer ' + Env.TOKEN
@@ -134,34 +68,76 @@ const AdminScreen = ( props ) => {
                  if ( response.status === 200 ) {
                      console.log( response.data )
                      setClubs( response.data )
-                     setLoading(false)
+                     setLoading( false )
                  } else {
                      setError( "Clubs could not fetched!" )
-                     setLoading(false)
-                     setClubs([])
+                     setLoading( false )
+                     setClubs( [] )
                  }
              } )
              .catch( function ( error ) {
                  setError( "Clubs could not fetched!" )
-                 setLoading(false)
-                 setClubs([])
+                 setLoading( false )
+                 setClubs( [] )
              } )
     }
 
+    function setClub( advisor, president, clubId ) {
+        let temp = []
+        clubs.forEach( club => {
+            if ( clubId !== club.id ) {
+                temp.push( club )
+            } else {
+                let tempClub = { ...club }
+                tempClub.president = president
+                tempClub.advisor = advisor
+                temp.push( tempClub )
+            }
+        } )
+
+        setClub( temp )
+    }
+
+    function addNewClub( clubResponse ) {
+        let temp = [ ...clubs ]
+
+        temp.push( clubResponse )
+        setClubs( temp )
+    }
 
     return (
         <div>
-            <div style={ {
-                minHeight: "68px",
-                background: Colors.BILBOARD_MAIN,
-                display: "flex",
-                alignItems: "center",
-                fontSize: "40px",
-                justifyContent: "center",
-                fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                color: "white"
-            } }>Admin Panel
+            <div className={ classes.navbar }>
+                <Grid container>
+                    <Grid item xs={ 4 }/>
+                    <Grid
+                        item
+                        xs={ 4 }
+                        style={ {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        } }
+                    >
+                        <div className={ classes.navbarText }>Admin</div>
+                    </Grid>
+                    <Grid item xs={ 2 }/>
+                    <Grid
+                        item
+                        xs={ 2 }
+                        style={ {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        } }
+                    >
+                        <IconButton size="large" onClick={ () => handleLogOut() }>
+                            <LogoutIcon className={ classes.anIcon }/>
+                        </IconButton>
+                    </Grid>
+                </Grid>
             </div>
+
             <Grid container style={ { padding: 20, height: "88vh" } }>
                 <Grid
                     style={ {
@@ -212,12 +188,14 @@ const AdminScreen = ( props ) => {
                         style={ { borderRadius: Constants.BORDER_RADIUS, height: "85vh" } }
                     >
                         { openedScreen === "Add Club" ? (
-                            <AdminAddClubScreen/>
+                            <AdminAddClubScreen addClub={ ( clubResponse ) => addNewClub( clubResponse ) }/>
                         ) : openedScreen === "Manage Clubs" ? (
-                            <AdminManageClubScreen allClubs={ clubs }
-                                                   getClubs={ () => getClubs() }
-                                                   clubLoading={ loading }
-                                                   clubs={ mockClubs }/>
+                            <AdminManageClubScreen
+                                setClub={ ( advisor, president, clubId ) => setClub( advisor, president, clubId ) }
+                                allClubs={ clubs }
+                                getClubs={ () => getClubs() }
+                                clubLoading={ loading }
+                            />
                         ) : (
                             <div/>
                         ) }
@@ -252,4 +230,12 @@ const AdminScreen = ( props ) => {
     );
 };
 
-export default AdminScreen;
+
+const mapDispatchToProps = ( dispatch ) => {
+    return {
+        setScreenNoNavbar: ( value ) => dispatch( { type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value } )
+    }
+}
+
+export default connect( null, mapDispatchToProps )( AdminScreen );
+

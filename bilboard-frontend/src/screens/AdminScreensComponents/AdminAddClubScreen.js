@@ -32,6 +32,7 @@ const AdminAddClubScreen = ( props ) => {
                      setClubName( "" )
                      setClubShortName( "" )
                      setSuccess( "Successfully added!" )
+                     props.addClub( response.data )
                      setSubmitted( false )
                  } else {
                      setSubmitted( false )

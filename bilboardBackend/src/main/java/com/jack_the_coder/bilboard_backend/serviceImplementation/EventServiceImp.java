@@ -61,7 +61,6 @@ public class EventServiceImp implements EventService {
         ModelMapper modelMapper = new ModelMapper();
         EventDto eventDto = new EventDto();
         ClubDto clubDto = clubService.getClubById( clubId );
-
         eventDto.setClub( modelMapper.map( clubDto , ClubEntity.class ) );
         eventDto.setTitle( title );
         eventDto.setDescription( description );

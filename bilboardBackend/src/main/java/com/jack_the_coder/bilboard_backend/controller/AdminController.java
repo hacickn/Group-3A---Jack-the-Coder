@@ -9,6 +9,7 @@ import com.jack_the_coder.bilboard_backend.model.requestModel.CreateUniversityRe
 import com.jack_the_coder.bilboard_backend.model.responseModel.AdminClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.CreateClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.CreateUniversityResponse;
+import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicClubResponse;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
 import com.jack_the_coder.bilboard_backend.service.AdminService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
@@ -50,7 +51,7 @@ public class AdminController {
      * @apiNote This method creates a club.
      */
     @PostMapping( path = "/createClub" )
-    public CreateClubResponse createClub ( @RequestBody CreateClubRequest createClubRequest ) {
+    public BasicClubResponse createClub ( @RequestBody CreateClubRequest createClubRequest ) {
         ModelMapper modelMapper = new ModelMapper();
         ClubDto clubDto = modelMapper.map( createClubRequest , ClubDto.class );
         UniversityDto universityDto = adminService.getUniversity( createClubRequest.getUniversity() );
@@ -58,7 +59,7 @@ public class AdminController {
         clubDto.setUniversity( universityEntity );
         ClubDto createdDto = clubService.createClub( clubDto );
 
-        return modelMapper.map( createdDto , CreateClubResponse.class );
+        return modelMapper.map( createdDto , BasicClubResponse.class );
     }
 
     /**

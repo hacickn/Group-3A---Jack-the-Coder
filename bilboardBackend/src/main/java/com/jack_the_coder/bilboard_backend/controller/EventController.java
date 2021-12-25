@@ -30,9 +30,9 @@ public class EventController {
     EventService eventService;
 
     /**
-     * @apiNote This method is used to get event.
-     * @param long eventId
+     * @param eventId is long
      * @return EventResponse
+     * @apiNote This method is used to get event.
      */
     @GetMapping
     public EventResponse getEvent ( @RequestParam( value = "eventId" ) long eventId ) {
@@ -44,12 +44,12 @@ public class EventController {
     }
 
     /**
-     * @apiNote This method is used to create an event.
-     * @param MultipartFile eventPhoto, String title, String description, String duration, 
-     *      String date, Boolean isOnline, Boolean isVisible, String location
-     *      int maxParticipantCount, int gePoint, Boolean restrictionForMember,
-     *      List <Long> timeSlotIdList, lung clubId
+     * @param eventPhoto is a MultipartFile, String title, String description, String duration,
+     *                      String date, Boolean isOnline, Boolean isVisible, String location
+     *                      int maxParticipantCount, int gePoint, Boolean restrictionForMember,
+     *                      List <Long> timeSlotIdList, lung clubId
      * @return EventResponse
+     * @apiNote This method is used to create an event.
      */
     @PostMapping
     public EventResponse createEvent ( @RequestParam( "eventPhoto" ) MultipartFile eventPhoto ,
@@ -64,13 +64,14 @@ public class EventController {
                                        @RequestParam( "gePoint" ) int gePoint ,
                                        @RequestParam( "restrictionForMember" ) Boolean restrictionForMember ,
                                        @RequestParam( "timeSlotIdList" ) List<Long> timeSlotIdList ,
-                                       @RequestParam( "clubId" ) long clubId ) {
+                                       @RequestParam( "clubId" ) long clubId ){
         ModelMapper modelMapper = new ModelMapper();
-        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );
 
         Date newDate;
         try {
             newDate = formatter.parse( date );
+
             System.out.println( newDate );
             EventDto createdEvent =
                     eventService
@@ -81,6 +82,8 @@ public class EventController {
 
             return modelMapper.map( createdEvent , EventResponse.class );
         } catch ( ParseException e ) {
+            System.out.println( e );
+
             throw new UserServiceException( "Something went wrong!" );
         }
 

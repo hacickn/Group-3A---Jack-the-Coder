@@ -1,6 +1,7 @@
 package com.jack_the_coder.bilboard_backend.controller;
 
 import com.jack_the_coder.bilboard_backend.io.entity.UniversityEntity;
+import com.jack_the_coder.bilboard_backend.io.repository.UniversityRepository;
 import com.jack_the_coder.bilboard_backend.model.OperationName;
 import com.jack_the_coder.bilboard_backend.model.OperationStatus;
 import com.jack_the_coder.bilboard_backend.model.StatusResponse;
@@ -9,10 +10,13 @@ import com.jack_the_coder.bilboard_backend.model.requestModel.SignUpRequest;
 import com.jack_the_coder.bilboard_backend.model.responseModel.SignUpResponse;
 import com.jack_the_coder.bilboard_backend.service.AdminService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
+import com.jack_the_coder.bilboard_backend.shared.dto.UniversityDto;
 import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  * @author Hacı Çakın
@@ -25,7 +29,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping( "/auth" )
-public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
+public class AuthController {
 
 
     @Autowired
@@ -34,17 +38,29 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
     @Autowired
     AdminService adminService;
 
+    @Autowired
+    UniversityRepository universityRepository;
+
     /**
-     * @apiNote This method is used to sign up a new user.
      * @param requestModel is a SignUpRequest instance
+     * @apiNote This method is used to sign up a new user.
      * @ return SignUpResponse
      */
-    @PostMapping( path = "/signUp" )  // http://localhost:8080/bilboard-app/v1/auth/signUp
+    @PostMapping( path = "/signUp" )
     public SignUpResponse signUp ( @RequestBody SignUpRequest requestModel ) {
         ModelMapper modelMapper = new ModelMapper();
-        UserDto userDto = modelMapper.map( requestModel , UserDto.class );   // modelMapper.map(source, target.class);
-        userDto.setUniversity( modelMapper.map( adminService.getUniversity( requestModel.getUniversity() ) ,
-                UniversityEntity.class ) );
+        UniversityDto universityDto = adminService.getUniversity( requestModel.getUniversity() );
+
+
+        if ( universityDto == null ) {
+            UniversityEntity entity = new UniversityEntity();
+            entity.setName( "Bilkent" );
+            UniversityEntity created = universityRepository.save( entity );
+            universityDto = modelMapper.map( created , UniversityDto.class );
+        }
+
+        UserDto userDto = modelMapper.map( requestModel , UserDto.class );
+        userDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
 
         UserDto createdDto = userService.createUser( userDto );
         return modelMapper.map( createdDto , SignUpResponse.class );
@@ -52,11 +68,10 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
 
 
     /**
-     * @apiNote This method is used to verify email.
      * @param token is a string
      * @return StatusResponse
+     * @apiNote This method is used to verify email.
      */
-    // email verification   http://localhost:8080/auth/emailVerification
     @PostMapping( path = "/emailVerification" )
     public StatusResponse signUpConfirmation ( @RequestParam( value = "token" ) String token ) {
         StatusResponse returnValue = new StatusResponse();
@@ -74,11 +89,10 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
     }
 
     /**
-     * @apiNote This method is used to request resetting password.
      * @param email is a String
      * @return StatusResponse
+     * @apiNote This method is used to request resetting password.
      */
-    // reset passwordRequest    http://localhost:8080/auth/resetPasswordRequest
     @PostMapping( path = "/resetPasswordRequest" )
     public StatusResponse forgetPassword ( @RequestParam( value = "email" ) String email ) {
         StatusResponse returnValue = new StatusResponse();
@@ -96,11 +110,10 @@ public class AuthController {  // http://localhost:8080/bilboard-app/v1/auth
     }
 
     /**
-     * @apiNote This method is used to reset password.
      * @param requestModel is a ResetPasswordRequest instance
      * @return StatusResponse
+     * @apiNote This method is used to reset password.
      */
-    // reset password   http://localhost:8080/auth/resetPassword
     @PostMapping( path = "/resetPassword" )
     public StatusResponse changePassword ( @RequestBody ResetPasswordRequest requestModel ) {
         StatusResponse returnValue = new StatusResponse();

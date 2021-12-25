@@ -27,7 +27,6 @@ const useStyles = makeStyles( {
 } );
 
 const CalendarScreen = ( props ) => {
-    const { eventsFuture, eventsPast } = MockData();
     const classes = useStyles();
     let pastEvents = []
     let futureEvents = []
@@ -54,7 +53,7 @@ const CalendarScreen = ( props ) => {
                                         fontSize: "28px",
                                     } }
                                 >
-                                    Future Events
+                                    Future Events { futureEvents.length === 0 && "(There is no future event for you!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
@@ -80,7 +79,7 @@ const CalendarScreen = ( props ) => {
                                         fontSize: "28px",
                                     } }
                                 >
-                                    Past Events
+                                    Past Events { pastEvents.length === 0 && "(There is no past event for you!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>

@@ -32,6 +32,8 @@ const SurveyScreen = ( props ) => {
                         voted={ surveyParticipants.voted }
                         survey={ surveyParticipants.survey }/>
                     </Grid> ) }
+                { props.program.surveyParticipants.length === 0 &&
+                <Grid item xs={ 12 }> There is no survey for you! </Grid> }
             </Grid>
         </Grid>
     )

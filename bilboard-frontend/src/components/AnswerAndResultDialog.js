@@ -12,6 +12,7 @@ import Colors from "../utils/Colors";
 
 import VoteToQuestion from "./VoteToQuestion";
 import AnswerAndResult from "./AnswerAndResult";
+import QuestionAndAnswersAndResult from "./QuestionAndAnswersAndResults";
 
 /**
  * Vote To Question Dialog
@@ -29,19 +30,10 @@ const AnswerAndResultDialog  = ({open, setOpen}) => {
             <DialogContent>            
                 <Grid container>
                     
-                    <AnswerAndResult/>
-                    <AnswerAndResult/>
-                    <AnswerAndResult/>
-                    <AnswerAndResult/>
-                    <AnswerAndResult/>
-                    <AnswerAndResult/>
-                    <AnswerAndResult/>
-
-                    <Grid item xs={12} style={{marginTop: "40px",                  
-                        display: "flex",
-                        justifyContent: "center"}}>                         
-                        <BilboardButton width="100px" fontSize="14px" text="Submit"/>
-                    </Grid>
+                    <QuestionAndAnswersAndResult/>
+                    <QuestionAndAnswersAndResult/>
+                    <QuestionAndAnswersAndResult/>
+                    <QuestionAndAnswersAndResult/>
                 </Grid>
             </DialogContent>
             <DialogActions>

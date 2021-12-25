@@ -82,9 +82,10 @@ const FollowedClubs = ( props ) => {
                         justifyContent: "center",
                         alignItems: "center",
                         marginTop: "10px",
+                        fontWeight: "bold",
                     } }
                 >
-                    { props.club.shortName.toUpperCase() }
+                    { "Club Name:  " + props.club.name.toUpperCase() + "(" + props.club.shortName.toUpperCase() + ")"}
                 </Grid>
                 <Grid
                     item

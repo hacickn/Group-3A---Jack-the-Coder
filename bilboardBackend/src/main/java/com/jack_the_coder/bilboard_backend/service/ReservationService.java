@@ -1,6 +1,7 @@
 package com.jack_the_coder.bilboard_backend.service;
 
 import com.jack_the_coder.bilboard_backend.io.entity.EventEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.LocationRequestEntity;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateBuildingRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClassroomDayRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClassroomRequest;
@@ -24,4 +25,6 @@ public interface ReservationService {
     List<ClassroomDayDto> createClassroomDays ( CreateClassroomDayRequest createClassroomDayRequest );
 
     List<TimeSlotDto> createTimeSlots ( CreateTimeSlotRequest createTimeSlotRequest );
+
+    Boolean deleteLocationRequests(List<LocationRequestEntity> locationRequestEntityList);
 }

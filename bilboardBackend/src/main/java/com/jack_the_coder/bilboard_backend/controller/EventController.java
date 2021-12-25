@@ -1,6 +1,8 @@
 package com.jack_the_coder.bilboard_backend.controller;
 
 import com.jack_the_coder.bilboard_backend.exception.UserServiceException;
+import com.jack_the_coder.bilboard_backend.io.entity.EventEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.model.OperationName;
 import com.jack_the_coder.bilboard_backend.model.OperationStatus;
 import com.jack_the_coder.bilboard_backend.model.StatusResponse;
@@ -8,10 +10,7 @@ import com.jack_the_coder.bilboard_backend.model.responseModel.EventResponse;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
 import com.jack_the_coder.bilboard_backend.service.EventService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
-import com.jack_the_coder.bilboard_backend.shared.dto.ClubDto;
-import com.jack_the_coder.bilboard_backend.shared.dto.EventDto;
-import com.jack_the_coder.bilboard_backend.shared.dto.EventQuestionDto;
-import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
+import com.jack_the_coder.bilboard_backend.shared.dto.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -107,7 +106,14 @@ public class EventController {
     @DeleteMapping
     public StatusResponse deleteEvent ( @RequestParam( "eventId" ) long eventId ) {
         StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setOperationName( OperationName.DELETE.name() );
+        EventDto eventDto = eventService.getEventById( eventId );
 
+        if ( eventService.deleteEvent( eventDto ) ) {
+            statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
+        } else {
+            statusResponse.setOperationResult( OperationStatus.ERROR.name() );
+        }
 
         return statusResponse;
     }
@@ -117,7 +123,15 @@ public class EventController {
     public StatusResponse enrollToEvent ( @RequestParam( "eventId" ) long eventId ,
                                           @RequestParam( "userId" ) long userId ) {
         StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setOperationName( OperationName.ENROLL_RESPOND.name() );
+        EventDto eventDto = eventService.getEventById( eventId );
+        UserDto userDto = userService.getUserById( userId );
 
+        if ( eventService.enrollToEvent( eventDto , userDto ) ) {
+            statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
+        } else {
+            statusResponse.setOperationResult( OperationStatus.ERROR.name() );
+        }
 
         return statusResponse;
     }
@@ -126,8 +140,34 @@ public class EventController {
     public StatusResponse attendToEvent ( @RequestParam( "eventId" ) long eventId ,
                                           @RequestParam( "userId" ) long userId ) {
         StatusResponse statusResponse = new StatusResponse();
+        ModelMapper modelMapper = new ModelMapper();
+        EventDto eventDto = eventService.getEventById( eventId );
+        UserDto userDto = userService.getUserById( userId );
+        EventParticipantDto eventParticipantDto =
+                eventService.getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,
+                        modelMapper.map( eventDto , EventEntity.class ) );
 
+        // if user is already enrolled, attend event, is not create enroll request then attend event!
+        if ( eventParticipantDto != null ) {
+            if ( eventService.attendToEvent( eventParticipantDto ) ) {
+                statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
+            } else {
+                statusResponse.setOperationResult( OperationStatus.ERROR.name() );
+            }
+            statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
+        } else if ( eventService.enrollToEvent( eventDto , userDto ) ) {
 
+            eventParticipantDto =
+                    eventService.getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,
+                            modelMapper.map( eventDto , EventEntity.class ) );
+            if ( eventService.attendToEvent( eventParticipantDto ) ) {
+                statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
+            } else {
+                statusResponse.setOperationResult( OperationStatus.ERROR.name() );
+            }
+        } else {
+            statusResponse.setOperationResult( OperationStatus.ERROR.name() );
+        }
         return statusResponse;
     }
 

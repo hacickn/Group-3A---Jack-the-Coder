@@ -49,7 +49,7 @@ const ClubProfileScreen = ( { image, currentClub } ) => {
 
         axios.post( process.env.REACT_APP_URL + "club/feedback", {
             "content": content, // todo club.id -> club should come from
-            "club": 21,
+            "club": currentClub.id,
             "user": Env.PUBLIC_ID
         }, { headers: headers } )
              .then( function ( response ) {
@@ -235,12 +235,12 @@ const ClubProfileScreen = ( { image, currentClub } ) => {
                             } }
                         >
                             <Grid container>
-                                <Grid item xs={ 12 }>
-                                    <ClubPageFeedbackCard/>
-                                </Grid>
-                                <Grid item xs={ 12 }>
-                                    <ClubPageFeedbackCard/>
-                                </Grid>
+                                { clubFullData.clubFeedbacks.map( feedback => {
+                                    return <Grid item xs={ 12 }>
+                                        <ClubPageFeedbackCard feedback={ feedback }/>
+                                    </Grid>
+                                } ) }
+
                             </Grid>
                         </Grid>
                     </Grid>

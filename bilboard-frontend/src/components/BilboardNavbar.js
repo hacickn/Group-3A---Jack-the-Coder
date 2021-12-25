@@ -53,7 +53,6 @@ const useStyles = makeStyles({
     color:"white !important", 
     borderBlockColor:"white !important", 
     paddingLeft: "40px",
-    shadowColor: 'white',
   },
   icons: {
     display: "flex",

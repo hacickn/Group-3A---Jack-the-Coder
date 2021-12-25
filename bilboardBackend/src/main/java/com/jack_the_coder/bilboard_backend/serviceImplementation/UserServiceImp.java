@@ -5,6 +5,7 @@ import com.jack_the_coder.bilboard_backend.io.entity.PasswordResetTokenEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.io.repository.PasswordResetTokenRepository;
 import com.jack_the_coder.bilboard_backend.io.repository.UserRepository;
+import com.jack_the_coder.bilboard_backend.service.EmailService;
 import com.jack_the_coder.bilboard_backend.service.StorageService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
 import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
@@ -41,6 +42,9 @@ public class UserServiceImp implements UserService {
     @Autowired
     StorageService storageService;
 
+    @Autowired
+    EmailService emailService;
+
     @Override
     public UserDto createUser ( UserDto user ) {
         if ( userRepository.findByEmail( user.getEmail() ) != null ) {
@@ -59,12 +63,12 @@ public class UserServiceImp implements UserService {
         userEntity.setEmailConfirmation( false );
         userEntity.setPhoto( "users/default.png" );
 
-        /*
+
         if ( !emailService.sendEmail( user.getEmail() , "You can confirm by using this link: \n" +
-                "https://localifyapp.com/confirmation/" + userEntity.getEmailConfirmationToken() , "Confirmation" ) ) {
+                "http://localhost:3000/confirmation/" + userEntity.getEmailConfirmationToken() , "Confirmation" ) ) {
             throw new RuntimeException();
         }
-         */
+
         UserEntity storedUser = userRepository.save( userEntity );
         UserDto returnValue = new UserDto();
         BeanUtils.copyProperties( storedUser , returnValue );
@@ -162,11 +166,11 @@ public class UserServiceImp implements UserService {
             passwordResetTokenEntity.setToken( token );
             passwordResetTokenEntity.setUserDetails( userEntity );
             passwordResetTokenRepository.save( passwordResetTokenEntity );
-            /*
+
             emailService.sendEmail( userEntity.getEmail() ,
-                    "You can reset your password by using this link: " + "\n https://localifyapp.com/resetPassword/"
+                    "You can reset your password by using this link: " + "\n http://localhost:3000/resetPassword/"
                             + token , "Reset Password" );
-             */
+
 
             return true;
         } catch ( Exception e ) {

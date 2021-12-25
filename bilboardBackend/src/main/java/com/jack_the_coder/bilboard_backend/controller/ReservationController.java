@@ -1,5 +1,8 @@
 package com.jack_the_coder.bilboard_backend.controller;
 
+import com.jack_the_coder.bilboard_backend.model.OperationName;
+import com.jack_the_coder.bilboard_backend.model.OperationStatus;
+import com.jack_the_coder.bilboard_backend.model.StatusResponse;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateBuildingRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClassroomDayRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClassroomRequest;
@@ -49,7 +52,7 @@ public class ReservationController {
 
     /**
      *
-     * @param CreateClassroomRequest createClassroomRequest
+     * @param  createClassroomRequest is a CreateClassroomRequest
      * @return BuildingResponse
      * @apiNote This method is used to add classroom.
      */
@@ -61,7 +64,7 @@ public class ReservationController {
     }
 
     /**
-     * @param CreateClassroomDayRequest createClassroomDayRequest
+     * @param  createClassroomDayRequest is a CreateClassroomDayRequest
      * @return List<ClassroomDayResponse>
      * @apiNote This method is used to add classroom day.
      */
@@ -79,7 +82,7 @@ public class ReservationController {
     }
 
     /**
-     * @param CreateTimeSlotRequest createTimeSlotRequest
+     * @param  createTimeSlotRequest is a CreateTimeSlotRequest
      * @return List<TimeSlotResponse>
      * @apiNote This method is used to add time slot.
      */
@@ -93,4 +96,22 @@ public class ReservationController {
         } );
         return timeSlotResponseList;
     }
+
+    @PostMapping(path = "/respond")
+    public StatusResponse assignClassroom(@RequestParam(value = "requestId") long requestId,
+                                          @RequestParam(value = "status") boolean status){
+        StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setOperationName( OperationName.UPDATE.name() );
+
+        if(reservationService.respondLocationRequest( requestId,status )){
+            statusResponse.setOperationName( OperationStatus.SUCCESS.name() );
+        }else{
+            statusResponse.setOperationName( OperationStatus.ERROR.name() );
+        }
+
+        return statusResponse;
+    }
+
+
+
 }

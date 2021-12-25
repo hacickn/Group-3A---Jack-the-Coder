@@ -27,4 +27,6 @@ public interface ReservationService {
     List<TimeSlotDto> createTimeSlots ( CreateTimeSlotRequest createTimeSlotRequest );
 
     Boolean deleteLocationRequests(List<LocationRequestEntity> locationRequestEntityList);
+
+    Boolean respondLocationRequest(long requestId, boolean status);
 }

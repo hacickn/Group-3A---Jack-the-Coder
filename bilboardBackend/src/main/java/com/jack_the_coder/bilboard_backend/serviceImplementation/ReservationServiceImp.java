@@ -192,13 +192,31 @@ public class ReservationServiceImp implements ReservationService {
     public Boolean deleteLocationRequests ( List<LocationRequestEntity> locationRequestEntityList ) {
         try {
             locationRequestEntityList.forEach( locationRequestEntity -> {
-                locationRequestTimeSlotRepository.deleteAll( locationRequestEntity.getLocationRequestTimeSlots());
+                locationRequestTimeSlotRepository.deleteAll( locationRequestEntity.getLocationRequestTimeSlots() );
             } );
 
             locationRequestRepository.deleteAll( locationRequestEntityList );
 
             return true;
-        }catch ( Exception e ){
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean respondLocationRequest ( long requestId , boolean status ) {
+        try {
+            Optional<LocationRequestEntity> optional = locationRequestRepository.findById( requestId );
+
+            if ( optional.isPresent() ) {
+                optional.get().setAnswered( true );
+                optional.get().setConfirmed( status );
+                locationRequestRepository.save( optional.get() );
+                return true;
+            } else {
+                return false;
+            }
+        } catch ( Exception e ) {
             return false;
         }
     }

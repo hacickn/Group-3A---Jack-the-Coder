@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -76,10 +78,14 @@ public class EventController {
                                        @RequestParam( "maxParticipationCount" ) int maxParticipationCount ,
                                        @RequestParam( "gePoint" ) int gePoint ,
                                        @RequestParam( "restrictionForMember" ) Boolean restrictionForMember ,
-                                       @RequestParam( "timeSlotIdList" ) List<Long> timeSlotIdList ,
+                                       @RequestParam( "timeSlotIdList" ) String timeSlotIdList ,
                                        @RequestParam( "clubId" ) long clubId ) {
         ModelMapper modelMapper = new ModelMapper();
         SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );
+        List<Long> idList = new ArrayList<>();
+        Arrays.stream( timeSlotIdList.split( "-" ) ).forEach( s -> {
+            idList.add( Long.valueOf( s ) );
+        } );
 
         Date newDate;
         try {
@@ -90,7 +96,7 @@ public class EventController {
                     eventService
                             .createEvent( eventPhoto , title , duration , description , newDate , isOnline , isVisible ,
                                     location
-                                    , maxParticipationCount , gePoint , restrictionForMember , timeSlotIdList ,
+                                    , maxParticipationCount , gePoint , restrictionForMember , idList ,
                                     clubId );
 
             return modelMapper.map( createdEvent , EventResponse.class );
@@ -144,9 +150,9 @@ public class EventController {
 
         ModelMapper modelMapper = new ModelMapper();
         EventDto eventDto = eventService.getEventByCode( eventCode );
-        System.out.println(eventDto.getId());
+        System.out.println( eventDto.getId() );
         UserDto userDto = userService.getUserById( userId );
-        System.out.println(userDto.getId());
+        System.out.println( userDto.getId() );
 
         EventParticipantDto eventParticipantDto =
                 eventService.getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,

@@ -2,6 +2,9 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import Colors from "../../../utils/Colors";
 import BilboardButton from "../../../components/BilboardButton";
+import Env from "../../../utils/Env";
+import axios from "axios";
+import React from "react";
 
 const useStyles = makeStyles( {
     container: {
@@ -15,6 +18,21 @@ const useStyles = makeStyles( {
 
 const PendingMembership = ( { requestId, name, surname, ID } ) => {
     const classes = useStyles();
+    const [error, setError] = React.useState("")
+
+    function handleEnrollRequest(status) {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': "Bearer " + Env.TOKEN,
+        };
+
+        axios.post(process.env.REACT_APP_URL + "club/enrollment/respond?enrollmentId=" + requestId + "&status=" + status, {}, {headers:headers})
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch( function (error) {setError("Something went wrong!")})
+    }
+
     return (
         <div className={ classes.container }>
             <Grid container>
@@ -30,6 +48,7 @@ const PendingMembership = ( { requestId, name, surname, ID } ) => {
                 </Grid>
                 <Grid item xs={ 5 } style={ { marginTop: "20px" } }>
                     <BilboardButton
+                        onClick={() => handleEnrollRequest("accepted")}
                         text="A"
                         width="60px"
                         fontSize={ 20 }
@@ -37,6 +56,7 @@ const PendingMembership = ( { requestId, name, surname, ID } ) => {
                         textColor="white"
                     />
                     <BilboardButton
+                        onClick={() => handleEnrollRequest("denied")}
                         text="R"
                         width="60px"
                         fontSize={ 20 }

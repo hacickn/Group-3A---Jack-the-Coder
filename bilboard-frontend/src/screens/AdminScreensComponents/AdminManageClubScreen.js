@@ -77,7 +77,7 @@ const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) =
 
     React.useEffect( () => {
         let active = true;
-    
+
 
         if ( !loading ) {
             return undefined;
@@ -87,7 +87,7 @@ const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) =
 
 
             const response = await fetch(
-                process.env.REACT_APP_URL + 'user/search?name=' + tempPresident + '&type=student', {
+                process.env.REACT_APP_URL + 'user/search?name=' + newPresident + '&type=student', {
                     method: 'GET', headers: {
                         "Content-Type": "application/json",
                         'Authorization': 'Bearer ' + Env.TOKEN

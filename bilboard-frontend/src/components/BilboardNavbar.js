@@ -21,7 +21,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import React from "react";
 import { FormControl, InputLabel } from "@mui/material";
-import Logo from "../utils/Logo10.png";
+import Logo from "../utils/Logo12.png";
 
 
 const useStyles = makeStyles({

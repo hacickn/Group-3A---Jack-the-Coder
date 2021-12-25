@@ -139,9 +139,10 @@ const UserScreen = ( { setScreenNoNavbar, signOut, program } ) => {
                                         style={ {
                                             fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                             fontSize: "24px",
+                                            fontStyle:"italic"
                                         } }
                                     >
-                                        Change Password
+                                        My Profile
                                     </Grid>
                                     <Grid
                                         item

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class SurveyServiceImp implements SurveyService {
@@ -125,11 +126,19 @@ public class SurveyServiceImp implements SurveyService {
 
     @Override
     public List<SurveyParticipantDto> createParticipants ( SurveyDto surveyDto , int point ) {
+        AtomicBoolean isPresidentExist = new AtomicBoolean(false);
+        AtomicBoolean isAdvisorExist = new AtomicBoolean(false);
         ModelMapper modelMapper = new ModelMapper();
         List<SurveyParticipantDto> surveyParticipantDtoList = new ArrayList<>();
 
         if ( surveyDto.getForActiveMembers() ) {
             surveyDto.getClub().getClubMembers().forEach( clubMemberEntity -> {
+                if(clubMemberEntity.getUser().getId() == surveyDto.getClub().getPresident().getId()){
+                    isPresidentExist.set(true);
+                }
+                if(clubMemberEntity.getUser().getId() == surveyDto.getClub().getAdvisor().getId()){
+                    isAdvisorExist.set(true);
+                }
                 if ( clubMemberEntity.getGePoint() >= point ) {
                     SurveyParticipantDto surveyParticipantDto = new SurveyParticipantDto();
                     surveyParticipantDto.setSurvey( modelMapper.map( surveyDto , SurveyEntity.class ) );
@@ -138,8 +147,14 @@ public class SurveyServiceImp implements SurveyService {
                     surveyParticipantDtoList.add( surveyParticipantDto );
                 }
             } );
-        } else {
+        } else{
             surveyDto.getClub().getClubMembers().forEach( clubMemberEntity -> {
+                if(clubMemberEntity.getUser().getId() == surveyDto.getClub().getPresident().getId()){
+                    isPresidentExist.set(true);
+                }
+                if(clubMemberEntity.getUser().getId() == surveyDto.getClub().getAdvisor().getId()){
+                    isAdvisorExist.set(true);
+                }
                 SurveyParticipantDto surveyParticipantDto = new SurveyParticipantDto();
                 surveyParticipantDto.setSurvey( modelMapper.map( surveyDto , SurveyEntity.class ) );
                 surveyParticipantDto.setVoted( false );
@@ -156,7 +171,7 @@ public class SurveyServiceImp implements SurveyService {
             surveyParticipantDtoList.add( surveyParticipantDto );
         } );
 
-        if ( surveyDto.getClub().getAdvisor() != null ) {
+        if ( surveyDto.getClub().getAdvisor() != null  && !isAdvisorExist.get()) {
             SurveyParticipantDto surveyParticipantDto = new SurveyParticipantDto();
             surveyParticipantDto.setSurvey( modelMapper.map( surveyDto , SurveyEntity.class ) );
             surveyParticipantDto.setVoted( false );
@@ -164,7 +179,7 @@ public class SurveyServiceImp implements SurveyService {
             surveyParticipantDtoList.add( surveyParticipantDto );
         }
 
-        if ( surveyDto.getClub().getPresident() != null ) {
+        if ( surveyDto.getClub().getPresident() != null && !isPresidentExist.get()) {
             SurveyParticipantDto surveyParticipantDto = new SurveyParticipantDto();
             surveyParticipantDto.setSurvey( modelMapper.map( surveyDto , SurveyEntity.class ) );
             surveyParticipantDto.setVoted( false );

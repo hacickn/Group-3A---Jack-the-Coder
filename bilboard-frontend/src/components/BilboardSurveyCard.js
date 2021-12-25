@@ -17,7 +17,7 @@ const BilboardSurveyCard = ( props ) => {
 
 
     return (
-        <div>{ <VoteToQuestionDialog survey={ props.survey } open={ voteToQuestionDialog } setOpen={ ( status ) => {
+        <div>{ <VoteToQuestionDialog program ={props.program} surveyParticipants={props.surveyParticipants} survey={ props.survey } open={ voteToQuestionDialog } setOpen={ ( status ) => {
             setVoteToQuestionDialog( status )
         } }/> }
             <Grid container

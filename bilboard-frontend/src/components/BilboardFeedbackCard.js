@@ -12,6 +12,7 @@ import Env from "../utils/Env";
  * Feedback Card
  *
  * Metehan Saçakçı
+ * İlke Doğan
  * 18.11.2021
  */
 

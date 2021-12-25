@@ -4,13 +4,15 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
-import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
-import Select from "@mui/material/Select";
+import InputBase from "@mui/material/InputBase";
 import Constants from "../utils/Constants";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import { Autocomplete } from "@mui/lab";
 import TodayIcon from "@mui/icons-material/Today";
+import Env from "../utils/Env";
+import Select from "@mui/material/Select";
+import axios from "axios";
+import { CircularProgress, Snackbar, TextField } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BilboardButton from "./BilboardButton";
 import AttendEventDialog from "./AttendEventDialog";
@@ -82,7 +84,13 @@ const BilboardNavbar = ({
 }) => {
   const classes = useStyles();
 
+  const [ options, setOptions ] = React.useState( [] );
+  const [ searchOpen, setSearchOpen ] = React.useState( false )
+  const loading = searchOpen && options.length === 0;
+  const [ searchText, setSearchText ] = React.useState( "" )
+
   let clubs = [];
+
 
   program.clubBoardMemberships.forEach((boardMemberShip) => {
     clubs.push(boardMemberShip.club);
@@ -116,51 +124,46 @@ const BilboardNavbar = ({
     }
   }
 
-  const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  }));
-  
-  const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }));
+  React.useEffect(() => {
+    let active = true;
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        width: '36ch',
-        '&:focus': {
-          width: '48ch',
-        },
-      },
-    },
-  }));
+    if (!loading) {
+      return undefined;
+    }
 
-  const handleSearchBarChange = (e) => {
-    console.log(e.target.value)
-  }
+    (async () => {
+      const response = await fetch(
+        process.env.REACT_APP_URL + "club/search?name=" + searchText,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + Env.TOKEN,
+          },
+        }
+      );
+
+      const temp = await response.json();
+
+      if (active) {
+        setOptions(
+          [...temp].map((club) => {
+            return club;
+          })
+        );
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [loading]);
+
+  React.useEffect(() => {
+    if (!searchOpen) {
+      setOptions([]);
+    }
+  }, [searchOpen]);
 
   return (
     <div className={classes.root}>
@@ -178,16 +181,47 @@ const BilboardNavbar = ({
           </div>
         </Grid>
         <Grid item xs={4} className={classes.searchBar}>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={handleSearchBarChange}
-            />
-          </Search>
+          <Autocomplete
+            id="club-search"
+            fullWidth
+            open={searchOpen}
+            onOpen={() => {
+              setSearchOpen(true);
+            }}
+            onClose={() => {
+              setSearchOpen(false);
+            }}
+            onChange={(event, value, reason, details) => {
+              setSearchText(value);
+              setCurrentScreen("clubScreen")
+            }}
+            getOptionSelected={(option, value) => {
+              return option.name === searchText.name;
+            }}
+            getOptionLabel={(option) =>
+              option.name
+            }
+            options={options}
+            loading={loading}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search Clubs"
+                fullWidth
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <React.Fragment>
+                      {loading ? (
+                        <CircularProgress color="inherit" size={20} />
+                      ) : null}
+                      {params.InputProps.endAdornment}
+                    </React.Fragment>
+                  ),
+                }}
+              />
+            )}
+          />
         </Grid>
         <Grid
           item

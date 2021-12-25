@@ -11,21 +11,19 @@ import Env from "../utils/Env";
 const EventDetailedScreenBoardMember = () => {
     const [editEventDialog, setEditEventDialog] = React.useState(false)
     const [error, setError] = React.useState("")
-    function generateCode() {
+    const [eventCode, setEventCode] = React.useState("")
+    const generateCode = () => {
+
         let headers = {
             "Content-Type": "application/json",
             'Authorization': 'Bearer ' + Env.TOKEN
         }
-        axios.post(process.env.REACT_APP_URL + "event/eventCode?eventId=" + 48 , {}, { headers: headers })
+        axios.post(process.env.REACT_APP_URL + "event/eventCode?eventId=" + 9 , {}, { headers: headers })
             .then(function (response) {
-                if (response.data.operationResult === "SUCCESS") {
-                    console.log(response.data)
-                }
-                else {
-                    setError("Generating Code is failed!");
-                }
+               setEventCode(response.data)
             })
-            .catch(function (error) { setError("Something went wrong!") })
+            .catch(function (error) { setError("Something went wrong!")
+                console.log(error); })
     }
     const questionList = [
         {
@@ -138,13 +136,14 @@ const EventDetailedScreenBoardMember = () => {
                         </Grid>
                         <Grid xs={5}>
 
-                            <BilboardButton
+                            {eventCode === "" ? <BilboardButton
                                 onClick={() => generateCode()}
                                 width="160px"
                                 fontSize="13px"
                                 text="Generate Code"
                                 color="#00e676"
-                            />
+                            />: <div style={{fontFamily: Constants.OXYGEN_FONT_FAMILY, fontSize: "24px"}}>Code: {eventCode}</div>}
+                            
                         </Grid>
 
 

@@ -9,6 +9,8 @@ import Button from "@mui/material/Button";
 import React, {useState} from "react";
 import {connect} from "react-redux"
 import Colors from "../utils/Colors"
+import axios from "axios";
+import Env from "../utils/Env";
 
 /**
  * Attend Event Dialog
@@ -19,6 +21,25 @@ import Colors from "../utils/Colors"
 
 const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
     
+    const [code, setCode] = React.useState("");
+
+    function handleCodeCheck(){
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+
+
+        axios.post(process.env.REACT_APP_URL + "event/attend?eventCode=" + code + "&userId=" + 1, {}, {headers: headers})
+        .then(function(response) {
+            console.log(response.data)
+        })
+        .catch(function(error) {
+        })
+    }
+
+
+
     return (
         <Dialog open={isAttendDialogOpen} fullWidth maxWidth={"sm"}
                 onClose={() => setIsAttendDialogOpen(false)}>
@@ -60,12 +81,14 @@ const AttendEventDialog  = ({isAttendDialogOpen, setIsAttendDialogOpen}) => {
                             type="attendanceCode"
                             width="300px"
                             style={{marginTop: "30px"}}
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} style={{marginTop: "40px",                  
                         display: "flex",
                         justifyContent: "center"}}>                         
-                        <BilboardButton width="100px" fontSize="14px" text="Submit"/>
+                        <BilboardButton onClick={() => handleCodeCheck()} width="100px" fontSize="14px" text="Submit"/>
                     </Grid>
                 </Grid>
             </DialogContent>

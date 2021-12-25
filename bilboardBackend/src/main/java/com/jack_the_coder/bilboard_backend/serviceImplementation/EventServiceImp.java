@@ -162,13 +162,19 @@ public class EventServiceImp implements EventService {
     @Override
     public Boolean attendToEvent ( EventParticipantDto eventParticipantDto ) {
         try {
+            ModelMapper modelMapper = new ModelMapper();
             eventParticipantDto.setAttended( true );
             ClubMemberEntity clubMemberEntity =
                     clubMemberRepository.findByClubAndUser( eventParticipantDto.getEvent().getClub() ,
                             eventParticipantDto.getUser() );
-            clubMemberEntity.setGePoint( clubMemberEntity.getGePoint() + eventParticipantDto.getEvent().getGePoint() );
-            clubMemberEntity.setAttendedEventCount( clubMemberEntity.getAttendedEventCount() + 1 );
-            clubMemberRepository.save( clubMemberEntity );
+            if ( clubMemberEntity != null ) {
+                clubMemberEntity
+                        .setGePoint( clubMemberEntity.getGePoint() + eventParticipantDto.getEvent().getGePoint() );
+                clubMemberEntity.setAttendedEventCount( clubMemberEntity.getAttendedEventCount() + 1 );
+                clubMemberRepository.save( clubMemberEntity );
+            }
+            eventParticipantRepository.save( modelMapper.map( eventParticipantDto,EventParticipantEntity.class ) );
+
             return true;
         } catch ( Exception e ) {
             return false;
@@ -301,10 +307,10 @@ public class EventServiceImp implements EventService {
         try {
             Optional<EventParticipantEntity> optional =
                     eventParticipantRepository.findByUserAndEvent( userEntity , eventEntity );
-            System.out.println(userEntity.getId());
-            System.out.println(eventEntity.getId());
+            System.out.println( userEntity.getId() );
+            System.out.println( eventEntity.getId() );
 
-            System.out.println(optional.get());
+
             if ( optional.isPresent() ) {
                 ModelMapper modelMapper = new ModelMapper();
                 return modelMapper.map( optional.get() , EventParticipantDto.class );

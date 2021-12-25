@@ -46,7 +46,11 @@ const FollowedClubs = ( props ) => {
                 <Grid item xs={ 4 }>
                     <div
                         className={ classes.clubLogo }
-                        style={ { backgroundImage: `url(${ process.env.REACT_APP_IMAGE_URL + props.club.photo })` } }
+                        style={ { 
+                          backgroundImage: `url(${ process.env.REACT_APP_IMAGE_URL + props.club.photo })`,
+                          width:"100px",
+                          height:"100px"
+                        } }
                     />
                 </Grid>
                 <Grid

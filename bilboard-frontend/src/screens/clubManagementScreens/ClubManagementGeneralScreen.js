@@ -11,6 +11,9 @@ import Env from "../../utils/Env";
 import { Snackbar } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import React from "react";
+import EditInstagramLinkDialog from "../../components/EditInstagramLinkDialog";
+import EditWhatsappLinkDialog from "../../components/EditWhatsappLinkDialog";
+
 
 const useStyles = makeStyles( {
     input: {
@@ -19,6 +22,8 @@ const useStyles = makeStyles( {
 } );
 
 const ClubManagementGeneralScreen = ( { club } ) => {
+    const [ editInstagramLinkDialog, setEditInstagramLinkDialog ] = React.useState( false )
+    const [ editWhatsappLinkDialog, setEditWhatsappLinkDialog ] = React.useState( false )
 
     const classes = useStyles();
     const [ success, setSuccess ] = React.useState( "" )
@@ -31,6 +36,12 @@ const ClubManagementGeneralScreen = ( { club } ) => {
 
     return (
         <div>
+            { <EditInstagramLinkDialog open={  editInstagramLinkDialog } setOpen={ ( status ) => {
+                setEditInstagramLinkDialog( status )
+            } }/> }
+            { <EditWhatsappLinkDialog open={  editWhatsappLinkDialog } setOpen={ ( status ) => {
+                setEditWhatsappLinkDialog( status )
+            } }/> }
             <Grid container style={ { maxHeight: "300px" } }>
                 <input
                     className={ classes.input }
@@ -116,6 +127,7 @@ const ClubManagementGeneralScreen = ( { club } ) => {
                         Go to Whatsapp Group
                     </Button>
                     <Button
+                        onClick={ () => setEditWhatsappLinkDialog( true ) } 
                         variant="outlined"
                         color="warning"
                         style={ { marginTop: "20px", marginLeft: "10px" } }
@@ -137,6 +149,7 @@ const ClubManagementGeneralScreen = ( { club } ) => {
                         Go to Instagram Link
                     </Button>
                     <Button
+                        onClick={ () => setEditInstagramLinkDialog( true ) } 
                         variant="outlined"
                         color="warning"
                         style={ { marginTop: "20px", marginLeft: "10px" } }

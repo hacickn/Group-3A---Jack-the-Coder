@@ -16,7 +16,7 @@ import Env from "../utils/Env";
 import axios from "axios";
 import Program from "../utils/Program";
 
-const ClubManagementScreen = ( { currentClubId, program } ) => {
+const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurrentEvent } ) => {
     const pages = [
         "General",
         "Add Events",
@@ -116,7 +116,9 @@ const ClubManagementScreen = ( { currentClubId, program } ) => {
                             } }
                         >
                             { openedScreen === "General" ? (
-                                <ClubManagementGeneralScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementGeneralScreen currentEvent={ currentEvent }
+                                                             setCurrentEvent={ setCurrentEvent }
+                                                             club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Add Events" ? (
                                 <ClubManagementAddEventScreen club={ Program.getClub( currentClubId ) }/>
                             ) : openedScreen === "Members" ? (

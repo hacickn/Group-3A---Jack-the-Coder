@@ -14,106 +14,109 @@ import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import Env from "../../../utils/Env";
 
-const useStyles = makeStyles({
-  container: {
-    maxWidth: "260px",
-    maxHeight: "340px",
-    marginBottom: "10px",
-  },
-});
+const useStyles = makeStyles( {
+    container: {
+        maxWidth: "260px",
+        maxHeight: "340px",
+        marginBottom: "10px",
+    },
+} );
 
-const EventForGeneralPage = ({ event }) => {
-  const [editEventDialog, setEditEventDialog] = React.useState(false);
+const EventForGeneralPage = ( { event, currentEvent, setCurrentEvent } ) => {
+    const [ editEventDialog, setEditEventDialog ] = React.useState( false );
 
-  const [eventParticipantsDialog, setEventParticipantsDialog] =
-    React.useState(false);
-  const classes = useStyles();
-  const [isLeaveAlertOpen, setIsLeaveAlertOpen] = React.useState(false);
-  const [error, setError] = React.useState("")
+    const [ eventParticipantsDialog, setEventParticipantsDialog ] =
+        React.useState( false );
+    const classes = useStyles();
+    const [ isLeaveAlertOpen, setIsLeaveAlertOpen ] = React.useState( false );
+    const [ error, setError ] = React.useState( "" )
 
-  const handleCloseAlert = () => {
-    setIsLeaveAlertOpen(false);
-  };
-
-  function handleDeleteEvent() {
-    let headers = {
-      "Content-Type": "application/json",
-      'Authorization': "Bearer " + Env.TOKEN,
+    const handleCloseAlert = () => {
+        setIsLeaveAlertOpen( false );
     };
 
-    axios.delete(process.env.REACT_APP_URL + "event?eventId=" + event.id, {headers: headers})
-      .then(function (response) {
-          console.log(response)
-          setIsLeaveAlertOpen(true)
-      })
-      .catch(function (error) {setError("Something went wrong!")})
-  }
+    function handleDeleteEvent() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': "Bearer " + Env.TOKEN,
+        };
 
-  return (
-    <div className={classes.container}>
-      <EditEventDialog
-        open={editEventDialog}
-        setOpen={(status) => {
-          setEditEventDialog(status);
-        }}
-      />
-      {
-        <EventParticipantsDialog
-          event={event}
-          open={eventParticipantsDialog}
-          setOpen={(status) => {
-            setEventParticipantsDialog(status);
-          }}
-        />
-      }
-      <Grid container>
-        <Grid item xs={12} style={{ paddingTop: "50px" }}>
-          <EventCard event={event} fromBoardMember={true} />
-          <Grid item xs={12} style={{ paddingTop: "10px" }}>
-            <BilboardButton
-              text="Edit"
-              width="75px"
-              fontWeight="bold"
-              fontSize={10}
-              color="#2f1da3"
-              textColor="white"
-              onClick={() => setEditEventDialog(true)}
-            />
-            <BilboardButton
-              onClick={() => handleDeleteEvent()}
-              text="Delete"
-              width="75px"
-              font-weight="bold"
-              fontSize={10}
-              color="#cc0a0a"
-              textColor="white"
-            />
-            <BilboardButton
-              onClick={() => setEventParticipantsDialog(true)}
-              text="Participants"
-              width="75px"
-              fontSize={10}
-              color="#20d62c"
-              textColor="white"
-            />
-          </Grid>
-        </Grid>
-      </Grid>
+        axios.delete( process.env.REACT_APP_URL + "event?eventId=" + event.id, { headers: headers } )
+             .then( function ( response ) {
+                 console.log( response )
+                 setIsLeaveAlertOpen( true )
+             } )
+             .catch( function ( error ) {
+                 setError( "Something went wrong!" )
+             } )
+    }
 
-      <Dialog open={isLeaveAlertOpen} onClose={handleCloseAlert}>
-        <DialogTitle>{"Delete Event"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure to delete the event of the club?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <BilboardButton onClick={handleCloseAlert} text="Cancel" />
-          <BilboardButton onClick={handleCloseAlert} text="Delete" autoFocus />
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+    return (
+        <div className={ classes.container }>
+            <EditEventDialog
+                open={ editEventDialog }
+                setOpen={ ( status ) => {
+                    setEditEventDialog( status );
+                } }
+            />
+            {
+                <EventParticipantsDialog
+                    event={ event }
+                    open={ eventParticipantsDialog }
+                    setOpen={ ( status ) => {
+                        setEventParticipantsDialog( status );
+                    } }
+                />
+            }
+            <Grid container>
+                <Grid item xs={ 12 } style={ { paddingTop: "50px" } }>
+                    <EventCard setCurrentEvent={ setCurrentEvent } currentEvent={ currentEvent } event={ event }
+                               fromBoardMember={ true }/>
+                    <Grid item xs={ 12 } style={ { paddingTop: "10px" } }>
+                        <BilboardButton
+                            text="Edit"
+                            width="75px"
+                            fontWeight="bold"
+                            fontSize={ 10 }
+                            color="#2f1da3"
+                            textColor="white"
+                            onClick={ () => setEditEventDialog( true ) }
+                        />
+                        <BilboardButton
+                            onClick={ () => handleDeleteEvent() }
+                            text="Delete"
+                            width="75px"
+                            font-weight="bold"
+                            fontSize={ 10 }
+                            color="#cc0a0a"
+                            textColor="white"
+                        />
+                        <BilboardButton
+                            onClick={ () => setEventParticipantsDialog( true ) }
+                            text="Participants"
+                            width="75px"
+                            fontSize={ 10 }
+                            color="#20d62c"
+                            textColor="white"
+                        />
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Dialog open={ isLeaveAlertOpen } onClose={ handleCloseAlert }>
+                <DialogTitle>{ "Delete Event" }</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure to delete the event of the club?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <BilboardButton onClick={ handleCloseAlert } text="Cancel"/>
+                    <BilboardButton onClick={ handleCloseAlert } text="Delete" autoFocus/>
+                </DialogActions>
+            </Dialog>
+        </div>
+    );
 };
 
 export default EventForGeneralPage;

@@ -47,14 +47,15 @@ const CalendarScreen = ( props ) => {
                         <Grid container>
                             <Grid item xs={ 12 } style={ { marginBottom: "-40px" } }>
                                 <p
-                                     style={ {
+                                    style={ {
                                         float: "left",
                                         marginLeft: "20px",
                                         fontSize: "28px",
                                         fontStyle: "italic",
                                     } }
                                 >
-                                    Enrolled Future Events { futureEvents.length === 0 && "(There is no future event for you!)" }
+                                    Enrolled Future Events { futureEvents.length === 0 &&
+                                "(There is no future event for you!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
@@ -62,7 +63,8 @@ const CalendarScreen = ( props ) => {
                                     { futureEvents.map( ( event ) => {
                                         return (
                                             <div className={ classes.eventCard }>
-                                                <EventCard event={ event }/>
+                                                <EventCard currentEvent={ props.currentEvent }
+                                                           setCurrentEvent={ props.setCurrentEvent } event={ event }/>
                                             </div>
                                         );
                                     } ) }
@@ -74,14 +76,15 @@ const CalendarScreen = ( props ) => {
                         <Grid container>
                             <Grid item xs={ 12 } style={ { marginBottom: "-40px" } }>
                                 <p
-                                     style={ {
+                                    style={ {
                                         float: "left",
                                         marginLeft: "20px",
                                         fontSize: "28px",
                                         fontStyle: "italic",
                                     } }
                                 >
-                                    Enrolled Past Events { pastEvents.length === 0 && "(There is no past event for you!)" }
+                                    Enrolled Past Events { pastEvents.length === 0 &&
+                                "(There is no past event for you!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
@@ -89,7 +92,8 @@ const CalendarScreen = ( props ) => {
                                     { pastEvents.map( ( event ) => {
                                         return (
                                             <div className={ classes.eventCard }>
-                                                <EventCard event={ event }/>
+                                                <EventCard currentEvent={ props.currentEvent }
+                                                           setCurrentEvent={ props.setCurrentEvent } event={ event }/>
                                             </div>
                                         );
                                     } ) }

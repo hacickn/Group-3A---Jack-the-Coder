@@ -1,6 +1,5 @@
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
-import BilboardNavbar from "../components/BilboardNavbar";
 import EventCard from "../components/EventCard";
 import { MockData } from "../MockData";
 
@@ -27,7 +26,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const MainScreen = ( program ) => {
+const MainScreen = ( { program, currentEvent, setCurrentEvent, currentClub, setCurrentClub } ) => {
     const { eventsFollowing, eventsDiscover } = MockData();
     const classes = useStyles();
 
@@ -47,16 +46,19 @@ const MainScreen = ( program ) => {
                                         fontStyle: "italic",
                                     } }
                                 >
-                                    Events of Following Clubs  { program.program.followingClubsEvents.length === 0 && "(Please follow some" +
+                                    Events of Following Clubs { program.followingClubsEvents.length === 0 &&
+                                "(Please follow some" +
                                 " clubs first!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
                                 <div className={ classes.eventsContainer }>
-                                    { program.program.followingClubsEvents.map( ( event ) => {
+                                    { program.followingClubsEvents.map( ( event ) => {
                                         return (
                                             <div className={ classes.eventCard }>
                                                 <EventCard
+                                                    currentEvent={ currentEvent }
+                                                    setCurrentEvent={ setCurrentEvent }
                                                     event={ event }
                                                 />
                                             </div>
@@ -82,10 +84,12 @@ const MainScreen = ( program ) => {
                             </Grid>
                             <Grid item xs={ 12 }>
                                 <div className={ classes.eventsContainer }>
-                                    { program.program.discover.map( ( event ) => {
+                                    { program.discover.map( ( event ) => {
                                         return (
                                             <div className={ classes.eventCard }>
                                                 <EventCard
+                                                    currentEvent={ currentEvent }
+                                                    setCurrentEvent={ setCurrentEvent }
                                                     event={ event }
                                                 />
                                             </div>

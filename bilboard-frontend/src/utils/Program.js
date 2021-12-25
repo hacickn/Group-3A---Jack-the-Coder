@@ -1,5 +1,6 @@
 class Program {
     static clubMap = new Map()
+    static eventMap = new Map()
     static program = {}
     static currentEvent = {}
 
@@ -14,6 +15,10 @@ class Program {
     static getCurrentEvent() {
         return this.currentEvent
     }
+
+    static getEventMap() {
+        return this.clubMap
+    }
 }
 
 export default {
@@ -25,6 +30,15 @@ export default {
     },
     getClub( id ) {
         return Program.clubMap.get( id )
+    },
+    getEventMap() {
+        return Program.eventMap
+    },
+    addEvent( event, id ) {
+        Program.eventMap.set( id, event )
+    },
+    getEvent( id ) {
+        return Program.eventMap.get( id )
     },
     getProgram() {
         return Program.program

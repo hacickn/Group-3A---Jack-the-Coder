@@ -144,7 +144,9 @@ public class EventController {
 
         ModelMapper modelMapper = new ModelMapper();
         EventDto eventDto = eventService.getEventByCode( eventCode );
+        System.out.println(eventDto.getId());
         UserDto userDto = userService.getUserById( userId );
+        System.out.println(userDto.getId());
 
         EventParticipantDto eventParticipantDto =
                 eventService.getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,

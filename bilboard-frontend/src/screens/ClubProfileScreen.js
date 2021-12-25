@@ -41,6 +41,22 @@ const ClubProfileScreen = ({ image, currentClub }) => {
     setIsLeaveAlertOpen(false);
   };
 
+  function handleEnrollClub() {
+    let headers = {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Env.TOKEN,
+    };
+
+    axios.post(process.env.REACT_APP_URL + "club/enrollment/request?userId=" + 1 + "&clubId=" + 12, {}, {headers: headers})
+      .then(function(response) {
+        console.log(response.data)
+        setIsLeaveAlertOpen(true);
+      })
+      .catch(function (error) {
+        setError("Something went wrong!")
+      })
+  }
+
   function handleFeedbackSend(content) {
     let headers = {
       "Content-Type": "application/json",
@@ -323,7 +339,7 @@ const ClubProfileScreen = ({ image, currentClub }) => {
         <DialogActions>
           <BilboardButton onClick={handleCloseAlert} text="Cancel" />
           <BilboardButton
-            onClick={handleCloseAlert}
+            onClick={() => handleEnrollClub()}
             text="Send Request"
             autoFocus
           />

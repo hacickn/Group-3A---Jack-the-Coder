@@ -137,12 +137,15 @@ public class EventController {
     }
 
     @PostMapping( path = "/attend" )
-    public StatusResponse attendToEvent ( @RequestParam( "eventId" ) long eventId ,
+    public StatusResponse attendToEvent ( @RequestParam( "eventCode" ) String eventCode ,
                                           @RequestParam( "userId" ) long userId ) {
         StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setOperationName( OperationName.ENROLL_REQUEST.name() );
+
         ModelMapper modelMapper = new ModelMapper();
-        EventDto eventDto = eventService.getEventById( eventId );
+        EventDto eventDto = eventService.getEventByCode( eventCode );
         UserDto userDto = userService.getUserById( userId );
+
         EventParticipantDto eventParticipantDto =
                 eventService.getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,
                         modelMapper.map( eventDto , EventEntity.class ) );
@@ -156,7 +159,6 @@ public class EventController {
             }
             statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
         } else if ( eventService.enrollToEvent( eventDto , userDto ) ) {
-
             eventParticipantDto =
                     eventService.getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,
                             modelMapper.map( eventDto , EventEntity.class ) );

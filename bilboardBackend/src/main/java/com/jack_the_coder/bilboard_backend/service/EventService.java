@@ -28,7 +28,7 @@ public interface EventService {
 
     EventParticipantDto getEventParticipantById ( long eventParticipantId );
 
-    EventParticipantDto getEventParticipantByUserAndEvent ( UserEntity userEntity , EventEntity eventEntity);
+    EventParticipantDto getEventParticipantByUserAndEvent ( UserEntity userEntity , EventEntity eventEntity );
 
     Boolean deleteEvent ( EventDto eventDto );
 
@@ -43,4 +43,6 @@ public interface EventService {
     Boolean askQuestion ( EventDto eventDto , String question , UserDto userDto );
 
     Boolean respondToQuestion ( EventQuestionDto eventQuestionDto , String answer );
+
+    EventDto getEventByCode ( String code );
 }

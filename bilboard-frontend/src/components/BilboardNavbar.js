@@ -208,12 +208,8 @@ const BilboardNavbar = ( {
                         } }
                         onChange={ ( event, value, reason, details ) => {
                             setSearchText( value )
-                            if ( clubs.length > 0 ) {
-                                setCurrentClub( clubs[ 0 ] )
-                            } else {
-                                setCurrentClub( null )
+                            setCurrentClub( value )
 
-                            }
                             setCurrentScreen( "clubScreen" )
                         } }
                         getOptionSelected={ ( option, value ) => {

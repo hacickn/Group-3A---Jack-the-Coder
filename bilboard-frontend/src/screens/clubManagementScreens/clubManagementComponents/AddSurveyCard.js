@@ -29,13 +29,19 @@ const AddSurveyCard = (props) => {
   const [warning, setWarning] = React.useState("");
   const [textValue, setTextValue] = React.useState("");
   const [choices, setChoices] = React.useState([]);
+  const [question, setQuestion] = React.useState("");
 
-  function handleDeletion(title) {
-    title = title.trim();
+  React.useEffect(() => {
+    var qa = {question, choices}
+    props.setQA(qa);
+  }, [question, choices]);
+
+  function handleDeletion(content) {
+    content = content.trim();
     let temp = [];
 
     choices.forEach((choice) => {
-      if (choice.title !== title) {
+      if (choice.content !== content) {
         temp.push(choice);
       }
     });
@@ -43,19 +49,20 @@ const AddSurveyCard = (props) => {
     setChoices(temp);
   }
 
-  function handleAddition(title) {
+
+  function handleAddition(content) {
     let check = true;
-    title = title.trim();
+    content = content.trim();
 
     choices.forEach((choice) => {
-      if (choice.title === title) {
+      if (choice.content === content) {
         check = false;
       }
     });
 
     if (check) {
       let temp = [...choices];
-      temp.push({ title: title });
+      temp.push({ content: content, voteCount: 0 });
       setChoices(temp);
     } else {
       setWarning("This choice was already added!");
@@ -65,7 +72,6 @@ const AddSurveyCard = (props) => {
   return (
     <div
       fullWidth
-      maxWidth={"md"}
       style={{
         border: "10px solid",
         borderImageSlice: "1",
@@ -104,6 +110,8 @@ const AddSurveyCard = (props) => {
           <BilboardMultilineTextField
             label="Survey Question"
             type="surveyQuestion"
+            value={question}
+            onChange= {(e) => setQuestion(e)}
             width="500px"
             rows="7"
             style={{ marginTop: "30px" }}
@@ -137,9 +145,10 @@ const AddSurveyCard = (props) => {
             marginRight: "170px",
           }}
         >
-          {choices.map((choice) => {
+          {choices.map((choice, index) => {
             return (
               <Grid
+                key={index}
                 item
                 xs={12}
                 style={{ display: "flex", justifyContent: "center" }}
@@ -163,7 +172,7 @@ const AddSurveyCard = (props) => {
                         padding: 8,
                       }}
                     >
-                      {choice.title}
+                      {choice.content}
                     </Grid>
                     <Grid
                       item
@@ -176,7 +185,7 @@ const AddSurveyCard = (props) => {
                       }}
                     >
                       <IconButton
-                        onClick={() => handleDeletion(choice.title)}
+                        onClick={() => handleDeletion(choice.content)}
                         style={{
                           borderRadius: 0,
                         }}

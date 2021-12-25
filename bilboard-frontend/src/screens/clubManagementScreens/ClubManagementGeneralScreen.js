@@ -6,13 +6,12 @@ import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
+import EditEventDialog from "../../components/EditEventDialog";
 import DialogContent from "@mui/material/DialogContent";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import EditInstagramLinkDialog from "../../components/EditInstagramLinkDialog";
-import EditWhatsappLinkDialog from "../../components/EditWhatsappLinkDialog";
 import Colors from "../../utils/Colors";
 import Env from "../../utils/Env";
 import BilboardButton from "../../components/BilboardButton";
@@ -28,6 +27,8 @@ const useStyles = makeStyles({
 });
 
 const ClubManagementGeneralScreen = ({ club }) => {
+  
+
   const [whatsappLink, setWhatsappLink] = React.useState(null);
   const [instagramLink, setInstagramLink] = React.useState(null);
 

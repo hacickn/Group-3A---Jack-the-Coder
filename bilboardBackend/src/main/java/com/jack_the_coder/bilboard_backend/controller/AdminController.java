@@ -46,7 +46,8 @@ public class AdminController {
     UserService userService;
 
     /**
-     * @param createClubRequest
+     * Method for creating a club
+     * @param createClubRequest is a CreateClubRequest
      * @return CreateClubResponse
      * @apiNote This method creates a club.
      */
@@ -63,8 +64,9 @@ public class AdminController {
     }
 
     /**
-     * @param createUniversityRequest
-     * @return
+     * Method for creating a university
+     * @param createUniversityRequest is a CreateUniversityRequest
+     * @return CreateUniversityResponse
      * @apiNote This method creates a university.
      */
     @PostMapping( path = "/createUniversity" )
@@ -76,6 +78,7 @@ public class AdminController {
     }
 
     /**
+     * Method for assigning a president to a club
      * @param clubId is a long
      * @param userId is a long
      * @return StatusResponse
@@ -100,6 +103,7 @@ public class AdminController {
     }
 
     /**
+     * Method for assigning an advisor to a club
      * @param clubId is a long
      * @param userId is a long
      * @return StatusResponse
@@ -122,7 +126,11 @@ public class AdminController {
         return statusResponse;
     }
 
-
+    /**
+     * Method for getting the clubs
+     * @return List<AdminClubResponse>
+     * @apiNote This method is used to get clubs.
+     */
     @GetMapping( path = "/clubs" )
     public List<AdminClubResponse> getClubs () {
         ModelMapper modelMapper = new ModelMapper();

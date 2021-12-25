@@ -22,7 +22,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import BilboardButton from "../components/BilboardButton";
 
-const ClubManagementGeneralScreen = ( { image } ) => {
+const ClubProfileScreen = ( { image } ) => {
     const [ isLeaveFeedbackDialogOpen, setIsLeaveFeedbackDialogOpen ] = React.useState( false );
     const [ isMemberOfClub, setIsMemberOfClub ] = React.useState( false );
     const [ error, setError ] = React.useState( "" )
@@ -261,7 +261,7 @@ const ClubManagementGeneralScreen = ( { image } ) => {
     );
 };
 
-export default ClubManagementGeneralScreen;
+export default ClubProfileScreen;
 /*
   <Grid
           item

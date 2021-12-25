@@ -16,59 +16,59 @@ import Env from "../utils/Env";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
 
-const useStyles = makeStyles( {
+const useStyles = makeStyles({
     root: {
         height: "calc(100vh-68px)",
     },
     userImage: {
-        width: "200px",
-        height: "200px",
-        backgroundSize: "200px 200px",
+        width: "300px",
+        height: "300px",
+        backgroundSize: "300px 300px",
         backgroundRepeat: "no-repeat",
         borderRadius: "100px",
     },
-} );
+});
 
-const UserScreen = ( {
-                         setScreenNoNavbar,
-                         currentEvent,
-                         setCurrentEvent,
-                         signOut,
-                         program,
-                         currentClub,
-                         setCurrentClub
-                     } ) => {
-    const [ geStatus, setGeStatus ] = React.useState( null );
-    const [ submitted, setSubmitted ] = React.useState( false );
-    const [ name, setName ] = React.useState( null );
-    const [ surname, setSurname ] = React.useState( null );
-    const [ id, setId ] = React.useState( null );
-    const [ error, setError ] = React.useState( "" );
-    const [ success, setSuccess ] = React.useState( "" );
+const UserScreen = ({
+    setScreenNoNavbar,
+    currentEvent,
+    setCurrentEvent,
+    signOut,
+    program,
+    currentClub,
+    setCurrentClub
+}) => {
+    const [geStatus, setGeStatus] = React.useState(null);
+    const [submitted, setSubmitted] = React.useState(false);
+    const [name, setName] = React.useState(null);
+    const [surname, setSurname] = React.useState(null);
+    const [id, setId] = React.useState(null);
+    const [error, setError] = React.useState("");
+    const [success, setSuccess] = React.useState("");
 
-    if ( geStatus == null && program.geTaken !== geStatus ) {
-        setGeStatus( program.geTaken );
+    if (geStatus == null && program.geTaken !== geStatus) {
+        setGeStatus(program.geTaken);
     }
 
-    if ( name == null && program.name !== name ) {
-        setName( program.name );
+    if (name == null && program.name !== name) {
+        setName(program.name);
     }
 
-    if ( surname == null && program.surname !== surname ) {
-        setSurname( program.surname );
+    if (surname == null && program.surname !== surname) {
+        setSurname(program.surname);
     }
 
-    if ( id == null && program.bilkentId !== id ) {
-        setId( program.bilkentId );
+    if (id == null && program.bilkentId !== id) {
+        setId(program.bilkentId);
     }
 
-    function handleGeStatusChange( status ) {
+    function handleGeStatusChange(status) {
         let headers = {
             "Content-Type": "application/json",
             Authorization: "Bearer " + Env.TOKEN,
         };
 
-        setSubmitted( true );
+        setSubmitted(true);
         axios
             .post(
                 process.env.REACT_APP_URL +
@@ -79,21 +79,21 @@ const UserScreen = ( {
                 {},
                 { headers: headers }
             )
-            .then( function ( response ) {
-                if ( response.status === 200 ) {
-                    setSubmitted( false );
-                    setSuccess( "GE250/1 is updated!" );
+            .then(function (response) {
+                if (response.status === 200) {
+                    setSubmitted(false);
+                    setSuccess("GE250/1 is updated!");
                 } else {
-                    setSubmitted( false );
-                    setGeStatus( !status );
-                    setSuccess( "GE250/1 is NOT updated!" );
+                    setSubmitted(false);
+                    setGeStatus(!status);
+                    setSuccess("GE250/1 is NOT updated!");
                 }
-            } )
-            .catch( function ( error ) {
-                setSuccess( "GE250/1 is NOT updated!" );
-                setSubmitted( false );
-                setGeStatus( !status );
-            } );
+            })
+            .catch(function (error) {
+                setSuccess("GE250/1 is NOT updated!");
+                setSubmitted(false);
+                setGeStatus(!status);
+            });
     }
 
     function handleNameSurnameChange() {
@@ -112,189 +112,188 @@ const UserScreen = ( {
                 {},
                 { headers: headers }
             )
-            .then( function ( response ) {
-                if ( response.status === 200 ) {
-                    setSubmitted( false );
-                    setSuccess( "Name and surname is updated!" );
+            .then(function (response) {
+                if (response.status === 200) {
+                    setSubmitted(false);
+                    setSuccess("Name and surname is updated!");
                 } else {
-                    setSubmitted( false );
-                    setError( "Name and surname is NOT updated!" );
+                    setSubmitted(false);
+                    setError("Name and surname is NOT updated!");
                 }
-            } )
-            .catch( function ( error ) {
-                setError( "Name and surname is NOT updated!" );
-                setSubmitted( false );
-            } );
+            })
+            .catch(function (error) {
+                setError("Name and surname is NOT updated!");
+                setSubmitted(false);
+            });
     }
 
     function goToClubPage() {
-        setScreenNoNavbar( "clubScreen" )
+        setScreenNoNavbar("clubScreen")
     }
 
     const classes = useStyles();
     return (
-        <div className={ classes.root }>
+        <div className={classes.root}>
             <Grid container>
                 <input
-                    style={ { display: "none" } }
-                    className={ classes.input }
+                    style={{ display: "none" }}
+                    className={classes.input}
                     accept="image/*"
                     id="contained-button-file"
                     type="file"
-                    onChange={ ( event ) => {
+                    onChange={(event) => {
                         const formData = new FormData();
 
-                        Array.from( event.target.files )
-                             .forEach( ( file, index ) => {
-                                 formData.append( "photo", file, file.name );
-                             } );
+                        Array.from(event.target.files)
+                            .forEach((file, index) => {
+                                formData.append("photo", file, file.name);
+                            });
 
-                        formData.append( "userId", program.id );
+                        formData.append("userId", program.id);
 
                         const headers = {
                             Authorization: "Bearer " + Env.TOKEN,
                         };
 
-                        fetch( process.env.REACT_APP_URL + "user/changePhoto", {
+                        fetch(process.env.REACT_APP_URL + "user/changePhoto", {
                             method: "POST",
                             headers: headers,
                             body: formData,
-                        } )
-                            .then( ( response ) => response.json() )
-                            .then( ( data ) => {
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
                                 //console.log(data.message)
-                            } )
-                            .then( () => {
+                            })
+                            .then(() => {
                                 setSuccess(
                                     "Image uploaded successfully! Please refresh the page!"
                                 );
-                            } )
-                            .catch( () => {
-                                setError( "Something went wrong!" );
-                            } );
-                    } }
+                            })
+                            .catch(() => {
+                                setError("Something went wrong!");
+                            });
+                    }}
                 />
-                <Grid item xs={ 4 }>
+                <Grid item xs={4}>
                     <Card
-                        elevation={ 3 }
-                        style={ {
+                        elevation={3}
+                        style={{
                             borderRadius: Constants.BORDER_RADIUS,
                             padding: "20px",
                             margin: "40px",
                             marginLeft: "100px",
                             marginRight: "80px",
-                        } }
+                        }}
                     >
                         <Grid container direction="column">
                             <Grid
                                 item
-                                xs={ 4 }
-                                style={ {
+                                xs={4}
+                                style={{
                                     paddingTop: "40px",
                                     paddingBottom: "30px",
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
-                                } }
+                                }}
                             >
                                 <Grid container>
-                                    <Grid item xs={ 12 } style={ { display: "flex", justifyContent: "center" } }>
+                                    <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
                                         <div
-                                            className={ classes.userImage }
-                                            style={ {
-                                                backgroundImage: `url(${
-                                                    process.env.REACT_APP_IMAGE_URL + program.photo
-                                                })`,
-                                            } }
+                                            className={classes.userImage}
+                                            style={{
+                                                backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL + program.photo
+                                                    })`,
+                                            }}
                                         />
                                     </Grid>
-                                    <Grid item xs={ 12 } style={ { display: "flex", justifyContent: "center" } }>
+                                    <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
                                         <label htmlFor="contained-button-file">
-                                            <Button component="span" style={ { marginLeft: -20 } }>
-                                                <Edit/>
+                                            <Button component="span" style={{ marginLeft: -20 }}>
+                                                <Edit />
                                             </Button>
                                         </label>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={ 8 }>
+                            <Grid item xs={8}>
                                 <Grid container>
                                     <Grid
                                         item
-                                        xs={ 12 }
-                                        style={ {
+                                        xs={12}
+                                        style={{
                                             fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                             fontSize: "24px",
                                             fontStyle: "italic",
-                                        } }
+                                        }}
                                     >
                                         My Profile
                                     </Grid>
                                     <Grid
                                         item
-                                        xs={ 12 }
-                                        style={ { marginBottom: "10px", marginTop: "10px" } }
+                                        xs={12}
+                                        style={{ marginBottom: "10px", marginTop: "10px" }}
                                     >
                                         <BilboardTextField
                                             label="Name"
-                                            value={ name }
-                                            onChange={ ( e ) => setName( e.target.value ) }
-                                            width={ "280px" }
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            width={"280px"}
                                         />
                                     </Grid>
-                                    <Grid item xs={ 12 } style={ { marginBottom: "10px" } }>
+                                    <Grid item xs={12} style={{ marginBottom: "10px" }}>
                                         <BilboardTextField
                                             label="Surname"
-                                            value={ surname }
-                                            onChange={ ( e ) => setSurname( e.target.value ) }
-                                            width={ "280px" }
+                                            value={surname}
+                                            onChange={(e) => setSurname(e.target.value)}
+                                            width={"280px"}
                                         />
                                     </Grid>
-                                    <Grid item xs={ 12 } style={ { marginBottom: "10px" } }>
+                                    <Grid item xs={12} style={{ marginBottom: "10px" }}>
                                         <BilboardTextField
                                             label="Id"
-                                            value={ id }
+                                            value={id}
                                             disabled
-                                            width={ "280px" }
+                                            width={"280px"}
                                         />
                                     </Grid>
 
-                                    <Grid item xs={ 12 } style={ { marginBottom: "10px" } }>
+                                    <Grid item xs={12} style={{ marginBottom: "10px" }}>
                                         <BilboardButton
-                                            onClick={ () => {
+                                            onClick={() => {
                                                 if (
                                                     name.trim().length > 0 &&
                                                     surname.trim().length > 0
                                                 ) {
                                                     handleNameSurnameChange();
                                                 } else {
-                                                    setError( "Name or surname can NOT be empty!" );
+                                                    setError("Name or surname can NOT be empty!");
                                                 }
-                                            } }
+                                            }}
                                             text="Update"
-                                            width={ "160px" }
-                                            fontSize={ "12px" }
+                                            width={"160px"}
+                                            fontSize={"12px"}
                                         />
                                     </Grid>
                                     <Grid
                                         item
-                                        xs={ 12 }
-                                        style={ {
+                                        xs={12}
+                                        style={{
                                             marginBottom: "10px",
                                             display: "flex",
                                             justifyContent: "center",
-                                        } }
+                                        }}
                                     >
                                         <FormGroup>
                                             <FormControlLabel
                                                 control={
                                                     <Switch
-                                                        checked={ geStatus }
-                                                        onChange={ () => {
+                                                        checked={geStatus}
+                                                        onChange={() => {
                                                             const newStatus = !geStatus;
-                                                            setGeStatus( newStatus );
-                                                            handleGeStatusChange( newStatus );
-                                                        } }
+                                                            setGeStatus(newStatus);
+                                                            handleGeStatusChange(newStatus);
+                                                        }}
                                                     />
                                                 }
                                                 label="GE250/1"
@@ -303,26 +302,26 @@ const UserScreen = ( {
                                     </Grid>
                                     <Grid
                                         item
-                                        xs={ 12 }
-                                        style={ {
+                                        xs={12}
+                                        style={{
                                             marginBottom: "10px",
                                             display: "flex",
                                             minHeight: 60,
                                             justifyContent: "center",
-                                        } }
+                                        }}
                                     >
-                                        { submitted ? <CircularProgress/> : <div/> }
+                                        {submitted ? <CircularProgress /> : <div />}
                                     </Grid>
-                                    <Grid item xs={ 12 } style={ { marginTop: "10px" } }>
+                                    <Grid item xs={12} style={{ marginTop: "10px" }}>
                                         <BilboardButton
-                                            color={ Colors.BILBOARD_RED }
+                                            color={Colors.BILBOARD_RED}
                                             text="Sign Out"
                                             width="160px"
                                             fontSize="12px"
-                                            onClick={ () => {
+                                            onClick={() => {
                                                 signOut();
-                                                setScreenNoNavbar( "login" );
-                                            } }
+                                                setScreenNoNavbar("login");
+                                            }}
                                         />
                                     </Grid>
                                 </Grid>
@@ -330,76 +329,76 @@ const UserScreen = ( {
                         </Grid>
                     </Card>
                 </Grid>
-                <Grid item xs={ 8 }>
+                <Grid item xs={8}>
                     <Card
-                        elevation={ 3 }
-                        style={ {
+                        elevation={3}
+                        style={{
                             borderRadius: Constants.BORDER_RADIUS,
                             padding: "20px",
                             marginRight: "20px",
                             marginTop: "40px",
-                        } }
+                        }}
                     >
-                        <Grid container style={ { maxHeight: "75vh", overflowX: "scroll" } }>
-                            <Grid item xs={ 12 }>
+                        <Grid container style={{ maxHeight: "75vh", overflowX: "scroll" }}>
+                            <Grid item xs={12}>
                                 <p
-                                    style={ {
+                                    style={{
                                         fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                         fontSize: "32px",
                                         float: "left",
                                         fontStyle: "italic",
-                                    } }
+                                    }}
                                 >
                                     Club Memberships
-                                    { program.clubMemberShips.length === 0 &&
-                                    " (You do not have any" + " membership)" }
+                                    {program.clubMemberShips.length === 0 &&
+                                        " (You do not have any" + " membership)"}
                                 </p>
                             </Grid>
-                            <Grid item xs={ 12 }>
-                                { program.clubMemberShips.map( ( membership ) => {
+                            <Grid item xs={12}>
+                                {program.clubMemberShips.map((membership) => {
                                     return <FollowedClubs
-                                        goToClubPage={ () => {
-                                            setCurrentClub( membership.club )
+                                        goToClubPage={() => {
+                                            setCurrentClub(membership.club)
 
-                                        } }
-                                        club={ membership.club }
-                                        membership = {membership}
-                                        />;
-                                } ) }
+                                        }}
+                                        club={membership.club}
+                                        membership={membership}
+                                    />;
+                                })}
                             </Grid>
                         </Grid>
                     </Card>
                 </Grid>
             </Grid>
             <Snackbar
-                anchorOrigin={ { vertical: "bottom", horizontal: "center" } }
-                open={ error !== "" }
-                autoHideDuration={ 2000 }
-                onClose={ () => setError( "" ) }
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                open={error !== ""}
+                autoHideDuration={2000}
+                onClose={() => setError("")}
             >
-                <Alert onClose={ () => setError( "" ) } severity={ "warning" }>
-                    { error }
+                <Alert onClose={() => setError("")} severity={"warning"}>
+                    {error}
                 </Alert>
             </Snackbar>
             <Snackbar
-                anchorOrigin={ { vertical: "bottom", horizontal: "center" } }
-                open={ success !== "" }
-                autoHideDuration={ 2000 }
-                onClose={ () => setSuccess( "" ) }
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                open={success !== ""}
+                autoHideDuration={2000}
+                onClose={() => setSuccess("")}
             >
-                <Alert onClose={ () => setSuccess( "" ) } severity={ "success" }>
-                    { success }
+                <Alert onClose={() => setSuccess("")} severity={"success"}>
+                    {success}
                 </Alert>
             </Snackbar>
         </div>
     );
 };
 
-const mapDispatchToProps = ( dispatch ) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        setScreenNoNavbar: ( value ) =>
-            dispatch( { type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value } ),
+        setScreenNoNavbar: (value) =>
+            dispatch({ type: "SET_SCREEN_NO_NAVBAR", screenNoNavbar: value }),
     };
 };
 
-export default connect( null, mapDispatchToProps )( UserScreen );
+export default connect(null, mapDispatchToProps)(UserScreen);

@@ -115,6 +115,7 @@ const ClubManagementAddEventScreen = ( { club } ) => {
                      setNumberOfParticipants(0)
                      setGePoint(0)
                      setZoomLink("")
+                     handleCloseAlert()
                  } )
                  .catch( function ( error ) {
                      setError( "Event could NOT be created!" )

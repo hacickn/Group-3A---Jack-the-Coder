@@ -44,6 +44,7 @@ const MainScreen = ( program ) => {
                                         float: "left",
                                         marginLeft: "20px",
                                         fontSize: "28px",
+                                        fontStyle: "italic",
                                     } }
                                 >
                                     Events of Following Clubs  { program.program.followingClubsEvents.length === 0 && "(Please follow some" +
@@ -73,6 +74,7 @@ const MainScreen = ( program ) => {
                                         float: "left",
                                         marginLeft: "20px",
                                         fontSize: "28px",
+                                        fontStyle: "italic",
                                     } }
                                 >
                                     Discover

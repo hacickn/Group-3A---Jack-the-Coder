@@ -8,6 +8,7 @@ import BilboardNavbar from "../components/BilboardNavbar";
 import AboutScreen from "./AboutScreen";
 import InitialScreen from "./InitialScreen";
 import AdminScreen from "./AdminScreensComponents/AdminScreen";
+import EventDetailScren from "./EventDetailScreen";
 import AdministrativeAssistantScreen from "../screens/AdministrativeAssistantComponents/AdministrativeAssistantScreen";
 import { CircularProgress } from "@mui/material";
 import React from 'react';
@@ -63,6 +64,8 @@ const ScreensInNavbar = ( {
                                 ) : currentScreen === "clubManagement" ? (
                                     <ClubManagementScreen currentClubId={ currentClubId }
                                                           program={ program }/>
+                                ) : currentScreen === "eventDetail" ? (
+                                    <EventDetailScren program={ program }/>
                                 ) : (
                                     <MainScreen/>
                                 ) }

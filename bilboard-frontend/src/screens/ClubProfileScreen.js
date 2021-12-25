@@ -23,7 +23,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import BilboardButton from "../components/BilboardButton";
 import Program from "../utils/Program";
 
-const ClubProfileScreen = ({ image, currentClub }) => {
+const ClubProfileScreen = ({ image, currentClub, program }) => {
   const [isLeaveFeedbackDialogOpen, setIsLeaveFeedbackDialogOpen] =
     React.useState(false);
   const [clubFullData, setClubFullData] = React.useState(null);
@@ -47,9 +47,8 @@ const ClubProfileScreen = ({ image, currentClub }) => {
         Authorization: "Bearer " + Env.TOKEN,
     };
 
-    axios.post(process.env.REACT_APP_URL + "club/enrollment/request?userId=" + 1 + "&clubId=" + 12, {}, {headers: headers})
+    axios.post(process.env.REACT_APP_URL + "club/enrollment/request?userId=" + program.id + "&clubId=" + currentClub.id,  {headers: headers})
       .then(function(response) {
-        console.log(response.data)
         setIsLeaveAlertOpen(true);
       })
       .catch(function (error) {

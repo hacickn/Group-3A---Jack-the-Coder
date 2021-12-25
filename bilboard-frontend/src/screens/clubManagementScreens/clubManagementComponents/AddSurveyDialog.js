@@ -34,6 +34,8 @@ const AddSurveyDialog = (props) => {
   const [allQandA, setAllQandA] = React.useState([]);
   const [surveyTitle, setSurveyTitle] = React.useState("");
   const [endDate, setEndDate] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+  const [error, setError] = React.useState("");
 
   let headers = {
     "Content-Type": "application/json",
@@ -62,10 +64,11 @@ const AddSurveyDialog = (props) => {
         { headers: headers }
       )
       .then(function (response) {
-        console.log(response);
+        props.setOpen(false);
+        setSuccess("Survey added successfully");
       })
       .catch(function (error) {
-        console.log(error);
+        setError("Error occurred while adding survey");
       });
   };
 
@@ -213,6 +216,26 @@ const AddSurveyDialog = (props) => {
           Cancel
         </Button>
       </DialogActions>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={error !== ""}
+        autoHideDuration={5000}
+        onClose={() => setError("")}
+      >
+        <Alert onClose={() => setError("")} severity={"warning"}>
+          {error}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={success !== ""}
+        autoHideDuration={5000}
+        onClose={() => setSuccess("")}
+      >
+        <Alert onClose={() => setSuccess("")} severity={"success"}>
+          {success}
+        </Alert>
+      </Snackbar>
     </Dialog>
   );
 };

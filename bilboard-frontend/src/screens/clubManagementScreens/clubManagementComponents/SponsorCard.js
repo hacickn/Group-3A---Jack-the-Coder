@@ -1,12 +1,32 @@
 import Constants from "../../../utils/Constants";
 import Colors from "../../../utils/Colors";
 import { Grid } from "@mui/material";
-import React from "react";
 import { DeleteOutline } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
+import axios from "axios";
+import React from "react";
+import Env from "../../../utils/Env";
 
 const SponsorCard = ( { sponsor } ) => {
-
+    const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+    const [error, setError] = React.useState("")
+    function sponsorDelete() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+        axios.delete(process.env.REACT_APP_URL + "club/sponsorship?sponsorshipId=" + sponsor.id, { headers: headers })
+            .then(function (response) {
+                if (response.data.operationResult === "SUCCESS") {
+                    console.log(response.data)
+                    setIsDialogOpen(false);
+                }
+                else {
+                    setError("Deleting Sponsor is failed!");
+                }
+            })
+            .catch(function (error) { setError("Something went wrong!") })
+    }
     function returnTypePhoto( type ) {
         switch ( type ) {
             case "GOLD":
@@ -53,7 +73,7 @@ const SponsorCard = ( { sponsor } ) => {
             />
         </Grid>
         <Grid item xs>
-            <IconButton>
+            <IconButton onClick={ () => sponsorDelete() }>
                 <DeleteOutline style={ { color: Colors.BILBOARD_RED } }/>
             </IconButton>
         </Grid>

@@ -11,6 +11,8 @@ import EditEventDialog from "../../../components/EditEventDialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import axios from "axios";
+import Env from "../../../utils/Env";
 
 const useStyles = makeStyles({
   container: {
@@ -27,14 +29,25 @@ const EventForGeneralPage = ({ event }) => {
     React.useState(false);
   const classes = useStyles();
   const [isLeaveAlertOpen, setIsLeaveAlertOpen] = React.useState(false);
-
-  const handleDeleteEvent = () => {
-    setIsLeaveAlertOpen(true);
-  };
+  const [error, setError] = React.useState("")
 
   const handleCloseAlert = () => {
     setIsLeaveAlertOpen(false);
   };
+
+  function handleDeleteEvent() {
+    let headers = {
+      "Content-Type": "application/json",
+      'Authorization': "Bearer " + Env.TOKEN,
+    };
+
+    axios.delete(process.env.REACT_APP_URL + "event?eventId=" + event.id, {headers: headers})
+      .then(function (response) {
+          console.log(response)
+          setIsLeaveAlertOpen(true)
+      })
+      .catch(function (error) {setError("Something went wrong!")})
+  }
 
   return (
     <div className={classes.container}>

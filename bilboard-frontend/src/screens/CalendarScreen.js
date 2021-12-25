@@ -54,7 +54,7 @@ const CalendarScreen = ( props ) => {
                                         fontStyle: "italic",
                                     } }
                                 >
-                                    Future Events { futureEvents.length === 0 && "(There is no future event for you!)" }
+                                    Enrolled Future Events { futureEvents.length === 0 && "(There is no future event for you!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>
@@ -81,7 +81,7 @@ const CalendarScreen = ( props ) => {
                                         fontStyle: "italic",
                                     } }
                                 >
-                                    Past Events { pastEvents.length === 0 && "(There is no past event for you!)" }
+                                    Enrolled Past Events { pastEvents.length === 0 && "(There is no past event for you!)" }
                                 </p>
                             </Grid>
                             <Grid item xs={ 12 }>

@@ -92,19 +92,6 @@ const CreateClassroomScreen = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} style={{marginTop: "20px",
-              display: "flex",
-              justifyContent: "center",
-              }}>
-              <BilboardTextField
-                  label="Capacity"
-                  type="capacity"
-                  value={capacity}
-                  onChange={(e) => setCapacity(e.target.value)}
-                  width="300px"
-                  style={{marginTop: "30px"}}
-              />
-        </Grid>
 
         {building !== "" && (
           <Grid container>
@@ -120,10 +107,25 @@ const CreateClassroomScreen = () => {
               <BilboardTextField onChange={handleClassroomName} label="Classroom Name" width="300px" />
             </Grid>
 
+            <Grid item xs={12} style={{marginTop: "20px",
+              display: "flex",
+              justifyContent: "center",
+              }}>
+              <BilboardTextField
+                  label="Capacity"
+                  type="capacity"
+                  value={capacity}
+                  onChange={(e) => setCapacity(e.target.value)}
+                  width="300px"
+                  style={{marginTop: "30px"}}
+              />
+            </Grid>
+
             <Grid
               item
               xs={12}
               style={{
+                marginTop: "30px",
                 display: "flex",
                 justifyContent: "center",
                 marginBottom: "20px",
@@ -132,6 +134,7 @@ const CreateClassroomScreen = () => {
               <BilboardButton onClick={handleAddButton} text="Add" fontSize="16px" width="100px" />
             </Grid>
           </Grid>
+  
         )}
       </Grid>
     </div>

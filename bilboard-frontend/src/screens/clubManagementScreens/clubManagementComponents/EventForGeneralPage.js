@@ -22,25 +22,26 @@ const useStyles = makeStyles( {
 const EventForGeneralPage = ( { event } ) => {
     const [ eventParticipantsDialog, setEventParticipantsDialog ] = React.useState( false )
     const classes = useStyles();
-    const [isLeaveAlertOpen, setIsLeaveAlertOpen] = React.useState(false);
+    const [ isLeaveAlertOpen, setIsLeaveAlertOpen ] = React.useState( false );
 
     const handleDeleteEvent = () => {
-        setIsLeaveAlertOpen(true);
-      };
-    
-      const handleCloseAlert = () => {
-        setIsLeaveAlertOpen(false);
-      };
+        setIsLeaveAlertOpen( true );
+    };
+
+    const handleCloseAlert = () => {
+        setIsLeaveAlertOpen( false );
+    };
 
     return (
         <div className={ classes.container }>
-            { <EventParticipantsDialog open={ eventParticipantsDialog } setOpen={ ( status ) => {
+            { <EventParticipantsDialog event={ event }
+                                       open={ eventParticipantsDialog } setOpen={ ( status ) => {
                 setEventParticipantsDialog( status )
             } }/> }
             <Grid container>
 
                 <Grid item xs={ 12 } style={ { paddingTop: "50px" } }>
-                    <EventCard event={ event } fromBoardMember={true}/>
+                    <EventCard event={ event } fromBoardMember={ true }/>
                     <Grid item xs={ 12 } style={ { paddingTop: "10px" } }>
                         <BilboardButton
                             text="Edit"
@@ -51,7 +52,7 @@ const EventForGeneralPage = ( { event } ) => {
                             textColor="white"
                         />
                         <BilboardButton
-                            onClick={() => handleDeleteEvent()}
+                            onClick={ () => handleDeleteEvent() }
                             text="Delete"
                             width="75px"
                             font-weight="bold"
@@ -72,16 +73,16 @@ const EventForGeneralPage = ( { event } ) => {
 
             </Grid>
 
-            <Dialog open={isLeaveAlertOpen} onClose={handleCloseAlert}>
-                <DialogTitle>{"Delete Event"}</DialogTitle>
+            <Dialog open={ isLeaveAlertOpen } onClose={ handleCloseAlert }>
+                <DialogTitle>{ "Delete Event" }</DialogTitle>
                 <DialogContent>
-                <DialogContentText>
-                    Are you sure to delete the event of the club? 
-                </DialogContentText>
+                    <DialogContentText>
+                        Are you sure to delete the event of the club?
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <BilboardButton onClick={handleCloseAlert} text="Cancel" />
-                <BilboardButton onClick={handleCloseAlert} text="Delete" autoFocus/>
+                    <BilboardButton onClick={ handleCloseAlert } text="Cancel"/>
+                    <BilboardButton onClick={ handleCloseAlert } text="Delete" autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>

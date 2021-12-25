@@ -22,12 +22,17 @@ const useStyles = makeStyles({
   },
 });
 
-const EventCard = ({event, setCurrentScreen}) => {
+const EventCard = ({event, setCurrentScreen, fromBoardMember}) => {
   const classes = useStyles();
   const [visible, setVisible] = useState(true);
 
   const handleEventCardClick = () => {
-      setCurrentScreen("eventDetail")
+      if(fromBoardMember){
+        setCurrentScreen("eventDetailBoardMember")
+      }
+      else{
+        setCurrentScreen("eventDetail")
+      }
   }
   return (
     <div

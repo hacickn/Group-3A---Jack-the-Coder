@@ -11,6 +11,7 @@ import AdminScreen from "./AdminScreensComponents/AdminScreen";
 import EventDetailScren from "./EventDetailScreen";
 import ClubProfileScreen from "./ClubProfileScreen";
 import AdministrativeAssistantScreen from "../screens/AdministrativeAssistantComponents/AdministrativeAssistantScreen";
+import EventDetailedScreenBoardMember from "./EventDetailedScreenBoardMember";
 import { CircularProgress } from "@mui/material";
 import React from 'react';
 
@@ -69,6 +70,8 @@ const ScreensInNavbar = ( {
                                     <EventDetailScren program={ program }/>
                                 ) : currentScreen === "clubScreen" ?(
                                     <ClubProfileScreen program={program}/>
+                                ) : currentScreen ==="eventDetailBoardMember" ? (
+                                    <EventDetailedScreenBoardMember program={program}/>
                                 ) : <MainScreen program={program}/>}
                             </div>
                         </div> :

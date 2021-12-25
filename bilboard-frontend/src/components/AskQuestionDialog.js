@@ -9,6 +9,8 @@ import Constants from "../utils/Constants";
 import React, {useState} from "react";
 import { connect } from "react-redux";
 import Colors from "../utils/Colors"
+import axios from "axios";
+import Env from "../utils/Env";
 
 /**
  * Ask Question Dialog
@@ -20,6 +22,26 @@ import Colors from "../utils/Colors"
 
 const AskQuestionDialog  = ({isAskQuestionDialogOpen ,setAskQuestionDialogOpen}) => {
     
+    const [question, setQuestion] = useState("");
+    const [error, setError] = useState("")
+
+    function handleAskQuestion(){
+
+        let headers = {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + Env.TOKEN,
+        };
+
+        axios.post(process.env.REACT_APP_URL + "event/askQuestion?eventId=" + 25 + "&userId=" + 1 + "&eventQuestion=" + question, {}, {headers: headers})
+            .then(function(response) {
+                console.log(response.data)
+                setAskQuestionDialogOpen(false)
+            })
+            .catch(function(error) {
+                setError("Something went wrong")
+            })
+    }
+
     return (
         <Dialog open={isAskQuestionDialogOpen} fullWidth maxWidth={"sm"}
                 onClose={() => setAskQuestionDialogOpen(false)}>
@@ -63,7 +85,8 @@ const AskQuestionDialog  = ({isAskQuestionDialogOpen ,setAskQuestionDialogOpen})
                         }}>
                         <BilboardMultilineTextField
                             label="Your Question"
-
+                            value= {question} 
+                            onChange={(e) => setQuestion(e)}
                             type="feedback"
                             width="300px"
                             rows="10"
@@ -75,7 +98,16 @@ const AskQuestionDialog  = ({isAskQuestionDialogOpen ,setAskQuestionDialogOpen})
                     <Grid item xs={12} style={{marginTop: "50px",                  
                         display: "flex",
                         justifyContent: "center"}}>                         
-                        <BilboardButton width="100px" fontSize="11px" text="Submit Question"/>
+                        <BilboardButton 
+                            onClick={() => {
+                                if (question.trim().length === 0) {
+                                    setError("Question cannot be empty")
+                                }
+                                else {
+                                    handleAskQuestion()
+                                }
+                            }}
+                            width="100px" fontSize="11px" text="Submit Question"/>
                     </Grid>
                 </Grid>
             </DialogContent>

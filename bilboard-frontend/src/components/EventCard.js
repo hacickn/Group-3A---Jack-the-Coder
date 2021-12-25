@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     filter: "brightness(80%)",
     cursor: "pointer",
     borderRadius: "16px",
-    backgroundSize: "cover",
+    backgroundSize: "260px 260px",
     backgroundRepeat: "no-repeat",
     transition: "transform .4s",
     "&:hover": {

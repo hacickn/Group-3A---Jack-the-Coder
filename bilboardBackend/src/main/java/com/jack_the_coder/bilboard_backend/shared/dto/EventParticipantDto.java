@@ -19,6 +19,7 @@ public class EventParticipantDto implements Serializable {
     private Boolean isAttended;
     private UserEntity user;
     private EventEntity event;
+    private Boolean pointGiven;
     private int point;
 
     public long getId () {
@@ -59,5 +60,13 @@ public class EventParticipantDto implements Serializable {
 
     public void setPoint ( int point ) {
         this.point = point;
+    }
+
+    public Boolean getPointGiven () {
+        return pointGiven;
+    }
+
+    public void setPointGiven ( Boolean pointGiven ) {
+        this.pointGiven = pointGiven;
     }
 }

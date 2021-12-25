@@ -1,15 +1,16 @@
 package com.jack_the_coder.bilboard_backend.serviceImplementation;
 
 import com.jack_the_coder.bilboard_backend.exception.UserServiceException;
-import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
-import com.jack_the_coder.bilboard_backend.io.entity.EventEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.*;
+import com.jack_the_coder.bilboard_backend.io.repository.EventParticipantRepository;
+import com.jack_the_coder.bilboard_backend.io.repository.EventQuestionRepository;
 import com.jack_the_coder.bilboard_backend.io.repository.EventRepository;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
 import com.jack_the_coder.bilboard_backend.service.EventService;
 import com.jack_the_coder.bilboard_backend.service.ReservationService;
 import com.jack_the_coder.bilboard_backend.service.StorageService;
-import com.jack_the_coder.bilboard_backend.shared.dto.ClubDto;
-import com.jack_the_coder.bilboard_backend.shared.dto.EventDto;
+import com.jack_the_coder.bilboard_backend.shared.dto.*;
+import com.jack_the_coder.bilboard_backend.util.Utils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,13 @@ public class EventServiceImp implements EventService {
 
     @Autowired
     StorageService storageService;
+
+    @Autowired
+    EventQuestionRepository eventQuestionRepository;
+
+    @Autowired
+    EventParticipantRepository eventParticipantRepository;
+
 
     @Override
     public EventDto getEvent ( long eventId ) {
@@ -100,6 +108,159 @@ public class EventServiceImp implements EventService {
             return eventDtoList;
         } catch ( Exception e ) {
             throw new UserServiceException( e.getMessage() );
+        }
+    }
+
+    @Override
+    public Boolean deleteEvent ( EventDto eventDto ) {
+        return null;
+    }
+
+    @Override
+    public Boolean enrollToEvent ( EventDto eventDto , UserDto userDto ) {
+        return null;
+    }
+
+    @Override
+    public Boolean attendToEvent ( EventDto eventDto , UserDto userDto ) {
+        return null;
+    }
+
+    @Override
+    public String createEventCode ( EventDto eventDto ) {
+        try {
+            Utils utils = new Utils();
+            ModelMapper modelMapper = new ModelMapper();
+            String newCode = utils.generateRandomString( 8 );
+
+            while ( eventRepository.findByEventCode( newCode ).isPresent() ) {
+                newCode = utils.generateRandomString( 8 );
+            }
+
+            eventDto.setEventCode( newCode );
+            eventDto.setEventCodeExpire( new Date( new Date().getTime() + 1000 * 60 * 10 ) );
+            eventRepository.save( modelMapper.map( eventDto , EventEntity.class ) );
+            return newCode;
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public Boolean givePointToEvent ( EventDto eventDto , UserDto userDto , int point ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+
+            EventParticipantDto eventParticipantDto =
+                    getEventParticipantByUserAndEvent( modelMapper.map( userDto , UserEntity.class ) ,
+                            modelMapper.map( eventDto , EventEntity.class ) );
+
+            if ( eventParticipantDto.getAttended() && !eventParticipantDto.getPointGiven() ) {
+                eventParticipantDto.setPointGiven( true );
+                eventParticipantDto.setPoint( point );
+
+                eventParticipantRepository
+                        .save( modelMapper.map( eventParticipantDto , EventParticipantEntity.class ) );
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean askQuestion ( EventDto eventDto , String question , UserDto userDto ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            EventQuestionDto eventQuestionDto = new EventQuestionDto();
+            eventQuestionDto.setQuestion( question );
+            eventQuestionDto.setDate( new Date() );
+            eventQuestionDto.setUser( modelMapper.map( userDto , UserEntity.class ) );
+            eventQuestionDto.setEvent( modelMapper.map( eventDto , EventEntity.class ) );
+            eventQuestionRepository.save( modelMapper.map( eventQuestionDto , EventQuestionEntity.class ) );
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean respondToQuestion ( EventQuestionDto eventQuestionDto , String answer ) {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            eventQuestionDto.setAnswer( answer );
+            eventQuestionRepository.save( modelMapper.map( eventQuestionDto , EventQuestionEntity.class ) );
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
+
+    @Override
+    public EventDto getEventById ( long id ) {
+        try {
+            Optional<EventEntity> optional = eventRepository.findById( id );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , EventDto.class );
+            } else {
+                throw new UserServiceException( "Event could not be found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public EventQuestionDto getQuestionById ( long eventQuestionId ) {
+        try {
+            Optional<EventQuestionEntity> optional = eventQuestionRepository.findById( eventQuestionId );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , EventQuestionDto.class );
+            } else {
+                throw new UserServiceException( "Event question could not be found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public EventParticipantDto getEventParticipantById ( long eventParticipantId ) {
+        try {
+            Optional<EventParticipantEntity> optional = eventParticipantRepository.findById( eventParticipantId );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , EventParticipantDto.class );
+            } else {
+                throw new UserServiceException( "Event participant could not be found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
+        }
+    }
+
+    @Override
+    public EventParticipantDto getEventParticipantByUserAndEvent ( UserEntity userEntity , EventEntity eventEntity ) {
+        try {
+            Optional<EventParticipantEntity> optional =
+                    eventParticipantRepository.findByUserAndEvent( userEntity , eventEntity );
+
+            if ( optional.isPresent() ) {
+                ModelMapper modelMapper = new ModelMapper();
+                return modelMapper.map( optional.get() , EventParticipantDto.class );
+            } else {
+                throw new UserServiceException( "Event participant could not be found!" );
+            }
+        } catch ( Exception e ) {
+            throw new UserServiceException( "Something went wrong!" );
         }
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Hacı Çakın
@@ -14,5 +15,7 @@ import java.util.List;
  */
 @Repository
 public interface EventRepository extends JpaRepository<EventEntity, Long> {
-    List<EventEntity> findFirst10ByDateAfter( Date date );
+    List<EventEntity> findFirst10ByDateAfter ( Date date );
+
+    Optional<EventEntity> findByEventCode ( String eventCode );
 }

@@ -35,9 +35,10 @@ public class ReservationController {
     ReservationService reservationService;
 
     /**
-     * @apiNote This method is used to add building.
-     * @param CreateBuildingRequest createBuildingRequest
+     *
+     * @param createBuildingRequest is a CreateBuildingRequest
      * @return BuildingResponse
+     * @apiNote This method is used to add building.
      */
     @PostMapping( path = "/building" )
     public BuildingResponse createBuilding ( @RequestBody CreateBuildingRequest createBuildingRequest ) {
@@ -47,9 +48,10 @@ public class ReservationController {
     }
 
     /**
-     * @apiNote This method is used to add classroom.
-     * @param CreateClassroomRequest createClassroomRequest 
+     *
+     * @param CreateClassroomRequest createClassroomRequest
      * @return BuildingResponse
+     * @apiNote This method is used to add classroom.
      */
     @PostMapping( path = "/classroom" )
     public ClassroomResponse createClassroom ( @RequestBody CreateClassroomRequest createClassroomRequest ) {
@@ -59,9 +61,9 @@ public class ReservationController {
     }
 
     /**
-     * @apiNote This method is used to add classroom day.
      * @param CreateClassroomDayRequest createClassroomDayRequest
      * @return List<ClassroomDayResponse>
+     * @apiNote This method is used to add classroom day.
      */
     @PostMapping( path = "/classroomDay" )
     public List<ClassroomDayResponse> createClassroomDay (
@@ -77,9 +79,9 @@ public class ReservationController {
     }
 
     /**
-     * @apiNote This method is used to add time slot.
      * @param CreateTimeSlotRequest createTimeSlotRequest
      * @return List<TimeSlotResponse>
+     * @apiNote This method is used to add time slot.
      */
     @PostMapping( path = "/timeSlot" )
     public List<TimeSlotResponse> createClassroom ( @RequestBody CreateTimeSlotRequest createTimeSlotRequest ) {

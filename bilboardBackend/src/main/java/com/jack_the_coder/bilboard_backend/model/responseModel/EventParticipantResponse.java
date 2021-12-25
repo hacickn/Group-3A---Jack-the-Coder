@@ -9,6 +9,7 @@ public class EventParticipantResponse {
     private Boolean isAttended;
     private BasicUserResponse user;
     private int point;
+    private Boolean pointGiven;
     private BasicEventResponse event;
 
     public long getId () {
@@ -49,5 +50,13 @@ public class EventParticipantResponse {
 
     public void setEvent ( BasicEventResponse event ) {
         this.event = event;
+    }
+
+    public Boolean getPointGiven () {
+        return pointGiven;
+    }
+
+    public void setPointGiven ( Boolean pointGiven ) {
+        this.pointGiven = pointGiven;
     }
 }

@@ -22,6 +22,9 @@ public class EventParticipantEntity implements Serializable {
     @Column( name = "is_attended" )
     private Boolean isAttended;
 
+    @Column(name = "point_given")
+    private Boolean pointGiven;
+
     @ManyToOne( targetEntity = UserEntity.class )
     @JoinColumn( name = "user" )
     private UserEntity user;
@@ -111,5 +114,21 @@ public class EventParticipantEntity implements Serializable {
      */
     public void setPoint ( int point ) {
         this.point = point;
+    }
+
+    /**
+     * Get point given
+     * @return boolean
+     */
+    public Boolean getPointGiven () {
+        return pointGiven;
+    }
+
+    /**
+     * set point given
+     * @param pointGiven is a boolean
+     */
+    public void setPointGiven ( Boolean pointGiven ) {
+        this.pointGiven = pointGiven;
     }
 }

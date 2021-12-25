@@ -13,7 +13,7 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Env from "../utils/Env";
 import axios from "axios";
-import { Snackbar } from "@mui/material";
+import { CircularProgress, Snackbar } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -21,20 +21,23 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import BilboardButton from "../components/BilboardButton";
+import Program from "../utils/Program";
 
-const ClubProfileScreen = ( { image } ) => {
+const ClubProfileScreen = ( { image, currentClub } ) => {
     const [ isLeaveFeedbackDialogOpen, setIsLeaveFeedbackDialogOpen ] = React.useState( false );
+    const [ clubFullData, setClubFullData ] = React.useState( null )
+    const [ loading, setLoading ] = React.useState( true )
     const [ isMemberOfClub, setIsMemberOfClub ] = React.useState( false );
     const [ error, setError ] = React.useState( "" )
     const [ success, setSuccess ] = React.useState( "" )
-    const [isLeaveAlertOpen, setIsLeaveAlertOpen] = React.useState(false);
+    const [ isLeaveAlertOpen, setIsLeaveAlertOpen ] = React.useState( false );
 
     const handleSendMembershipRequest = () => {
-        setIsLeaveAlertOpen(true);
+        setIsLeaveAlertOpen( true );
     };
 
     const handleCloseAlert = () => {
-        setIsLeaveAlertOpen(false);
+        setIsLeaveAlertOpen( false );
     };
 
     function handleFeedbackSend( content ) {
@@ -57,8 +60,46 @@ const ClubProfileScreen = ( { image } ) => {
              } )
     }
 
-    return (
-        <div style={ { margin: "20px" } }>
+    async function handleClubResponse( clubId ) {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+
+        await axios.get( process.env.REACT_APP_URL + "club?clubId=" + currentClub.id, { headers } )
+                   .then( function ( response ) {
+
+                       Program.addClub( response.data, clubId )
+                       console.log( response.data )
+                       setClubFullData( response.data )
+                       setLoading( false )
+
+                   } )
+                   .catch( function ( error ) {
+                       setLoading( false )
+
+                   } )
+    }
+
+    if ( Program.getClub( currentClub.id ) === undefined ) {
+        handleClubResponse( currentClub.id )
+    } else if ( Program.getClub( currentClub.id ) !== null && loading ) {
+        setLoading( false )
+        setClubFullData( Program.getClub( currentClub.id ) )
+    } else {
+    }
+
+    let point = 0
+    let totalParticipant = 1
+    if ( clubFullData !== null ) {
+        clubFullData.events.forEach( ( eventOfList ) => {
+            point = point + eventOfList.averageRate * eventOfList.rateCount
+            totalParticipant = totalParticipant + eventOfList.rateCount
+        } )
+    }
+
+
+    return ( loading ? <div style={ { margin: "20px" } }><CircularProgress/></div> : <div style={ { margin: "20px" } }>
             <LeaveFeedbackDialog
                 handleSetError={ ( value ) => setError( value ) }
                 handleSendFeedback={ ( content ) => handleFeedbackSend( content ) }
@@ -91,12 +132,12 @@ const ClubProfileScreen = ( { image } ) => {
                             color: Colors.BILBOARD_LIGHT_GREY,
                         } }
                     >
-                        IEEE Bilkent
+                        { clubFullData.name }
                     </div>
                     <div></div>
                     <Rating
                         name="read-only"
-                        defaultValue={ 2 }
+                        defaultValue={ point / totalParticipant }
                         style={ { marginTop: "20px" } }
                         readOnly
                         size="large"
@@ -104,7 +145,7 @@ const ClubProfileScreen = ( { image } ) => {
                     <div></div>
                     { !isMemberOfClub ? (
                             <Button
-                                onClick={() => handleSendMembershipRequest()}
+                                onClick={ () => handleSendMembershipRequest() }
                                 variant="contained"
                                 startIcon={ <LoyaltyIcon/> }
                                 style={ {
@@ -218,7 +259,19 @@ const ClubProfileScreen = ( { image } ) => {
                 Posts
             </div>
             <Grid container style={ { paddingTop: "60px", border: "5px solid #F5F5F5", borderRadius: "20px" } }>
-
+                { clubFullData.events.map( event => {
+                    return <Grid
+                        item
+                        xs={ 3 }
+                        style={ {
+                            marginBottom: "60px",
+                            display: "flex",
+                            justifyContent: "center",
+                        } }
+                    >
+                        <EventCard event={ event }/>
+                    </Grid>
+                } ) }
 
             </Grid>
             <Snackbar
@@ -245,33 +298,21 @@ const ClubProfileScreen = ( { image } ) => {
                     { success }
                 </Alert>
             </Snackbar>
-            <Dialog open={isLeaveAlertOpen} onClose={handleCloseAlert}>
-                <DialogTitle>{"Send Membership Request"}</DialogTitle>
+            <Dialog open={ isLeaveAlertOpen } onClose={ handleCloseAlert }>
+                <DialogTitle>{ "Send Membership Request" }</DialogTitle>
                 <DialogContent>
-                <DialogContentText>
-                    Are you sure to send a membership to the club? 
-                </DialogContentText>
+                    <DialogContentText>
+                        Are you sure to send a membership to the club?
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <BilboardButton onClick={handleCloseAlert} text="Cancel" />
-                <BilboardButton onClick={handleCloseAlert} text="Send Request" autoFocus/>
+                    <BilboardButton onClick={ handleCloseAlert } text="Cancel"/>
+                    <BilboardButton onClick={ handleCloseAlert } text="Send Request" autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>
+
     );
 };
 
 export default ClubProfileScreen;
-/*
-  <Grid
-          item
-          xs={3}
-          style={{
-            marginBottom: "60px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <EventCard />
-        </Grid>
- */

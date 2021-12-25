@@ -120,7 +120,7 @@ public class EventServiceImp implements EventService {
             eventQuestionRepository.deleteAll( eventDto.getEventQuestions() );
             reservationService.deleteLocationRequests( eventDto.getLocationRequests() );
             eventRepository.delete( modelMapper.map( eventDto , EventEntity.class ) );
-            
+
             return true;
         } catch ( Exception e ) {
             return false;

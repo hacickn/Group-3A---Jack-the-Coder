@@ -24,7 +24,8 @@ const ScreensInNavbar = ( {
                               setFailed
                           } ) => {
     const [ currentClubId, setCurrentClubId ] = React.useState( 0 )
-
+    const [ currentClub, setCurrentClub ] = React.useState( null )
+    const [ currentEvent, setCurrentEvent ] = React.useState( null )
 
     function singOut() {
         localStorage.setItem( "token", '' )
@@ -50,26 +51,66 @@ const ScreensInNavbar = ( {
                         <div>
                             <BilboardNavbar currentClubId={ currentClubId }
                                             setCurrentClubId={ ( value ) => setCurrentClubId( value ) } attendActive
-                                            program={ program }/>
+                                            program={ program }
+                                            currentClub={ currentClub }
+                                            currentEvent={ currentEvent }
+                                            setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                            setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                            />
                             <div style={ { marginTop: "68px" } }>
                                 { currentScreen === "main" ? (
-                                    <MainScreen program={ program }/>
+                                    <MainScreen program={ program }
+                                                currentClub={ currentClub }
+                                                currentEvent={ currentEvent }
+                                                setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                                setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                    />
                                 ) : currentScreen === "survey" ? (
                                     <SurveyScreen program={ program }/>
                                 ) : currentScreen === "calendar" ? (
-                                    <CalendarScreen program={ program }/>
+                                    <CalendarScreen program={ program }
+                                                    currentClub={ currentClub }
+                                                    currentEvent={ currentEvent }
+                                                    setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                                    setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                    />
                                 ) : currentScreen === "user" ? (
                                     <UserScreen
                                         program={ program } signOut={ () => singOut() }
-                                        image="https://picsum.photos/300"/>
+                                        image="https://picsum.photos/300"
+                                        currentClub={ currentClub }
+                                        currentEvent={ currentEvent }
+                                        setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                        setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                    />
                                 ) : currentScreen === "clubManagement" ? (
                                     <ClubManagementScreen currentClubId={ currentClubId }
-                                                          program={ program }/>
+                                                          program={ program }
+                                                          currentClub={ currentClub }
+                                                          currentEvent={ currentEvent }
+                                                          setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                                          setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                    />
                                 ) : currentScreen === "eventDetail" ? (
-                                    <EventDetailScren program={ program }/>
-                                ) : currentScreen === "clubScreen" ?(
-                                    <ClubProfileScreen program={program}/>
-                                ) : <MainScreen program={program}/>}
+                                    <EventDetailScren program={ program }
+                                                      currentClub={ currentClub }
+                                                      currentEvent={ currentEvent }
+                                                      setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                                      setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                    />
+                                ) : currentScreen === "clubScreen" ? (
+                                    <ClubProfileScreen program={ program }
+                                                       currentClub={ currentClub }
+                                                       currentEvent={ currentEvent }
+                                                       setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                                       setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                    />
+                                ) : <MainScreen program={ program }
+                                                currentClub={ currentClub }
+                                                currentEvent={ currentEvent }
+                                                setCurrentClub={ ( val ) => setCurrentClub( val ) }
+                                                setCurrentEvent={ ( val ) => setCurrentEvent( val ) }
+                                /> }
                             </div>
                         </div> :
                         program.type === "admin" ?

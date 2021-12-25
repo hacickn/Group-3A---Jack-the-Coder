@@ -33,7 +33,12 @@ const SurveyScreen = ( props ) => {
                         survey={ surveyParticipants.survey }/>
                     </Grid> ) }
                 { props.program.surveyParticipants.length === 0 &&
-                <Grid item xs={ 12 }> There is no survey for you! </Grid> }
+                <Grid item xs={ 12 }  style={ {
+                    float: "left",
+                    marginLeft: "20px",
+                    fontSize: "28px",
+                    fontStyle: "italic",
+                } }> There is no survey for you! </Grid> }
             </Grid>
         </Grid>
     )

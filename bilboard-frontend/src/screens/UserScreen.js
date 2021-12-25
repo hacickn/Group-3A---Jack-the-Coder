@@ -223,6 +223,7 @@ const UserScreen = ( { setScreenNoNavbar, signOut, program } ) => {
                                         fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                         fontSize: "32px",
                                         float: "left",
+                                        fontStyle: "italic",
                                     } }
                                 >
                                     Club Memberships{ program.clubMemberShips.length === 0 && " (You do not have any" +

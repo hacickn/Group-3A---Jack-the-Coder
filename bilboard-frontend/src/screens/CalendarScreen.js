@@ -47,10 +47,11 @@ const CalendarScreen = ( props ) => {
                         <Grid container>
                             <Grid item xs={ 12 } style={ { marginBottom: "-40px" } }>
                                 <p
-                                    style={ {
+                                     style={ {
                                         float: "left",
                                         marginLeft: "20px",
                                         fontSize: "28px",
+                                        fontStyle: "italic",
                                     } }
                                 >
                                     Future Events { futureEvents.length === 0 && "(There is no future event for you!)" }
@@ -73,10 +74,11 @@ const CalendarScreen = ( props ) => {
                         <Grid container>
                             <Grid item xs={ 12 } style={ { marginBottom: "-40px" } }>
                                 <p
-                                    style={ {
+                                     style={ {
                                         float: "left",
                                         marginLeft: "20px",
                                         fontSize: "28px",
+                                        fontStyle: "italic",
                                     } }
                                 >
                                     Past Events { pastEvents.length === 0 && "(There is no past event for you!)" }

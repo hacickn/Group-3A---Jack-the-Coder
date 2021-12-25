@@ -3,11 +3,22 @@ import Grid from "@mui/material/Grid";
 import Constants from "../utils/Constants";
 import BilboardTextField from "../components/BilboardTextField";
 import BilboardButton from "../components/BilboardButton";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+import { Snackbar } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 export default function ResetPasswordScreen() {
   const [newPassword, setNewPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [arePasswordsEqual, setArePasswordsEqual] = React.useState(false);
+  const [ submitted, setSubmitted ] = React.useState( false )
+  const [confirmed, setConfirmed] = React.useState(false);
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+
+  let {resetCode} = useParams();
 
   React.useEffect(() => {
     if (newPassword === confirmPassword) {
@@ -18,6 +29,31 @@ export default function ResetPasswordScreen() {
   }, [newPassword, confirmPassword]);
 
   const handleResetPassword = () => {
+    setSubmitted(true)
+    axios.post(process.env.REACT_APP_URL + 'auth/resetPassword', {
+      "newPassword": newPassword,
+      "token": resetCode
+      }
+    )
+      .then(function(response) {
+        if(response.data.operationResult === "SUCCESS")
+        {
+          console.log(response);
+          setSubmitted(false);
+          setConfirmed(true);
+          setSuccess("Password is changed successfully");
+        }
+        else
+        {
+          setError("Password could not be changed");
+        }
+        
+      })
+      .catch(function(error) {
+        console.log(error);
+        setSubmitted(false);
+        setError("Password could not be changed");
+      })
   }
 
   return (
@@ -124,9 +160,33 @@ export default function ResetPasswordScreen() {
             marginTop: "40px",
           }}
         >
-          <BilboardButton text="Reset" fontSize="16px" width="200px" onClick={()=> handleResetPassword()}/>
+          {submitted? <CircularProgress/> : confirmed? <a href="/" style={{textDecoration: "none"}}><BilboardButton text="Go to login" fontSize="16px" width="200px"/></a> : <BilboardButton text="Reset" fontSize="16px" width="200px" onClick={()=> handleResetPassword()}/>}
         </Grid>
       </Grid>
+      <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ success !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setSuccess( '' ) }
+            >
+                <Alert onClose={ () => setSuccess( '' ) }
+                       severity={ "success" }
+                >
+                    { success }
+                </Alert>
+            </Snackbar>
     </div>
   );
 }

@@ -34,10 +34,10 @@ const useStyles = makeStyles( {
 const ClubManagementSponsorScreen = ( { club } ) => {
     const classes = useStyles();
     const [ sponsorships, setSponsorships ] = React.useState( [] )
-    const [ name, setName] = React.useState("");
-    const [amount, setAmount] = React.useState("");
-    const [type, setType] = React.useState("");
-    const [photo, setPhoto] = React.useState(null);
+    const [ name, setName ] = React.useState( "" );
+    const [ amount, setAmount ] = React.useState( "" );
+    const [ type, setType ] = React.useState( "" );
+    const [ photo, setPhoto ] = React.useState( null );
     const [ error, setError ] = React.useState( "" );
     const [ submitted, setSubmitted ] = React.useState( false );
     const [ success, setSuccess ] = React.useState( "" );
@@ -49,41 +49,41 @@ const ClubManagementSponsorScreen = ( { club } ) => {
     function handleSponsorshipAddition() {
         const formData = new FormData()
 
-        if(name.trim().length === 0 || amount.trim().length === 0 || type.trim().length === 0 || photo === null)
-        {
-            setError("Please fill all the fields!");
-        }
-        else
-        {
-            setSubmitted(true);
-            Array.from(photo)
-                 .forEach( (file) => {
-                     formData.append( "sponsorshipPhoto", file, file.name)
-                 })
-            formData.append("name", name)
-            formData.append("amount", amount)
-            formData.append("type", type)
+        if ( name.trim().length === 0 || amount.trim().length === 0 || type.trim().length === 0 || photo === null ) {
+            setError( "Please fill all the fields!" );
+        } else {
+            setSubmitted( true );
+
+            Array.from( photo )
+                 .forEach( ( file ) => {
+                     formData.append( "photo", file, file.name )
+                 } )
+
+            formData.append( "clubId", club.id )
+            formData.append( "name", name )
+            formData.append( "amount", amount )
+            formData.append( "type", type )
 
             const headers = {
                 'Authorization': 'Bearer ' + Env.TOKEN
             }
 
-            axios.post( process.env.REACT_APP_URL + "sponsorship", formData, {headers: headers})
-                 .then( function(response) {
-                     setSuccess("Sponsorship is succesfully added")
-                     setSubmitted(false)
+            axios.post( process.env.REACT_APP_URL + "club/sponsorship", formData, { headers: headers } )
+                 .then( function ( response ) {
+                     setSuccess( "Sponsorship is succesfully added" )
+                     setSubmitted( false )
 
-                     setName("")
-                     setAmount("")
-                     setType("")
-                     console.log(response)
-                 })
-                 .catch( function (error) {
-                     setError("Sponsorship could not be added!")
-                     setSubmitted(false)
+                     setName( "" )
+                     setAmount( "" )
+                     setType( "" )
+                     console.log( response )
+                 } )
+                 .catch( function ( error ) {
+                     setError( "Sponsorship could not be added!" )
+                     setSubmitted( false )
 
-                     console.log(error)
-                 })
+                     console.log( error )
+                 } )
         }
     }
 
@@ -120,10 +120,10 @@ const ClubManagementSponsorScreen = ( { club } ) => {
                         setPhoto( event.target.files )
                     } }
                 />
-                <Grid item xs={ 5 } className={ classes.textGrid } style={{marginLeft: 15}}>
+                <Grid item xs={ 5 } className={ classes.textGrid } style={ { marginLeft: 15 } }>
                     Image
                 </Grid>
-                <Grid item xs={ 7 } className={ classes.inputGrid } style={{marginLeft: 10}}>
+                <Grid item xs={ 7 } className={ classes.inputGrid } style={ { marginLeft: 10 } }>
                     <label htmlFor="contained-button-file">
                         <Button component="span" style={ { marginLeft: -20 } }> <ImageOutlined
                             style={ { color: Colors.BILBOARD_MAIN } }/></Button>
@@ -137,13 +137,16 @@ const ClubManagementSponsorScreen = ( { club } ) => {
                 </Grid>
             </Grid>
             <Grid item xs={ 3 }>
-                <BilboardTextField value={name} onChange={ ( e ) => setName( e.target.value ) } width={ "14vw" } label={ "Name" }/>
+                <BilboardTextField value={ name } onChange={ ( e ) => setName( e.target.value ) } width={ "14vw" }
+                                   label={ "Name" }/>
             </Grid>
             <Grid item xs={ 3 }>
-                <BilboardTextField value={amount} onChange={ ( e ) => setAmount( e.target.value ) } width={ "14vw" } label={ "Amount" }/>
+                <BilboardTextField value={ amount } onChange={ ( e ) => setAmount( e.target.value ) } width={ "14vw" }
+                                   label={ "Amount" }/>
             </Grid>
             <Grid item xs={ 3 }>
-                <BilboardTextField value={type} onChange={ ( e ) => setType( e.target.value ) } width={ "14vw" } label={ "Type" }/>
+                <BilboardTextField value={ type } onChange={ ( e ) => setType( e.target.value ) } width={ "14vw" }
+                                   label={ "Type" }/>
             </Grid>
             <Grid item xs={ 2 }>
                 <BilboardButton onClick={ () => handleSponsorshipAddition() } text={ "Add" } width={ "8vw" }/>

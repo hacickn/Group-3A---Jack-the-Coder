@@ -21,6 +21,8 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import React from "react";
 import { FormControl, InputLabel } from "@mui/material";
+import Logo from "../utils/Logo10.png";
+
 
 const useStyles = makeStyles({
   root: {
@@ -48,7 +50,10 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "start",
     height: "68px",
+    color:"white !important", 
+    borderBlockColor:"white !important", 
     paddingLeft: "40px",
+    shadowColor: 'white',
   },
   icons: {
     display: "flex",
@@ -84,10 +89,10 @@ const BilboardNavbar = ({
 }) => {
   const classes = useStyles();
 
-  const [ options, setOptions ] = React.useState( [] );
-  const [ searchOpen, setSearchOpen ] = React.useState( false )
+  const [options, setOptions] = React.useState([]);
+  const [searchOpen, setSearchOpen] = React.useState(false)
   const loading = searchOpen && options.length === 0;
-  const [ searchText, setSearchText ] = React.useState( "" )
+  const [searchText, setSearchText] = React.useState("")
 
   let clubs = [];
 
@@ -177,10 +182,17 @@ const BilboardNavbar = ({
               setCurrentScreen("main");
             }}
           >
-            BilBoard
+            <img src={Logo} style={
+              {
+                marginLeft: "20px",
+                paddingTop: "20px",
+                width: "200px",
+
+              }}>
+            </img>
           </div>
         </Grid>
-        <Grid item xs={4} className={classes.searchBar}>
+        <Grid item xs={4} className={classes.searchBar} >
           <Autocomplete
             id="club-search"
             fullWidth

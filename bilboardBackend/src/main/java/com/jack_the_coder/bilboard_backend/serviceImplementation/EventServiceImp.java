@@ -2,9 +2,7 @@ package com.jack_the_coder.bilboard_backend.serviceImplementation;
 
 import com.jack_the_coder.bilboard_backend.exception.UserServiceException;
 import com.jack_the_coder.bilboard_backend.io.entity.*;
-import com.jack_the_coder.bilboard_backend.io.repository.EventParticipantRepository;
-import com.jack_the_coder.bilboard_backend.io.repository.EventQuestionRepository;
-import com.jack_the_coder.bilboard_backend.io.repository.EventRepository;
+import com.jack_the_coder.bilboard_backend.io.repository.*;
 import com.jack_the_coder.bilboard_backend.service.ClubService;
 import com.jack_the_coder.bilboard_backend.service.EventService;
 import com.jack_the_coder.bilboard_backend.service.ReservationService;
@@ -41,6 +39,9 @@ public class EventServiceImp implements EventService {
 
     @Autowired
     EventParticipantRepository eventParticipantRepository;
+
+    @Autowired
+    ClubMemberRepository clubMemberRepository;
 
 
     @Override
@@ -113,17 +114,57 @@ public class EventServiceImp implements EventService {
 
     @Override
     public Boolean deleteEvent ( EventDto eventDto ) {
-        return null;
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            eventParticipantRepository.deleteAll( eventDto.getEventParticipants() );
+            eventQuestionRepository.deleteAll( eventDto.getEventQuestions() );
+            reservationService.deleteLocationRequests( eventDto.getLocationRequests() );
+            eventRepository.delete( modelMapper.map( eventDto , EventEntity.class ) );
+            
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
     }
 
     @Override
     public Boolean enrollToEvent ( EventDto eventDto , UserDto userDto ) {
-        return null;
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            if ( !eventDto.getRestrictionForMember() || clubMemberRepository
+                    .findByClubAndUser( eventDto.getClub() ,
+                            modelMapper.map( userDto , UserEntity.class ) ) != null ) {
+                EventParticipantDto eventParticipantDto = new EventParticipantDto();
+                eventParticipantDto.setEvent( modelMapper.map( eventDto , EventEntity.class ) );
+                eventParticipantDto.setPointGiven( false );
+                eventParticipantDto.setAttended( false );
+                eventParticipantDto.setUser( modelMapper.map( userDto , UserEntity.class ) );
+                eventParticipantRepository
+                        .save( modelMapper.map( eventParticipantDto , EventParticipantEntity.class ) );
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch ( Exception e ) {
+            return false;
+        }
     }
 
     @Override
-    public Boolean attendToEvent ( EventDto eventDto , UserDto userDto ) {
-        return null;
+    public Boolean attendToEvent ( EventParticipantDto eventParticipantDto ) {
+        try {
+            eventParticipantDto.setAttended( true );
+            ClubMemberEntity clubMemberEntity =
+                    clubMemberRepository.findByClubAndUser( eventParticipantDto.getEvent().getClub() ,
+                            eventParticipantDto.getUser() );
+            clubMemberEntity.setGePoint( clubMemberEntity.getGePoint() + eventParticipantDto.getEvent().getGePoint() );
+            clubMemberEntity.setAttendedEventCount( clubMemberEntity.getAttendedEventCount() + 1 );
+            clubMemberRepository.save( clubMemberEntity );
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
     }
 
     @Override
@@ -240,7 +281,7 @@ public class EventServiceImp implements EventService {
                 ModelMapper modelMapper = new ModelMapper();
                 return modelMapper.map( optional.get() , EventParticipantDto.class );
             } else {
-                throw new UserServiceException( "Event participant could not be found!" );
+                return null;
             }
         } catch ( Exception e ) {
             throw new UserServiceException( "Something went wrong!" );
@@ -257,7 +298,7 @@ public class EventServiceImp implements EventService {
                 ModelMapper modelMapper = new ModelMapper();
                 return modelMapper.map( optional.get() , EventParticipantDto.class );
             } else {
-                throw new UserServiceException( "Event participant could not be found!" );
+                return null;
             }
         } catch ( Exception e ) {
             throw new UserServiceException( "Something went wrong!" );

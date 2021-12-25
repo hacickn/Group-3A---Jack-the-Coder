@@ -187,4 +187,19 @@ public class ReservationServiceImp implements ReservationService {
             throw new UserServiceException( e.getMessage() );
         }
     }
+
+    @Override
+    public Boolean deleteLocationRequests ( List<LocationRequestEntity> locationRequestEntityList ) {
+        try {
+            locationRequestEntityList.forEach( locationRequestEntity -> {
+                locationRequestTimeSlotRepository.deleteAll( locationRequestEntity.getLocationRequestTimeSlots());
+            } );
+
+            locationRequestRepository.deleteAll( locationRequestEntityList );
+
+            return true;
+        }catch ( Exception e ){
+            return false;
+        }
+    }
 }

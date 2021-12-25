@@ -36,7 +36,7 @@ public class SurveyController {
 
     /**
      * @apiNote This method is used to get survey.
-     * @param long surveyId
+     * @param surveyId is a long
      * @return SurveyResponse
      */
     @GetMapping
@@ -47,7 +47,7 @@ public class SurveyController {
 
     /**
      * @apiNote This method is used to get all surveys.
-     * @param CreateSurveyRequest createSurveyRequest
+     * @param createSurveyRequest is a CreateSurveyRequest instance
      * @return SurveyResponse
      */
     @PostMapping
@@ -63,7 +63,7 @@ public class SurveyController {
 
     /**
      * @apiNote This method is used to vote for survey.
-     * @param VoteRequest voteRequest
+     * @param voteRequest VoteRequest is a instance
      * @return StatusResponse
      */
     @PostMapping(path = "/vote")

@@ -34,7 +34,7 @@ public interface EventService {
 
     Boolean enrollToEvent ( EventDto eventDto , UserDto userDto );
 
-    Boolean attendToEvent ( EventDto eventDto , UserDto userDto );
+    Boolean attendToEvent ( EventParticipantDto eventParticipantDto );
 
     String createEventCode ( EventDto eventDto );
 

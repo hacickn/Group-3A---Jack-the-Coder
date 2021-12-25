@@ -362,7 +362,9 @@ const UserScreen = ( {
                                             setCurrentClub( membership.club )
 
                                         } }
-                                        club={ membership.club }/>;
+                                        club={ membership.club }
+                                        membership = {membership}
+                                        />;
                                 } ) }
                             </Grid>
                         </Grid>

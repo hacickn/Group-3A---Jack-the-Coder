@@ -23,7 +23,7 @@ public class EventQuestionEntity implements Serializable {
     @Column( name = "question", length = 300, nullable = false )
     private String question;
 
-    @Column( name = "answer", length = 300, nullable = false )
+    @Column( name = "answer", length = 300 )
     private String answer;
 
     @Column( name = "date", nullable = false )

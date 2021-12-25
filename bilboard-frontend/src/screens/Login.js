@@ -68,9 +68,20 @@ const Login = ({ setScreenNoNavbar, setProgram, setFailed }) => {
             })
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            if (password.trim().length < 6) {
+                setError("Password can not shorter than 6 characters!")
+            } else if (!email.includes("bilkent")) {
+                setError("Please enter a valid bilkent email adress!")
+            } else {
+                handleLoginRequest()
+            }
+        }
+      }
 
     return (
-        <div>
+        <div onKeyDown={handleKeyDown}>
             <Grid container>
                 <Grid item xs={12} style={{ marginTop: "60px" }}>
                     <BilboardTextField

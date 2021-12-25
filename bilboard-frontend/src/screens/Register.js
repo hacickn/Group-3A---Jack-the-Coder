@@ -43,8 +43,30 @@ const Register = () => {
              } )
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            if ( name.trim().length === 0 ) {
+                setError( "Name can not be empty!" )
+            } else if ( surname.trim().length === 0 ) {
+                setError( "Surname can not be empty!" )
+
+            } else if ( !email.includes( "bilkent" ) ) {
+                setError( "Enter valid bilkent mail" +
+                    " adress!" )
+
+            } else if ( ID.trim().length === 0 ) {
+                setError( "Id can not be empty!" )
+            } else if ( password.trim().length <= 6 ) {
+                setError( "Password should be longer than" +
+                    " 6 characters!" )
+            } else {
+                handleRegisterRequest()
+            }
+        }
+      }
+
     return (
-        <div>
+        <div onKeyDown={handleKeyDown}>
             <Grid container>
                 <Grid item xs={ 12 } style={ { marginTop: "20px" } }>
                     <BilboardTextField

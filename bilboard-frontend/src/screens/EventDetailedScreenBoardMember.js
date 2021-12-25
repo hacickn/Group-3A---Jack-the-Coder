@@ -5,10 +5,28 @@ import EditEventDialog from "../components/EditEventDialog";
 import BilboardQuestionCard from "../components/BilboardQuestionCard";
 import BilboardButton from "../components/BilboardButton";
 import React from 'react'
+import axios from "axios";
+import Env from "../utils/Env";
 
 const EventDetailedScreenBoardMember = () => {
-    const [ editEventDialog, setEditEventDialog ] = React.useState( false )
-
+    const [editEventDialog, setEditEventDialog] = React.useState(false)
+    const [error, setError] = React.useState("")
+    function generateCode() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+        axios.post(process.env.REACT_APP_URL + "event/eventCode?eventId=" + 48 , {}, { headers: headers })
+            .then(function (response) {
+                if (response.data.operationResult === "SUCCESS") {
+                    console.log(response.data)
+                }
+                else {
+                    setError("Generating Code is failed!");
+                }
+            })
+            .catch(function (error) { setError("Something went wrong!") })
+    }
     const questionList = [
         {
             content: "Which would you rather do: wash dishes, mow the lawn, clean the bathroom, or vacuum the house?",
@@ -55,11 +73,11 @@ const EventDetailedScreenBoardMember = () => {
     return (
 
         <div>
-            { <EditEventDialog open={ editEventDialog } setOpen={ ( status ) => {
-                setEditEventDialog( status )
-            } }/> }
-            <Grid container style={{ marginTop: 10}}>
-                <Grid item xs={5} style={{ marginTop: 50}}>
+            {<EditEventDialog open={editEventDialog} setOpen={(status) => {
+                setEditEventDialog(status)
+            }} />}
+            <Grid container style={{ marginTop: 10 }}>
+                <Grid item xs={5} style={{ marginTop: 50 }}>
                     <Grid container>
                         <Grid container>
                             <Grid item xs={12} style={
@@ -116,18 +134,19 @@ const EventDetailedScreenBoardMember = () => {
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             }}>No.of</div>
 
-                            
+
                         </Grid>
-                        <Grid xs = {5}>
-                            
+                        <Grid xs={5}>
+
                             <BilboardButton
+                                onClick={() => generateCode()}
                                 width="160px"
                                 fontSize="13px"
                                 text="Generate Code"
                                 color="#00e676"
-                                />
+                            />
                         </Grid>
-                        
+
 
                         <Grid item xs={12}
                             style={{
@@ -168,29 +187,30 @@ const EventDetailedScreenBoardMember = () => {
 
                             }}>
                             <Grid xs={9}>
-                                <div style={{ fontSize: 28, fontWeight:"bold", fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify"
-                            }}>
-                                Event Details
+                                <div style={{
+                                    fontSize: 28, fontWeight: "bold", fontFamily: Constants.OXYGEN_FONT_FAMILY, textAlign: "justify"
+                                }}>
+                                    Event Details
                                 </div>
-                                <div style={{ fontSize: 18, fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify", marginRight: 70, marginTop:10}}>
-                                     Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.
+                                <div style={{ fontSize: 18, fontFamily: Constants.OXYGEN_FONT_FAMILY, textAlign: "justify", marginRight: 70, marginTop: 10 }}>
+                                    Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.
                                 </div>
 
                             </Grid>
-                            <Grid xs = {3}
-                            style={{
-                                marginTop:"60px",
-                            }}>
-                            
-                            <BilboardButton
-                                onClick={ () => setEditEventDialog( true ) }
-                                width="180px"
-                                fontSize="20px"
-                                text= "Edit Event"
-                                color="#FF4B4B"
-                                height="100px"
+                            <Grid xs={3}
+                                style={{
+                                    marginTop: "60px",
+                                }}>
+
+                                <BilboardButton
+                                    onClick={() => setEditEventDialog(true)}
+                                    width="180px"
+                                    fontSize="20px"
+                                    text="Edit Event"
+                                    color="#FF4B4B"
+                                    height="100px"
                                 />
-                        </Grid>
+                            </Grid>
 
                         </Grid>
                         <Grid item xs={12} style={
@@ -206,14 +226,14 @@ const EventDetailedScreenBoardMember = () => {
                                 alignItems: "left",
 
                             }}>
-                             <div style={{ fontSize: 28, fontWeight:"bold", fontFamily: Constants.OXYGEN_FONT_FAMILY , textAlign : "justify", marginRight: 70}}>
+                            <div style={{ fontSize: 28, fontWeight: "bold", fontFamily: Constants.OXYGEN_FONT_FAMILY, textAlign: "justify", marginRight: 70 }}>
                                 Event Location: Online
-                                </div>
+                            </div>
                         </Grid>
                         <Grid item xs={12} >
                             <Grid container
                                 style={{ borderRadius: Constants.BORDER_RADIUS }}>
-                                <Grid item xs={12} style={{ padding: 20, fontSize: 38, fontFamily: Constants.OXYGEN_FONT_FAMILY, fontWeight:"bold" }}>
+                                <Grid item xs={12} style={{ padding: 20, fontSize: 38, fontFamily: Constants.OXYGEN_FONT_FAMILY, fontWeight: "bold" }}>
                                     Question and Answer
                                 </Grid>
                                 <Grid container style={{ maxHeight: "40vh", overflowY: "scroll", marginLeft: 80, marginRight: 70 }}>

@@ -9,7 +9,8 @@ import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Colors from "../utils/Colors";
-
+import Env from "../utils/Env";
+import axios from "axios";
 import VoteToQuestion from "./VoteToQuestion";
 
 /**
@@ -19,10 +20,36 @@ import VoteToQuestion from "./VoteToQuestion";
  * Metehan Saçakçı
  */
 
-const VoteToQuestionDialog = ( { survey, open, setOpen } ) => {
+const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOpen } ) => {
     const [ isDialogOpen, setIsDialogOpen ] = useState( true );
 
     const [ selectedChoices, setSelectedChoices ] = React.useState( [] )
+
+    let headers = {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Env.TOKEN,
+      };
+
+    const handleSubmitAnswers = () => {
+        if(survey.questions.length !== selectedChoices.length) {
+            alert("Please answer all questions!")
+        }
+        else{
+            console.log(surveyParticipants.id, selectedChoices, survey.id)
+            axios.post(process.env.REACT_APP_URL + "survey/vote", {
+                user: surveyParticipants.id,
+                survey: survey.id,
+                choices: selectedChoices
+            }, { headers: headers }).then(function(response){
+                console.log(response)
+                setOpen(false);
+                setIsDialogOpen(false);
+            }).catch(function(error){
+                console.log(error)
+            })
+        }
+    }
+
 
 
     function addNewChoices( oldChoice, newChoiceId ) {
@@ -37,7 +64,6 @@ const VoteToQuestionDialog = ( { survey, open, setOpen } ) => {
         temp.push( newChoiceId )
 
         setSelectedChoices( temp )
-        console.log( selectedChoices )
     }
 
     return (
@@ -72,7 +98,7 @@ const VoteToQuestionDialog = ( { survey, open, setOpen } ) => {
                         display: "flex",
                         justifyContent: "center"
                     } }>
-                        <BilboardButton width="100px" fontSize="14px" text="Submit"/>
+                        <BilboardButton width="100px" fontSize="14px" text="Submit" onClick={handleSubmitAnswers}/>
                     </Grid>
                 </Grid>
             </DialogContent>

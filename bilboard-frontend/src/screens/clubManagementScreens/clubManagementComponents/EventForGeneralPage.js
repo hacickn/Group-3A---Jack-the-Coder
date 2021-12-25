@@ -40,7 +40,7 @@ const EventForGeneralPage = ( { event } ) => {
             <Grid container>
 
                 <Grid item xs={ 12 } style={ { paddingTop: "50px" } }>
-                    <EventCard event={ event }/>
+                    <EventCard event={ event } fromBoardMember={true}/>
                     <Grid item xs={ 12 } style={ { paddingTop: "10px" } }>
                         <BilboardButton
                             text="Edit"

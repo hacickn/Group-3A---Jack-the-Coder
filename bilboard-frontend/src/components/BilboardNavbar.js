@@ -184,7 +184,7 @@ const BilboardNavbar = ({
             <img src={Logo} style={
               {
                 marginLeft: "20px",
-                paddingTop: "20px",
+                paddingTop: "17px",
                 width: "200px",
 
               }}>

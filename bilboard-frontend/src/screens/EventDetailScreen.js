@@ -3,14 +3,16 @@ import Rating from '@mui/material/Rating';
 import Constants from "../utils/Constants";
 import QuestionAnswerCard from "../components/QuestionAnswerCard";
 import BilboardButton from "../components/BilboardButton";
-import React from 'react'
+import React, { useState } from 'react'
 import BilboardNavbar from "../components/BilboardNavbar";
 import { connect } from "react-redux";
 import AskQuestionDialog from "../components/AskQuestionDialog";
 import axios from "axios";
 import Env from "../utils/Env";
 import Program from "../utils/Program";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Snackbar } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Colors from "../utils/Colors";
 
 
 const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen, currentEvent, setCurrentClub }
@@ -18,20 +20,30 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
     const [ eventData, setEventData ] = React.useState( null );
 
     const [ loading, setLoading ] = React.useState( true );
-    const [ error, setError ] = React.useState( "" )
+    const [ success, setSuccess ] = useState( "" )
+    const [ error, setError ] = useState( "" )
+    const [ isEnrolled, setEnrolled ] = useState( null )
 
     function enrollEvent() {
         let headers = {
             "Content-Type": "application/json",
             'Authorization': 'Bearer ' + Env.TOKEN
         }
-        axios.post( process.env.REACT_APP_URL + "event/enroll?eventId=" + 48 + "&userId=" + 1, {},
+        axios.post( process.env.REACT_APP_URL + "event/enroll?eventId=" + currentEvent.id + "&userId=" + Env.PUBLIC_ID,
+            {},
             { headers: headers } )
              .then( function ( response ) {
                  if ( response.data.operationResult === "SUCCESS" ) {
-                     console.log( response.data )
+                     setEnrolled( true )
+                     currentEvent.eventParticipans.push( {
+                         user: {
+                             id: Env.PUBLIC_ID
+                         }
+                     } )
+                     setEventData( currentEvent )
+                     setSuccess( "Attend event is successful!" )
                  } else {
-                     setError( "Attending Club is failed!" );
+                     setError( "Attending event is failed!" );
                  }
              } )
              .catch( function ( error ) {
@@ -39,35 +51,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
              } )
     }
 
-    const questionAnswerList = [
-        {
-            question: "Question text",
-            answer: "Answer text",
-        },
-        {
-            question: "Question text",
-            answer: "Answer text",
-        },
-        {
-            question: "Question text",
-            answer: "Answer text",
-        },
-        {
-            question: "Question text",
-            answer: "Answer text",
-        },
-    ]
 
-    function addQuestionAnswer( questionAnswerObject ) {
-        let temp = [ ...questionAnswerList ]
-
-        temp.push( {
-            question: questionAnswerObject.question,
-            answer: questionAnswerObject.answer,
-        } )
-    }
-
-    console.log( currentEvent )
     if ( Program.getEvent( currentEvent.id ) === undefined ) {
         setEventData( currentEvent )
         Program.addEvent( currentEvent, currentEvent.id )
@@ -78,10 +62,28 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
     } else {
     }
 
+    if ( isEnrolled === null ) {
+        setEnrolled( checkIsEnrolled() )
+    }
+
+    function checkIsEnrolled() {
+        let status = false
+        currentEvent.eventParticipants.forEach( participant => {
+            if ( participant.user.id.toString() === Env.PUBLIC_ID.toString() ) {
+                status = true
+            }
+        } )
+
+        return status
+    }
+
+
     return (
 
         <div>
-            { isAskQuestionDialogOpen && <AskQuestionDialog/> }
+            { isAskQuestionDialogOpen &&
+            <AskQuestionDialog setError={ ( val ) => setError( val ) } setSuccess={ ( val ) => setSuccess( val ) }
+                               event={ currentEvent }/> }
             { loading ? <CircularProgress/> : <Grid container style={ { marginTop: 10 } }>
                 <Grid item xs={ 5 } style={ { marginTop: 50 } }>
                     <Grid container>
@@ -103,7 +105,8 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                     fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 } }>{ currentEvent.title }
                                 </div>
-                                <Rating name="read-only" defaultValue={ 2 } style={ { marginLeft: "260px" } } readOnly
+                                <Rating name="read-only" defaultValue={ currentEvent.averageRate }
+                                        style={ { marginLeft: "260px" } } readOnly
                                         size="large"/>
                             </Grid>
 
@@ -123,7 +126,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                             <div style={ {
                                 fontSize: "30px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                            } }>Club Name
+                            } }>{ currentEvent.club.name }
                             </div>
                         </Grid>
                         <Grid item xs={ 7 } style={
@@ -147,13 +150,21 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                         </Grid>
                         <Grid xs={ 5 }>
 
-                            <BilboardButton
+                            { !isEnrolled ? <BilboardButton
                                 onClick={ () => enrollEvent() }
-                                width="160px"
+                                width="200px"
                                 fontSize="13px"
                                 text="Enroll an Event"
                                 color="#00e676"
-                            />
+                            /> : <BilboardButton
+                                onClick={ () => {
+                                } }
+                                width="200px"
+                                disabled={ true }
+                                fontSize="13px"
+                                text="Already Enrolled"
+                                color={ Colors.BILBOARD_GREY }
+                            /> }
                         </Grid>
 
                         <Grid item xs={ 12 }
@@ -163,8 +174,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                   justifyContent: "center",
                                   alignItems: "center",
                               } }>
-                            <img src="
-                        https://relearnalanguage.com/wp-content/uploads/2021/01/language-club-activities.jpg" style={
+                            <img src={ process.env.REACT_APP_IMAGE_URL + currentEvent.eventPhoto } style={
                                 {
 
                                     marginLeft: "20px",
@@ -209,14 +219,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                     textAlign: "justify",
                                     marginRight: 70
                                 } }>
-                                    Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum,
-                                    adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı
-                                    galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler
-                                    olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı
-                                    zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum
-                                    pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus
-                                    PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile
-                                    popüler olmuştur.
+                                    { currentEvent.description }
                                 </div>
 
                             </Grid>
@@ -242,7 +245,7 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                 textAlign: "justify",
                                 marginRight: 70
                             } }>
-                                Event Location: Online
+                                Event Location: { currentEvent.online ? "Online" : "B206" }
                             </div>
                         </Grid>
                         <Grid item xs={ 12 }>
@@ -262,8 +265,12 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                                     marginLeft: 80,
                                     marginRight: 70
                                 } }>
-                                    { questionAnswerList.map(
-                                        questionAnswer => <QuestionAnswerCard questionAnswer={ questionAnswer }/> ) }
+                                    { currentEvent.eventQuestions.map(
+                                        question => {
+                                            if ( question.answer !== null ) {
+                                                return <QuestionAnswerCard questionAnswer={ question }/>
+                                            }
+                                        } ) }
                                 </Grid>
 
                                 <Grid item xs={ 12 } style={ {
@@ -282,6 +289,30 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                         </Grid>
                     </Grid>
                 </Grid>
+                <Snackbar
+                    anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                    open={ error !== '' }
+                    autoHideDuration={ 2000 }
+                    onClose={ () => setError( '' ) }
+                >
+                    <Alert onClose={ () => setError( '' ) }
+                           severity={ "warning" }
+                    >
+                        { error }
+                    </Alert>
+                </Snackbar>
+                <Snackbar
+                    anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                    open={ success !== '' }
+                    autoHideDuration={ 2000 }
+                    onClose={ () => setSuccess( '' ) }
+                >
+                    <Alert onClose={ () => setSuccess( '' ) }
+                           severity={ "success" }
+                    >
+                        { success }
+                    </Alert>
+                </Snackbar>
             </Grid> }
 
         </div>

@@ -44,7 +44,7 @@ const ClubManagementMembersScreen = ( { club } ) => {
                   .map( ( member, index ) => (
                       <div key={ index } style={ { marginLeft: "24px" } }>
                           <MemberComponent name={ member.user.name } surname={ member.user.surname }
-                                           ID={ member.user.bilkentId } eventCount={ member.attendedEventCount }
+                                           ID={ member.user.bilkentId } eventCount={ member.attendedEventCount } memberId={member.id}
                                            geTaken={ member.user.geTaken } gePoint={ member.gePoint }/>
                       </div>
                   ) ) }

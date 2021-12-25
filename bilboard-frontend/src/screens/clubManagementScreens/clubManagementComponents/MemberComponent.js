@@ -1,6 +1,9 @@
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import Colors from "../../../utils/Colors";
+import axios from "axios";
+import Env from "../../../utils/Env";
+import React from "react";
 import BilboardButton from "../../../components/BilboardButton";
 import {
     CheckCircle,
@@ -11,7 +14,8 @@ import {
     RemoveCircle
 } from "@mui/icons-material";
 
-const useStyles = makeStyles( {
+
+const useStyles = makeStyles({
     container: {
         width: "70vw",
         height: "100px",
@@ -19,47 +23,66 @@ const useStyles = makeStyles( {
         marginBottom: "10px",
         borderRadius: "10px",
     },
-} );
+});
 
-const MemberComponent = ( { name, surname, ID, gePoint, geTaken, eventCount } ) => {
+const MemberComponent = ({ name, surname, ID, memberId, gePoint, geTaken, eventCount}) => {
     const classes = useStyles();
-
+    const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+    const [error, setError] = React.useState("")
+    function removeClubMembership() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+        axios.delete(process.env.REACT_APP_URL + "club/member?memberId=" + memberId, { headers: headers })
+            .then(function (response) {
+                if (response.data.operationResult === "SUCCESS") {
+                    console.log(response.data)
+                    setIsDialogOpen(false);
+                }
+                else {
+                    setError("Removing Club Membership is failed!");
+                }
+            })
+            .catch(function (error) { setError("Something went wrong!") })
+    }
     return (
-        <div className={ classes.container }>
+        <div className={classes.container}>
             <Grid container>
-                <Grid item xs={ 3 } style={ { marginTop: "30px" } }>
-                    <div style={ { fontSize: "24px", fontFamily: "Oxygen, sans-serif" } }>
-                        { name } { surname }
+                <Grid item xs={3} style={{ marginTop: "30px" }}>
+                    <div style={{ fontSize: "24px", fontFamily: "Oxygen, sans-serif" }}>
+                        {name} {surname}
                     </div>
                 </Grid>
-                <Grid item xs={ 2 } style={ { marginTop: "30px" } }>
-                    <div style={ { fontSize: "24px", fontFamily: "Oxygen, sans-serif" } }>
-                        { eventCount }
+                <Grid item xs={2} style={{ marginTop: "30px" }}>
+                    <div style={{ fontSize: "24px", fontFamily: "Oxygen, sans-serif" }}>
+                        {eventCount}
                     </div>
                 </Grid>
-                <Grid item xs={ 1 } style={ { marginTop: "30px" } }>
-                    <div style={ { fontSize: "24px", fontFamily: "Oxygen, sans-serif" } }>
-                        { geTaken ? <CheckCircle style={ { color: Colors.BILBOARD_MAIN } }/> :
-                            <RemoveCircle style={ { color: Colors.BILBOARD_RED } }/> }
+                <Grid item xs={1} style={{ marginTop: "30px" }}>
+                    <div style={{ fontSize: "24px", fontFamily: "Oxygen, sans-serif" }}>
+                        {geTaken ? <CheckCircle style={{ color: Colors.BILBOARD_MAIN }} /> :
+                            <RemoveCircle style={{ color: Colors.BILBOARD_RED }} />}
                     </div>
                 </Grid>
-                <Grid item xs={ 1 } style={ { marginTop: "30px" } }>
-                    <div style={ { fontSize: "24px", fontFamily: "Oxygen, sans-serif" } }>
-                        { gePoint }
+                <Grid item xs={1} style={{ marginTop: "30px" }}>
+                    <div style={{ fontSize: "24px", fontFamily: "Oxygen, sans-serif" }}>
+                        {gePoint}
                     </div>
                 </Grid>
-                <Grid item xs={ 2 } style={ { marginTop: "30px" } }>
-                    <div style={ { fontSize: "24px", fontFamily: "Oxygen, sans-serif" } }>
-                        { ID }
+                <Grid item xs={2} style={{ marginTop: "30px" }}>
+                    <div style={{ fontSize: "24px", fontFamily: "Oxygen, sans-serif" }}>
+                        {ID}
                     </div>
                 </Grid>
-                <Grid item xs={ 3 } style={ { marginTop: "26px" } }>
-                    <BilboardButton
+                <Grid item xs={3} style={{ marginTop: "26px" }}>
+                    <BilboardButton onClick={()=>{
+                      removeClubMembership()}} 
                         text="Remove"
-                        fontSize={ 20 }
+                        fontSize={20}
                         width="140px"
-                        color={ Colors.WHITE }
-                        textColor={ Colors.BILBOARD_MAIN }
+                        color={Colors.WHITE}
+                        textColor={Colors.BILBOARD_MAIN}
                     />
                 </Grid>
             </Grid>

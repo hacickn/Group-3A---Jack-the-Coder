@@ -10,7 +10,7 @@ import { Autocomplete } from "@mui/lab";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
 
-const AdminManageClubScreen = ( {  allClubs, getClubs, clubLoading, setClub } ) => {
+const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) => {
     const [ currentClub, setCurrentClub ] = React.useState( null )
     const [ searchOpen, setSearchOpen ] = React.useState( false )
     const [ searchOpenForAdvisor, setSearchOpenForAdvisor ] = React.useState( false )
@@ -77,14 +77,17 @@ const AdminManageClubScreen = ( {  allClubs, getClubs, clubLoading, setClub } ) 
 
     React.useEffect( () => {
         let active = true;
+    
+
         if ( !loading ) {
             return undefined;
         }
 
         ( async () => {
 
+
             const response = await fetch(
-                process.env.REACT_APP_URL + 'user/search?name=' + newPresident + '&type=student', {
+                process.env.REACT_APP_URL + 'user/search?name=' + tempPresident + '&type=student', {
                     method: 'GET', headers: {
                         "Content-Type": "application/json",
                         'Authorization': 'Bearer ' + Env.TOKEN

@@ -104,7 +104,7 @@ const ClubManagementAddEventScreen = ( { club } ) => {
 
             axios.post( process.env.REACT_APP_URL + "event", formData, { headers: headers } )
                  .then( function ( response ) {
-                     console.log( response )
+
                      setSuccess( "Event is successfully created!" )
                      setSubmitted( false )
 

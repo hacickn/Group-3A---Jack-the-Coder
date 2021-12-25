@@ -9,6 +9,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { connect } from "react-redux";
+import axios from "axios";
+import Env from "../utils/Env";
+import Alert from "@mui/material/Alert";
 
 const useStyles = makeStyles( {
     root: {
@@ -27,7 +30,25 @@ const useStyles = makeStyles( {
 
 const FollowedClubs = ( props ) => {
     const [ isLeaveAlertOpen, setIsLeaveAlertOpen ] = React.useState( false );
-
+    const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+    const [error, setError] = React.useState("")
+    function handleLeaveMembershipDialog() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+        axios.delete(process.env.REACT_APP_URL + "club/member?memberId=" + props.membership.id, { headers: headers })
+            .then(function (response) {
+                if (response.data.operationResult === "SUCCESS") {
+                    console.log(response.data)
+                    setIsDialogOpen(false);
+                }
+                else {
+                    setError("Leaving Club is failed!");
+                }
+            })
+            .catch(function (error) { setError("Something went wrong!") })
+    }
     const handleLeaveMembership = () => {
         setIsLeaveAlertOpen( true );
     };
@@ -106,8 +127,10 @@ const FollowedClubs = ( props ) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <BilboardButton onClick={ handleCloseAlert } text="Cancel"/>
-                    <BilboardButton onClick={ handleCloseAlert } text="Leave" autoFocus/>
+                    <BilboardButton  onClick={ handleCloseAlert } text="Cancel"/>
+                    <BilboardButton onClick={()=>{
+                      handleLeaveMembershipDialog()
+                      handleCloseAlert()}}  text="Leave" autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>

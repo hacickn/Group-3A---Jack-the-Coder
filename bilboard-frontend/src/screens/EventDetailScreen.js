@@ -7,13 +7,32 @@ import React from 'react'
 import BilboardNavbar from "../components/BilboardNavbar";
 import { connect } from "react-redux";
 import AskQuestionDialog from "../components/AskQuestionDialog";
+import axios from "axios";
+import Env from "../utils/Env";
+
 
 const EventDetailScreen = (
-    {isAskQuestionDialogOpen, setAskQuestionDialogOpen}
+    { isAskQuestionDialogOpen, setAskQuestionDialogOpen }
 
 ) => {
 
-
+    const [error, setError] = React.useState("")
+    function enrollEvent() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+        axios.post(process.env.REACT_APP_URL + "event/enroll?eventId=" + 48 + "&userId=" + 1, {},{ headers: headers })
+            .then(function (response) {
+                if (response.data.operationResult === "SUCCESS") {
+                    console.log(response.data)
+                }
+                else {
+                    setError("Attending Club is failed!");
+                }
+            })
+            .catch(function (error) { setError("Something went wrong!") })
+    }
     const questionAnswerList = [
         {
             question: "Question text",
@@ -45,7 +64,7 @@ const EventDetailScreen = (
     return (
 
         <div>
-            {isAskQuestionDialogOpen && <AskQuestionDialog/>}
+            {isAskQuestionDialogOpen && <AskQuestionDialog />}
             <Grid container style={{ marginTop: 10 }}>
                 <Grid item xs={5} style={{ marginTop: 50 }}>
                     <Grid container>
@@ -88,11 +107,10 @@ const EventDetailScreen = (
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             }}>Club Name</div>
                         </Grid>
-                        <Grid item xs={12} style={
+                        <Grid item xs={7} style={
                             {
-                                paddingLeft: 12,
+                                paddingLeft: "115px",
                                 marginTop: "10px",
-                                marginLeft: "100px",
                                 color: "black",
                                 display: "flex",
                                 justifyContent: "left",
@@ -104,6 +122,18 @@ const EventDetailScreen = (
                                 fontSize: "30px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             }}>No.of</div>
+
+
+                        </Grid>
+                        <Grid xs={5}>
+
+                            <BilboardButton
+                                onClick={() => enrollEvent()}
+                                width="160px"
+                                fontSize="13px"
+                                text="Enroll an Event"
+                                color="#00e676"
+                            />
                         </Grid>
 
                         <Grid item xs={12}
@@ -190,7 +220,7 @@ const EventDetailScreen = (
 
                                 }}>
                                     <BilboardButton
-                                        onClick = {() => setAskQuestionDialogOpen(true) }
+                                        onClick={() => setAskQuestionDialogOpen(true)}
                                         width="160px" height="40px" fontSize="16px" text="Ask a question" />
                                 </Grid>
 
@@ -199,14 +229,14 @@ const EventDetailScreen = (
                     </Grid>
                 </Grid>
             </Grid>
-            
+
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    return { isAskQuestionDialogOpen: state.isAskQuestionDialogOpen};
-  };
+    return { isAskQuestionDialogOpen: state.isAskQuestionDialogOpen };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {

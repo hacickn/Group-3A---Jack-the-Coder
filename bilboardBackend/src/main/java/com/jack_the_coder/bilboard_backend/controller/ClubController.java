@@ -40,9 +40,9 @@ public class ClubController {
     UserService userService;
 
     /**
-     * @apiNote This method is used to get club.
-     * @param long clubId
+     * @param clubId is a long
      * @return ClubResponse
+     * @apiNote This method is used to get club.
      */
     @GetMapping
     public ClubResponse getClub ( @RequestParam( value = "clubId" ) long clubId ) {
@@ -52,9 +52,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to search clubs.
-     * @param String name
+     * @param name is a String
      * @return List<BasicClubResponse>
+     * @apiNote This method is used to search clubs.
      */
     @GetMapping( path = "/search" )
     public List<BasicClubResponse> searchClub ( @RequestParam( value = "name" ) String name ) {
@@ -68,9 +68,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to update clubs.
-     * @param UpdateClubRequest updateClubRequest
+     * @param updateClubRequest is an UpdateClubRequest
      * @return StatusResponse
+     * @apiNote This method is used to update clubs.
      */
     @PostMapping( path = "/update" )
     public StatusResponse updateClub ( @RequestBody UpdateClubRequest updateClubRequest ) {
@@ -89,9 +89,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to update club photo
-     * @param long clubId, MultipartFile photo
+     * @param clubId is a long, photo is a MultipartFile
      * @return StatusResponse
+     * @apiNote This method is used to update club photo
      */
     @PostMapping( path = "/updatePhoto" )
     public StatusResponse updateClubPhoto ( @RequestParam( value = "clubId" ) long clubId ,
@@ -109,9 +109,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to create club.
-     * @param long clubId
+     * @param clubId is long
      * @return List<EventResponse>
+     * @apiNote This method is used to create club.
      */
     @GetMapping( path = "/event" )
     public List<EventResponse> getEvents ( @RequestParam( value = "clubId" ) long clubId ) {
@@ -126,9 +126,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to add board member.
-     * @param long clubId, long userId
+     * @param clubId is long, userId is a long
      * @return ClubBoardMemberResponse
+     * @apiNote This method is used to add board member.
      */
     @PostMapping( path = "/boardMember" )
     public ClubBoardMemberResponse addBoardMember ( @RequestParam( value = "clubId" ) long clubId ,
@@ -147,9 +147,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to delete board members.
-     * @param long boardMemberId
+     * @param boardMemberId is long
      * @return StatusResponse
+     * @apiNote This method is used to delete board members.
      */
     @DeleteMapping( path = "/boardMember" )
     public StatusResponse deleteBoardMember ( @RequestParam( value = "boardMemberId" ) long boardMemberId ) {
@@ -165,9 +165,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to enroll club.
-     * @param long clubId, long clubId
+     * @param clubId is long, clubId is long
      * @return StatusResponse
+     * @apiNote This method is used to enroll club.
      */
     @PostMapping( path = "/enrollment/request" )
     public StatusResponse enrollClub ( @RequestParam( value = "userId" ) long userId ,
@@ -184,9 +184,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to respond enroll request.
-     * @param long enrollmentId, String status
+     * @param enrollmentId is a long, status is a String
      * @return StatusResponse
+     * @apiNote This method is used to respond enroll request.
      */
     @PostMapping( path = "/enrollment/respond" )
     public StatusResponse respondEnrollRequest ( @RequestParam( value = "enrollmentId" ) long enrollmentId ,
@@ -204,9 +204,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to delete member.
-     * @param long memberId
+     * @param memberId is a long
      * @return StatusResponse
+     * @apiNote This method is used to delete member.
      */
     @DeleteMapping( path = "/member" )
     public StatusResponse deleteMember ( @RequestParam( value = "memberId" ) long memberId ) {
@@ -222,9 +222,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to add sponsorhip.
-     * @param long clubId, String name, MultipartFile photo, int amount, String type
+     * @param clubId is a long, String name, MultipartFile photo, int amount, String type
      * @return ClubSponsorshipResponse
+     * @apiNote This method is used to add sponsorhip.
      */
     @PostMapping( path = "/sponsorship" )
     public ClubSponsorshipResponse addSponsorship ( @RequestParam( value = "clubId" ) long clubId ,
@@ -239,9 +239,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to delete sponsorship.
-     * @param long sponsorshipId
+     * @param sponsorshipId is a long
      * @return StatusResponse
+     * @apiNote This method is used to delete sponsorship.
      */
     @DeleteMapping( path = "/sponsorship" )
     public StatusResponse deleteSponsorship ( @RequestParam( value = "sponsorshipId" ) long sponsorshipId ) {
@@ -258,9 +258,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to get feedbacks.
-     * @param long clubId
+     * @param clubId is a long
      * @return List<ClubFeedbackResponse>
+     * @apiNote This method is used to get feedbacks.
      */
     @GetMapping( path = "/feedback" )
     public List<ClubFeedbackResponse> getFeedbacks ( @RequestParam( value = "clubId" ) long clubId ) {
@@ -275,9 +275,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to add feedback.
-     * @param CreateClubFeedbackRequest createClubFeedbackRequest
+     * @param createClubFeedbackRequest is a CreateClubFeedbackRequest
      * @return ClubFeedbackResponse
+     * @apiNote This method is used to add feedback.
      */
     @PostMapping( path = "/feedback" )
     public ClubFeedbackResponse createFeedback ( @RequestBody CreateClubFeedbackRequest createClubFeedbackRequest ) {
@@ -295,9 +295,9 @@ public class ClubController {
     }
 
     /**
-     * @apiNote This method is used to respond feedback.
-     * @param long feedbackId, boolean status
+     * @param feedbackId is a long, boolean status
      * @return StatusResponse
+     * @apiNote This method is used to respond feedback.
      */
     @PostMapping( path = "/feedback/respond" )
     public StatusResponse respondFeedback ( @RequestParam( value = "feedbackId" ) long feedbackId ,

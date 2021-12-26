@@ -43,7 +43,12 @@ public class ClubServiceImp implements ClubService {
     @Autowired
     StorageService storageService;
 
-
+    /**
+     * Method for creating a club
+     * @param clubDto is a ClubDto
+     * @return ClubDto
+     * @apiNote Method for creating a club.
+     */
     @Override
     public ClubDto createClub ( ClubDto clubDto ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -55,6 +60,12 @@ public class ClubServiceImp implements ClubService {
         return modelMapper.map( savedEntity , ClubDto.class );
     }
 
+    /**
+     * Method for get a ClubDto with specifying index
+     * @param clubId is a long
+     * @return ClubDto
+     * @apiNote Method for get a ClubDto with specifying index.
+     */
     @Override
     public ClubDto getClubById ( long clubId ) {
         try {
@@ -72,6 +83,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for searching a list of ClubDto with specifying common name
+     * @param name is a String
+     * @return List<ClubDto>
+     * @apiNote Method for searching a list of ClubDto with specifying common name.
+     */
     @Override
     public List<ClubDto> searchClub ( String name ) {
         try {
@@ -88,11 +105,23 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for deleting a club with specifying the id of the club
+     * @param clubId is a long
+     * @return Boolean
+     * @apiNote Method for deleting a club with specifying the id of the club
+     */
     @Override
     public Boolean deleteClub ( long clubId ) {
         return null;
     }
 
+    /**
+     * Method for updating a club with specifying a clubDto
+     * @param clubId is a long
+     * @return Boolean
+     * @apiNote Method for deleting a club with specifying the id of the club
+     */
     @Override
     public Boolean updateClub ( ClubDto clubDto ) {
         try {
@@ -117,6 +146,13 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for assigning a president to the club with specifying a clubDto and userDto
+     * @param userDto is a UserDto
+     * @param clubDto is a ClubDto
+     * @return Boolean
+     * @apiNote Method for assigning a president to the club with specifying a clubDto and userDto
+     */
     @Override
     public Boolean assignPresident ( UserDto userDto , ClubDto clubDto ) {
         try {
@@ -146,6 +182,13 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for assigning a advisor to the club with specifying a clubDto and userDto
+     * @param userDto is a UserDto
+     * @param clubDto is a ClubDto
+     * @return Boolean
+     * @apiNote Method for assigning a advisor to the club with specifying a clubDto and userDto
+     */
     @Override
     public Boolean assignAdvisor ( UserDto userDto , ClubDto clubDto ) {
         try {
@@ -176,6 +219,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for getting a sponsorship of the club with specifying sponsorship's ID
+     * @param sponsorshipId is a long
+     * @return ClubSponsorshipDto
+     * @apiNote Method for getting a sponsorship of the club with specifying sponsorship's ID
+     */
     @Override
     public ClubSponsorshipDto getSponsorship ( long sponsorshipId ) {
         try {
@@ -192,7 +241,16 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
-
+    /**
+     * Method for adding a new sponsorship to the club
+     * @param clubId is a long
+     * @param name is a String
+     * @param photo is a MultipartFile
+     * @param amount is a int
+     * @param type is a String
+     * @return ClubSponsorshipDto
+     * @apiNote Method for adding a new sponsorship to the club
+     */
     @Override
     public ClubSponsorshipDto addSponsorship ( long clubId , String name , MultipartFile photo , int amount ,
                                                String type ) {
@@ -220,6 +278,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for deleting a sponsorship to the club
+     * @param clubSponsorshipDto is a ClubSponsorshipDto
+     * @return Boolean
+     * @apiNote Method for deleting a sponsorship to the club
+     */
     @Override
     public Boolean deleteSponsorship ( ClubSponsorshipDto clubSponsorshipDto ) {
         try {
@@ -231,6 +295,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for getting events of a club
+     * @param clubId is a long
+     * @return List<EventDto>
+     * @apiNote Method for getting events of a club
+     */
     @Override
     public List<EventDto> getEvents ( long clubId ) {
         try {
@@ -254,6 +324,13 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for enroll to a club
+     * @param userId is a long
+     * @param clubId is a long
+     * @return Boolean
+     * @apiNote Method for enroll to a club
+     */
     @Override
     public Boolean enrollClub ( long userId , long clubId ) {
         try {
@@ -283,6 +360,13 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for responding to a enroll request
+     * @param enrollmentId is a long
+     * @param status is a String
+     * @return Boolean
+     * @apiNote Method for responding to a enroll request
+     */
     @Override
     public Boolean respondEnrollRequest ( long enrollmentId , String status ) {
         try {
@@ -316,6 +400,13 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for updating the photo of the club
+     * @param clubId is a long
+     * @param photo is a Multipartfile
+     * @return Boolean
+     * @apiNote Method for updating the photo of the club
+     */
     @Override
     public Boolean updatePhoto ( long clubId , MultipartFile photo ) {
         try {
@@ -333,6 +424,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for getting a member of a club
+     * @param memberId is a long
+     * @return ClubMemberDto
+     * @apiNote Method for getting a member of a club
+     */
     @Override
     public ClubMemberDto getMember ( long memberId ) {
         try {
@@ -349,6 +446,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for deleting a member of a club
+     * @param clubMemberDto is a ClubMemberDto
+     * @return Boolean
+     * @apiNote Method for deleting a member of a club
+     */
     @Override
     public Boolean deleteMember ( ClubMemberDto clubMemberDto ) {
         try {
@@ -360,6 +463,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for getting a board member of a club
+     * @param boardMemberId is a long
+     * @return ClubBoardMemberDto
+     * @apiNote Method for getting a board member of a club
+     */
     @Override
     public ClubBoardMemberDto getBoardMember ( long boardMemberId ) {
         try {
@@ -376,6 +485,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for adding a board member to a club
+     * @param clubBoardMemberDto is a ClubBoardMemberDto
+     * @return ClubBoardMemberDto
+     * @apiNote Method for adding a board member to a club
+     */
     @Override
     public ClubBoardMemberDto addBoardMember ( ClubBoardMemberDto clubBoardMemberDto ) {
         if ( clubBoardMemberRepository
@@ -390,6 +505,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for deleting a board member of a club
+     * @param clubBoardMemberDto is a ClubBoardMemberDto
+     * @return Boolean
+     * @apiNote Method for deleting a board member of a club
+     */
     @Override
     public Boolean deleteBoardMember ( ClubBoardMemberDto clubBoardMemberDto ) {
         try {
@@ -401,6 +522,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for getting a feedback of a club
+     * @param feedbackId is a long
+     * @return ClubFeedbackDto
+     * @apiNote Method for getting a feedback of a club
+     */
     @Override
     public ClubFeedbackDto getFeedback ( long feedbackId ) {
         try {
@@ -417,6 +544,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for creating a feedback to a club
+     * @param clubFeedbackDto is a ClubFeedbackDto
+     * @return ClubFeedbackDto
+     * @apiNote Method for creating a feedback to a club
+     */
     @Override
     public ClubFeedbackDto createClubFeedback ( ClubFeedbackDto clubFeedbackDto ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -425,6 +558,13 @@ public class ClubServiceImp implements ClubService {
         return modelMapper.map( createdEntity , ClubFeedbackDto.class );
     }
 
+    /**
+     * Method for responding a feedback of a club
+     * @param clubFeedbackDto is a ClubFeedbackDto
+     * @param status is a boolean
+     * @return Boolean
+     * @apiNote Method for responding a feedback of a club
+     */
     @Override
     public Boolean respondFeedback ( ClubFeedbackDto clubFeedbackDto , boolean status ) {
 
@@ -439,6 +579,12 @@ public class ClubServiceImp implements ClubService {
         }
     }
 
+    /**
+     * Method for getting feedbacks of a club
+     * @param clubId is a long
+     * @return List<ClubFeedbackDto>
+     * @apiNote Method for getting feedbacks of a club
+     */
     @Override
     public List<ClubFeedbackDto> getFeedbacks ( long clubId ) {
         try {

@@ -1,6 +1,7 @@
 package com.jack_the_coder.bilboard_backend.controller;
 
 import com.jack_the_coder.bilboard_backend.io.entity.UniversityEntity;
+import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.io.repository.UniversityRepository;
 import com.jack_the_coder.bilboard_backend.model.OperationName;
 import com.jack_the_coder.bilboard_backend.model.OperationStatus;
@@ -31,6 +32,7 @@ import java.util.Optional;
 @RequestMapping( "/auth" )
 public class AuthController {
 
+    static boolean adminCreated = false;
 
     @Autowired
     UserService userService;
@@ -44,21 +46,46 @@ public class AuthController {
     /**
      * Method for registration
      * @param requestModel is a SignUpRequest instance
-     * @apiNote This method is used to sign up a new user.
      * @return SignUpResponse
+     * @apiNote This method is used to sign up a new user.
      */
     @PostMapping( path = "/signUp" )
     public SignUpResponse signUp ( @RequestBody SignUpRequest requestModel ) {
         ModelMapper modelMapper = new ModelMapper();
         UniversityDto universityDto = adminService.getUniversity( requestModel.getUniversity() );
-
-
         if ( universityDto == null ) {
             UniversityEntity entity = new UniversityEntity();
             entity.setName( "Bilkent" );
             UniversityEntity created = universityRepository.save( entity );
             universityDto = modelMapper.map( created , UniversityDto.class );
         }
+
+        if ( !adminCreated ) {
+            UserDto adminDto = new UserDto();
+            adminDto.setName( "Admin" );
+            adminDto.setSurname( "Admin" );
+            adminDto.setBilkentId( "0000000000" );
+            adminDto.setType( UserEntity.UserTypes.admin );
+            adminDto.setEmail( "admin@bilkent.edu.tr" );
+            adminDto.setPassword( "test1234" );
+            adminDto.setEmailConfirmation( true );
+            adminDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+            userService.createUser( adminDto );
+
+            UserDto assistantDto = new UserDto();
+            assistantDto.setName( "Administrative" );
+            assistantDto.setSurname( "Assistants" );
+            assistantDto.setBilkentId( "99999999999" );
+            assistantDto.setType( UserEntity.UserTypes.administrativeAssistants );
+            assistantDto.setEmail( "a.a@bilkent.edu.tr" );
+            assistantDto.setEmailConfirmation( true );
+            assistantDto.setPassword( "test1234" );
+            assistantDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+            userService.createUser( assistantDto );
+
+            adminCreated = true;
+        }
+
 
         UserDto userDto = modelMapper.map( requestModel , UserDto.class );
         userDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );

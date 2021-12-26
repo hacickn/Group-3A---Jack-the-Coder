@@ -44,6 +44,12 @@ public class EventServiceImp implements EventService {
     ClubMemberRepository clubMemberRepository;
 
 
+    /**
+     * Method for getting an event
+     * @param eventId is a long
+     * @return EventDto
+     * @apiNote Method for getting an event
+     */
     @Override
     public EventDto getEvent ( long eventId ) {
         try {
@@ -61,6 +67,24 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for creating an event
+     * @param eventPhoto is a MultipartFile
+     * @param title is a String
+     * @param duration is a String
+     * @param description is a String
+     * @param date is a Date
+     * @param isOnline is a Boolean
+     * @param isVisible is a Boolean
+     * @param location is a String
+     * @param maxParticipationCount is a int
+     * @param gePoint is a int
+     * @param restrictionForMember is a Boolean
+     * @param timeSlotIdList is a List<Long>
+     * @param clubId is a long
+     * @return EventDto
+     * @apiNote Method for creating an event
+     */
     @Override
     public EventDto createEvent ( MultipartFile eventPhoto , String title , String duration , String description ,
                                   Date date ,
@@ -93,6 +117,11 @@ public class EventServiceImp implements EventService {
         return modelMapper.map( createdEvent , EventDto.class );
     }
 
+    /**
+     * Method for get discover events
+     * @return List<EventDto>
+     * @apiNote Method for get discover
+     */
     @Override
     public List<EventDto> getDiscover () {
         try {
@@ -111,6 +140,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for deleting event
+     * @param eventDto is a EventDto
+     * @return List<EventDto>
+     * @apiNote Method for deleting event
+     */
     @Override
     public Boolean deleteEvent ( EventDto eventDto ) {
         try {
@@ -126,6 +161,13 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for enrolling to an event
+     * @param eventDto is a EventDto
+     * @param userDto is a UserDto
+     * @return Boolean
+     * @apiNote Method for enrolling to an event
+     */
     @Override
     public Boolean enrollToEvent ( EventDto eventDto , UserDto userDto ) {
         try {
@@ -159,6 +201,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for attending to an event
+     * @param eventParticipantDto is a EventParticipantDto
+     * @return Boolean
+     * @apiNote Method for attending to an event
+     */
     @Override
     public Boolean attendToEvent ( EventParticipantDto eventParticipantDto ) {
         try {
@@ -181,6 +229,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for creating an event code
+     * @param eventDto is a EventDto
+     * @return String
+     * @apiNote Method for creating an event code
+     */
     @Override
     public String createEventCode ( EventDto eventDto ) {
         try {
@@ -201,6 +255,14 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for giving point to an event
+     * @param eventDto is a EventDto
+     * @param userDto is a UserDto
+     * @param point is an int
+     * @return Boolean
+     * @apiNote Method for giving point to an event
+     */
     @Override
     public Boolean givePointToEvent ( EventDto eventDto , UserDto userDto , int point ) {
         try {
@@ -226,6 +288,14 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for asking a question
+     * @param eventDto is a EventDto
+     * @param question is an String
+     * @param userDto is a UserDto
+     * @return Boolean
+     * @apiNote Method for asking a question
+     */
     @Override
     public Boolean askQuestion ( EventDto eventDto , String question , UserDto userDto ) {
         try {
@@ -242,6 +312,13 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for responding to a question
+     * @param eventQuestionDto is a EventQuestionDto
+     * @param answer is an String
+     * @return Boolean
+     * @apiNote Method for responding to a question
+     */
     @Override
     public Boolean respondToQuestion ( EventQuestionDto eventQuestionDto , String answer ) {
         try {
@@ -254,6 +331,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for getting an event by id
+     * @param id is a long
+     * @return EventDto
+     * @apiNote Method for getting an event by id
+     */
     @Override
     public EventDto getEventById ( long id ) {
         try {
@@ -270,6 +353,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for getting an question by id
+     * @param eventQuestionId is a long
+     * @return EventQuestionDto
+     * @apiNote Method for getting an question by id
+     */
     @Override
     public EventQuestionDto getQuestionById ( long eventQuestionId ) {
         try {
@@ -286,6 +375,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for getting an event participant by id
+     * @param eventParticipantId is a long
+     * @return EventParticipantDto
+     * @apiNote Method for getting an event participant by id
+     */
     @Override
     public EventParticipantDto getEventParticipantById ( long eventParticipantId ) {
         try {
@@ -302,6 +397,13 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for getting an event participant by user and event
+     * @param userEntity is a UserEntity
+     * @param eventEntity is a EventEntity
+     * @return EventParticipantDto
+     * @apiNote Method for getting an event participant by user and event
+     */
     @Override
     public EventParticipantDto getEventParticipantByUserAndEvent ( UserEntity userEntity , EventEntity eventEntity ) {
         try {
@@ -320,6 +422,12 @@ public class EventServiceImp implements EventService {
         }
     }
 
+    /**
+     * Method for getting an event by code
+     * @param code is a String
+     * @return EventDto
+     * @apiNote Method for getting an event by code
+     */
     @Override
     public EventDto getEventByCode ( String code ) {
         try {

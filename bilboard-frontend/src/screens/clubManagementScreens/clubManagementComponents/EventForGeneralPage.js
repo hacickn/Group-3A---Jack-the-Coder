@@ -22,7 +22,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const EventForGeneralPage = ( { event, currentEvent, setCurrentEvent } ) => {
+const EventForGeneralPage = ( { event, currentEvent, setCurrentEvent, functionList } ) => {
     const [ editEventDialog, setEditEventDialog ] = React.useState( false );
 
     const [ eventParticipantsDialog, setEventParticipantsDialog ] =
@@ -43,8 +43,11 @@ const EventForGeneralPage = ( { event, currentEvent, setCurrentEvent } ) => {
 
         axios.delete( process.env.REACT_APP_URL + "event?eventId=" + event.id, { headers: headers } )
              .then( function ( response ) {
-                 console.log( response )
-                 setIsLeaveAlertOpen( true )
+                 if ( response.data.operationResult === "SUCCESS" ) {
+                     functionList.handleEventRemoval( event.id )
+                     setIsLeaveAlertOpen( false )
+                 }
+
              } )
              .catch( function ( error ) {
                  setError( "Something went wrong!" )
@@ -83,7 +86,7 @@ const EventForGeneralPage = ( { event, currentEvent, setCurrentEvent } ) => {
                             onClick={ () => setEditEventDialog( true ) }
                         />
                         <BilboardButton
-                            onClick={ () => handleDeleteEvent() }
+                            onClick={ () => setIsLeaveAlertOpen( true ) }
                             text="Delete"
                             width="75px"
                             font-weight="bold"
@@ -112,7 +115,7 @@ const EventForGeneralPage = ( { event, currentEvent, setCurrentEvent } ) => {
                 </DialogContent>
                 <DialogActions>
                     <BilboardButton onClick={ handleCloseAlert } text="Cancel"/>
-                    <BilboardButton onClick={ handleCloseAlert } text="Delete" autoFocus/>
+                    <BilboardButton onClick={ () => handleDeleteEvent() } text="Delete" autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>

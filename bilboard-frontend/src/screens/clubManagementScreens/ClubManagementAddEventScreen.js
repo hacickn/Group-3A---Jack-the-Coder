@@ -45,7 +45,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const ClubManagementAddEventScreen = ( { club } ) => {
+const ClubManagementAddEventScreen = ( { club, functionList } ) => {
     const classes = useStyles();
     const [ isLeaveAlertOpen, setIsLeaveAlertOpen ] = React.useState( false );
     const [ submitted, setSubmitted ] = React.useState( false )
@@ -107,14 +107,14 @@ const ClubManagementAddEventScreen = ( { club } ) => {
 
                      setSuccess( "Event is successfully created!" )
                      setSubmitted( false )
-
-                     setTitle("")
-                     setDate(new Date())
-                     setDescription("")
-                     setDuration("")
-                     setNumberOfParticipants(0)
-                     setGePoint(0)
-                     setZoomLink("")
+                     functionList.handleEventAddition( response.data )
+                     setTitle( "" )
+                     setDate( new Date() )
+                     setDescription( "" )
+                     setDuration( "" )
+                     setNumberOfParticipants( 0 )
+                     setGePoint( 0 )
+                     setZoomLink( "" )
                      handleCloseAlert()
                  } )
                  .catch( function ( error ) {

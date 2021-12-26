@@ -61,19 +61,19 @@ public class EventController {
 
     /**
      * Method for creating an event
-     * @param eventPhoto is a MultipartFile
-     * @param title is a String
-     * @param description is a String
-     * @param duration is a String
-     * @param date is a String
-     * @param isOnline is a boolean
-     * @param isVisible is a boolean
-     * @param location is a String
+     * @param eventPhoto            is a MultipartFile
+     * @param title                 is a String
+     * @param description           is a String
+     * @param duration              is a String
+     * @param date                  is a String
+     * @param isOnline              is a boolean
+     * @param isVisible             is a boolean
+     * @param location              is a String
      * @param maxParticipationCount is an int
-     * @param gePoint is an int
-     * @param restrictionForMember is a boolean
-     * @param timeSlotIdList is a List<Long>
-     * @param clubId is a long
+     * @param gePoint               is an int
+     * @param restrictionForMember  is a boolean
+     * @param timeSlotIdList        is a List<Long>
+     * @param clubId                is a long
      * @return EventResponse
      * @apiNote This method is used to create an event.
      */
@@ -94,9 +94,15 @@ public class EventController {
         ModelMapper modelMapper = new ModelMapper();
         SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm" );
         List<Long> idList = new ArrayList<>();
-        Arrays.stream( timeSlotIdList.split( "-" ) ).forEach( s -> {
-            idList.add( Long.valueOf( s ) );
-        } );
+        try {
+            Arrays.stream( timeSlotIdList.split( "-" ) ).forEach( s -> {
+                System.out.println();
+                idList.add( Long.valueOf( s ) );
+            } );
+        } catch ( Exception e ) {
+
+        }
+
 
         Date newDate;
         try {
@@ -143,7 +149,7 @@ public class EventController {
     /**
      * Method for enrolling in an event
      * @param eventId is a long
-     * @param userId is a long
+     * @param userId  is a long
      * @return StatusResponse
      * @apiNote This method is used to enroll event.
      */
@@ -167,7 +173,7 @@ public class EventController {
     /**
      * Method for attending an event
      * @param eventCode is a String
-     * @param userId is a long
+     * @param userId    is a long
      * @return StatusResponse
      * @apiNote This method is used to attend event.
      */
@@ -186,7 +192,7 @@ public class EventController {
                         modelMapper.map( eventDto , EventEntity.class ) );
 
         // if user is already enrolled, attend event, is not create enroll request then attend event!
-        if ( eventParticipantDto != null && !eventParticipantDto.getAttended()) {
+        if ( eventParticipantDto != null && !eventParticipantDto.getAttended() ) {
             if ( eventService.attendToEvent( eventParticipantDto ) ) {
                 statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
             } else {
@@ -223,8 +229,8 @@ public class EventController {
 
     /**
      * Method for rating the event
-     * @param eventId is a long
-     * @param userId is a long
+     * @param eventId    is a long
+     * @param userId     is a long
      * @param eventPoint is an int
      * @return StatusResponse
      * @apiNote This method is used to give points.
@@ -248,8 +254,8 @@ public class EventController {
 
     /**
      * Method for asking a question about the event
-     * @param eventId is a long
-     * @param userId is a long
+     * @param eventId  is a long
+     * @param userId   is a long
      * @param question is a String
      * @return StatusResponse
      * @apiNote This method is used to ask question.
@@ -274,7 +280,7 @@ public class EventController {
 
     /**
      * Method for answering a question
-     * @param questionId is a long
+     * @param questionId       is a long
      * @param questionResponse is a String
      * @return StatusResponse
      * @apiNote This method is used to respond question.

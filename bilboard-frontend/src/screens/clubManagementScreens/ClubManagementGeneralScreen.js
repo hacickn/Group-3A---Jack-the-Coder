@@ -30,6 +30,7 @@ const ClubManagementGeneralScreen = ( {
                                           club,
                                           currentEvent,
                                           setCurrentEvent,
+                                          functionList
                                       } ) => {
     const [ whatsappLink, setWhatsappLink ] = React.useState( null );
     const [ instagramLink, setInstagramLink ] = React.useState( null );
@@ -67,7 +68,8 @@ const ClubManagementGeneralScreen = ( {
                 { headers: headers }
             )
             .then( function ( response ) {
-                if ( response.status === 200 ) {
+                if ( response.data.operationResult === "SUCCESS" ) {
+                    functionList.handleWpLinkUpdate( whatsappLink )
                     setSuccess( "Successfully updated! Please refresh the page." );
                     setWhatsappLink( null );
                     setIsWhatsappDialogOpen( false );
@@ -91,7 +93,8 @@ const ClubManagementGeneralScreen = ( {
                 { headers: headers }
             )
             .then( function ( response ) {
-                if ( response.status === 200 ) {
+                if ( response.data.operationResult === "SUCCESS" ) {
+                    functionList.handleInstaLinkUpdate( instagramLink )
                     setSuccess( "Successfully updated! Please refresh the page." );
                     setInstagramLink( null );
                     setIsInstagramDialogOpen( false );
@@ -130,7 +133,6 @@ const ClubManagementGeneralScreen = ( {
                         } )
                             .then( ( response ) => response.json() )
                             .then( ( data ) => {
-                                //console.log(data.message)
                             } )
                             .then( () => {
                                 setSuccess(
@@ -206,7 +208,9 @@ const ClubManagementGeneralScreen = ( {
                     <div></div>
                     <Button
                         variant="contained"
-                        onClick={ () => window.open( club.instaLink, "_blank" ) }
+                        onClick={ () => {
+                            window.open( club.instaLink, "_blank" )
+                        } }
                         startIcon={ <InstagramIcon/> }
                         style={ {
                             marginTop: "20px",
@@ -255,6 +259,7 @@ const ClubManagementGeneralScreen = ( {
                             } }
                         >
                             <EventForGeneralPage
+                                functionList={ functionList }
                                 currentEvent={ event }
                                 setCurrentEvent={ setCurrentEvent }
                                 event={ event }

@@ -30,6 +30,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
     const [ openedScreen, setOpenedScreen ] = React.useState( "General" );
     const [ latestId, setLatestId ] = React.useState( -1 )
     const [ loading, setLoading ] = React.useState( true )
+    const [ latestClub, setLatestClub ] = React.useState( null )
     const [ pageError, setPageError ] = React.useState( false )
 
     async function handleClubResponse( clubId ) {
@@ -44,6 +45,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                        Program.addClub( response.data, clubId )
                        setLoading( false )
                        setPageError( false )
+                       setLatestClub( response.data )
                        setLatestId( currentClubId )
                    } )
                    .catch( function ( error ) {
@@ -53,13 +55,108 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
     }
 
 
-    if ( Program.getClub( currentClubId ) === undefined ) {
+    if ( Program.getClub( currentClubId ) === undefined || latestClub === null ) {
         handleClubResponse( currentClubId )
     } else if ( Program.getClub( currentClubId ) !== undefined && loading ) {
+        setLatestClub( Program.getClub( currentClubId ) )
         setLoading( false )
         setLatestId( currentClubId )
     } else {
     }
+    console.log( latestClub )
+    const functionList = {
+        handleNewSponsorAddition: function handleNewSponsorAddition( newResponse ) {
+            let temp = { ...latestClub }
+
+            temp.clubSponsorships.push( newResponse )
+
+            setLatestClub( temp )
+        },
+        handleWpLinkUpdate: function handleWpLinkUpdate( newWpLink ) {
+            let temp = { ...latestClub }
+            temp.wpLink = newWpLink
+            setLatestClub( temp )
+        },
+        handleInstaLinkUpdate: function handleInstaLinkUpdate( newInstaLink ) {
+            let temp = { ...latestClub }
+            temp.instaLink = newInstaLink
+            setLatestClub( temp )
+        },
+        handleSponsorDeletion: function handleSponsorDeletion( sponsorId ) {
+            let temp = { ...latestClub }
+            let tempList = []
+
+            latestClub.clubSponsorships.forEach( sponsor => {
+                if ( sponsor.id !== sponsorId ) {
+                    tempList.push( sponsor )
+                }
+            } )
+
+            temp.clubSponsorships = tempList
+
+            setLatestClub( temp )
+        },
+        handleBoardMemberAddition: function handleBoardMemberAddition() {
+
+        },
+        handleFeedbackChange: function handleFeedbackChange( feedbackId, newStatus ) {
+            let temp = { ...latestClub }
+            let tempList = []
+
+            latestClub.clubFeedbacks.forEach( feedback => {
+                if ( feedback.id !== feedbackId ) {
+                    tempList.push( feedback )
+                } else {
+                    let tempFeedback = { ...feedback }
+                    tempFeedback.status = newStatus
+                    tempList.push( tempFeedback )
+                }
+            } )
+
+            temp.clubFeedbacks = tempList
+            setLatestClub( temp )
+
+        },
+        handleMemberRemoval: function handleMemberRemoval( memberID ) {
+            let temp = { ...latestClub }
+            let tempList = []
+
+            latestClub.clubMembers.forEach( member => {
+                if ( member.id !== memberID ) {
+                    tempList.push( member )
+                }
+            } )
+
+            temp.clubMembers = tempList
+
+            setLatestClub( temp )
+        },
+        handleEventAddition: function handleEventAddition( eventResponse ) {
+            let temp = { ...latestClub }
+            eventResponse.eventQuestions = []
+            eventResponse.eventParticipants = []
+            eventResponse.locationRequests = []
+
+            temp.events.push( eventResponse )
+
+            setLatestClub( temp )
+        },
+        handleEventRemoval: function handleEventRemoval( eventId ) {
+            let temp = { ...latestClub }
+            let tempList = []
+
+            latestClub.events.forEach( event => {
+                if ( event.id !== eventId ) {
+                    tempList.push( event )
+                }
+            } )
+
+            temp.events = tempList
+
+            setLatestClub( temp )
+        }
+    }
+
 
     return (
         <Grid container style={ { padding: 20, height: "88vh" } }>
@@ -107,7 +204,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                 </Card>
             </Grid>
             <Grid item xs={ 9 } style={ { padding: 4 } }>
-                { loading || ( Program.getClub( currentClubId ) === undefined ) ?
+                { loading || ( latestClub === null ) ?
                     <CircularProgress/> :
                     pageError ?
                         <div> Error </div> :
@@ -122,21 +219,23 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                             { openedScreen === "General" ? (
                                 <ClubManagementGeneralScreen currentEvent={ currentEvent }
                                                              setCurrentEvent={ setCurrentEvent }
-                                                             club={ Program.getClub( currentClubId ) }/>
+                                                             functionList={ functionList }
+                                                             club={ latestClub }/>
                             ) : openedScreen === "Add Events" ? (
-                                <ClubManagementAddEventScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementAddEventScreen club={ latestClub } functionList={ functionList }/>
                             ) : openedScreen === "Members" ? (
-                                <ClubManagementMembersScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementMembersScreen club={ latestClub } functionList={ functionList }/>
                             ) : openedScreen === "Membership Requests" ? (
-                                <ClubManagementMembershipRequestsScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementMembershipRequestsScreen club={ latestClub }
+                                                                        functionList={ functionList }/>
                             ) : openedScreen === "Feedbacks" ? (
-                                <ClubManagementFeedbackScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementFeedbackScreen club={ latestClub } functionList={ functionList }/>
                             ) : openedScreen === "Surveys" ? (
-                                <ClubManagementSurveyScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementSurveyScreen club={ latestClub } functionList={ functionList }/>
                             ) : openedScreen === "Club Hierarchy" ? (
-                                <ClubManagementHierarchyScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementHierarchyScreen club={ latestClub } functionList={ functionList }/>
                             ) : openedScreen === "Sponsors" ? (
-                                <ClubManagementSponsorScreen club={ Program.getClub( currentClubId ) }/>
+                                <ClubManagementSponsorScreen club={ latestClub } functionList={ functionList }/>
                             ) : (
                                 <div/>
                             ) }

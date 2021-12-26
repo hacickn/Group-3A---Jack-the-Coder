@@ -20,8 +20,8 @@ import axios from "axios";
  */
 
 const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
-    const [questionResponse, setQuestionResponse] = React.useState("");
-    const [error, setError] = useState("")
+    const [ questionResponse, setQuestionResponse ] = React.useState( "" );
+    const [ error, setError ] = useState( "" )
 
     function handleAnswerQuestion() {
         let headers = {
@@ -29,11 +29,15 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
             'Authorization': 'Bearer ' + Env.TOKEN
         }
 
-        axios.delete(process.env.REACT_APP_URL + "event/respondToQuestion?questionId=" + question.id + "&questionResponse=" + questionResponse, {}, {headers: headers})
-            .then(function(response) {
-                console.log(response)
-            })
-            .catch(function (error) { setError("Something went wrong!") })
+        axios.delete(
+            process.env.REACT_APP_URL + "event/respondToQuestion?questionId=" + question.id + "&questionResponse=" +
+            questionResponse, {}, { headers: headers } )
+             .then( function ( response ) {
+                 console.log( response )
+             } )
+             .catch( function ( error ) {
+                 setError( "Something went wrong!" )
+             } )
     }
 
     return (
@@ -94,8 +98,8 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                         justifyContent: "center",
                     } }>
                         <BilboardMultilineTextField
-                            value={questionResponse}
-                            onChange={(e) => setQuestionResponse(e)}
+                            value={ questionResponse }
+                            onChange={ ( e ) => setQuestionResponse( e ) }
                             label="Your Answer"
                             type="answer"
                             width="300px"
@@ -112,8 +116,8 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                         display: "flex",
                         justifyContent: "center"
                     } }>
-                        <BilboardButton 
-                            onClick={() => handleAnswerQuestion()}
+                        <BilboardButton
+                            onClick={ () => handleAnswerQuestion() }
                             width="100px" fontSize="11px" text="Submit Answer"/>
                     </Grid>
                 </Grid>

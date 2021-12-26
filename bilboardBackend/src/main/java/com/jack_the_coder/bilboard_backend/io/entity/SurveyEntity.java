@@ -168,11 +168,18 @@ public class SurveyEntity implements Serializable {
         this.forActiveMembers = forActiveMembers;
     }
 
-    // todo
+    /**
+     * get questions method
+     * @return questions is SurveyQuestionEntity list
+     */
     public List<SurveyQuestionEntity> getQuestions () {
         return questions;
     }
 
+    /**
+     * set questions method
+     * @param questions is SurveyQuestionEntity list
+     */
     public void setQuestions ( List<SurveyQuestionEntity> questions ) {
         this.questions = questions;
     }

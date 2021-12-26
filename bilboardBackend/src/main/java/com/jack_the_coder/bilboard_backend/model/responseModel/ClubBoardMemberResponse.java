@@ -3,6 +3,12 @@ package com.jack_the_coder.bilboard_backend.model.responseModel;
 import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicClubResponse;
 import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicUserResponse;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is a response to client
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class ClubBoardMemberResponse {
 
     private long id;

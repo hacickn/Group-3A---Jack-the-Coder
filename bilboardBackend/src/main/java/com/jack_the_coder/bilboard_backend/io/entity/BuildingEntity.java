@@ -72,7 +72,7 @@ public class BuildingEntity implements Serializable {
     }
 
     /**
-     * Set survey method
+     * Set university method
      * @param university is UniversityEntity instance
      */
     public void setUniversity ( UniversityEntity university ) {

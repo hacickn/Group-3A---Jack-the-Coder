@@ -64,54 +64,59 @@ public class AuthController {
         }
 
         if ( !defaultUserCreated ) {
-            UserDto adminDto = new UserDto();
-            adminDto.setName( "Admin" );
-            adminDto.setSurname( "Admin" );
-            adminDto.setBilkentId( "0000000000" );
-            adminDto.setType( UserEntity.UserTypes.admin );
-            adminDto.setEmail( "admin@bilkent.edu.tr" );
-            adminDto.setPassword( "test1234" );
-            adminDto.setEmailConfirmation( true );
-            adminDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
-            userService.createUser( adminDto );
 
-            UserDto assistantDto = new UserDto();
-            assistantDto.setName( "Administrative" );
-            assistantDto.setSurname( "Assistants" );
-            assistantDto.setBilkentId( "99999999999" );
-            assistantDto.setType( UserEntity.UserTypes.administrativeAssistants );
-            assistantDto.setEmail( "a.a@bilkent.edu.tr" );
-            assistantDto.setEmailConfirmation( true );
-            assistantDto.setPassword( "test1234" );
-            assistantDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
-            userService.createUser( assistantDto );
+            if(userService.getUserById( 2 ) == null){
+                UserDto adminDto = new UserDto();
+                adminDto.setName( "Admin" );
+                adminDto.setSurname( "Admin" );
+                adminDto.setBilkentId( "0000000000" );
+                adminDto.setType( UserEntity.UserTypes.admin );
+                adminDto.setEmail( "admin@bilkent.edu.tr" );
+                adminDto.setPassword( "test1234" );
+                adminDto.setEmailConfirmation( true );
+                adminDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+                userService.createUser( adminDto );
 
-            UserDto studentDto = new UserDto();
-            studentDto.setName( "Student" );
-            studentDto.setSurname( "Student" );
-            studentDto.setBilkentId( "43787843" );
-            studentDto.setType( UserEntity.UserTypes.student );
-            studentDto.setEmail( "student@ug.bilkent.edu.tr" );
-            studentDto.setEmailConfirmation( true );
-            studentDto.setPassword( "test1234" );
-            studentDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
-            userService.createUser( studentDto );
+                UserDto assistantDto = new UserDto();
+                assistantDto.setName( "Administrative" );
+                assistantDto.setSurname( "Assistants" );
+                assistantDto.setBilkentId( "99999999999" );
+                assistantDto.setType( UserEntity.UserTypes.administrativeAssistants );
+                assistantDto.setEmail( "a.a@bilkent.edu.tr" );
+                assistantDto.setEmailConfirmation( true );
+                assistantDto.setPassword( "test1234" );
+                assistantDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+                userService.createUser( assistantDto );
 
-            UserDto academicDto = new UserDto();
-            academicDto.setName( "Academic" );
-            academicDto.setSurname( "Academic" );
-            academicDto.setBilkentId( "43787844" );
-            academicDto.setType( UserEntity.UserTypes.academic );
-            academicDto.setEmail( "academic@bilkent.edu.tr" );
-            academicDto.setEmailConfirmation( true );
-            academicDto.setPassword( "test1234" );
-            academicDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
-            userService.createUser( academicDto );
+                UserDto studentDto = new UserDto();
+                studentDto.setName( "Student" );
+                studentDto.setSurname( "Student" );
+                studentDto.setBilkentId( "43787843" );
+                studentDto.setType( UserEntity.UserTypes.student );
+                studentDto.setEmail( "student@ug.bilkent.edu.tr" );
+                studentDto.setEmailConfirmation( true );
+                studentDto.setPassword( "test1234" );
+                studentDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+                userService.createUser( studentDto );
 
-            ClubDto clubDto = new ClubDto();
-            clubDto.setName( "Toplumsal Duyarlılık Projeleri" );
-            clubDto.setShortName( "TDP" );
-            clubService.createClub( clubDto );
+                UserDto academicDto = new UserDto();
+                academicDto.setName( "Academic" );
+                academicDto.setSurname( "Academic" );
+                academicDto.setBilkentId( "43787844" );
+                academicDto.setType( UserEntity.UserTypes.academic );
+                academicDto.setEmail( "academic@bilkent.edu.tr" );
+                academicDto.setEmailConfirmation( true );
+                academicDto.setPassword( "test1234" );
+                academicDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+                userService.createUser( academicDto );
+
+                ClubDto clubDto = new ClubDto();
+                clubDto.setName( "Toplumsal Duyarlılık Projeleri" );
+                clubDto.setShortName( "TDP" );
+                clubService.createClub( clubDto );
+            }
+
+
 
             defaultUserCreated = true;
         }

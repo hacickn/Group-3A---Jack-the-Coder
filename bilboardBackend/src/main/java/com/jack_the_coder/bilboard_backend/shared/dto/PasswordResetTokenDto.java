@@ -18,26 +18,50 @@ public class PasswordResetTokenDto implements Serializable {
     private String token;
     private UserEntity userDetails;
 
+    /**
+     * Get id method
+     * @return the id
+     */
     public long getId () {
         return id;
     }
 
+    /**
+     * Set id method
+     * @param id which is a long parameter
+     */
     public void setId ( long id ) {
         this.id = id;
     }
 
+    /**
+     * Get token method
+     * @return the token
+     */
     public String getToken () {
         return token;
     }
 
+    /**
+     * Set token method
+     * @param token which is a String parameter
+     */
     public void setToken ( String token ) {
         this.token = token;
     }
 
+    /**
+     * Get userDetails method
+     * @return UserEntity
+     */
     public UserEntity getUserDetails () {
         return userDetails;
     }
 
+    /**
+     * Set userDetails method
+     * @param userDetails which is a UserEntity parameter
+     */
     public void setUserDetails ( UserEntity userDetails ) {
         this.userDetails = userDetails;
     }

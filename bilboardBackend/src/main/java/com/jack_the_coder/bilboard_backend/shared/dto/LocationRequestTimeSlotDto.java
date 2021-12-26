@@ -19,26 +19,50 @@ public class LocationRequestTimeSlotDto implements Serializable {
     private LocationRequestEntity locationRequest;
     private TimeSlotEntity timeSlot;
 
+    /**
+     * Get id method
+     * @return the id
+     */
     public long getId () {
         return id;
     }
 
+    /**
+     * Set id method
+     * @param id the id to set
+     */
     public void setId ( long id ) {
         this.id = id;
     }
 
+    /**
+     * Get locationRequest method
+     * @return LocationRequestEntity
+     */
     public LocationRequestEntity getLocationRequest () {
         return locationRequest;
     }
 
+    /**
+     * Set locationRequest method
+     * @param locationRequest the locationRequest to set
+     */
     public void setLocationRequest ( LocationRequestEntity locationRequest ) {
         this.locationRequest = locationRequest;
     }
 
+    /**
+     * Get timeSlot method
+     * @return TimeSlotEntity
+     */
     public TimeSlotEntity getTimeSlot () {
         return timeSlot;
     }
 
+    /**
+     * Set timeSlot method
+     * @param timeSlot the timeSlot to set
+     */
     public void setTimeSlot ( TimeSlotEntity timeSlot ) {
         this.timeSlot = timeSlot;
     }

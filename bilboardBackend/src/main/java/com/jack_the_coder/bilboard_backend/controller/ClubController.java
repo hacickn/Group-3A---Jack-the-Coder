@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Hacı Çakın
+ * @author Hacı Çakın and Aslı Dinç
  * @apiNote This is club controller that consists of club operations. Client interacts with that router.
  * It's path is /bilboard-app/v1/club
  * @implNote DONE
@@ -40,6 +40,7 @@ public class ClubController {
     UserService userService;
 
     /**
+     * Method that gives information about the club
      * @param clubId is a long
      * @return ClubResponse
      * @apiNote This method is used to get club.
@@ -52,6 +53,7 @@ public class ClubController {
     }
 
     /**
+     * Method for searching a club by name
      * @param name is a String
      * @return List<BasicClubResponse>
      * @apiNote This method is used to search clubs.
@@ -68,6 +70,7 @@ public class ClubController {
     }
 
     /**
+     * Method for updating club information
      * @param updateClubRequest is an UpdateClubRequest
      * @return StatusResponse
      * @apiNote This method is used to update clubs.
@@ -89,9 +92,11 @@ public class ClubController {
     }
 
     /**
-     * @param clubId is a long, photo is a MultipartFile
+     * Method for updating club photo
+     * @param clubId is a long
+     * @param photo is a MultipartFile
      * @return StatusResponse
-     * @apiNote This method is used to update club photo
+     * @apiNote This method is used to update club photo.
      */
     @PostMapping( path = "/updatePhoto" )
     public StatusResponse updateClubPhoto ( @RequestParam( value = "clubId" ) long clubId ,
@@ -109,6 +114,7 @@ public class ClubController {
     }
 
     /**
+     * Method for getting all events of the club
      * @param clubId is long
      * @return List<EventResponse>
      * @apiNote This method is used to create club.
@@ -126,6 +132,7 @@ public class ClubController {
     }
 
     /**
+     * Method for adding a board member to the club
      * @param clubId is long, userId is a long
      * @return ClubBoardMemberResponse
      * @apiNote This method is used to add board member.
@@ -147,6 +154,7 @@ public class ClubController {
     }
 
     /**
+     * Method for deleting a board member from the club
      * @param boardMemberId is long
      * @return StatusResponse
      * @apiNote This method is used to delete board members.
@@ -165,6 +173,7 @@ public class ClubController {
     }
 
     /**
+     * Method for enrolling a club
      * @param clubId is long, clubId is long
      * @return StatusResponse
      * @apiNote This method is used to enroll club.
@@ -184,6 +193,7 @@ public class ClubController {
     }
 
     /**
+     * Method for responding the enrollment requests to the club
      * @param enrollmentId is a long, status is a String
      * @return StatusResponse
      * @apiNote This method is used to respond enroll request.
@@ -204,6 +214,7 @@ public class ClubController {
     }
 
     /**
+     * Method for deleting club membership
      * @param memberId is a long
      * @return StatusResponse
      * @apiNote This method is used to delete member.
@@ -222,6 +233,7 @@ public class ClubController {
     }
 
     /**
+     * Method for adding a new sponsorship
      * @param clubId is a long, String name, MultipartFile photo, int amount, String type
      * @return ClubSponsorshipResponse
      * @apiNote This method is used to add sponsorhip.
@@ -239,6 +251,7 @@ public class ClubController {
     }
 
     /**
+     * Method for deleting a sponsorship
      * @param sponsorshipId is a long
      * @return StatusResponse
      * @apiNote This method is used to delete sponsorship.
@@ -258,6 +271,7 @@ public class ClubController {
     }
 
     /**
+     * Method for getting the feedbacks that came from the students
      * @param clubId is a long
      * @return List<ClubFeedbackResponse>
      * @apiNote This method is used to get feedbacks.
@@ -275,6 +289,7 @@ public class ClubController {
     }
 
     /**
+     * Method for creating a new feedback to the club
      * @param createClubFeedbackRequest is a CreateClubFeedbackRequest
      * @return ClubFeedbackResponse
      * @apiNote This method is used to add feedback.
@@ -295,6 +310,7 @@ public class ClubController {
     }
 
     /**
+     * Method for deciding whether to display the feedback on the club page or not
      * @param feedbackId is a long, boolean status
      * @return StatusResponse
      * @apiNote This method is used to respond feedback.

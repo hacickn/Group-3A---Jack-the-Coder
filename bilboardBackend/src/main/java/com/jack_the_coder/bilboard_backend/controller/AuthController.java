@@ -42,9 +42,10 @@ public class AuthController {
     UniversityRepository universityRepository;
 
     /**
+     * Method for registration
      * @param requestModel is a SignUpRequest instance
      * @apiNote This method is used to sign up a new user.
-     * @ return SignUpResponse
+     * @return SignUpResponse
      */
     @PostMapping( path = "/signUp" )
     public SignUpResponse signUp ( @RequestBody SignUpRequest requestModel ) {
@@ -68,6 +69,7 @@ public class AuthController {
 
 
     /**
+     * Method for email verification
      * @param token is a string
      * @return StatusResponse
      * @apiNote This method is used to verify email.
@@ -89,6 +91,7 @@ public class AuthController {
     }
 
     /**
+     * Method to handle forgetting password case
      * @param email is a String
      * @return StatusResponse
      * @apiNote This method is used to request resetting password.
@@ -110,7 +113,8 @@ public class AuthController {
     }
 
     /**
-     * @param requestModel is a ResetPasswordRequest instance
+     * Method for resetting password
+     * @param requestModel is a ResetPasswordRequest
      * @return StatusResponse
      * @apiNote This method is used to reset password.
      */

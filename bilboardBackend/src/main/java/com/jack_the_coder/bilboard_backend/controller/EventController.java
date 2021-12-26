@@ -45,6 +45,7 @@ public class EventController {
     ClubService clubService;
 
     /**
+     * Method for getting the events
      * @param eventId is long
      * @return EventResponse
      * @apiNote This method is used to get event.
@@ -59,6 +60,7 @@ public class EventController {
     }
 
     /**
+     * Method for creating an event
      * @param eventPhoto is a MultipartFile, String title, String description, String duration,
      *                   String date, Boolean isOnline, Boolean isVisible, String location
      *                   int maxParticipantCount, int gePoint, Boolean restrictionForMember,
@@ -108,7 +110,12 @@ public class EventController {
 
     }
 
-
+    /**
+     * Method for deleting an event
+     * @param eventId is long
+     * @return StatusResponse
+     * @apiNote This method is used to delete event.
+     */
     @DeleteMapping
     public StatusResponse deleteEvent ( @RequestParam( "eventId" ) long eventId ) {
         StatusResponse statusResponse = new StatusResponse();
@@ -125,6 +132,13 @@ public class EventController {
     }
 
 
+    /**
+     * Method for enrolling to an event
+     * @param eventId is long
+     * @param userId is long
+     * @return StatusResponse
+     * @apiNote This method is used to enroll event.
+     */
     @PostMapping( path = "/enroll" )
     public StatusResponse enrollToEvent ( @RequestParam( "eventId" ) long eventId ,
                                           @RequestParam( "userId" ) long userId ) {
@@ -142,6 +156,13 @@ public class EventController {
         return statusResponse;
     }
 
+    /**
+     * Method for attending an event
+     * @param eventCode is String
+     * @param userId is long
+     * @return StatusResponse
+     * @apiNote This method is used to attend event.
+     */
     @PostMapping( path = "/attend" )
     public StatusResponse attendToEvent ( @RequestParam( "eventCode" ) String eventCode ,
                                           @RequestParam( "userId" ) long userId ) {
@@ -181,6 +202,12 @@ public class EventController {
         return statusResponse;
     }
 
+    /**
+     * Method for creating an event code
+     * @param eventId is long
+     * @return String
+     * @apiNote This method is used to create event code.
+     */
     @PostMapping( path = "/eventCode" )
     public String createEventCode ( @RequestParam( "eventId" ) long eventId ) {
 
@@ -188,6 +215,14 @@ public class EventController {
         return eventService.createEventCode( eventDto );
     }
 
+    /**
+     * Method for rating the event
+     * @param eventId is long
+     * @param userId is long
+     * @param eventPoint is int
+     * @return StatusResponse
+     * @apiNote This method is used to give points.
+     */
     @PostMapping( path = "/givePoint" )
     public StatusResponse givePoint ( @RequestParam( "eventId" ) long eventId ,
                                       @RequestParam( "userId" ) long userId ,
@@ -205,6 +240,14 @@ public class EventController {
         return statusResponse;
     }
 
+    /**
+     * Method for asking a question about the event
+     * @param eventId is long
+     * @param userId is long
+     * @param question is String
+     * @return StatusResponse
+     * @apiNote This method is used to ask question.
+     */
     @PostMapping( path = "/askQuestion" )
     public StatusResponse askQuestion ( @RequestParam( "eventId" ) long eventId ,
                                         @RequestParam( "userId" ) long userId ,
@@ -223,6 +266,13 @@ public class EventController {
         return statusResponse;
     }
 
+    /**
+     * Method for answering a question
+     * @param questionId is long
+     * @param questionResponse is String
+     * @return StatusResponse
+     * @apiNote This method is used to respond question.
+     */
     @PostMapping( path = "/respondToQuestion" )
     public StatusResponse respondToQuestion ( @RequestParam( "questionId" ) long questionId ,
                                               @RequestParam( "questionResponse" ) String questionResponse ) {

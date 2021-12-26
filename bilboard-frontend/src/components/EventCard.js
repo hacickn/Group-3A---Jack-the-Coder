@@ -22,7 +22,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const EventCard = ( { event, setCurrentScreen, setCurrentEvent, currentEvent ,fromBoardMember } ) => {
+const EventCard = ( { event, setCurrentScreen, setCurrentEvent, currentEvent, fromBoardMember } ) => {
     const classes = useStyles();
     const [ visible, setVisible ] = useState( true );
 
@@ -31,10 +31,12 @@ const EventCard = ( { event, setCurrentScreen, setCurrentEvent, currentEvent ,fr
             setCurrentEvent( event )
             setCurrentScreen( "eventDetailBoardMember" )
         } else {
+            console.log( currentEvent )
             setCurrentEvent( event )
             setCurrentScreen( "eventDetail" )
         }
     }
+
     return (
         <div
             className={ classes.root }

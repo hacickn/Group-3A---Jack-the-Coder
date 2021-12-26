@@ -23,7 +23,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import BilboardButton from "../components/BilboardButton";
 import Program from "../utils/Program";
 
-const ClubProfileScreen = ( { currentClub, program, setCurrentClub, currentEvent } ) => {
+const ClubProfileScreen = ( { currentClub, program, setCurrentEvent, setCurrentClub, currentEvent } ) => {
+
     const [ isLeaveFeedbackDialogOpen, setIsLeaveFeedbackDialogOpen ] =
         React.useState( false );
     const [ clubFullData, setClubFullData ] = React.useState( null );
@@ -315,6 +316,7 @@ const ClubProfileScreen = ( { currentClub, program, setCurrentClub, currentEvent
                         >
                             <EventCard setCurrentClub={ setCurrentClub }
                                        currentEvent={ currentEvent }
+                                       setCurrentEvent={setCurrentEvent}
                                        event={ event }/>
                         </Grid>
                     );

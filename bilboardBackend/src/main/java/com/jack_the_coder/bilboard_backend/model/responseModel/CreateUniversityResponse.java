@@ -1,6 +1,11 @@
 package com.jack_the_coder.bilboard_backend.model.responseModel;
 
-
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is a response to client
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class CreateUniversityResponse {
 
     private long id;

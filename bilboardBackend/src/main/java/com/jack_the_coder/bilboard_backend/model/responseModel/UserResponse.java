@@ -5,6 +5,12 @@ import com.jack_the_coder.bilboard_backend.io.entity.UniversityEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseModel.BasicClubResponse;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is a response to client
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class UserResponse {
 
     private long id;
@@ -18,7 +24,6 @@ public class UserResponse {
     private BasicClubResponse presidentOf;
     private BasicClubResponse advisorOf;
     private CreateUniversityResponse university;
-
 
     /**
      * Get id method

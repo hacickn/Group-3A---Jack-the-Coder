@@ -2,8 +2,13 @@ package com.jack_the_coder.bilboard_backend.model.responseModel;
 
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is a response to client
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class SignUpResponse {
-    // todo
     private long id;
     private CreateUniversityResponse university;
     private String name;

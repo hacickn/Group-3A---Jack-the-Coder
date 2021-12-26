@@ -25,7 +25,7 @@ const BilboardRoomRequest = (props) => {
 
     axios.post(process.env.REACT_APP_URL + "reservation/respond?requestId=" + props.requestId + "&status= " + status, {}, {headers: headers})
       .then(function (response){
-        console.log(response)
+        // todo
       })
       .catch( function (error){
         setError("Something went wrong!")

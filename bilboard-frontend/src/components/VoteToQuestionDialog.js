@@ -35,16 +35,15 @@ const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOp
             alert("Please answer all questions!")
         }
         else{
-            console.log(surveyParticipants.id, selectedChoices, survey.id)
             axios.post(process.env.REACT_APP_URL + "survey/vote", {
                 user: surveyParticipants.id,
                 survey: survey.id,
                 choices: selectedChoices
             }, { headers: headers }).then(function(response){
-                console.log(response)
                 setOpen(false);
                 setIsDialogOpen(false);
             }).catch(function(error){
+                // todo
                 console.log(error)
             })
         }

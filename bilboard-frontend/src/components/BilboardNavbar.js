@@ -343,7 +343,6 @@ const BilboardNavbar = ( {
                                         displayEmpty
                                         label="CLub"
                                         onChange={ ( e ) => {
-                                            console.log( e.target.value )
                                             setCurrentClubId( e.target.value );
                                             if ( e.target.value !== 0 ) {
                                                 setCurrentScreen( "clubManagement" );

@@ -145,7 +145,6 @@ const ClubManagementHierarchyScreen = ( { club, functionList } ) => {
             "Content-Type": "application/json",
             Authorization: "Bearer " + Env.TOKEN,
         };
-        console.log( boardMember )
         axios.delete( process.env.REACT_APP_URL + "club/boardMember?boardMemberId=" + boardMember.id,
             { headers: headers } )
              .then( function ( response ) {

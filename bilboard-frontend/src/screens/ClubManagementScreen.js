@@ -32,7 +32,6 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
     const [ loading, setLoading ] = React.useState( true )
     const [ latestClub, setLatestClub ] = React.useState( null )
     const [ pageError, setPageError ] = React.useState( false )
-    console.log( latestClub )
 
     async function handleClubResponse( clubId ) {
         let headers = {

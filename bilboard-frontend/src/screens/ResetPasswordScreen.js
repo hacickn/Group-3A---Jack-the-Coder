@@ -38,7 +38,6 @@ export default function ResetPasswordScreen() {
       .then(function(response) {
         if(response.data.operationResult === "SUCCESS")
         {
-          console.log(response);
           setSubmitted(false);
           setConfirmed(true);
           setSuccess("Password is changed successfully");
@@ -50,7 +49,6 @@ export default function ResetPasswordScreen() {
         
       })
       .catch(function(error) {
-        console.log(error);
         setSubmitted(false);
         setError("Password could not be changed");
       })

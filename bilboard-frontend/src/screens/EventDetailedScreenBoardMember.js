@@ -42,7 +42,6 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
              } )
              .catch( function ( error ) {
                  setError( "Something went wrong!" )
-                 console.log( error );
              } )
     }
 
@@ -248,30 +247,6 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
                                     paddingRight: 60,
                                 } }>
                                     { currentEvent.eventQuestions.map(
-                                        question => {
-
-                                            return <Grid item xs={ 12 }>
-                                                <BilboardQuestionCard question={ question }/>
-                                            </Grid>
-
-                                        } ) }
-                                        { currentEvent.eventQuestions.map(
-                                        question => {
-
-                                            return <Grid item xs={ 12 }>
-                                                <BilboardQuestionCard question={ question }/>
-                                            </Grid>
-
-                                        } ) }
-                                        { currentEvent.eventQuestions.map(
-                                        question => {
-
-                                            return <Grid item xs={ 12 }>
-                                                <BilboardQuestionCard question={ question }/>
-                                            </Grid>
-
-                                        } ) }
-                                        { currentEvent.eventQuestions.map(
                                         question => {
 
                                             return <Grid item xs={ 12 }>

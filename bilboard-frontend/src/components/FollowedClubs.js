@@ -40,7 +40,7 @@ const FollowedClubs = ( props ) => {
         axios.delete(process.env.REACT_APP_URL + "club/member?memberId=" + props.membership.id, { headers: headers })
             .then(function (response) {
                 if (response.data.operationResult === "SUCCESS") {
-                    console.log(response.data)
+                    // todo
                     setIsDialogOpen(false);
                 }
                 else {

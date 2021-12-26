@@ -25,10 +25,11 @@ const CreateBuildingScreen = () => {
             "university": 1
         }, {headers: headers})
         .then(function(response) {
-            console.log(response);
+            // todo
+
         })
         .catch( function(error) {
-            console.log(error);
+            // todo
         })
     }
     return <div style={{height: "70vh",display: "flex", alignItems: "center"}}>

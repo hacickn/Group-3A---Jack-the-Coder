@@ -29,11 +29,11 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
             'Authorization': 'Bearer ' + Env.TOKEN
         }
 
-        axios.delete(
+        axios.post(
             process.env.REACT_APP_URL + "event/respondToQuestion?questionId=" + question.id + "&questionResponse=" +
             questionResponse, {}, { headers: headers } )
              .then( function ( response ) {
-                 console.log( response )
+                 // todo
              } )
              .catch( function ( error ) {
                  setError( "Something went wrong!" )

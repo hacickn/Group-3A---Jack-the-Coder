@@ -30,7 +30,6 @@ const Login = ({ setScreenNoNavbar, setProgram, setFailed }) => {
         axios.post(process.env.REACT_APP_URL + "auth/resetPasswordRequest?email=" + emailForget, {})
             .then(function (response) {
                 if (response.data.operationResult === "SUCCESS") {
-                    console.log(response.data)
                     setIsDialogOpen(false);
                     setIsAlertOpen(true);
                 }

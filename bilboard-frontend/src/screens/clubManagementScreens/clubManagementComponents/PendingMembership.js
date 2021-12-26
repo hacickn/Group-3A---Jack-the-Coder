@@ -28,7 +28,7 @@ const PendingMembership = ( { requestId, name, surname, ID } ) => {
 
         axios.post(process.env.REACT_APP_URL + "club/enrollment/respond?enrollmentId=" + requestId + "&status=" + status, {}, {headers:headers})
             .then(function (response) {
-                console.log(response)
+                // todo
             })
             .catch( function (error) {setError("Something went wrong!")})
     }

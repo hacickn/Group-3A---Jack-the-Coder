@@ -18,6 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class StorageServiceImp implements StorageService {
 
+    /**
+     * Method for saving event photo
+     * @param file is a MultipartFile
+     * @param fileType is a String
+     * @param fileName is a String
+     * @return String
+     * @apiNote Method for saving event photo
+     */
     @Override
     public String saveEventPhoto ( MultipartFile file , String fileType , String fileName ) {
 
@@ -48,7 +56,14 @@ public class StorageServiceImp implements StorageService {
         }
     }
 
-
+    /**
+     * Method for saving profile photo
+     * @param file is a MultipartFile
+     * @param fileType is a String
+     * @param id is a long
+     * @return String
+     * @apiNote Method for saving profile photo
+     */
     @Override
     public String saveProfilePhoto ( MultipartFile file , String fileType , long id ) {
         try {

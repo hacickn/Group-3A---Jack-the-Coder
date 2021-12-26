@@ -221,7 +221,7 @@ public class EventServiceImp implements EventService {
                 clubMemberEntity.setAttendedEventCount( clubMemberEntity.getAttendedEventCount() + 1 );
                 clubMemberRepository.save( clubMemberEntity );
             }
-            eventParticipantRepository.save( modelMapper.map( eventParticipantDto,EventParticipantEntity.class ) );
+            eventParticipantRepository.save( modelMapper.map( eventParticipantDto , EventParticipantEntity.class ) );
 
             return true;
         } catch ( Exception e ) {
@@ -275,7 +275,10 @@ public class EventServiceImp implements EventService {
             if ( eventParticipantDto.getAttended() && !eventParticipantDto.getPointGiven() ) {
                 eventParticipantDto.setPointGiven( true );
                 eventParticipantDto.setPoint( point );
-
+                eventDto.setAverageRate(
+                        ( eventDto.getAverageRate() * eventDto.getRateCount() + point ) / eventDto.getRateCount() + 1 );
+                eventDto.setRateCount( eventDto.getRateCount() + 1 );
+                eventRepository.save( modelMapper.map( eventDto,EventEntity.class ) );
                 eventParticipantRepository
                         .save( modelMapper.map( eventParticipantDto , EventParticipantEntity.class ) );
                 return true;

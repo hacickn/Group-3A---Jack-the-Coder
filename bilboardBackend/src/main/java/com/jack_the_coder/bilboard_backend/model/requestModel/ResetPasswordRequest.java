@@ -10,18 +10,34 @@ public class ResetPasswordRequest {
     private String token;
     private String newPassword;
 
+    /**
+     * get token method
+     * @return token is String
+     */
     public String getToken() {
         return token;
     }
 
+    /**
+     * Set token method
+     * @param token is String
+     */
     public void setToken(String token) {
         this.token = token;
     }
 
+    /**
+     * get newPassword method
+     * @return newPassword is String
+     */
     public String getNewPassword() {
         return newPassword;
     }
 
+    /**
+     * Set newPassword method
+     * @param newPassword is String
+     */
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
     }

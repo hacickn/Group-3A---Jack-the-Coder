@@ -18,6 +18,10 @@ public class CreateSurveyChoiceRequest {
         return content;
     }
 
+    /**
+     * Set content method
+     * @param content is String
+     */
     public void setContent ( String content ) {
         this.content = content;
     }
@@ -30,6 +34,10 @@ public class CreateSurveyChoiceRequest {
         return voteCount;
     }
 
+    /**
+     * Set voteCount method
+     * @param voteCount is int
+     */
     public void setVoteCount ( int voteCount ) {
         this.voteCount = voteCount;
     }

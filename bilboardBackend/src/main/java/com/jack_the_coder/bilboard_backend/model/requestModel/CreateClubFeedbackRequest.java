@@ -19,6 +19,10 @@ public class CreateClubFeedbackRequest {
         return content;
     }
 
+    /**
+     * Set content method
+     * @param content is String
+     */
     public void setContent ( String content ) {
         this.content = content;
     }
@@ -31,6 +35,10 @@ public class CreateClubFeedbackRequest {
         return club;
     }
 
+    /**
+     * Set club method
+     * @param club is long
+     */
     public void setClub ( long club ) {
         this.club = club;
     }
@@ -43,6 +51,10 @@ public class CreateClubFeedbackRequest {
         return user;
     }
 
+    /**
+     * Set user method
+     * @param user is long
+     */
     public void setUser ( long user ) {
         this.user = user;
     }

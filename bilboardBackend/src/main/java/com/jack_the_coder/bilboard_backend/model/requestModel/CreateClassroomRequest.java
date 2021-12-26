@@ -20,18 +20,26 @@ public class CreateClassroomRequest {
         return name;
     }
 
+    /**
+     * Set name method
+     * @param name is String
+     */
     public void setName ( String name ) {
         this.name = name;
     }
 
     /**
      * get building method
-     * @return building is String
+     * @return building is long
      */
     public long getBuilding () {
         return building;
     }
 
+    /**
+     * Set building method
+     * @param building is long
+     */
     public void setBuilding ( long building ) {
         this.building = building;
     }
@@ -44,6 +52,10 @@ public class CreateClassroomRequest {
         return capacity;
     }
 
+    /**
+     * Set capacity method
+     * @param capacity is int
+     */
     public void setCapacity ( int capacity ) {
         this.capacity = capacity;
     }

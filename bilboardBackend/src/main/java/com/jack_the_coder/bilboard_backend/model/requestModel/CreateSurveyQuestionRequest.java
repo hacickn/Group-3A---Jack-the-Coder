@@ -21,6 +21,10 @@ public class CreateSurveyQuestionRequest {
         return question;
     }
 
+    /**
+     * Set question method
+     * @param question is String
+     */
     public void setQuestion ( String question ) {
         this.question = question;
     }
@@ -33,6 +37,10 @@ public class CreateSurveyQuestionRequest {
         return choices;
     }
 
+    /**
+     * Set choices method
+     * @param choices is List<CreateSurveyChoiceRequest>
+     */
     public void setChoices (
             List<CreateSurveyChoiceRequest> choices ) {
         this.choices = choices;

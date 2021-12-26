@@ -22,6 +22,10 @@ public class CreateClassroomDayRequest {
         return dayDates;
     }
 
+    /**
+     * Set dayDates method
+     * @param dayDates is List<Date>
+     */
     public void setDayDates ( List<Date> dayDates ) {
         this.dayDates = dayDates;
     }
@@ -34,6 +38,10 @@ public class CreateClassroomDayRequest {
         return classroom;
     }
 
+    /**
+     * Set classroom method
+     * @param classroom is long
+     */
     public void setClassroom ( long classroom ) {
         this.classroom = classroom;
     }

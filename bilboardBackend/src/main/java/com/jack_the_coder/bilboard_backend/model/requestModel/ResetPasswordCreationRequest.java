@@ -9,10 +9,18 @@ package com.jack_the_coder.bilboard_backend.model.requestModel;
 public class ResetPasswordCreationRequest {
     private String email;
 
+    /**
+     * get email method
+     * @return email is String
+     */
     public String getEmail () {
         return email;
     }
 
+    /**
+     * Set email method
+     * @param email is String
+     */
     public void setEmail ( String email ) {
         this.email = email;
     }

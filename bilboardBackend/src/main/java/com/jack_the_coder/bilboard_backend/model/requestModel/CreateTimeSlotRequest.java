@@ -15,26 +15,50 @@ public class CreateTimeSlotRequest {
     private List<Date> endTimeList;
     private long classroomDay;
 
+    /**
+     * get startTimeList method
+     * @return startTimeList is List<Date>
+     */
     public List<Date> getStartTimeList () {
         return startTimeList;
     }
 
+    /**
+     * Set startTimeList method
+     * @param startTimeList is List<Date>
+     */
     public void setStartTimeList ( List<Date> startTimeList ) {
         this.startTimeList = startTimeList;
     }
 
+    /**
+     * get endTimeList method
+     * @return endTimeList is List<Date>
+     */
     public List<Date> getEndTimeList () {
         return endTimeList;
     }
 
+    /**
+     * Set endTimeList method
+     * @param endTimeList is List<Date>
+     */
     public void setEndTimeList ( List<Date> endTimeList ) {
         this.endTimeList = endTimeList;
     }
 
+    /**
+     * get classroomDay method
+     * @return classroomDay is long
+     */
     public long getClassroomDay () {
         return classroomDay;
     }
 
+    /**
+     * Set classroomDay method
+     * @param classroomDay is long
+     */
     public void setClassroomDay ( long classroomDay ) {
         this.classroomDay = classroomDay;
     }

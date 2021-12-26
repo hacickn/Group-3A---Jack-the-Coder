@@ -20,6 +20,10 @@ public class CreateClubRequest {
         return university;
     }
 
+    /**
+     * Set university method
+     * @param university is long
+     */
     public void setUniversity ( long university ) {
         this.university = university;
     }
@@ -32,6 +36,10 @@ public class CreateClubRequest {
         return name;
     }
 
+    /**
+     * Set name method
+     * @param name is String
+     */
     public void setName ( String name ) {
         this.name = name;
     }
@@ -44,6 +52,10 @@ public class CreateClubRequest {
         return shortName;
     }
 
+    /**
+     * Set shortName method
+     * @param shortName is String
+     */
     public void setShortName ( String shortName ) {
         this.shortName = shortName;
     }

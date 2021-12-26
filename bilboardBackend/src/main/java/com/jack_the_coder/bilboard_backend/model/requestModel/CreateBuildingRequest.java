@@ -19,6 +19,10 @@ public class CreateBuildingRequest {
         return name;
     }
 
+    /**
+     * Set name method
+     * @param name is String
+     */
     public void setName ( String name ) {
         this.name = name;
     }
@@ -31,6 +35,10 @@ public class CreateBuildingRequest {
         return university;
     }
 
+    /**
+     * Set university method
+     * @param university is long
+     */
     public void setUniversity ( long university ) {
         this.university = university;
     }

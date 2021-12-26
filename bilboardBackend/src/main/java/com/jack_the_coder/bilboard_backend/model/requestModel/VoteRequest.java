@@ -13,26 +13,50 @@ public class VoteRequest {
     private long survey;
     private List<Long> choices;
 
+    /**
+     * get user method
+     * @return user is long
+     */
     public long getUser () {
         return user;
     }
 
+    /**
+     * Set user method
+     * @param user is long
+     */
     public void setUser ( long user ) {
         this.user = user;
     }
 
+    /**
+     * get survey method
+     * @return survey is long
+     */
     public long getSurvey () {
         return survey;
     }
 
+    /**
+     * Set survey method
+     * @param survey is long
+     */
     public void setSurvey ( long survey ) {
         this.survey = survey;
     }
 
+    /**
+     * get choices method
+     * @return choices is List<Long>
+     */
     public List<Long> getChoices () {
         return choices;
     }
 
+    /**
+     * Set choices method
+     * @param choices is List<Long>
+     */
     public void setChoices ( List<Long> choices ) {
         this.choices = choices;
     }

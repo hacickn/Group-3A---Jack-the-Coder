@@ -268,10 +268,35 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
                                 <Grid container style={ {
                                     maxHeight: "40vh",
                                     overflowY: "scroll",
-                                    marginLeft: 80,
-                                    marginRight: 70
+                                    padding: 20,
+                                    paddingLeft: 60,
+                                    paddingRight: 60,
                                 } }>
                                     { currentEvent.eventQuestions.map(
+                                        question => {
+
+                                            return <Grid item xs={ 12 }>
+                                                <BilboardQuestionCard question={ question }/>
+                                            </Grid>
+
+                                        } ) }
+                                        { currentEvent.eventQuestions.map(
+                                        question => {
+
+                                            return <Grid item xs={ 12 }>
+                                                <BilboardQuestionCard question={ question }/>
+                                            </Grid>
+
+                                        } ) }
+                                        { currentEvent.eventQuestions.map(
+                                        question => {
+
+                                            return <Grid item xs={ 12 }>
+                                                <BilboardQuestionCard question={ question }/>
+                                            </Grid>
+
+                                        } ) }
+                                        { currentEvent.eventQuestions.map(
                                         question => {
 
                                             return <Grid item xs={ 12 }>

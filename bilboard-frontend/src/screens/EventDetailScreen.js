@@ -236,13 +236,14 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
 
                             } }>
                             <div style={ {
-                                fontSize: 28,
+                                fontSize: 24,
                                 fontWeight: "bold",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 textAlign: "justify",
                                 marginRight: 70
                             } }>
                                 Event Location: { currentEvent.online ? "Online" : "B206" }
+                                { currentEvent.online && <BilboardButton text="Go To Link" onClick={() => window.open(currentEvent.location, "_blank")}>Go To Link</BilboardButton>}
                             </div>
                         </Grid>
                         <Grid item xs={ 12 }>

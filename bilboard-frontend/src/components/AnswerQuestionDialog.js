@@ -78,7 +78,6 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                     } }>
                         <BilboardMultilineTextField
                             label="Your Question"
-
                             type="feedback"
                             width="300px"
                             rows="10"

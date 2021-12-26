@@ -63,7 +63,8 @@ const BilboardQuestionCard = ( { question } ) => {
                     <Grid container style={ {
                         display: "flex",
                         justifyContent: "center",
-                        margin: "20px"
+                        margin: "20px",
+                        marginRight: "30px"
                     } }>
                         <Grid item xs={ 12 }>
                             { question.answer === null && <BilboardButton

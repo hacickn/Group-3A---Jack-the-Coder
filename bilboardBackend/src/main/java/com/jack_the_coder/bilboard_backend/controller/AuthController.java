@@ -17,8 +17,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 /**
  * @author Hacı Çakın
  * @apiNote This is auth controller that consists of signUp/signIn, reset password, account confirmation. Client
@@ -32,7 +30,7 @@ import java.util.Optional;
 @RequestMapping( "/auth" )
 public class AuthController {
 
-    static boolean adminCreated = false;
+    static boolean defaultUserCreated = false;
 
     @Autowired
     UserService userService;
@@ -60,7 +58,7 @@ public class AuthController {
             universityDto = modelMapper.map( created , UniversityDto.class );
         }
 
-        if ( !adminCreated ) {
+        if ( !defaultUserCreated ) {
             UserDto adminDto = new UserDto();
             adminDto.setName( "Admin" );
             adminDto.setSurname( "Admin" );
@@ -83,7 +81,29 @@ public class AuthController {
             assistantDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
             userService.createUser( assistantDto );
 
-            adminCreated = true;
+            UserDto studentDto = new UserDto();
+            studentDto.setName( "Student" );
+            studentDto.setSurname( "Student" );
+            studentDto.setBilkentId( "43787843" );
+            studentDto.setType( UserEntity.UserTypes.student );
+            studentDto.setEmail( "student@ug.bilkent.edu.tr" );
+            studentDto.setEmailConfirmation( true );
+            studentDto.setPassword( "test1234" );
+            studentDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+            userService.createUser( studentDto );
+
+            UserDto academicDto = new UserDto();
+            academicDto.setName( "Academic" );
+            academicDto.setSurname( "Academic" );
+            academicDto.setBilkentId( "43787844" );
+            academicDto.setType( UserEntity.UserTypes.academic );
+            academicDto.setEmail( "academic@bilkent.edu.tr" );
+            academicDto.setEmailConfirmation( true );
+            academicDto.setPassword( "test1234" );
+            academicDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
+            userService.createUser( academicDto );
+
+            defaultUserCreated = true;
         }
 
 

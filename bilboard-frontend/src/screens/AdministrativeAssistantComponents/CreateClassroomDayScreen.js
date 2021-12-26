@@ -146,7 +146,7 @@ const CreateClassroomDayScreen = () => {
             </Grid>
           </Grid>
         )}
-        {date.length != 0 && time.length != 0 && (
+        {date.length !== 0 && time.length !== 0 && (
           <Grid container>
             <Grid
               item

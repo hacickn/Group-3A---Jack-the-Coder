@@ -54,7 +54,7 @@ const AdministrativeAssistantScreen = ({signOut,setScreenNoNavbar}) => {
     <div className={classes.root}>
       <div className={classes.navbar}>
         <Grid container>
-          <Grid item xs={4}></Grid>
+          <Grid item xs={ 4 }/>
           <Grid
             item
             xs={4}
@@ -66,7 +66,7 @@ const AdministrativeAssistantScreen = ({signOut,setScreenNoNavbar}) => {
           >
             <div className={classes.navbarText}>Administrative Assistants</div>
           </Grid>
-          <Grid item xs={2}></Grid>
+          <Grid item xs={ 2 }/>
           <Grid
             item
             xs={2}

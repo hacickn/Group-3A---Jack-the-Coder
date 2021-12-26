@@ -69,7 +69,7 @@ public class SurveyController {
      * @return StatusResponse
      * @apiNote This method is used to vote for survey.
      */
-    @PostMapping(path = "/vote")
+    @PostMapping( path = "/vote" )
     public StatusResponse voteSurvey ( @RequestBody VoteRequest voteRequest ) {
         StatusResponse statusResponse = new StatusResponse();
         statusResponse.setOperationName( OperationName.UPDATE.name() );

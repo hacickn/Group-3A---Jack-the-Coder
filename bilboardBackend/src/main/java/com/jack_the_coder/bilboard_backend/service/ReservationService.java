@@ -1,5 +1,6 @@
 package com.jack_the_coder.bilboard_backend.service;
 
+import com.amazonaws.services.gamelift.model.Build;
 import com.jack_the_coder.bilboard_backend.io.entity.EventEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.LocationRequestEntity;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateBuildingRequest;
@@ -31,7 +32,9 @@ public interface ReservationService {
 
     List<TimeSlotDto> createTimeSlots ( CreateTimeSlotRequest createTimeSlotRequest );
 
-    Boolean deleteLocationRequests(List<LocationRequestEntity> locationRequestEntityList);
+    Boolean deleteLocationRequests ( List<LocationRequestEntity> locationRequestEntityList );
 
-    Boolean respondLocationRequest(long requestId, boolean status);
+    Boolean respondLocationRequest ( long requestId , boolean status );
+
+    List<BuildingDto> getAllBuildings ();
 }

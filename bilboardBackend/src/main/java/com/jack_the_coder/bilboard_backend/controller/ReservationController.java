@@ -50,7 +50,7 @@ public class ReservationController {
     }
 
     /**
-     *  Method for adding a classroom
+     * Method for adding a classroom
      * @param createClassroomRequest is a CreateClassroomRequest instance
      * @return ClassroomResponse
      * @apiNote This method is used to add classroom.
@@ -101,25 +101,40 @@ public class ReservationController {
     /**
      * Method for assigning a classroom to an event
      * @param requestId is a long
-     * @param status is a boolean
+     * @param status    is a boolean
      * @return StatusResponse
      * @apiNote This method is used to assign classroom.
      */
-    @PostMapping(path = "/respond")
-    public StatusResponse assignClassroom(@RequestParam(value = "requestId") long requestId,
-                                          @RequestParam(value = "status") boolean status){
+    @PostMapping( path = "/respond" )
+    public StatusResponse assignClassroom ( @RequestParam( value = "requestId" ) long requestId ,
+                                            @RequestParam( value = "status" ) boolean status ) {
         StatusResponse statusResponse = new StatusResponse();
         statusResponse.setOperationName( OperationName.UPDATE.name() );
 
-        if(reservationService.respondLocationRequest( requestId,status )){
+        if ( reservationService.respondLocationRequest( requestId , status ) ) {
             statusResponse.setOperationName( OperationStatus.SUCCESS.name() );
-        }else{
+        } else {
             statusResponse.setOperationName( OperationStatus.ERROR.name() );
         }
 
         return statusResponse;
     }
 
+    /**
+     * Method for getting  all the buildings
+     * @return List<BuildingResponse> is a building list
+     * @apiNote This method is used to get buildings.
+     */
+    @GetMapping( path = "/allBuildings" )
+    public List<BuildingResponse> getAllBuildings () {
+        ModelMapper modelMapper = new ModelMapper();
+        List<BuildingResponse> buildingResponseList = new ArrayList<>();
+        reservationService.getAllBuildings().forEach( buildingDto -> {
+            buildingResponseList.add( modelMapper.map( buildingDto , BuildingResponse.class ) );
+        } );
+
+        return buildingResponseList;
+    }
 
 
 }

@@ -50,7 +50,7 @@ public class ReservationServiceImp implements ReservationService {
     /**
      * Method for creating a location request
      * @param timeSlotIdList is a List<Long>
-     * @param eventEntity is a EventEntity
+     * @param eventEntity    is a EventEntity
      * @return LocationRequestDto
      * @apiNote Method for creating a location request
      */
@@ -248,7 +248,7 @@ public class ReservationServiceImp implements ReservationService {
     /**
      * Method for responding to a location request
      * @param requestId is a long
-     * @param status is a boolean
+     * @param status    is a boolean
      * @return Boolean
      * @apiNote Method for responding to a location request
      */
@@ -267,6 +267,26 @@ public class ReservationServiceImp implements ReservationService {
             }
         } catch ( Exception e ) {
             return false;
+        }
+    }
+
+    /**
+     * Method for getting all the buildings
+     * @return List<BuildingDto> is a list of building dto instances
+     * @apiNote Method for getting all the buildings in the university
+     */
+    @Override
+    public List<BuildingDto> getAllBuildings () {
+        try {
+
+            ModelMapper modelMapper = new ModelMapper();
+            List<BuildingDto> buildingDtoList = new ArrayList<>();
+            buildingRepository.findAll().forEach( buildingEntity -> {
+                buildingDtoList.add( modelMapper.map( buildingEntity , BuildingDto.class ) );
+            } );
+            return buildingDtoList;
+        } catch ( Exception e ) {
+            return new ArrayList<>();
         }
     }
 }

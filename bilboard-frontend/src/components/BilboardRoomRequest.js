@@ -1,7 +1,10 @@
 import { Grid } from "@mui/material";
+import axios from "axios";
+import React from "react";
 import Colors from "../utils/Colors";
 import Constants from "../utils/Constants";
 import BilboardButton from "./BilboardButton";
+import Env from "../utils/Env";
 
 /**
  * Bilboard Room Request
@@ -11,9 +14,23 @@ import BilboardButton from "./BilboardButton";
  */
 
 const BilboardRoomRequest = (props) => {
-  const handleApproveSlot = () => {};
+  const [status, setStatus] = React.useState("");
+  const [error, setError] = React.useState("")
 
-  const handleRejectSlot = () => {};
+  const handleApproveDeclineSlot = (status) => {
+    let headers = {
+      "Content-Type": "application/json",
+      'Authorization': "Bearer " + Env.TOKEN,
+    };
+
+    axios.post(process.env.REACT_APP_URL + "reservation/respond?requestId=" + props.requestId + "&status= " + status, {}, {headers: headers})
+      .then(function (response){
+        console.log(response)
+      })
+      .catch( function (error){
+        setError("Something went wrong!")
+      })
+  };
 
   return (
     <Grid
@@ -55,10 +72,10 @@ const BilboardRoomRequest = (props) => {
             style={{ display: "flex", justifyContent: "center" }}
           >
             <BilboardButton
+              onClick={() => handleApproveDeclineSlot("true")}
               fontSize="11px"
               text="Approve"
               color="#66BB6A"
-              onClick={handleApproveSlot}
             />
           </Grid>
         </Grid>
@@ -68,10 +85,10 @@ const BilboardRoomRequest = (props) => {
           style={{ display: "flex", justifyContent: "center" }}
         >
           <BilboardButton
+            onClick={() => handleApproveDeclineSlot("false")}
             fontSize="11px"
             text="Reject"
             color={Colors.BILBOARD_RED}
-            onClick={handleRejectSlot}
           />
         </Grid>
       </Grid>

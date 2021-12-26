@@ -45,6 +45,12 @@ public class UserServiceImp implements UserService {
     @Autowired
     EmailService emailService;
 
+    /**
+     * Method for creating a user
+     * @param user is a UserDto
+     * @return UserDto
+     * @apiNote Method for creating a user
+     */
     @Override
     public UserDto createUser ( UserDto user ) {
         if ( userRepository.findByEmail( user.getEmail() ) != null ) {
@@ -76,6 +82,12 @@ public class UserServiceImp implements UserService {
         return returnValue;
     }
 
+    /**
+     * Method for loading a user by its name
+     * @param s is a String
+     * @return UserDetails
+     * @apiNote Method for loading a user by its name
+     */
     @Override
     public UserDetails loadUserByUsername ( String s ) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByEmail( s );
@@ -89,6 +101,12 @@ public class UserServiceImp implements UserService {
                 true , new ArrayList<>() );
     }
 
+    /**
+     * Method for getting a user by its email
+     * @param email is a String
+     * @return UserDto
+     * @apiNote Method for getting a user by its email
+     */
     @Override
     public UserDto getUserByEmail ( String email ) {
         UserEntity userEntity = userRepository.findByEmail( email );
@@ -102,6 +120,12 @@ public class UserServiceImp implements UserService {
         return returnValue;
     }
 
+    /**
+     * Method for getting a user by its id
+     * @param id is a String
+     * @return UserDto
+     * @apiNote Method for getting a user by its id
+     */
     @Override
     public UserDto getUserById ( long id ) {
         Optional<UserEntity> userEntity = userRepository.findById( id );
@@ -115,6 +139,13 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    /**
+     * Method for searching a user
+     * @param name is a String
+     * @param type is a String
+     * @return List<UserDto>
+     * @apiNote Method for searching a user
+     */
     @Override
     public List<UserDto> searchUser ( String name , String type ) {
         try {
@@ -131,6 +162,12 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    /**
+     * Method for verifying email token
+     * @param token is a String
+     * @return Boolean
+     * @apiNote Method for verifying email token
+     */
     @Override
     public Boolean verifyEmailToken ( String token ) {
 
@@ -151,6 +188,12 @@ public class UserServiceImp implements UserService {
         return returnValue;
     }
 
+    /**
+     * Method for requesting password reset
+     * @param email is a String
+     * @return Boolean
+     * @apiNote Method for requesting password reset
+     */
     @Override
     public Boolean requestPasswordReset ( String email ) {
         try {
@@ -178,6 +221,13 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    /**
+     * Method for reseting password
+     * @param token is a String
+     * @param password is a String
+     * @return Boolean
+     * @apiNote Method for reseting password
+     */
     @Override
     public Boolean resetPassword ( String token , String password ) {
         boolean returnValue = false;
@@ -211,6 +261,13 @@ public class UserServiceImp implements UserService {
         return returnValue;
     }
 
+    /**
+     * Method for changing GE status
+     * @param userId is a long
+     * @param geStatus is a boolean
+     * @return Boolean
+     * @apiNote Method for changing GE status
+     */
     @Override
     public Boolean changeGeStatus ( long userId , boolean geStatus ) {
         try {
@@ -228,6 +285,14 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    /**
+     * Method for changing name and surname
+     * @param userId is a long
+     * @param name is a String
+     * @param surname is a String
+     * @return Boolean
+     * @apiNote Method for changing name and surname
+     */
     @Override
     public Boolean changeNameSurname ( long userId , String name , String surname ) {
         try {
@@ -246,6 +311,13 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    /**
+     * Method for changing id
+     * @param userId is a long
+     * @param id is a String
+     * @return Boolean
+     * @apiNote Method for changing id
+     */
     @Override
     public Boolean changeId ( long userId , String id ) {
         try {
@@ -268,6 +340,13 @@ public class UserServiceImp implements UserService {
         }
     }
 
+    /**
+     * Method for changing photo
+     * @param userId is a long
+     * @param photo is a MultipartFile
+     * @return Boolean
+     * @apiNote Method for changing photo
+     */
     @Override
     public Boolean changePhoto ( long userId , MultipartFile photo ) {
         try {

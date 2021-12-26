@@ -159,7 +159,7 @@ const ClubProfileScreen = ({
         }}
       >
         <Grid item xs={3}>
-          <img src={AboutImage} alt="clubImage" style={{ width: "320px" }} />
+          <img src={process.env.REACT_APP_IMAGE_URL + clubFullData.photo } alt="clubImage" style={{ width: "320px" }} />
         </Grid>
         <Grid item xs={3}>
           <div

@@ -87,7 +87,7 @@ const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) =
 
 
             const response = await fetch(
-                process.env.REACT_APP_URL + 'user/search?name=' + newPresident + '&type=student', {
+                process.env.REACT_APP_URL + 'user/search?name=' + '&type=student', {
                     method: 'GET', headers: {
                         "Content-Type": "application/json",
                         'Authorization': 'Bearer ' + Env.TOKEN
@@ -124,7 +124,7 @@ const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) =
         ( async () => {
 
             const response = await fetch(
-                process.env.REACT_APP_URL + 'user/search?name=' + newAdvisor + '&type=academic', {
+                process.env.REACT_APP_URL + 'user/search?name=' + '&type=academic', {
                     method: 'GET', headers: {
                         "Content-Type": "application/json",
                         'Authorization': 'Bearer ' + Env.TOKEN
@@ -340,11 +340,11 @@ const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) =
                                                         setNewPresident( value )
                                                     }
                                                     }
-                                                    getOptionSelected={ ( option, value ) => {
-                                                        return option.name === newPresident.name;
+                                                    getOptionSelected={ ( option, newPresident ) => {
+                                                        return option.id === newPresident.id;
                                                     } }
-                                                    getOptionLabel={ ( option ) => option.name + " " + option.surname +
-                                                        " " + option.bilkentId }
+                                                    getOptionLabel={ ( option ) => option.name.trim() + " " +
+                                                        option.surname.trim() + " " + option.id }
                                                     options={ options }
                                                     loading={ loading }
                                                     renderInput={ ( params ) => (

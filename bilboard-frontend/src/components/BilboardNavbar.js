@@ -141,7 +141,7 @@ const BilboardNavbar = ( {
 
         ( async () => {
             const response = await fetch(
-                process.env.REACT_APP_URL + "club/search?name=" + searchText,
+                process.env.REACT_APP_URL + "club/search?name=",
                 {
                     method: "GET",
                     headers: {
@@ -207,10 +207,11 @@ const BilboardNavbar = ( {
                             setSearchOpen( false );
                         } }
                         onChange={ ( event, value, reason, details ) => {
-                            setSearchText( value )
-                            setCurrentClub( value )
-
-                            setCurrentScreen( "clubScreen" )
+                            if ( value !== null ) {
+                                setSearchText( value )
+                                setCurrentClub( value )
+                                setCurrentScreen( "clubScreen" )
+                            }
                         } }
                         getOptionSelected={ ( option, value ) => {
                             return option.name === searchText.name;
@@ -339,6 +340,7 @@ const BilboardNavbar = ( {
                                         displayEmpty
                                         label="CLub"
                                         onChange={ ( e ) => {
+                                            console.log( e.target.value )
                                             setCurrentClubId( e.target.value );
                                             if ( e.target.value !== 0 ) {
                                                 setCurrentScreen( "clubManagement" );

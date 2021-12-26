@@ -16,6 +16,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This class enables communication between controller and repository
+ * @since 10.12.2021
+ */
 @Service
 public class ClubServiceImp implements ClubService {
 

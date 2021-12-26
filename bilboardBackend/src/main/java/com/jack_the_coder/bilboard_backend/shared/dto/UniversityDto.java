@@ -6,6 +6,12 @@ import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 
 import java.util.List;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is data transfer object of the university
+ * @implNote NOT Completed
+ * @since 20.12.2021
+ */
 public class UniversityDto {
 
     private long id;

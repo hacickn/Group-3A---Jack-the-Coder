@@ -309,11 +309,18 @@ public class ClubEntity implements Serializable {
         this.clubSponsorships = clubSponsorships;
     }
 
-    // todo
+    /**
+     * Get enroll requests method
+     * @return ClubSponsorshipEntity list
+     */
     public List<EnrollRequestEntity> getEnrollRequests () {
         return enrollRequests;
     }
 
+    /**
+     * Set enroll requests method
+     * @param enrollRequests is EnrollRequestEntity list
+     */
     public void setEnrollRequests (
             List<EnrollRequestEntity> enrollRequests ) {
         this.enrollRequests = enrollRequests;

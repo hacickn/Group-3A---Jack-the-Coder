@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Properties;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This class enables communication between controller and repository
+ * @since 10.12.2021
+ */
 @Service
 public class EmailServiceImplementation implements EmailService {
     final String username = "bilboard.helpdesk@gmail.com";

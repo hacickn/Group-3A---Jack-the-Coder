@@ -10,7 +10,9 @@ import com.jack_the_coder.bilboard_backend.model.requestModel.ResetPasswordReque
 import com.jack_the_coder.bilboard_backend.model.requestModel.SignUpRequest;
 import com.jack_the_coder.bilboard_backend.model.responseModel.SignUpResponse;
 import com.jack_the_coder.bilboard_backend.service.AdminService;
+import com.jack_the_coder.bilboard_backend.service.ClubService;
 import com.jack_the_coder.bilboard_backend.service.UserService;
+import com.jack_the_coder.bilboard_backend.shared.dto.ClubDto;
 import com.jack_the_coder.bilboard_backend.shared.dto.UniversityDto;
 import com.jack_the_coder.bilboard_backend.shared.dto.UserDto;
 import org.modelmapper.ModelMapper;
@@ -37,6 +39,9 @@ public class AuthController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    ClubService clubService;
 
     @Autowired
     UniversityRepository universityRepository;
@@ -102,6 +107,11 @@ public class AuthController {
             academicDto.setPassword( "test1234" );
             academicDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
             userService.createUser( academicDto );
+
+            ClubDto clubDto = new ClubDto();
+            clubDto.setName( "Toplumsal Duyarlılık Projeleri" );
+            clubDto.setShortName( "TDP" );
+            clubService.createClub( clubDto );
 
             defaultUserCreated = true;
         }

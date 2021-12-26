@@ -47,6 +47,7 @@ const AdministrativeAssistantScreen = ( { signOut, setScreenNoNavbar } ) => {
     const pages = [ "Create Building", "Create Classroom", "Classroom Slot Addition", "Manage Requests" ];
     const [ openedScreen, setOpenedScreen ] = React.useState( "Manage Requests" )
     const [ buildings, setBuildings ] = React.useState( null )
+    const [ requests, setRequests ] = React.useState( null )
     const [ loading, setLoading ] = React.useState( true )
 
     const handleLogOut = () => {
@@ -65,9 +66,9 @@ const AdministrativeAssistantScreen = ( { signOut, setScreenNoNavbar } ) => {
              .then( function ( response ) {
 
                  if ( response.status === 200 ) {
-                     console.log("here")
+                     console.log( "here" )
                      setBuildings( response.data )
-                     setLoading( false )
+                     handleGetRequest()
 
 
                  } else {
@@ -81,8 +82,97 @@ const AdministrativeAssistantScreen = ( { signOut, setScreenNoNavbar } ) => {
              } )
     }
 
+    function handleGetRequest() {
+
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+
+        axios.get( process.env.REACT_APP_URL + "reservation/locationRequests", { headers: headers } )
+             .then( function ( response ) {
+                 if ( response.status === 200 ) {
+                     console.log( "here" )
+                     setRequests( response.data )
+                     setLoading( false )
+                 } else {
+                     setRequests( [] )
+                     setLoading( false )
+                 }
+             } )
+             .catch( function ( error ) {
+                 setRequests( [] )
+                 setLoading( false )
+             } )
+    }
+
     if ( buildings === null ) {
         handleGetBuildings()
+    }
+
+    function addBuilding( buildingResponse ) {
+        let temp = [ ...buildings ]
+        buildingResponse.classrooms = []
+        temp.push( buildingResponse )
+        setBuildings( temp )
+    }
+
+    function addClassroom( buildingId, classroomResponse ) {
+        let tempList = []
+
+        buildings.forEach( building => {
+            if ( building.id !== buildingId ) {
+                tempList.push( building )
+            } else {
+                classroomResponse.classroomDays = []
+                building.classrooms.push( classroomResponse )
+                tempList.push( building )
+            }
+        } )
+        setBuildings( tempList )
+    }
+
+    function addClassroomDays( classroomId, classroomDayResponse ) {
+        let tempList = []
+        classroomDayResponse.forEach( dayResponse => {
+            dayResponse.timeSlots = []
+        } )
+
+        buildings.forEach( building => {
+            let tempBuilding = { ...building }
+            let tempClassroom = []
+
+            building.classrooms.forEach( classroom => {
+                if ( classroom.id !== classroomId ) {
+                    tempClassroom.push( classroom )
+                } else {
+                    classroom.classroomDays = [ ...classroom.classroomDays, ...classroomDayResponse ]
+                    tempClassroom.push( classroom )
+                }
+            } )
+
+            tempBuilding.classrooms = tempClassroom
+            tempList.push( tempBuilding )
+        } )
+
+        setBuildings( tempList )
+    }
+
+    function handleRespondToRequest( requestId, status ) {
+        let tempList = []
+
+        requests.forEach( request => {
+            if ( request.id !== requestId ) {
+                tempList.push( request )
+            } else {
+                request.answered = true
+                request.confirmed = status
+                tempList.push( request )
+            }
+        } )
+
+        setBuildings( tempList )
+
     }
 
     return (

@@ -7,6 +7,12 @@ import com.jack_the_coder.bilboard_backend.model.responseModel.basicResponseMode
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is a response to client
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class EventResponse {
 
     private long id;

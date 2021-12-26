@@ -255,30 +255,6 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
                                             </Grid>
 
                                         } ) }
-                                        { currentEvent.eventQuestions.map(
-                                        question => {
-
-                                            return <Grid item xs={ 12 }>
-                                                <BilboardQuestionCard question={ question }/>
-                                            </Grid>
-
-                                        } ) }
-                                        { currentEvent.eventQuestions.map(
-                                        question => {
-
-                                            return <Grid item xs={ 12 }>
-                                                <BilboardQuestionCard question={ question }/>
-                                            </Grid>
-
-                                        } ) }
-                                        { currentEvent.eventQuestions.map(
-                                        question => {
-
-                                            return <Grid item xs={ 12 }>
-                                                <BilboardQuestionCard question={ question }/>
-                                            </Grid>
-
-                                        } ) }
                                 </Grid>
                             </Grid>
                         </Grid>

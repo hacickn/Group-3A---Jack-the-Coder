@@ -37,7 +37,7 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
     }
 
     return (
-        <Dialog open={ true } fullWidth maxWidth={ "sm" }
+        <Dialog open={ open } fullWidth maxWidth={ "sm" }
                 onClose={ () => setOpen( false ) }>
             <DialogContent>
                 <Grid container>

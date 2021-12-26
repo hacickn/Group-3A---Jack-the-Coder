@@ -45,31 +45,6 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
                  console.log( error );
              } )
     }
-    const questionList = [
-        {
-            content: "Which would you rather do: wash dishes, mow the lawn, clean the bathroom, or vacuum the house?",
-        },
-        {
-            content: "If you could hire someone to help you, would it be with cleaning, cooking, or yard work?2",
-        },
-        {
-            content: "If you could hire someone to help you, would it be with cleaning, cooking, or yard work?3",
-        },
-        {
-            content: "What is your proudest accomplishment?",
-        },
-    ]
-
-    const editedEventList = [
-
-        {
-            title: "Yas yas yaas",
-            description: "Yaas, yas yyas!!",
-            numberOfParticipants: 125,
-            Ge2501: 15,
-        }
-
-    ]
 
     return (
 

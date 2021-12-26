@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import React from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import Logo from "../utils/Logo12.png";
+import Alert from "@mui/material/Alert";
 
 
 const useStyles = makeStyles( {
@@ -96,7 +97,8 @@ const BilboardNavbar = ( {
     const [ searchOpen, setSearchOpen ] = React.useState( false )
     const loading = searchOpen && options.length === 0;
     const [ searchText, setSearchText ] = React.useState( "" )
-
+    const [ success, setSuccess ] = useState( "" )
+    const [ error, setError ] = useState( "" )
     let clubs = [];
 
 
@@ -175,7 +177,8 @@ const BilboardNavbar = ( {
 
     return (
         <div className={ classes.root }>
-            { isAttendDialogOpen && <AttendEventDialog/> }
+            { isAttendDialogOpen &&
+            <AttendEventDialog setError={ ( val ) => setError( val ) } setSuccess={ ( val ) => setSuccess( val ) }/> }
             <Grid container>
                 <Grid item xs={ 3 }>
                     <div
@@ -368,6 +371,30 @@ const BilboardNavbar = ( {
                     </Grid>
                 </Grid>
             </Grid>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ success !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setSuccess( '' ) }
+            >
+                <Alert onClose={ () => setSuccess( '' ) }
+                       severity={ "success" }
+                >
+                    { success }
+                </Alert>
+            </Snackbar>
         </div>
     );
 };

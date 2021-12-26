@@ -1,11 +1,21 @@
 package com.jack_the_coder.bilboard_backend.model.requestModel;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class consists of the parameters needed to create a classroom
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class CreateClassroomRequest {
 
     private String name;
     private int capacity;
     private long building;
 
+    /**
+     * get name method
+     * @return name is String
+     */
     public String getName () {
         return name;
     }
@@ -14,6 +24,10 @@ public class CreateClassroomRequest {
         this.name = name;
     }
 
+    /**
+     * get building method
+     * @return building is String
+     */
     public long getBuilding () {
         return building;
     }
@@ -22,6 +36,10 @@ public class CreateClassroomRequest {
         this.building = building;
     }
 
+    /**
+     * get capacity method
+     * @return capacity is int
+     */
     public int getCapacity () {
         return capacity;
     }

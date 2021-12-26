@@ -5,6 +5,12 @@ import com.jack_the_coder.bilboard_backend.io.entity.SurveyEntity;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class consists of the parameters needed to create a survey
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class CreateSurveyRequest {
 
     private String title;
@@ -16,6 +22,10 @@ public class CreateSurveyRequest {
     private long club;
     private int point;
 
+    /**
+     * get title method
+     * @return title is String
+     */
     public String getTitle () {
         return title;
     }
@@ -24,6 +34,10 @@ public class CreateSurveyRequest {
         this.title = title;
     }
 
+    /**
+     * get startDate method
+     * @return question is String
+     */
     public Date getStartDate () {
         return startDate;
     }
@@ -32,6 +46,10 @@ public class CreateSurveyRequest {
         this.startDate = startDate;
     }
 
+    /**
+     * get question method
+     * @return question is String
+     */
     public Date getEndDate () {
         return endDate;
     }
@@ -40,6 +58,10 @@ public class CreateSurveyRequest {
         this.endDate = endDate;
     }
 
+    /**
+     * get question method
+     * @return question is String
+     */
     public SurveyEntity.SurveyStatus getStatus () {
         return status;
     }
@@ -48,6 +70,10 @@ public class CreateSurveyRequest {
         this.status = status;
     }
 
+    /**
+     * get question method
+     * @return question is String
+     */
     public Boolean getForActiveMembers () {
         return isForActiveMembers;
     }
@@ -56,6 +82,10 @@ public class CreateSurveyRequest {
         isForActiveMembers = forActiveMembers;
     }
 
+    /**
+     * get question method
+     * @return question is String
+     */
     public long getClub () {
         return club;
     }
@@ -64,6 +94,10 @@ public class CreateSurveyRequest {
         this.club = club;
     }
 
+    /**
+     * get question method
+     * @return question is String
+     */
     public List<CreateSurveyQuestionRequest> getQuestions () {
         return questions;
     }
@@ -73,6 +107,10 @@ public class CreateSurveyRequest {
         this.questions = questions;
     }
 
+    /**
+     * get question method
+     * @return question is String
+     */
     public int getPoint () {
         return point;
     }

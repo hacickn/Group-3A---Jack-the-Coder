@@ -39,7 +39,7 @@ public class SurveyChoiceEntity implements Serializable {
 
     /**
      * Set id method
-     * @param id is an long parameter
+     * @param id is a long
      */
     public void setId ( long id ) {
         this.id = id;
@@ -55,7 +55,7 @@ public class SurveyChoiceEntity implements Serializable {
 
     /**
      * Set content method
-     * @param content is String
+     * @param content is a String
      */
     public void setContent ( String content ) {
         this.content = content;
@@ -71,7 +71,7 @@ public class SurveyChoiceEntity implements Serializable {
 
     /**
      * Set vote count method
-     * @param voteCount is int
+     * @param voteCount is an int
      */
     public void setVoteCount ( int voteCount ) {
         this.voteCount = voteCount;
@@ -87,7 +87,7 @@ public class SurveyChoiceEntity implements Serializable {
 
     /**
      * Set question method
-     * @param question is SurveyQuestionEntity
+     * @param question is a SurveyQuestionEntity
      */
     public void setQuestion ( SurveyQuestionEntity question ) {
         this.question = question;

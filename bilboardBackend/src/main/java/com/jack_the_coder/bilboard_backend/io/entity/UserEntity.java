@@ -109,7 +109,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set id method
-     * @param id is a long parameter
+     * @param id is a long
      */
     public void setId ( long id ) {
         this.id = id;
@@ -125,7 +125,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set name method
-     * @param name is String
+     * @param name is a String
      */
     public void setName ( String name ) {
         this.name = name;
@@ -141,7 +141,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set surname method
-     * @param surname is String
+     * @param surname is a String
      */
     public void setSurname ( String surname ) {
         this.surname = surname;
@@ -157,7 +157,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set type method
-     * @param type is UserTypes
+     * @param type is a UserTypes
      */
     public void setType ( UserEntity.UserTypes type ) {
         this.type = type;
@@ -173,7 +173,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set password method
-     * @param password is String
+     * @param password is a String
      */
     public void setPassword ( String password ) {
         this.password = password;
@@ -189,7 +189,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set bilkentId method
-     * @param bilkentId is String
+     * @param bilkentId is a String
      */
     public void setBilkentId ( String bilkentId ) {
         this.bilkentId = bilkentId;
@@ -205,7 +205,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set email method
-     * @param email is String
+     * @param email is a String
      */
     public void setEmail ( String email ) {
         this.email = email;
@@ -221,7 +221,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set email confirmation method
-     * @param emailConfirmation is Boolean
+     * @param emailConfirmation is a Boolean
      */
     public void setEmailConfirmation ( boolean emailConfirmation ) {
         this.emailConfirmation = emailConfirmation;
@@ -237,7 +237,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set email confirmation token method
-     * @param emailConfirmationToken is String
+     * @param emailConfirmationToken is a String
      */
     public void setEmailConfirmationToken ( String emailConfirmationToken ) {
         this.emailConfirmationToken = emailConfirmationToken;
@@ -253,7 +253,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set jwt expiration time method
-     * @param jwtExpirationTime is Date
+     * @param jwtExpirationTime is a Date
      */
     public void setJwtExpirationTime ( Date jwtExpirationTime ) {
         this.jwtExpirationTime = jwtExpirationTime;
@@ -269,7 +269,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set president of method
-     * @param presidentOf is ClubEntity
+     * @param presidentOf is a ClubEntity instance
      */
     public void setPresidentOf ( ClubEntity presidentOf ) {
         this.presidentOf = presidentOf;
@@ -285,7 +285,7 @@ public class UserEntity implements Serializable {
 
     /**
      * Set advisor of method
-     * @param advisorOf is ClubEntity
+     * @param advisorOf is ClubEntity instance
      */
     public void setAdvisorOf ( ClubEntity advisorOf ) {
         this.advisorOf = advisorOf;
@@ -294,7 +294,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get club memberships method
-     * @return clubMemberShips is ClubMemberEntity list
+     * @return clubMemberShips is a ClubMemberEntity list
      */
     public List<ClubMemberEntity> getClubMemberShips () {
         return clubMemberShips;
@@ -302,7 +302,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set club memberships method
-     * @param clubMemberShips is ClubMemberEntity list
+     * @param clubMemberShips is a ClubMemberEntity list
      */
     public void setClubMemberShips (
             List<ClubMemberEntity> clubMemberShips ) {
@@ -311,7 +311,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get club board member method
-     * @return clubBoardMemberships is ClubBoardMemberEntity list
+     * @return clubBoardMemberships is a ClubBoardMemberEntity list
      */
     public List<ClubBoardMemberEntity> getClubBoardMemberships () {
         return clubBoardMemberships;
@@ -319,7 +319,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set club board member method
-     * @param clubBoardMemberships is ClubBoardMemberEntity list
+     * @param clubBoardMemberships is a ClubBoardMemberEntity list
      */
     public void setClubBoardMemberships (
             List<ClubBoardMemberEntity> clubBoardMemberships ) {
@@ -328,7 +328,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get university method
-     * @return university is UniversityEntity
+     * @return university is UniversityEntity instance
      */
     public UniversityEntity getUniversity () {
         return university;
@@ -352,7 +352,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set event participants method
-     * @param eventParticipants is EventParticipantEntity list
+     * @param eventParticipants is an EventParticipantEntity list
      */
     public void setEventParticipants (
             List<EventParticipantEntity> eventParticipants ) {
@@ -361,7 +361,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get club feedbacks method
-     * @return clubFeedbacks is ClubFeedbackEntity list
+     * @return clubFeedbacks is a ClubFeedbackEntity list
      */
     public List<ClubFeedbackEntity> getClubFeedbacks () {
         return clubFeedbacks;
@@ -369,7 +369,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set club feedbacks method
-     * @param clubFeedbacks is ClubFeedbackEntity list
+     * @param clubFeedbacks is a ClubFeedbackEntity list
      */
     public void setClubFeedbacks (
             List<ClubFeedbackEntity> clubFeedbacks ) {
@@ -378,7 +378,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get survey participants method
-     * @return surveyParticipants is SurveyParticipantEntity list
+     * @return surveyParticipants is a SurveyParticipantEntity list
      */
     public List<SurveyParticipantEntity> getSurveyParticipants () {
         return surveyParticipants;
@@ -386,7 +386,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set survey participants method
-     * @param surveyParticipants is SurveyParticipantEntity list
+     * @param surveyParticipants is a SurveyParticipantEntity list
      */
     public void setSurveyParticipants (
             List<SurveyParticipantEntity> surveyParticipants ) {
@@ -395,7 +395,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get event questions method
-     * @return eventQuestions is EventQuestionEntity list
+     * @return eventQuestions is an EventQuestionEntity list
      */
     public List<EventQuestionEntity> getEventQuestions () {
         return eventQuestions;
@@ -403,7 +403,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set event questions method
-     * @param eventQuestions is EventQuestionEntity list
+     * @param eventQuestions is an EventQuestionEntity list
      */
     public void setEventQuestions (
             List<EventQuestionEntity> eventQuestions ) {
@@ -412,7 +412,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get enroll requests method
-     * @return enrollRequests is EnrollRequestEntity list
+     * @return enrollRequests is an EnrollRequestEntity list
      */
     public List<EnrollRequestEntity> getEnrollRequests () {
         return enrollRequests;
@@ -420,7 +420,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set enroll requests method
-     * @param enrollRequests is EnrollRequestEntity list
+     * @param enrollRequests is an EnrollRequestEntity list
      */
     public void setEnrollRequests (
             List<EnrollRequestEntity> enrollRequests ) {
@@ -429,7 +429,7 @@ public class UserEntity implements Serializable {
 
     /**
      * is ge taken method
-     * @return geTaken is boolean
+     * @return geTaken is a boolean
      */
     public boolean isGeTaken () {
         return geTaken;
@@ -437,7 +437,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set ge taken method
-     * @param geTaken is boolean
+     * @param geTaken is a boolean
      */
     public void setGeTaken ( boolean geTaken ) {
         this.geTaken = geTaken;
@@ -445,7 +445,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get reset token entity method
-     * @return resetTokenEntity is PasswordResetTokenEntity
+     * @return resetTokenEntity is a PasswordResetTokenEntity instance
      */
     public PasswordResetTokenEntity getResetTokenEntity () {
         return resetTokenEntity;
@@ -453,7 +453,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set reset token entity method
-     * @param resetTokenEntity is PasswordResetTokenEntity
+     * @param resetTokenEntity is a PasswordResetTokenEntity instance
      */
     public void setResetTokenEntity ( PasswordResetTokenEntity resetTokenEntity ) {
         this.resetTokenEntity = resetTokenEntity;
@@ -461,7 +461,7 @@ public class UserEntity implements Serializable {
 
     /**
      * get photo method
-     * @return photo is String
+     * @return photo is a String
      */
     public String getPhoto () {
         return photo;
@@ -469,7 +469,7 @@ public class UserEntity implements Serializable {
 
     /**
      * set photo method
-     * @param photo is String
+     * @param photo is a String
      */
     public void setPhoto ( String photo ) {
         this.photo = photo;

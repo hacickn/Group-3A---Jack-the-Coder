@@ -2,6 +2,12 @@ package com.jack_the_coder.bilboard_backend.model.requestModel;
 
 import java.util.List;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class consists of the parameters needed to vote a survey
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class VoteRequest {
     private long user;
     private long survey;

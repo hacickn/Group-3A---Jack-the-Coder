@@ -36,7 +36,7 @@ public class TimeSlotEntity implements Serializable {
 
     /**
      * get id method
-     * @return id is an long
+     * @return id is a long
      */
     public long getId () {
         return id;
@@ -44,7 +44,7 @@ public class TimeSlotEntity implements Serializable {
 
     /**
      * set id method
-     * @param id long parameter
+     * @param id is a long
      */
     public void setId ( long id ) {
         this.id = id;
@@ -52,7 +52,7 @@ public class TimeSlotEntity implements Serializable {
 
     /**
      * get start time method
-     * @return startTime is an Date, refers to start time of the time slot
+     * @return startTime is a Date, refers to start time of the time slot
      */
     public Date getStartTime () {
         return startTime;
@@ -68,7 +68,7 @@ public class TimeSlotEntity implements Serializable {
 
     /**
      * set end time method
-     * @return endTime is an Date, refers to end time of the time slot
+     * @return endTime is a Date, refers to end time of the time slot
      */
     public Date getEndTime () {
         return endTime;
@@ -76,7 +76,7 @@ public class TimeSlotEntity implements Serializable {
 
     /**
      * set end time method
-     * @param endTime is an Date, refers to end time of the time slot
+     * @param endTime is a Date, refers to end time of the time slot
      */
     public void setEndTime ( Date endTime ) {
         this.endTime = endTime;
@@ -92,7 +92,7 @@ public class TimeSlotEntity implements Serializable {
 
     /**
      * set classroomDay method
-     * @param classroomDay is an ClassroomDayEntity instance
+     * @param classroomDay is a ClassroomDayEntity instance
      */
     public void setClassroomDay ( ClassroomDayEntity classroomDay ) {
         this.classroomDay = classroomDay;

@@ -2,8 +2,13 @@ package com.jack_the_coder.bilboard_backend.model.requestModel;
 
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class consists of the parameters needed to sign up
+ * @implNote DONE
+ * @since 05.12.2021
+ */
 public class SignUpRequest {
-    // todo
     private long university;
     private String name;
     private String surname;

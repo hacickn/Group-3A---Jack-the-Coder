@@ -42,7 +42,6 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
              } )
              .catch( function ( error ) {
                  setError( "Something went wrong!" )
-                 console.log( error );
              } )
     }
 

@@ -34,7 +34,6 @@ const AttendEventDialog = ( { isAttendDialogOpen, setIsAttendDialogOpen, setErro
         axios.post( process.env.REACT_APP_URL + "event/attend?eventCode=" + code + "&userId=" + Env.PUBLIC_ID, {},
             { headers: headers } )
              .then( function ( response ) {
-                 console.log( response.data )
                  if ( response.data.operationResult === "SUCCESS" ) {
                      setSuccess( "Your attendance is taken successfully!" )
                      setIsAttendDialogOpen( false )

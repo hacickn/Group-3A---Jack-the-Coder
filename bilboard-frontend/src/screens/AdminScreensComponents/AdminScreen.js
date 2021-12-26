@@ -66,7 +66,6 @@ const AdminScreen = ( props ) => {
         axios.get( process.env.REACT_APP_URL + 'admin/clubs', { headers: headers } )
              .then( function ( response ) {
                  if ( response.status === 200 ) {
-                     console.log( response.data )
                      setClubs( response.data )
                      setLoading( false )
                  } else {

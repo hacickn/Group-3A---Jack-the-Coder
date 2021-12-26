@@ -64,7 +64,6 @@ const AddSurveyDialog = (props) => {
         { headers: headers }
       )
       .then(function (response) {
-        console.log(allQandA)
         props.setOpen(false);
         setSuccess("Survey added successfully");
       })

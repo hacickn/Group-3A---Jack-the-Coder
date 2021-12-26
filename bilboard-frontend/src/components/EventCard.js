@@ -31,7 +31,6 @@ const EventCard = ( { event, setCurrentScreen, setCurrentEvent, currentEvent, fr
             setCurrentEvent( event )
             setCurrentScreen( "eventDetailBoardMember" )
         } else {
-            console.log( currentEvent )
             setCurrentEvent( event )
             setCurrentScreen( "eventDetail" )
         }

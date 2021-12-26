@@ -38,10 +38,10 @@ const CreateClassroomScreen = () => {
       "building": 50
     }, {headers: headers})
     .then(function(response) {
-      console.log(response);
+      // todo
     }) 
     .catch( function(error) {
-      console.log(error);
+      // todo
     })
   }
   return (

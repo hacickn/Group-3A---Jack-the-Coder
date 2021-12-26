@@ -10,7 +10,6 @@ import BilboardSurveyCard from "../components/BilboardSurveyCard";
  */
 
 const SurveyScreen = (props) => {
-  console.log(props.program.surveyParticipants);
 
   return (
     <Grid
@@ -35,7 +34,6 @@ const SurveyScreen = (props) => {
         xs={12}
         style={{ height: "79vh", overflowY: "scroll", alignContent: "start" }}
       >
-        {console.log(props.program.surveyParticipants)}
         {props.program.surveyParticipants.map((surveyParticipants, index) => {
           if (surveyParticipants.survey.startDate <= new Date() && surveyParticipants.survey.endDate >= new Date()
             && surveyParticipants.survey.status === "active") {

@@ -121,7 +121,6 @@ const ClubManagementAddEventScreen = ( { club, functionList } ) => {
                      setError( "Event could NOT be created!" )
                      setSubmitted( false )
 
-                     console.log( error )
                  } )
         }
 

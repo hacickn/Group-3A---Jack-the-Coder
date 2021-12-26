@@ -21,82 +21,42 @@ public class ClubMemberDto implements Serializable {
     private UserEntity user;
     private ClubEntity club;
 
-    /**
-     * get id method
-     * @return id is a long
-     */
     public long getId () {
         return id;
     }
 
-    /**
-     * set id method
-     * @param id is a long parameter
-     */
     public void setId ( long id ) {
         this.id = id;
     }
 
-    /**
-     * get attended event count gives number of event member attend
-     * @return attendedEventCount is an integer
-     */
     public int getAttendedEventCount () {
         return attendedEventCount;
     }
 
-    /**
-     * set attended event count
-     * @param attendedEventCount is an integer parameter
-     */
     public void setAttendedEventCount ( int attendedEventCount ) {
         this.attendedEventCount = attendedEventCount;
     }
 
-    /**
-     * get ge point method
-     * @return gePoint is an integer
-     */
     public int getGePoint () {
         return gePoint;
     }
 
-    /**
-     * set ge point method
-     * @param gePoint is an integer parameter
-     */
     public void setGePoint ( int gePoint ) {
         this.gePoint = gePoint;
     }
 
-    /**
-     * get user method
-     * @return user is an UserEntity instance
-     */
     public UserEntity getUser () {
         return user;
     }
 
-    /**
-     * set user method
-     * @param user is a UserEntity instance parameter
-     */
     public void setUser ( UserEntity user ) {
         this.user = user;
     }
 
-    /**
-     * get club method
-     * @return club is a ClubEntity instance
-     */
     public ClubEntity getClub () {
         return club;
     }
 
-    /**
-     * set club method
-     * @param club is a ClubEntity instance parameter
-     */
     public void setClub ( ClubEntity club ) {
         this.club = club;
     }

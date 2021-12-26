@@ -4,7 +4,6 @@ import Colors from "../../../utils/Colors";
 import BilboardButton from "../../../components/BilboardButton";
 import AnswerAndResultDialog from "../../../components/AnswerAndResultDialog";
 import React from 'react';
-import axios from "axios";
 
 const SurveyCard = ( { survey } ) => {
     const [ answerAndResultDialog, setAnswerAndResultDialog ] = React.useState( false )
@@ -13,7 +12,6 @@ const SurveyCard = ( { survey } ) => {
     survey.questions[ 0 ].choices.forEach( choice => {
         voteCount = voteCount + choice.voteCount;
     } )
-
     return (
         <div> { <AnswerAndResultDialog open={ answerAndResultDialog } survey={survey} setOpen={ ( status ) => {
             setAnswerAndResultDialog( status )

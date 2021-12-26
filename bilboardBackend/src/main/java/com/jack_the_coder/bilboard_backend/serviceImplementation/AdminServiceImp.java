@@ -19,7 +19,7 @@ public class AdminServiceImp implements AdminService {
     /**
      * Method for creating an university
      * @param universityDto is a UniversityDto
-     * @return StatusResponse
+     * @return UniversityDto
      * @apiNote Method for creating an university.
      */
     @Override
@@ -34,7 +34,7 @@ public class AdminServiceImp implements AdminService {
     /**
      * Method for getting an universityDto
      * @param universityId is a long
-     * @return StatusResponse
+     * @return UniversityDto
      * @apiNote Method for getting an universityDto
      */
     @Override

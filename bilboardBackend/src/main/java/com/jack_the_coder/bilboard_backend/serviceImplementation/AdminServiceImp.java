@@ -16,6 +16,12 @@ public class AdminServiceImp implements AdminService {
     @Autowired
     UniversityRepository universityRepository;
 
+    /**
+     * Method for creating an university
+     * @param universityDto is a UniversityDto
+     * @return StatusResponse
+     * @apiNote Method for creating an university.
+     */
     @Override
     public UniversityDto createUniversity ( UniversityDto universityDto ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -25,6 +31,12 @@ public class AdminServiceImp implements AdminService {
         return modelMapper.map( createEntity , UniversityDto.class );
     }
 
+    /**
+     * Method for getting an universityDto
+     * @param universityId is a long
+     * @return StatusResponse
+     * @apiNote Method for getting an universityDto
+     */
     @Override
     public UniversityDto getUniversity ( long universityId ) {
         ModelMapper modelMapper = new ModelMapper();

@@ -29,10 +29,12 @@ const QuestionAndAnswersAndResult = ({question}) => {
                             } }>
                                 Q: {question.question}
                             </Grid>
-            <Grid container style={{height: "40vh",overflowY: "scroll", padding: "10px" }}>
-                {question.choices.map((choice) => (
+            <Grid container style={{padding: "10px"}}>
+                {question.choices.map((choice, index) => (
                 
-                    <AnswerAndResult choice={choice} />
+                    <Grid item xs={ 12 } key={index} style={{display:"flex", justifyContent: "center"}}>
+                        <AnswerAndResult choice={choice} />
+                    </Grid>
                 
                 ))}
             </Grid>

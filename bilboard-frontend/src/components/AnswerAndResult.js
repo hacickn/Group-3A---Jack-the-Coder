@@ -25,8 +25,9 @@ const AnswerAndResult = ( {choice}) => {
             letterSpacing: "1px",
             display: "flex",
             justifyContent: "center",
+            width: "400px",
             }}>     
-                {choice.content} - {choice.voteCount}            
+                {choice.content} {"->"} {choice.voteCount}            
         </Grid>
     )
 }

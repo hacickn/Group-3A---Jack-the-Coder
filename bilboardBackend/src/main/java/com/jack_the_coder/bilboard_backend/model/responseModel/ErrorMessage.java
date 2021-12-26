@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Hacı Çakın
  * @apiNote Error model as a response, it consist of message and time info
  * @implNote DONE
- * @since 22.11.2021
+ * @since 05.12.2021
  */
 public class ErrorMessage {
     private Date timestamp;

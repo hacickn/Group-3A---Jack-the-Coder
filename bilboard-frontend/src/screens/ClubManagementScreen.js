@@ -63,7 +63,6 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
         setLatestId( currentClubId )
     } else {
     }
-    console.log( latestClub )
     const functionList = {
         handleNewSponsorAddition: function handleNewSponsorAddition( newResponse ) {
             let temp = { ...latestClub }

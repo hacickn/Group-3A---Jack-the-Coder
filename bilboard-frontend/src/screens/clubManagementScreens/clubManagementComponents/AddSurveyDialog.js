@@ -64,6 +64,7 @@ const AddSurveyDialog = (props) => {
         { headers: headers }
       )
       .then(function (response) {
+        console.log(allQandA)
         props.setOpen(false);
         setSuccess("Survey added successfully");
       })
@@ -73,7 +74,9 @@ const AddSurveyDialog = (props) => {
   };
 
   const addToTheQAList = (qa) => {
-    setAllQandA([...allQandA, qa]);
+    if(qa.question.length !== 0){
+      setAllQandA([...allQandA, qa]);
+    }
   };
 
   React.useEffect(() => {

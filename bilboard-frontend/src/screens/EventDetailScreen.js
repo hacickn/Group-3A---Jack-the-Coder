@@ -35,11 +35,6 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
              .then( function ( response ) {
                  if ( response.data.operationResult === "SUCCESS" ) {
                      setEnrolled( true )
-                     currentEvent.eventParticipans.push( {
-                         user: {
-                             id: Env.PUBLIC_ID
-                         }
-                     } )
                      setEventData( currentEvent )
                      setSuccess( "Attend event is successful!" )
                  } else {
@@ -76,7 +71,8 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
 
         return status
     }
-    console.log(currentEvent)
+
+    console.log( currentEvent )
 
     return (
 
@@ -143,7 +139,8 @@ const EventDetailScreen = ( { isAskQuestionDialogOpen, setAskQuestionDialogOpen,
                             <div style={ {
                                 fontSize: "30px",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                            } }>Participant Limit { currentEvent.eventParticipants.length }/ {currentEvent.maxParticipationCount}
+                            } }>Participant
+                                Limit { currentEvent.eventParticipants.length }/ { currentEvent.maxParticipationCount }
                             </div>
 
 

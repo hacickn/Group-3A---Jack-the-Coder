@@ -40,6 +40,13 @@ public class SurveyServiceImp implements SurveyService {
     @Autowired
     SurveyParticipantRepository surveyParticipantRepository;
 
+    /**
+     * Method for creating a survey
+     * @param surveyDto is a SurveyDto
+     * @param point is a int
+     * @return SurveyDto
+     * @apiNote Method for creating a survey
+     */
     @Override
     public SurveyDto createSurvey ( SurveyDto surveyDto , int point ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -66,6 +73,12 @@ public class SurveyServiceImp implements SurveyService {
         return modelMapper.map( created , SurveyDto.class );
     }
 
+    /**
+     * Method for creating questions
+     * @param surveyQuestionDtoList is a List<SurveyQuestionDto>
+     * @return List<SurveyQuestionDto>
+     * @apiNote Method for creating questions
+     */
     @Override
     public List<SurveyQuestionDto> createQuestions ( List<SurveyQuestionDto> surveyQuestionDtoList ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -103,6 +116,12 @@ public class SurveyServiceImp implements SurveyService {
         return createdDtoList;
     }
 
+    /**
+     * Method for creating choices
+     * @param surveyChoiceDtoList is a List<SurveyChoiceDto>
+     * @return List<SurveyChoiceDto>
+     * @apiNote Method for creating choices
+     */
     @Override
     public List<SurveyChoiceDto> createChoices ( List<SurveyChoiceDto> surveyChoiceDtoList ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -124,6 +143,13 @@ public class SurveyServiceImp implements SurveyService {
         return returnList;
     }
 
+    /**
+     * Method for creating participants
+     * @param surveyDto is a SurveyDto
+     * @param point is a int
+     * @return List<SurveyParticipantDto>
+     * @apiNote Method for creating participants
+     */
     @Override
     public List<SurveyParticipantDto> createParticipants ( SurveyDto surveyDto , int point ) {
         AtomicBoolean isPresidentExist = new AtomicBoolean(false);
@@ -201,6 +227,12 @@ public class SurveyServiceImp implements SurveyService {
         return createdSurveyParticipantDtoList;
     }
 
+    /**
+     * Method for getting a survey
+     * @param surveyId is a long
+     * @return SurveyDto
+     * @apiNote Method for getting a survey
+     */
     @Override
     public SurveyDto getSurvey ( long surveyId ) {
         try {
@@ -217,6 +249,12 @@ public class SurveyServiceImp implements SurveyService {
         }
     }
 
+    /**
+     * Method for getting a survey participant
+     * @param participantId is a long
+     * @return SurveyParticipantDto
+     * @apiNote Method for getting a survey participant
+     */
     @Override
     public SurveyParticipantDto getSurveyParticipant ( long participantId ) {
         try {
@@ -234,6 +272,12 @@ public class SurveyServiceImp implements SurveyService {
         }
     }
 
+    /**
+     * Method for getting a survey choice
+     * @param surveyChoiceId is a long
+     * @return SurveyChoiceDto
+     * @apiNote Method for getting a survey choice
+     */
     @Override
     public SurveyChoiceDto getSurveyChoice ( long surveyChoiceId ) {
         try {
@@ -251,6 +295,12 @@ public class SurveyServiceImp implements SurveyService {
         }
     }
 
+    /**
+     * Method for voting to a survey
+     * @param voteRequest is a VoteRequest
+     * @return Boolean
+     * @apiNote Method for voting to a survey
+     */
     @Override
     public Boolean voteSurvey ( VoteRequest voteRequest ) {
         ModelMapper modelMapper = new ModelMapper();

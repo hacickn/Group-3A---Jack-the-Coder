@@ -3,6 +3,7 @@ package com.jack_the_coder.bilboard_backend.controller;
 import com.jack_the_coder.bilboard_backend.io.entity.UniversityEntity;
 import com.jack_the_coder.bilboard_backend.io.entity.UserEntity;
 import com.jack_the_coder.bilboard_backend.io.repository.UniversityRepository;
+import com.jack_the_coder.bilboard_backend.io.repository.UserRepository;
 import com.jack_the_coder.bilboard_backend.model.OperationName;
 import com.jack_the_coder.bilboard_backend.model.OperationStatus;
 import com.jack_the_coder.bilboard_backend.model.StatusResponse;
@@ -46,6 +47,9 @@ public class AuthController {
     @Autowired
     UniversityRepository universityRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     /**
      * Method for registration
      * @param requestModel is a SignUpRequest instance
@@ -65,7 +69,7 @@ public class AuthController {
 
         if ( !defaultUserCreated ) {
 
-            if(userService.getUserById( 2 ) == null){
+            if ( !userRepository.findById( 2L ).isPresent() ) {
                 UserDto adminDto = new UserDto();
                 adminDto.setName( "Admin" );
                 adminDto.setSurname( "Admin" );
@@ -115,7 +119,6 @@ public class AuthController {
                 clubDto.setShortName( "TDP" );
                 clubService.createClub( clubDto );
             }
-
 
 
             defaultUserCreated = true;

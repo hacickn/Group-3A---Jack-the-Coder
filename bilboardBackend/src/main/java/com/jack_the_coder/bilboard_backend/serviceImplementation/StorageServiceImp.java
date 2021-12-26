@@ -15,6 +15,11 @@ import com.jack_the_coder.bilboard_backend.service.StorageService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This class enables communication between controller and repository
+ * @since 10.12.2021
+ */
 @Service
 public class StorageServiceImp implements StorageService {
 

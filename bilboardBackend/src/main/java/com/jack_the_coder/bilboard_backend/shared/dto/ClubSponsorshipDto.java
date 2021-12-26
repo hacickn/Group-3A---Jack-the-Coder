@@ -4,6 +4,12 @@ import com.jack_the_coder.bilboard_backend.io.entity.ClubEntity;
 
 import java.io.Serializable;
 
+/**
+ * @author Aslı Dinç
+ * @apiNote This class is data transfer object of the club sponsorship
+ * @implNote NOT Completed
+ * @since 20.12.2021
+ */
 public class ClubSponsorshipDto implements Serializable {
 
     private static final long serialVersionUID = 3753966812854506085L;

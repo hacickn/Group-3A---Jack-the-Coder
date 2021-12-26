@@ -5,6 +5,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This class enables communication between controller and repository
+ * @since 10.12.2021
+ */
 public interface ClubService {
 
     ClubDto createClub ( ClubDto clubDto );

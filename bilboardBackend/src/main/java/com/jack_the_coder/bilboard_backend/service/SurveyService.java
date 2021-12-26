@@ -8,6 +8,11 @@ import com.jack_the_coder.bilboard_backend.shared.dto.SurveyQuestionDto;
 
 import java.util.List;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This class enables communication between controller and repository
+ * @since 10.12.2021
+ */
 public interface SurveyService {
 
     SurveyDto createSurvey ( SurveyDto surveyDto , int point );

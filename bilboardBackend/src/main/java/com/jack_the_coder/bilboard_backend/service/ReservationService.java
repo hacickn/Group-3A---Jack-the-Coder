@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
+/**
+ * @author Hacı Çakın
+ * @apiNote This class enables communication between controller and repository
+ * @since 10.12.2021
+ */
 public interface ReservationService {
 
     LocationRequestDto createLocationRequest ( List<Long> timeSlotIdList , EventEntity eventEntity );

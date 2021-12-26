@@ -28,6 +28,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
         "Sponsors",
     ];
     const [ openedScreen, setOpenedScreen ] = React.useState( "General" );
+    const [ latestId, setLatestId ] = React.useState( -1 )
     const [ loading, setLoading ] = React.useState( true )
     const [ pageError, setPageError ] = React.useState( false )
 
@@ -43,6 +44,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                        Program.addClub( response.data, clubId )
                        setLoading( false )
                        setPageError( false )
+                       setLatestId( currentClubId )
                    } )
                    .catch( function ( error ) {
                        setLoading( false )
@@ -50,10 +52,12 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                    } )
     }
 
+
     if ( Program.getClub( currentClubId ) === undefined ) {
         handleClubResponse( currentClubId )
-    } else if ( Program.getClub( currentClubId ) !== null && loading ) {
+    } else if ( Program.getClub( currentClubId ) !== undefined && loading ) {
         setLoading( false )
+        setLatestId( currentClubId )
     } else {
     }
 
@@ -103,7 +107,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                 </Card>
             </Grid>
             <Grid item xs={ 9 } style={ { padding: 4 } }>
-                { loading ?
+                { loading || ( Program.getClub( currentClubId ) === undefined ) ?
                     <CircularProgress/> :
                     pageError ?
                         <div> Error </div> :

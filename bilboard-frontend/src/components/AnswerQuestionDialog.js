@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import Constants from "../utils/Constants";
 import React, { useState } from "react";
 import Colors from "../utils/Colors"
+import Env from "../utils/Env";
+import axios from "axios";
 
 /**
  * Ask Question Dialog
@@ -18,9 +20,24 @@ import Colors from "../utils/Colors"
  */
 
 const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
+    const [questionResponse, setQuestionResponse] = React.useState("");
+    const [error, setError] = useState("")
+
+    function handleAnswerQuestion() {
+        let headers = {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + Env.TOKEN
+        }
+
+        axios.delete(process.env.REACT_APP_URL + "event/respondToQuestion?questionId=" + question.id + "&questionResponse=" + questionResponse, {}, {headers: headers})
+            .then(function(response) {
+                console.log(response)
+            })
+            .catch(function (error) { setError("Something went wrong!") })
+    }
 
     return (
-        <Dialog open={ open } fullWidth maxWidth={ "sm" }
+        <Dialog open={ true } fullWidth maxWidth={ "sm" }
                 onClose={ () => setOpen( false ) }>
             <DialogContent>
                 <Grid container>
@@ -53,7 +70,7 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                                 fontStyle: 'italic',
                                 fontWeight: 'bold'
                             } }
-                        >{ question.content }</p>
+                        >QUESTION CONTENT</p>
                     </Grid>
                     <Grid item xs={ 12 }>
                         <p
@@ -77,8 +94,10 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                         justifyContent: "center",
                     } }>
                         <BilboardMultilineTextField
-                            label="Your Question"
-                            type="feedback"
+                            value={questionResponse}
+                            onChange={(e) => setQuestionResponse(e)}
+                            label="Your Answer"
+                            type="answer"
                             width="300px"
                             rows="10"
                             style={ {
@@ -93,7 +112,9 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                         display: "flex",
                         justifyContent: "center"
                     } }>
-                        <BilboardButton width="100px" fontSize="11px" text="Submit Question"/>
+                        <BilboardButton 
+                            onClick={() => handleAnswerQuestion()}
+                            width="100px" fontSize="11px" text="Submit Answer"/>
                     </Grid>
                 </Grid>
             </DialogContent>

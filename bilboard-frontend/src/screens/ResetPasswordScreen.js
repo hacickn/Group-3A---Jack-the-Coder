@@ -141,14 +141,14 @@ export default function ResetPasswordScreen() {
           </Grid>
         ) : 
         (<Grid
-          item
-          xs={12}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "40px",
-          }}
-        ></Grid>)}
+    item
+    xs={ 12 }
+    style={ {
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "40px",
+    } }
+    />)}
         <Grid
           item
           xs={12}

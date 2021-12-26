@@ -102,20 +102,19 @@ const ClubProfileScreen = ({
       Authorization: "Bearer " + Env.TOKEN,
     };
 
-    await axios
-      .get(process.env.REACT_APP_URL + "club?clubId=" + currentClub.id, {
-        headers,
-      })
-      .then(function (response) {
-        Program.addClub(response.data, clubId);
-        console.log(response.data);
-        setClubFullData(response.data);
-        setLoading(false);
-      })
-      .catch(function (error) {
-        setLoading(false);
-      });
-  }
+        await axios
+            .get( process.env.REACT_APP_URL + "club?clubId=" + currentClub.id, {
+                headers,
+            } )
+            .then( function ( response ) {
+                Program.addClub( response.data, clubId );
+                setClubFullData( response.data );
+                setLoading( false );
+            } )
+            .catch( function ( error ) {
+                setLoading( false );
+            } );
+    }
 
   if (Program.getClub(currentClub.id) === undefined) {
     handleClubResponse(currentClub.id);

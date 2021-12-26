@@ -1,4 +1,4 @@
-import { Grid, IconButton } from "@mui/material";
+import { CircularProgress, Grid, IconButton, Snackbar } from "@mui/material";
 import React from 'react';
 import Constants from "../../utils/Constants";
 import BilboardButton from "../../components/BilboardButton";
@@ -11,6 +11,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { Edit, ImageAspectRatio, ImageOutlined } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
+import Alert from "@mui/material/Alert";
 
 const useStyles = makeStyles( {
     textGrid: {
@@ -31,9 +32,9 @@ const useStyles = makeStyles( {
     },
 } );
 
-const ClubManagementSponsorScreen = ( { club } ) => {
+const ClubManagementSponsorScreen = ( { club, functionList } ) => {
     const classes = useStyles();
-    const [ sponsorships, setSponsorships ] = React.useState( [] )
+
     const [ name, setName ] = React.useState( "" );
     const [ amount, setAmount ] = React.useState( "" );
     const [ type, setType ] = React.useState( "" );
@@ -42,9 +43,6 @@ const ClubManagementSponsorScreen = ( { club } ) => {
     const [ submitted, setSubmitted ] = React.useState( false );
     const [ success, setSuccess ] = React.useState( "" );
 
-    if ( sponsorships.length === 0 && club.clubSponsorships.length !== 0 ) {
-        setSponsorships( [ ...club.clubSponsorships ] )
-    }
 
     function handleSponsorshipAddition() {
         const formData = new FormData()
@@ -70,19 +68,16 @@ const ClubManagementSponsorScreen = ( { club } ) => {
 
             axios.post( process.env.REACT_APP_URL + "club/sponsorship", formData, { headers: headers } )
                  .then( function ( response ) {
-                     setSuccess( "Sponsorship is succesfully added" )
+                     setSuccess( "Sponsorship is successfully added" )
                      setSubmitted( false )
-
+                     functionList.handleNewSponsorAddition( response.data )
                      setName( "" )
                      setAmount( "" )
                      setType( "" )
-                     console.log( response )
                  } )
                  .catch( function ( error ) {
                      setError( "Sponsorship could not be added!" )
                      setSubmitted( false )
-
-                     console.log( error )
                  } )
         }
     }
@@ -98,8 +93,11 @@ const ClubManagementSponsorScreen = ( { club } ) => {
             Sponsors
         </Grid>
         <Grid container style={ { maxHeight: "60vh", overflowY: "scroll" } }>
-            { sponsorships.map( sponsor => {
-                return <SponsorCard sponsor={ sponsor }/>
+            { club.clubSponsorships.map( sponsor => {
+                return <SponsorCard setError={ ( val ) => setError( val ) }
+                                    setSuccess={ ( val ) => setSuccess( val ) }
+                                    functionList={ functionList }
+                                    sponsor={ sponsor }/>
             } ) }
         </Grid>
         <Grid container style={ {
@@ -130,10 +128,8 @@ const ClubManagementSponsorScreen = ( { club } ) => {
                     </label>
                     <label htmlFor="contained-button-file">
                         <Button disabled={ true } component="span"
-                                style={ { marginLeft: -20 } }>           { photo !== null &&
-                        "Selected!" }</Button>
+                                style={ { marginLeft: -20 } }>     { photo !== null && "Selected!" }</Button>
                     </label>
-
                 </Grid>
             </Grid>
             <Grid item xs={ 3 }>
@@ -149,9 +145,35 @@ const ClubManagementSponsorScreen = ( { club } ) => {
                                    label={ "Type" }/>
             </Grid>
             <Grid item xs={ 2 }>
-                <BilboardButton onClick={ () => handleSponsorshipAddition() } text={ "Add" } width={ "8vw" }/>
+                { submitted ? <CircularProgress/> :
+                    <BilboardButton onClick={ () => handleSponsorshipAddition() } text={ "Add" }
+                                    width={ "8vw" }/> }
             </Grid>
         </Grid>
+        <Snackbar
+            anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+            open={ error !== '' }
+            autoHideDuration={ 2000 }
+            onClose={ () => setError( '' ) }
+        >
+            <Alert onClose={ () => setError( '' ) }
+                   severity={ "warning" }
+            >
+                { error }
+            </Alert>
+        </Snackbar>
+        <Snackbar
+            anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+            open={ success !== '' }
+            autoHideDuration={ 2000 }
+            onClose={ () => setSuccess( '' ) }
+        >
+            <Alert onClose={ () => setSuccess( '' ) }
+                   severity={ "success" }
+            >
+                { success }
+            </Alert>
+        </Snackbar>
     </Grid>
 };
 

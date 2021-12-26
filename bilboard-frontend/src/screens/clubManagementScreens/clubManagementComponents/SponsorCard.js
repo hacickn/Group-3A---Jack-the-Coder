@@ -7,26 +7,29 @@ import axios from "axios";
 import React from "react";
 import Env from "../../../utils/Env";
 
-const SponsorCard = ( { sponsor } ) => {
-    const [isDialogOpen, setIsDialogOpen] = React.useState(true);
-    const [error, setError] = React.useState("")
+const SponsorCard = ( { sponsor, functionList, setError, setSuccess } ) => {
+    const [ isDialogOpen, setIsDialogOpen ] = React.useState( true );
+
     function sponsorDelete() {
         let headers = {
             "Content-Type": "application/json",
             'Authorization': 'Bearer ' + Env.TOKEN
         }
-        axios.delete(process.env.REACT_APP_URL + "club/sponsorship?sponsorshipId=" + sponsor.id, { headers: headers })
-            .then(function (response) {
-                if (response.data.operationResult === "SUCCESS") {
-                    console.log(response.data)
-                    setIsDialogOpen(false);
-                }
-                else {
-                    setError("Deleting Sponsor is failed!");
-                }
-            })
-            .catch(function (error) { setError("Something went wrong!") })
+        axios.delete( process.env.REACT_APP_URL + "club/sponsorship?sponsorshipId=" + sponsor.id, { headers: headers } )
+             .then( function ( response ) {
+                 if ( response.data.operationResult === "SUCCESS" ) {
+                     functionList.handleSponsorDeletion( sponsor.id )
+                     setSuccess( "Successfully deleted!" )
+                     setIsDialogOpen( false );
+                 } else {
+                     setError( "Deleting Sponsor is failed!" );
+                 }
+             } )
+             .catch( function ( error ) {
+                 setError( "Something went wrong!" )
+             } )
     }
+
     function returnTypePhoto( type ) {
         switch ( type ) {
             case "GOLD":

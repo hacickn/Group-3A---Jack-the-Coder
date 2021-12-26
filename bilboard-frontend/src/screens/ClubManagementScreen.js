@@ -32,6 +32,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
     const [ loading, setLoading ] = React.useState( true )
     const [ latestClub, setLatestClub ] = React.useState( null )
     const [ pageError, setPageError ] = React.useState( false )
+    console.log( latestClub )
 
     async function handleClubResponse( clubId ) {
         let headers = {
@@ -66,9 +67,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
     const functionList = {
         handleNewSponsorAddition: function handleNewSponsorAddition( newResponse ) {
             let temp = { ...latestClub }
-
             temp.clubSponsorships.push( newResponse )
-
             setLatestClub( temp )
         },
         handleWpLinkUpdate: function handleWpLinkUpdate( newWpLink ) {
@@ -95,8 +94,23 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
 
             setLatestClub( temp )
         },
-        handleBoardMemberAddition: function handleBoardMemberAddition() {
+        handleBoardMemberAddition: function handleBoardMemberAddition( response ) {
+            let temp = { ...latestClub }
+            temp.clubBoardMembers.push( response )
+            setLatestClub( temp )
+        },
+        handleBoardMemberDeletion: function handleBoardMemberDeletion( boardMemberId ) {
+            let temp = { ...latestClub }
+            let tempList = []
 
+            latestClub.clubBoardMembers.forEach( member => {
+                if ( member.id !== boardMemberId ) {
+                    tempList.push( member )
+                }
+            } )
+
+            temp.clubBoardMembers = tempList
+            setLatestClub( temp )
         },
         handleFeedbackChange: function handleFeedbackChange( feedbackId, newStatus ) {
             let temp = { ...latestClub }

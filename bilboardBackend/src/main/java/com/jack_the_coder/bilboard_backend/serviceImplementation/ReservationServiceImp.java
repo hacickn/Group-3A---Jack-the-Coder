@@ -42,6 +42,13 @@ public class ReservationServiceImp implements ReservationService {
     @Autowired
     TimeSlotRepository timeSlotRepository;
 
+    /**
+     * Method for creating a location request
+     * @param timeSlotIdList is a List<Long>
+     * @param eventEntity is a EventEntity
+     * @return LocationRequestDto
+     * @apiNote Method for creating a location request
+     */
     @Override
     public LocationRequestDto createLocationRequest ( List<Long> timeSlotIdList , EventEntity eventEntity ) {
         ModelMapper modelMapper = new ModelMapper();
@@ -74,6 +81,12 @@ public class ReservationServiceImp implements ReservationService {
         return modelMapper.map( created , LocationRequestDto.class );
     }
 
+    /**
+     * Method for creating a building
+     * @param createBuildingRequest is a CreateBuildingRequest
+     * @return BuildingDto
+     * @apiNote Method for creating a building
+     */
     @Override
     public BuildingDto createBuilding ( CreateBuildingRequest createBuildingRequest ) {
         try {
@@ -97,6 +110,12 @@ public class ReservationServiceImp implements ReservationService {
         }
     }
 
+    /**
+     * Method for creating a classroom
+     * @param createClassroomRequest is a CreateClassroomRequest
+     * @return ClassroomDto
+     * @apiNote Method for creating a classroom
+     */
     @Override
     public ClassroomDto createClassroom ( CreateClassroomRequest createClassroomRequest ) {
         try {
@@ -121,6 +140,12 @@ public class ReservationServiceImp implements ReservationService {
         }
     }
 
+    /**
+     * Method for creating a classroom days
+     * @param createClassroomDayRequest is a CreateClassroomDayRequest
+     * @return List<ClassroomDayDto>
+     * @apiNote Method for creating a classroom days
+     */
     @Override
     public List<ClassroomDayDto> createClassroomDays ( CreateClassroomDayRequest createClassroomDayRequest ) {
         try {
@@ -154,6 +179,12 @@ public class ReservationServiceImp implements ReservationService {
         }
     }
 
+    /**
+     * Method for creating time slots
+     * @param createTimeSlotRequest is a CreateTimeSlotRequest
+     * @return List<TimeSlotDto>
+     * @apiNote Method for creating time slots
+     */
     @Override
     public List<TimeSlotDto> createTimeSlots ( CreateTimeSlotRequest createTimeSlotRequest ) {
         try {
@@ -188,6 +219,12 @@ public class ReservationServiceImp implements ReservationService {
         }
     }
 
+    /**
+     * Method for deleting location requests
+     * @param locationRequestEntityList is a List<LocationRequestEntity>
+     * @return Boolean
+     * @apiNote Method for deleting location requests
+     */
     @Override
     public Boolean deleteLocationRequests ( List<LocationRequestEntity> locationRequestEntityList ) {
         try {
@@ -203,6 +240,13 @@ public class ReservationServiceImp implements ReservationService {
         }
     }
 
+    /**
+     * Method for responding to a location request
+     * @param requestId is a long
+     * @param status is a boolean
+     * @return Boolean
+     * @apiNote Method for responding to a location request
+     */
     @Override
     public Boolean respondLocationRequest ( long requestId , boolean status ) {
         try {

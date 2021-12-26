@@ -2,7 +2,7 @@ import AnswerAndResult from "./AnswerAndResult";
 import { Grid } from "@mui/material";
 import Constants from "../utils/Constants";
 
-const QuestionAndAnswersAndResult = () => {
+const QuestionAndAnswersAndResult = ({question}) => {
 
     const answerAndResultList = [
         {
@@ -27,12 +27,12 @@ const QuestionAndAnswersAndResult = () => {
                                 textAlign: "start",
                                 fontFamily: Constants.OXYGEN_FONT_FAMILY,
                             } }>
-                                Q: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                                Q: {question.question}
                             </Grid>
             <Grid container style={{height: "40vh",overflowY: "scroll", padding: "10px" }}>
-                {answerAndResultList.map((answerAndResult) => (
+                {question.choices.map((choice) => (
                 
-                    <AnswerAndResult answerAndResult={answerAndResult} />
+                    <AnswerAndResult choice={choice} />
                 
                 ))}
             </Grid>

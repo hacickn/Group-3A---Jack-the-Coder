@@ -21,19 +21,15 @@ import QuestionAndAnswersAndResult from "./QuestionAndAnswersAndResults";
  * Metehan Saçakçı
  */
 
-const AnswerAndResultDialog  = ({open, setOpen}) => {
+const AnswerAndResultDialog  = ({survey, open, setOpen}) => {
     const [isDialogOpen, setIsDialogOpen] = useState(true);
     
     return (
         <Dialog open={open} fullWidth maxWidth={"sm"}
                 onClose={() => setIsDialogOpen(false)}>
             <DialogContent>            
-                <Grid container>
-                    
-                    <QuestionAndAnswersAndResult/>
-                    <QuestionAndAnswersAndResult/>
-                    <QuestionAndAnswersAndResult/>
-                    <QuestionAndAnswersAndResult/>
+                <Grid container >
+                    {survey.questions.map(question => <QuestionAndAnswersAndResult question={question}/>)}
                 </Grid>
             </DialogContent>
             <DialogActions>

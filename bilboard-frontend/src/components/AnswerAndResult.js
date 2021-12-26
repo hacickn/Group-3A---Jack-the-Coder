@@ -9,7 +9,7 @@ import Constants from "../utils/Constants";
  * Metehan Saçakçı
  */
 
-const AnswerAndResult = () => {
+const AnswerAndResult = ( {choice}) => {
     
     return (
         <Grid container style={{
@@ -26,8 +26,7 @@ const AnswerAndResult = () => {
             display: "flex",
             justifyContent: "center",
             }}>     
-                CHOICE_TEXT - RESULTS_AND_COUNTS
-            
+                {choice.content} - {choice.voteCount}            
         </Grid>
     )
 }

@@ -13,7 +13,7 @@ const SurveyCard = ( { survey } ) => {
         voteCount = voteCount + choice.voteCount;
     } )
     return (
-        <div> { <AnswerAndResultDialog open={ answerAndResultDialog } setOpen={ ( status ) => {
+        <div> { <AnswerAndResultDialog open={ answerAndResultDialog } survey={survey} setOpen={ ( status ) => {
             setAnswerAndResultDialog( status )
         } }/> }
             <Grid container

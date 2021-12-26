@@ -307,8 +307,6 @@ public class EventServiceImp implements EventService {
         try {
             Optional<EventParticipantEntity> optional =
                     eventParticipantRepository.findByUserAndEvent( userEntity , eventEntity );
-            System.out.println( userEntity.getId() );
-            System.out.println( eventEntity.getId() );
 
 
             if ( optional.isPresent() ) {

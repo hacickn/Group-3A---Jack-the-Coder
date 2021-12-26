@@ -41,87 +41,82 @@ public class EnrollRequestEntity implements Serializable {
     @Enumerated( EnumType.STRING )
     @Column( name = "status" )
     private EnrollRequestEntity.RequestStatus status;
-    
+
+    /**
+     * get id method
+     * @return id is a long
+     */
     public long getId () {
         return id;
     }
 
     /**
-     * @apiNote This method is used to set the id of the EnrollRequestEntity
-     * @implNote DONE
-     * @param id the id of the EnrollRequestEntity
+     * set id method
+     * @param id is a long parameter
      */
     public void setId ( long id ) {
         this.id = id;
     }
 
     /**
-     * @apiNote This method is used to get the user of the EnrollRequestEntity
-     * @implNote DONE
-     * @return the user of the EnrollRequestEntity
+     * get user method
+     * @return user is a UserEntity instance
      */
     public UserEntity getUser () {
         return user;
     }
 
     /**
-     * @apiNote This method is used to set the user of the EnrollRequestEntity
-     * @implNote DONE
-     * @param user the user of the EnrollRequestEntity
+     * set user method
+     * @param user is a UserEntity instance
      */
     public void setUser ( UserEntity user ) {
         this.user = user;
     }
 
     /**
-     * @apiNote This method is used to get the club of the EnrollRequestEntity
-     * @implNote DONE
-     * @return the club of the EnrollRequestEntity
+     * get club method
+     * @return club is a ClubEntity instance
      */
     public ClubEntity getClub () {
         return club;
     }
 
     /**
-     * @apiNote This method is used to set the club of the EnrollRequestEntity
-     * @implNote DONE
-     * @param club the club of the EnrollRequestEntity
+     * set club method
+     * @param club is a ClubEntity instance
      */
     public void setClub ( ClubEntity club ) {
         this.club = club;
     }
-    
+
     /**
-     * @apiNote This method is used to get the createdAt of the EnrollRequestEntity
-     * @implNote DONE
-     * @return the createdAt of the EnrollRequestEntity
+     * get created at method
+     * @return createdAt is a Date
      */
     public Date getCreatedAt () {
         return createdAt;
     }
 
     /**
-     * @apiNote This method is used to set the createdAt of the EnrollRequestEntity
-     * @implNote DONE
-     * @param createdAt the createdAt of the EnrollRequestEntity
+     * set created at method
+     * @param createdAt is a Date
      */
     public void setCreatedAt ( Date createdAt ) {
         this.createdAt = createdAt;
     }
 
     /**
-     * @apiNote This method is used to get the status of the EnrollRequestEntity
-     * @implNote DONE
-     * @return the status of the EnrollRequestEntity
+     * get status method
+     * @return status is a RequestStatus
      */
     public RequestStatus getStatus () {
         return status;
     }
 
     /**
-     * @apiNote This method is used to set the status of the EnrollRequestEntity
-     * @implNote DONE
-     * @param status the status of the EnrollRequestEntity
+     * set status method
+     * @param status is a RequestStatus
      */
     public void setStatus ( RequestStatus status ) {
         this.status = status;

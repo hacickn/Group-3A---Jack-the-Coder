@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Aslı Dinç
  * @apiNote This class is data transfer object of the classroomdays
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 20.12.2021
  */
 public class ClassroomDayDto implements Serializable {

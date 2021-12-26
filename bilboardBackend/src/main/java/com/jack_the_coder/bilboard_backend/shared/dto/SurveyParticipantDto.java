@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * @author Aslı Dinç
  * @apiNote This class is data transfer object of the survey participants
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 20.12.2021
  */
 public class SurveyParticipantDto implements Serializable {

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Hacı Çakın and Aslı Dinç
  * @apiNote This class is data transfer object of the events
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 13.12.2021
  */
 public class EventDto implements Serializable {

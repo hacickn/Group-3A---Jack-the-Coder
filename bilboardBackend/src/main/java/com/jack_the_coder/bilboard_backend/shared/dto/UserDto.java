@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Hacı Çakın and Aslı Dinç
  * @apiNote This class is data transfer object of the users
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 12.12.2021
  */
 public class UserDto implements Serializable {

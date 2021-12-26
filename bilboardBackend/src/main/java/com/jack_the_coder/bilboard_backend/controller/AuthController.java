@@ -88,6 +88,7 @@ public class AuthController {
 
 
         UserDto userDto = modelMapper.map( requestModel , UserDto.class );
+        userDto.setEmailConfirmation( false );
         userDto.setUniversity( modelMapper.map( universityDto , UniversityEntity.class ) );
 
         UserDto createdDto = userService.createUser( userDto );

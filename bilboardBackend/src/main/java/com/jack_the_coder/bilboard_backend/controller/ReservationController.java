@@ -7,10 +7,7 @@ import com.jack_the_coder.bilboard_backend.model.requestModel.CreateBuildingRequ
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClassroomDayRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateClassroomRequest;
 import com.jack_the_coder.bilboard_backend.model.requestModel.CreateTimeSlotRequest;
-import com.jack_the_coder.bilboard_backend.model.responseModel.BuildingResponse;
-import com.jack_the_coder.bilboard_backend.model.responseModel.ClassroomDayResponse;
-import com.jack_the_coder.bilboard_backend.model.responseModel.ClassroomResponse;
-import com.jack_the_coder.bilboard_backend.model.responseModel.TimeSlotResponse;
+import com.jack_the_coder.bilboard_backend.model.responseModel.*;
 import com.jack_the_coder.bilboard_backend.service.ReservationService;
 import com.jack_the_coder.bilboard_backend.shared.dto.BuildingDto;
 import com.jack_the_coder.bilboard_backend.shared.dto.ClassroomDto;
@@ -136,5 +133,22 @@ public class ReservationController {
         return buildingResponseList;
     }
 
+
+    /**
+     * Method for getting  all the location requests
+     * @return List<LocationRequestResponse> is a location request list
+     * @apiNote This method is used to get requests.
+     */
+    @GetMapping( path = "/locationRequests" )
+    public List<LocationRequestResponse> getAllLocationRequests () {
+        ModelMapper modelMapper = new ModelMapper();
+        List<LocationRequestResponse> locationRequestResponseList = new ArrayList<>();
+        reservationService.getAllLocationRequests().forEach( locationRequestDto -> {
+            locationRequestResponseList.add( modelMapper.map( locationRequestDto , LocationRequestResponse.class ) );
+        } );
+
+        return locationRequestResponseList;
+
+    }
 
 }

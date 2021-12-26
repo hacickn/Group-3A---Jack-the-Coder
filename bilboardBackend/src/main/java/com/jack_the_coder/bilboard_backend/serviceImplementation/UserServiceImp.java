@@ -71,7 +71,6 @@ public class UserServiceImp implements UserService {
 
         userEntity.setPassword( bCryptPasswordEncoder.encode( user.getPassword() ) );
         userEntity.setEmailConfirmationToken( utils.generateEmailVerificationToken( userEntity.getBilkentId() ) );
-        userEntity.setEmailConfirmation( false );
         userEntity.setPhoto( "users/default.png" );
 
 

@@ -289,4 +289,23 @@ public class ReservationServiceImp implements ReservationService {
             return new ArrayList<>();
         }
     }
+
+    /**
+     * Method for getting all the location requests
+     * @return List<LocationRequestDto> is a list of location request dto instances
+     * @apiNote Method for getting all the location requests in the university
+     */
+    @Override
+    public List<LocationRequestDto> getAllLocationRequests () {
+        try {
+            ModelMapper modelMapper = new ModelMapper();
+            List<LocationRequestDto> locationRequestDtoList = new ArrayList<>();
+            locationRequestRepository.findAll().forEach( locationRequestEntity -> {
+                locationRequestDtoList.add( modelMapper.map( locationRequestEntity , LocationRequestDto.class ) );
+            } );
+            return locationRequestDtoList;
+        } catch ( Exception e ) {
+            return new ArrayList<>();
+        }
+    }
 }

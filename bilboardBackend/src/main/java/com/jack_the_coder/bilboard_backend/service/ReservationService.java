@@ -37,4 +37,6 @@ public interface ReservationService {
     Boolean respondLocationRequest ( long requestId , boolean status );
 
     List<BuildingDto> getAllBuildings ();
+
+    List<LocationRequestDto> getAllLocationRequests ();
 }

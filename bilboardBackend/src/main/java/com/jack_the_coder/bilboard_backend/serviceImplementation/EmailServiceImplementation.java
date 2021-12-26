@@ -18,6 +18,14 @@ public class EmailServiceImplementation implements EmailService {
     final String password = "JackTheCoder06";
     Properties prop = new Properties();
 
+    /**
+     * Method for sending an email
+     * @param email is a String
+     * @param messageOfMail is a String
+     * @param head is a String
+     * @return boolean
+     * @apiNote Method for sending an email
+     */
     @Override
     public boolean sendEmail ( String email , String messageOfMail , String head ) {
         prop.put( "mail.imap.host" , "imap.gmail.com" );

@@ -22,7 +22,7 @@ import java.util.Optional;
  * @author Hacı Çakın
  * @apiNote This is auth controller that consists of signUp/signIn, reset password, account confirmation. Client
  * interacts with that router.
- * It's path is /bilboard-app/v1/auth
+ * Its path is /bilboard-app/v1/auth
  * @implNote DONE
  * @since 11.12.2021
  */
@@ -70,7 +70,7 @@ public class AuthController {
 
     /**
      * Method for email verification
-     * @param token is a string
+     * @param token is a String
      * @return StatusResponse
      * @apiNote This method is used to verify email.
      */
@@ -114,7 +114,7 @@ public class AuthController {
 
     /**
      * Method for resetting password
-     * @param requestModel is a ResetPasswordRequest
+     * @param requestModel is a ResetPasswordRequest instance
      * @return StatusResponse
      * @apiNote This method is used to reset password.
      */

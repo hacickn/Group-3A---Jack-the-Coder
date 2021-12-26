@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author Hacı Çakın
  * @apiNote This is club controller that consists of user operations. Client interacts with that router.
- * It's path is /bilboard-app/v1/user
+ * Its path is /bilboard-app/v1/user
  * @implNote DONE
  * @since 11.12.2021
  */
@@ -39,9 +39,10 @@ public class UserController {
     EventService eventService;
 
     /**
-     * @apiNote This method is used to get user.
-     * @param long userId
+     * Method for getting a user
+     * @param userId is a long
      * @return UserResponse
+     * @apiNote This method is used to get user.
      */
     @GetMapping
     public UserResponse getUser ( @RequestParam( value = "userId" ) long userId ) {
@@ -51,9 +52,11 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to search users.
-     * @param String name, String type
+     * Method for searching for a user
+     * @param name is a String
+     * @param type is a String
      * @return List<BasicUserResponse>
+     * @apiNote This method is used to search users.
      */
     @GetMapping( path = "/search" )
     public List<BasicUserResponse> searchUser ( @RequestParam( value = "name" ) String name ,
@@ -69,9 +72,10 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to get user detail.
-     * @param long userId
+     * Method for getting the user details
+     * @param userId is a long
      * @return UserDetailResponse
+     * @apiNote This method is used to get user detail.
      */
     @GetMapping( value = "/detail" )
     public UserDetailResponse getUserDetail ( @RequestParam( value = "userId" ) long userId ) {
@@ -97,9 +101,7 @@ public class UserController {
             } );
         } );
 
-
         UserDetailResponse userDetailResponse = modelMapper.map( userDto , UserDetailResponse.class );
-
 
         List<EventResponse> eventResponseList = new ArrayList<>();
         eventService.getDiscover().forEach( eventDto -> {
@@ -114,9 +116,10 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to get user ge point.
-     * @param long userId
+     * Method for getting the user's GE250/251
+     * @param userId is a long
      * @return int
+     * @apiNote This method is used to get user ge point.
      */
     @GetMapping( value = "/gePoint" )
     public int getUserGePoint ( @RequestParam( value = "userId" ) long userId ) {
@@ -126,9 +129,11 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to get change ge status.
-     * @param long userId, boolean geStatus
+     * Method for changing the user's GE250/251 status
+     * @param userId is a long
+     * @param geStatus is a boolean
      * @return StatusResponse
+     * @apiNote This method is used to change ge status.
      */
     @PostMapping( path = "/changeGeStatus" )
     public StatusResponse changeGeStatus ( @RequestParam( value = "userId" ) long userId ,
@@ -145,9 +150,12 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to change the name and surname of the user.
-     * @param long userId, String name, String surname
+     * Method for changing the user's name and surname
+     * @param userId is a long
+     * @param name is a String
+     * @param surname is a String
      * @return StatusResponse
+     * @apiNote This method is used to change the name and surname of the user.
      */
     @PostMapping( path = "/changeNameSurname" )
     public StatusResponse changeNameSurname ( @RequestParam( value = "userId" ) long userId ,
@@ -165,9 +173,11 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to change the id of the user.
-     * @param long userId, String id
+     * @apiNote This method is used to change the ID of the user.
+     * @param userId is a long
+     * @param id is a String
      * @return StatusResponse
+     * @apiNote This method is used to change the ID of the user.
      */
     @PostMapping( path = "/changeId" )
     public StatusResponse changeId ( @RequestParam( value = "userId" ) long userId ,
@@ -184,9 +194,11 @@ public class UserController {
     }
 
     /**
-     * @apiNote This method is used to change the email of the user.
-     * @param long userId, MultipartFile photo
+     * Method for changing the user's photo
+     * @param userId is a long
+     * @param photo is a MultipartFile
      * @return StatusResponse
+     * @apiNote This method is used to change the photo of the user.
      */
     @PostMapping( path = "/changePhoto" )
     public StatusResponse changePhoto ( @RequestParam( value = "userId" ) long userId ,

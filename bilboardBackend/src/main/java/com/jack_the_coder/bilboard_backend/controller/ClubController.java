@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Hacı Çakın and Aslı Dinç
  * @apiNote This is club controller that consists of club operations. Client interacts with that router.
- * It's path is /bilboard-app/v1/club
+ * Its path is /bilboard-app/v1/club
  * @implNote DONE
  * @since 11.12.2021
  */
@@ -71,7 +71,7 @@ public class ClubController {
 
     /**
      * Method for updating club information
-     * @param updateClubRequest is an UpdateClubRequest
+     * @param updateClubRequest is an UpdateClubRequest instance
      * @return StatusResponse
      * @apiNote This method is used to update clubs.
      */
@@ -115,7 +115,7 @@ public class ClubController {
 
     /**
      * Method for getting all events of the club
-     * @param clubId is long
+     * @param clubId is a long
      * @return List<EventResponse>
      * @apiNote This method is used to create club.
      */
@@ -133,7 +133,8 @@ public class ClubController {
 
     /**
      * Method for adding a board member to the club
-     * @param clubId is long, userId is a long
+     * @param clubId is a long
+     * @param userId is a long
      * @return ClubBoardMemberResponse
      * @apiNote This method is used to add board member.
      */
@@ -155,7 +156,7 @@ public class ClubController {
 
     /**
      * Method for deleting a board member from the club
-     * @param boardMemberId is long
+     * @param boardMemberId is a long
      * @return StatusResponse
      * @apiNote This method is used to delete board members.
      */
@@ -174,9 +175,10 @@ public class ClubController {
 
     /**
      * Method for enrolling a club
-     * @param clubId is long, clubId is long
+     * @param userId is a long
+     * @param clubId is a long
      * @return StatusResponse
-     * @apiNote This method is used to enroll club.
+     * @apiNote This method is used to enroll in a club.
      */
     @PostMapping( path = "/enrollment/request" )
     public StatusResponse enrollClub ( @RequestParam( value = "userId" ) long userId ,
@@ -194,7 +196,8 @@ public class ClubController {
 
     /**
      * Method for responding the enrollment requests to the club
-     * @param enrollmentId is a long, status is a String
+     * @param enrollmentId is a long
+     * @param status is a String
      * @return StatusResponse
      * @apiNote This method is used to respond enroll request.
      */
@@ -234,9 +237,13 @@ public class ClubController {
 
     /**
      * Method for adding a new sponsorship
-     * @param clubId is a long, String name, MultipartFile photo, int amount, String type
+     * @param clubId is a long
+     * @param name is a String
+     * @param photo is a MultipartFile
+     * @param amount is an int
+     * @param type is a String
      * @return ClubSponsorshipResponse
-     * @apiNote This method is used to add sponsorhip.
+     * @apiNote This method is used to add sponsorship.
      */
     @PostMapping( path = "/sponsorship" )
     public ClubSponsorshipResponse addSponsorship ( @RequestParam( value = "clubId" ) long clubId ,
@@ -290,7 +297,7 @@ public class ClubController {
 
     /**
      * Method for creating a new feedback to the club
-     * @param createClubFeedbackRequest is a CreateClubFeedbackRequest
+     * @param createClubFeedbackRequest is a CreateClubFeedbackRequest instance
      * @return ClubFeedbackResponse
      * @apiNote This method is used to add feedback.
      */
@@ -311,7 +318,8 @@ public class ClubController {
 
     /**
      * Method for deciding whether to display the feedback on the club page or not
-     * @param feedbackId is a long, boolean status
+     * @param feedbackId is a long
+     * @param status is a boolean
      * @return StatusResponse
      * @apiNote This method is used to respond feedback.
      */

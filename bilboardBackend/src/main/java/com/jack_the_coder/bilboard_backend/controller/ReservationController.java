@@ -13,7 +13,6 @@ import com.jack_the_coder.bilboard_backend.model.responseModel.ClassroomResponse
 import com.jack_the_coder.bilboard_backend.model.responseModel.TimeSlotResponse;
 import com.jack_the_coder.bilboard_backend.service.ReservationService;
 import com.jack_the_coder.bilboard_backend.shared.dto.BuildingDto;
-import com.jack_the_coder.bilboard_backend.shared.dto.ClassroomDayDto;
 import com.jack_the_coder.bilboard_backend.shared.dto.ClassroomDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ import java.util.List;
 /**
  * @author Hacı Çakın
  * @apiNote This is club controller that consists of reservation operations. Client interacts with that router.
- * It's path is /bilboard-app/v1/reservation
+ * Its path is /bilboard-app/v1/reservation
  * @implNote DONE
  * @since 11.12.2021
  */
@@ -38,8 +37,8 @@ public class ReservationController {
     ReservationService reservationService;
 
     /**
-     *
-     * @param createBuildingRequest is a CreateBuildingRequest
+     * Method for adding a building
+     * @param createBuildingRequest is a CreateBuildingRequest instance
      * @return BuildingResponse
      * @apiNote This method is used to add building.
      */
@@ -51,9 +50,9 @@ public class ReservationController {
     }
 
     /**
-     *
-     * @param  createClassroomRequest is a CreateClassroomRequest
-     * @return BuildingResponse
+     *  Method for adding a classroom
+     * @param createClassroomRequest is a CreateClassroomRequest instance
+     * @return ClassroomResponse
      * @apiNote This method is used to add classroom.
      */
     @PostMapping( path = "/classroom" )
@@ -64,7 +63,8 @@ public class ReservationController {
     }
 
     /**
-     * @param  createClassroomDayRequest is a CreateClassroomDayRequest
+     * Method for adding a classroom day
+     * @param createClassroomDayRequest is a CreateClassroomDayRequest instance
      * @return List<ClassroomDayResponse>
      * @apiNote This method is used to add classroom day.
      */
@@ -82,12 +82,13 @@ public class ReservationController {
     }
 
     /**
-     * @param  createTimeSlotRequest is a CreateTimeSlotRequest
+     * Method for adding a classroom time slot
+     * @param createTimeSlotRequest is a CreateTimeSlotRequest instance
      * @return List<TimeSlotResponse>
      * @apiNote This method is used to add time slot.
      */
     @PostMapping( path = "/timeSlot" )
-    public List<TimeSlotResponse> createClassroom ( @RequestBody CreateTimeSlotRequest createTimeSlotRequest ) {
+    public List<TimeSlotResponse> createClassroomTimeSlot ( @RequestBody CreateTimeSlotRequest createTimeSlotRequest ) {
         ModelMapper modelMapper = new ModelMapper();
         List<TimeSlotResponse> timeSlotResponseList = new ArrayList<>();
 
@@ -97,6 +98,13 @@ public class ReservationController {
         return timeSlotResponseList;
     }
 
+    /**
+     * Method for assigning a classroom to an event
+     * @param requestId is a long
+     * @param status is a boolean
+     * @return StatusResponse
+     * @apiNote This method is used to assign classroom.
+     */
     @PostMapping(path = "/respond")
     public StatusResponse assignClassroom(@RequestParam(value = "requestId") long requestId,
                                           @RequestParam(value = "status") boolean status){

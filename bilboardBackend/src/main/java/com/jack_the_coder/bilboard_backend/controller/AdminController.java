@@ -27,7 +27,7 @@ import java.util.List;
  * @author Hacı Çakın
  * @apiNote This is admin controller that consists of create club or university, assign president or advisor. Client
  * interacts with that router.
- * It's path is /bilboard-app/v1/admin
+ * Its path is /bilboard-app/v1/admin
  * @implNote DONE
  * @since 13.12.2021
  */
@@ -47,7 +47,7 @@ public class AdminController {
 
     /**
      * Method for creating a club
-     * @param createClubRequest is a CreateClubRequest
+     * @param createClubRequest is a CreateClubRequest instance
      * @return CreateClubResponse
      * @apiNote This method creates a club.
      */
@@ -65,7 +65,7 @@ public class AdminController {
 
     /**
      * Method for creating a university
-     * @param createUniversityRequest is a CreateUniversityRequest
+     * @param createUniversityRequest is a CreateUniversityRequest instance
      * @return CreateUniversityResponse
      * @apiNote This method creates a university.
      */

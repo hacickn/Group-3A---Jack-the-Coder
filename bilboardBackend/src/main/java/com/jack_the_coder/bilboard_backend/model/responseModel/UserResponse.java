@@ -24,7 +24,7 @@ public class UserResponse {
     private BasicClubResponse presidentOf;
     private BasicClubResponse advisorOf;
     private CreateUniversityResponse university;
-    
+
     /**
      * Get id method
      * @return long

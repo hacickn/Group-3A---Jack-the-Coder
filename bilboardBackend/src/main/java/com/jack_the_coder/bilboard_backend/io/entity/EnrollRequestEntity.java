@@ -41,8 +41,7 @@ public class EnrollRequestEntity implements Serializable {
     @Enumerated( EnumType.STRING )
     @Column( name = "status" )
     private EnrollRequestEntity.RequestStatus status;
-
-    // todo
+    
     public long getId () {
         return id;
     }

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Aslı Dinç and Hacı Çakın
  * @apiNote This class is data transfer object of the classrooms
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 20.12.2021
  */
 public class ClassroomDto implements Serializable {

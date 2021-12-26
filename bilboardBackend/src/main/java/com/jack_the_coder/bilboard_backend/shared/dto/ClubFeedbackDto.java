@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author Aslı Dinç and Hacı Çakın
  * @apiNote This class is data transfer object of the club feedbacks
- * @implNote NOT Completed
+ * @implNote DONE
  * @since 20.12.2021
  */
 public class ClubFeedbackDto implements Serializable {

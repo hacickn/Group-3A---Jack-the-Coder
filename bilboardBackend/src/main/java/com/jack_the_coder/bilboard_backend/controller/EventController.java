@@ -189,7 +189,7 @@ public class EventController {
                         modelMapper.map( eventDto , EventEntity.class ) );
 
         // if user is already enrolled, attend event, is not create enroll request then attend event!
-        if ( eventParticipantDto != null ) {
+        if ( eventParticipantDto != null && !eventParticipantDto.getAttended()) {
             if ( eventService.attendToEvent( eventParticipantDto ) ) {
                 statusResponse.setOperationResult( OperationStatus.SUCCESS.name() );
             } else {

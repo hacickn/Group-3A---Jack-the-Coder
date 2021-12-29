@@ -231,7 +231,14 @@ const EventDetailScreen = ({
                   alignItems: "left",
                   fontSize: "24px",
               }}>
-                {!isEnrolled ? (
+                { !isEnrolled ? new Date() > new Date(currentEvent.date) ? <BilboardButton
+                    onClick={() => enrollEvent()}
+                    width="220px"
+                    fontSize="13px"
+                    text="Event is passed!"
+                    disabled={true}
+                    color={Colors.BILBOARD_GREY}
+                /> : (
                     <BilboardButton
                         onClick={() => enrollEvent()}
                         width="220px"

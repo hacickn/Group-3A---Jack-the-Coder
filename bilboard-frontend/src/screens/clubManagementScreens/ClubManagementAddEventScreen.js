@@ -269,7 +269,7 @@ const ClubManagementAddEventScreen = ( { club, functionList } ) => {
                                 </Grid>
                                 <Grid item xs={ 7 } className={ classes.inputGrid }>
                                     <BilboardTextField value={ numberOfParticipants }
-                                                       onChange={ ( e ) => setNumberOfParticipants( e.target.value ) }
+                                                       onChange={ ( e ) => e.target.value > 0 ? setNumberOfParticipants( e.target.value ) : setNumberOfParticipants( 0 ) }
                                                        type={ "number" } width={ "100px" }/>
                                 </Grid>
                             </Grid>
@@ -279,7 +279,7 @@ const ClubManagementAddEventScreen = ( { club, functionList } ) => {
                                 </Grid>
                                 <Grid item xs={ 7 } className={ classes.inputGrid }>
                                     <BilboardTextField value={ gePoint }
-                                                       onChange={ ( e ) => setGePoint( e.target.value ) }
+                                                       onChange={ ( e ) =>  e.target.value > 0 ? setGePoint( e.target.value ) : setGePoint( 0 ) }
                                                        type={ "number" } width={ "100px" }/>
                                 </Grid>
                             </Grid>

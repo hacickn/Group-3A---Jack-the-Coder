@@ -132,7 +132,8 @@ public class EventServiceImp implements EventService {
         try {
             ModelMapper modelMapper = new ModelMapper();
             List<EventDto> eventDtoList = new ArrayList<>();
-            List<EventEntity> eventEntityList = eventRepository.findFirst10ByDateAfter( new Date() );
+            List<EventEntity> eventEntityList =
+                    eventRepository.findFirst10ByDateAfterAndRestrictionForMember( new Date(),false );
             int trace = 0;
             while ( trace < eventEntityList.size() && eventDtoList.size() < 20 ) {
                 eventDtoList.add( modelMapper.map( eventEntityList.get( trace ) , EventDto.class ) );

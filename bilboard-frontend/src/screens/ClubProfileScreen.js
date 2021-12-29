@@ -312,24 +312,26 @@ const ClubProfileScreen = ({
         }}
       >
         {clubFullData.events.map((event) => {
-          return (
-            <Grid
-              item
-              xs={3}
-              style={{
-                marginBottom: "60px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <EventCard
-                setCurrentClub={setCurrentClub}
-                currentEvent={currentEvent}
-                setCurrentEvent={setCurrentEvent}
-                event={event}
-              />
-            </Grid>
-          );
+          if(event.visible){
+              return (
+                  <Grid
+                      item
+                      xs={3}
+                      style={{
+                          marginBottom: "60px",
+                          display: "flex",
+                          justifyContent: "center",
+                      }}
+                  >
+                      <EventCard
+                          setCurrentClub={setCurrentClub}
+                          currentEvent={currentEvent}
+                          setCurrentEvent={setCurrentEvent}
+                          event={event}
+                      />
+                  </Grid>
+              );
+          }
         })}
       </Grid>
       <Snackbar

@@ -15,7 +15,7 @@ import java.util.Optional;
  */
 @Repository
 public interface EventRepository extends JpaRepository<EventEntity, Long> {
-    List<EventEntity> findFirst10ByDateAfter ( Date date );
+    List<EventEntity> findFirst10ByDateAfterAndRestrictionForMember ( Date date, boolean restrictionForMember );
 
     Optional<EventEntity> findByEventCode ( String eventCode );
 }

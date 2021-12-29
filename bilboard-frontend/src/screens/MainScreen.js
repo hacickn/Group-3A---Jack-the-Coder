@@ -54,15 +54,17 @@ const MainScreen = ( { program, currentEvent, setCurrentEvent, currentClub, setC
                             <Grid item xs={ 12 }>
                                 <div className={ classes.eventsContainer }>
                                     { program.followingClubsEvents.map( ( event ) => {
-                                        return (
-                                            <div className={ classes.eventCard }>
-                                                <EventCard
-                                                    currentEvent={ currentEvent }
-                                                    setCurrentEvent={ setCurrentEvent }
-                                                    event={ event }
-                                                />
-                                            </div>
-                                        );
+                                        if(event.visible){
+                                            return (
+                                                <div className={ classes.eventCard }>
+                                                    <EventCard
+                                                        currentEvent={ currentEvent }
+                                                        setCurrentEvent={ setCurrentEvent }
+                                                        event={ event }
+                                                    />
+                                                </div>
+                                            );
+                                        }
                                     } ) }
                                 </div>
                             </Grid>
@@ -85,15 +87,17 @@ const MainScreen = ( { program, currentEvent, setCurrentEvent, currentClub, setC
                             <Grid item xs={ 12 }>
                                 <div className={ classes.eventsContainer }>
                                     { program.discover.map( ( event ) => {
-                                        return (
-                                            <div className={ classes.eventCard }>
-                                                <EventCard
-                                                    currentEvent={ currentEvent }
-                                                    setCurrentEvent={ setCurrentEvent }
-                                                    event={ event }
-                                                />
-                                            </div>
-                                        );
+                                        if(event.visible){
+                                            return (
+                                                <div className={ classes.eventCard }>
+                                                    <EventCard
+                                                        currentEvent={ currentEvent }
+                                                        setCurrentEvent={ setCurrentEvent }
+                                                        event={ event }
+                                                    />
+                                                </div>
+                                            );
+                                        }
                                     } ) }
                                 </div>
                             </Grid>

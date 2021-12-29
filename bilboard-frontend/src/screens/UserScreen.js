@@ -45,6 +45,7 @@ const UserScreen = ({
     const [id, setId] = React.useState(null);
     const [error, setError] = React.useState("");
     const [success, setSuccess] = React.useState("");
+    const [photo,setPhoto] = React.useState(null)
 
     if (geStatus == null && program.geTaken !== geStatus) {
         setGeStatus(program.geTaken);
@@ -60,6 +61,10 @@ const UserScreen = ({
 
     if (id == null && program.bilkentId !== id) {
         setId(program.bilkentId);
+    }
+
+    if (photo == null || process.env.REACT_APP_IMAGE_URL + program.photo !== photo) {
+        setPhoto(process.env.REACT_APP_IMAGE_URL + program.photo);
     }
 
     let totalGe = 0
@@ -151,10 +156,11 @@ const UserScreen = ({
                     type="file"
                     onChange={(event) => {
                         const formData = new FormData();
-
+                        let type
                         Array.from(event.target.files)
                             .forEach((file, index) => {
                                 formData.append("photo", file, file.name);
+                                 type = file.type.split("/")[1]
                             });
 
                         formData.append("userId", program.id);
@@ -173,6 +179,8 @@ const UserScreen = ({
                                 //console.log(data.message)
                             })
                             .then(() => {
+                                setPhoto(process.env.REACT_APP_IMAGE_URL + "users/default.png")
+                                program.photo = "users/" + program.id + "." + type
                                 setSuccess(
                                     "Image uploaded successfully! Please refresh the page!"
                                 );
@@ -210,8 +218,7 @@ const UserScreen = ({
                                         <div
                                             className={classes.userImage}
                                             style={{
-                                                backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL + program.photo
-                                                    })`,
+                                                backgroundImage: `url(${photo })`,
                                             }}
                                         />
                                     </Grid>

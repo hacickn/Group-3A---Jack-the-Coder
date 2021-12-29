@@ -202,7 +202,6 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
             })
             setLatestClub(temp)
             Program.addClub(temp,temp.id)
-
         }
     }
 

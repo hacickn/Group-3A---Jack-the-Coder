@@ -19,6 +19,7 @@ import BilboardTextField from "../../components/BilboardTextField";
 import Constants from "../../utils/Constants";
 import EventForGeneralPage from "./clubManagementComponents/EventForGeneralPage";
 import axios from "axios";
+import Program from "../../utils/Program";
 
 const useStyles = makeStyles( {
     input: {
@@ -34,6 +35,7 @@ const ClubManagementGeneralScreen = ( {
                                       } ) => {
     const [ whatsappLink, setWhatsappLink ] = React.useState( null );
     const [ instagramLink, setInstagramLink ] = React.useState( null );
+    const [photo,setPhoto] = React.useState(null)
 
     const [ isInstagramDialogOpen, setIsInstagramDialogOpen ] =
         React.useState( false );
@@ -45,7 +47,6 @@ const ClubManagementGeneralScreen = ( {
 
     let totalPoint = 0;
 
-
     let point = 0;
     let totalParticipant = 0;
     if ( club !== null ) {
@@ -54,6 +55,12 @@ const ClubManagementGeneralScreen = ( {
             totalParticipant = totalParticipant + eventOfList.rateCount;
         } );
     }
+
+
+    if ((photo == null && club !== null) || (club !== null && process.env.REACT_APP_IMAGE_URL + club.photo !== photo)) {
+        setPhoto(process.env.REACT_APP_IMAGE_URL + club.photo);
+    }
+
 
     let headers = {
         "Content-Type": "application/json",
@@ -120,10 +127,12 @@ const ClubManagementGeneralScreen = ( {
                     type="file"
                     onChange={ ( event ) => {
                         const formData = new FormData();
+                        let type
 
                         Array.from( event.target.files )
                              .forEach( ( file, index ) => {
                                  formData.append( "photo", file, file.name );
+                                 type = file.type.split("/")[1]
                              } );
 
                         formData.append( "clubId", club.id );
@@ -141,6 +150,9 @@ const ClubManagementGeneralScreen = ( {
                             .then( ( data ) => {
                             } )
                             .then( () => {
+                                setPhoto(process.env.REACT_APP_IMAGE_URL + "clubs/default.png")
+                                club.photo = "clubs/" + club.id + "." + type
+                                Program.addClub(club,club.id)
                                 setSuccess(
                                     "Image uploaded successfully! Please refresh the page!"
                                 );

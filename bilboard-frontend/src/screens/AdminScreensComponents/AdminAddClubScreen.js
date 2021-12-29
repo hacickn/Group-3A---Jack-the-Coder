@@ -18,11 +18,13 @@ const AdminAddClubScreen = ( props ) => {
     async function handleClubAddition() {
         setSubmitted( true )
         let checkExist = false
+      /*
         props.clubs.forEach(club=>{
             if(club.name.toLowerCase() === clubName.toLowerCase() || club.shortName.toLowerCase() === clubShortName.toLowerCase()){
                 checkExist = true
             }
         })
+       */
 
         if(checkExist){
             setError("This name or shortname is taken already!")

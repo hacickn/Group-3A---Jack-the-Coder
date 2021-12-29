@@ -19,52 +19,10 @@ import EventParticipantCard from "./EventParticipantCard";
  */
 
 const EventParticipantsDialog = ( { open, setOpen, event } ) => {
-    const [ isDialogOpen, setIsDialogOpen ] = useState( true );
-
-    const participantList = [
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-        {
-            name: "Metehan Saçakçı"
-        },
-    ]
-
-    function addParticipant( participantObject ) {
-        let temp = [ ...participantList ]
-
-        temp.push( {
-            name: participantObject.name
-        } )
-    }
 
     return (
-        <Dialog open={ open } fullWidth maxWidth={ "sm" }
-                onClose={ () => setIsDialogOpen( false ) }>
+        <Dialog open={ open } fullWidth maxWidth={ "md" }
+                onClose={ () => setOpen( false ) }>
             <DialogContent style={ { overflow: 'hidden' } }>
                 <Grid container>
                     <Grid item xs={ 12 }>
@@ -88,7 +46,7 @@ const EventParticipantsDialog = ( { open, setOpen, event } ) => {
                         justifyContent: "center",
                     } }>
                         <Grid container xs={ 12 }
-                              style={ { maxHeight: "40vh", overflowY: "scroll", marginLeft: 15, marginRight: 10 } }>
+                              style={ { minHeight: '40vh',maxHeight: "40vh", overflowY: "scroll", marginLeft: 15, marginRight: 10 } }>
                             { event.eventParticipants.map(
                                 participant => <EventParticipantCard participant={ participant }/> ) }
                         </Grid>

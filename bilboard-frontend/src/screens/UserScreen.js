@@ -62,6 +62,14 @@ const UserScreen = ({
         setId(program.bilkentId);
     }
 
+    let totalGe = 0
+
+    program.eventParticipants.forEach(participant=>{
+        if(participant.attended){
+            totalGe = totalGe + participant.event.gePoint
+        }
+    })
+
     function handleGeStatusChange(status) {
         let headers = {
             "Content-Type": "application/json",
@@ -284,7 +292,7 @@ const UserScreen = ({
                                             justifyContent: "center",
                                         }}
                                     >
-                                        <FormGroup>
+                                        {program.type === "student" && <FormGroup>
                                             <FormControlLabel
                                                 control={
                                                     <Switch
@@ -298,7 +306,20 @@ const UserScreen = ({
                                                 }
                                                 label="GE250/1"
                                             />
-                                        </FormGroup>
+                                        </FormGroup>}
+                                    </Grid>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        style={{
+                                            marginBottom: "10px",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                        }}
+                                    >
+                                        {program.type === "student" && geStatus && <div>
+                                            Total Ge Point :  { totalGe }
+                                        </div> }
                                     </Grid>
                                     <Grid
                                         item

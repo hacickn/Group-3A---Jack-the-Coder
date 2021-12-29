@@ -187,7 +187,7 @@ const AdminScreen = ( props ) => {
                         style={ { borderRadius: Constants.BORDER_RADIUS, height: "85vh" } }
                     >
                         { openedScreen === "Add Club" ? (
-                            <AdminAddClubScreen addClub={ ( clubResponse ) => addNewClub( clubResponse ) }/>
+                            <AdminAddClubScreen clubs={clubs} addClub={ ( clubResponse ) => addNewClub( clubResponse ) }/>
                         ) : openedScreen === "Manage Clubs" ? (
                             <AdminManageClubScreen
                                 setClub={ ( advisor, president, clubId ) => setClub( advisor, president, clubId ) }

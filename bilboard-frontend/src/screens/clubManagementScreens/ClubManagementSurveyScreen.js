@@ -12,7 +12,7 @@ import React from 'react'
  * 17.11.2021
  */
 
-const ClubManagementSurveyScreen = ({club}) => {
+const ClubManagementSurveyScreen = ({club,functionList}) => {
     const [ addSurveyDialog, setAddSurveyDialog ] = React.useState( false )
 
     return (
@@ -53,7 +53,7 @@ const ClubManagementSurveyScreen = ({club}) => {
                 } } width="220px" fontSize="14px"
                                 text="Add Survey"/>
             </Grid>
-            <AddSurveyDialog club={club} open={ addSurveyDialog } setOpen={ ( val ) => setAddSurveyDialog( val ) }/>
+            <AddSurveyDialog functionList={functionList} club={club} open={ addSurveyDialog } setOpen={ ( val ) => setAddSurveyDialog( val ) }/>
         </Grid>
 
     )

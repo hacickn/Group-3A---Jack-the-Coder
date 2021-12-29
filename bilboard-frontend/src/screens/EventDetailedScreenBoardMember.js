@@ -24,9 +24,12 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
         setEventData( currentEvent )
         Program.addEvent( currentEvent, currentEvent.id )
         setLoading( false );
-    } else if ( Program.getClub( currentEvent.id ) !== null && loading ) {
+        setEventCode( currentEvent.eventCode !== null ? currentEvent.eventCode : "" )
+
+    } else if ( Program.getEvent( currentEvent.id ) !== undefined && loading ) {
         setLoading( false );
-        setEventData( Program.getClub( currentEvent.id ) );
+        setEventData( Program.getEvent( currentEvent.id ) );
+        setEventCode( Program.getEvent( currentEvent.id ).eventCode !== null ? Program.getEvent( currentEvent.id ).eventCode : "" )
     } else {
     }
 
@@ -38,6 +41,8 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
         }
         axios.post( process.env.REACT_APP_URL + "event/eventCode?eventId=" + currentEvent.id, {}, { headers: headers } )
              .then( function ( response ) {
+                 currentEvent.eventCode = response.data
+                 Program.addEvent(currentEvent,currentEvent.id)
                  setEventCode( response.data )
              } )
              .catch( function ( error ) {
@@ -68,12 +73,12 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
 
                                 } }>
                                 <div style={ {
-                                    fontSize: "30px",
+                                    fontSize: "24px",
                                     fontFamily: Constants.OXYGEN_FONT_FAMILY,
                                 } }>{ currentEvent.title }
                                 </div>
                                 <Rating name="read-only" defaultValue={ currentEvent.averageRate }
-                                        style={ { paddingLeft: "290px" } } readOnly
+                                        style={ { paddingLeft: "260px" } } readOnly
                                         size="large"/>
                             </Grid>
 
@@ -116,11 +121,20 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
 
 
                         </Grid>
-                        <Grid xs={ 5 }>
+                        <Grid xs={ 5 } style={
+                            {
+                                paddingLeft:"20px",
+                                marginTop: "10px",
+                                color: "black",
+                                display: "flex",
+                                justifyContent: "left",
+                                alignItems: "left",
+                                fontSize: "40%",
+                            } }>
 
                             { eventCode === "" ? <BilboardButton
                                 onClick={ () => generateCode() }
-                                width="160px"
+                                width="220px"
                                 fontSize="13px"
                                 text="Generate Code"
                                 color="#00e676"
@@ -130,7 +144,47 @@ const EventDetailedScreenBoardMember = ( { setCurrentEvent, currentEvent, curren
                             } }>Code: { eventCode }</div> }
 
                         </Grid>
+                        <Grid
+                            item
+                            xs={7}
+                            style={{
+                                paddingLeft: "115px",
+                                marginTop: "10px",
+                                color: "black",
+                                display: "flex",
+                                justifyContent: "left",
+                                alignItems: "left",
+                                fontSize: "24px",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    fontSize: "24px",
+                                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                }}
+                            >
+                                {new Date(currentEvent.date).toLocaleString()}
+                            </div>
+                        </Grid>
+                        <Grid xs={5}  item    style={{
+                            marginTop: "10px",
+                            color: "black",
+                            display: "flex",
+                            justifyContent: "left",
+                            alignItems: "left",
+                            fontSize: "24px",
+                        }}>
+                            <div
+                                style={{
+                                    fontSize: "24px",
+                                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                                }}
+                            >
+                                {currentEvent.gePoint === 0 ? "Ge Point Will NOT given!" : currentEvent.gePoint  + " points will be" +
+                                    " given!"}
+                            </div>
 
+                        </Grid>
 
                         <Grid item xs={ 12 }
                               style={ {

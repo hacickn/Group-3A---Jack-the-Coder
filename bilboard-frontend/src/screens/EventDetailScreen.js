@@ -96,7 +96,8 @@ const EventDetailScreen = ({
   }
 
   function handleVoting(e) {
-    var voting = e.target.value;
+    const voting = e.target.value;
+
     let headers = {
       "Content-Type": "application/json",
       Authorization: "Bearer " + Env.TOKEN,
@@ -114,8 +115,11 @@ const EventDetailScreen = ({
         { headers: headers }
       )
       .then(function (response) {
-          console.log(response)
-        setSuccess("Voting is successful! Vote point: " + voting + "/5");
+        if ( response.data.operationResult === "SUCCESS" ) {
+          setSuccess("Voting is successful! Vote point: " + voting + "/5");
+        }else{
+          setError("You can not vote now!")
+        }
       })
       .catch(function (error) {
         setError("Something went wrong!");
@@ -194,50 +198,99 @@ const EventDetailScreen = ({
                   {currentEvent.club.name}
                 </div>
               </Grid>
+
               <Grid
-                item
-                xs={7}
-                style={{
-                  paddingLeft: "115px",
+                  item
+                  xs={7}
+                  style={{
+                    paddingLeft: "115px",
+                    marginTop: "10px",
+                    color: "black",
+                    display: "flex",
+                    justifyContent: "left",
+                    alignItems: "left",
+                    fontSize: "24px",
+                  }}
+              >
+                <div
+                    style={{
+                      fontSize: "30px",
+                      fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                    }}
+                >
+                  Participant Limit {currentEvent.eventParticipants.length}/{" "}
+                  {currentEvent.maxParticipationCount}
+                </div>
+              </Grid>
+              <Grid xs={5} item style={{
+                  paddingLeft:"20px",
                   marginTop: "10px",
                   color: "black",
                   display: "flex",
                   justifyContent: "left",
                   alignItems: "left",
                   fontSize: "24px",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "30px",
-                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
-                  }}
-                >
-                  Participant Limit {currentEvent.eventParticipants.length}/{" "}
-                  {currentEvent.maxParticipationCount}
-                </div>
-              </Grid>
-              <Grid xs={5}>
+              }}>
                 {!isEnrolled ? (
-                  <BilboardButton
-                    onClick={() => enrollEvent()}
-                    width="200px"
-                    fontSize="13px"
-                    text="Enroll an Event"
-                    color="#00e676"
-                  />
+                    <BilboardButton
+                        onClick={() => enrollEvent()}
+                        width="220px"
+                        fontSize="13px"
+                        text="Enroll an Event"
+                        color="#00e676"
+                    />
                 ) : (
-                  <BilboardButton
-                    onClick={() => {}}
-                    width="200px"
-                    disabled={true}
-                    fontSize="13px"
-                    text="Already Enrolled"
-                    color={Colors.BILBOARD_GREY}
-                  />
+                    <BilboardButton
+                        onClick={() => {}}
+                        width="220px"
+                        disabled={true}
+                        fontSize="13px"
+                        text="Already Enrolled"
+                        color={Colors.BILBOARD_GREY}
+                    />
                 )}
               </Grid>
+              <Grid
+                  item
+                  xs={7}
+                  style={{
+                    paddingLeft: "115px",
+                    marginTop: "10px",
+                    color: "black",
+                    display: "flex",
+                    justifyContent: "left",
+                    alignItems: "left",
+                    fontSize: "24px",
+                  }}
+              >
+                <div
+                    style={{
+                      fontSize: "24px",
+                      fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                    }}
+                >
+                  {new Date(currentEvent.date).toLocaleString()}
+                </div>
+              </Grid>
+              <Grid xs={5}  item    style={{
+                marginTop: "10px",
+                color: "black",
+                display: "flex",
+                justifyContent: "left",
+                alignItems: "left",
+                fontSize: "24px",
+              }}>
+                <div
+                    style={{
+                      fontSize: "24px",
+                      fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                    }}
+                >
+                  {currentEvent.gePoint === 0 ? "Ge Point Will NOT given!" : currentEvent.gePoint  + " points will be" +
+                      " given!"}
+                </div>
 
+              </Grid>
               <Grid
                 item
                 xs={12}

@@ -10,6 +10,8 @@ import React, { useState } from "react";
 import Colors from "../utils/Colors"
 import Env from "../utils/Env";
 import axios from "axios";
+import { CircularProgress, Snackbar } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 /**
  * Ask Question Dialog
@@ -22,8 +24,11 @@ import axios from "axios";
 const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
     const [ questionResponse, setQuestionResponse ] = React.useState( "" );
     const [ error, setError ] = useState( "" )
+    const [ success, setSuccess ] = useState( "" )
+    const [ submitted,setSubmitted ] = useState(false)
 
     function handleAnswerQuestion() {
+        setSubmitted(true)
         let headers = {
             "Content-Type": "application/json",
             'Authorization': 'Bearer ' + Env.TOKEN
@@ -33,10 +38,17 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
             process.env.REACT_APP_URL + "event/respondToQuestion?questionId=" + question.id + "&questionResponse=" +
             questionResponse, {}, { headers: headers } )
              .then( function ( response ) {
-                 // todo
+                 if(response.data.operationResult === "SUCCESS"){
+                     setSuccess("Answer is saved successfully!")
+                     setOpen( false )
+                 }else{
+                     setError("Already answered")
+                 }
+                 setSubmitted(false)
              } )
              .catch( function ( error ) {
                  setError( "Something went wrong!" )
+                 setSubmitted(false)
              } )
     }
 
@@ -116,9 +128,9 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                         display: "flex",
                         justifyContent: "center"
                     } }>
-                        <BilboardButton
+                        {submitted ? <CircularProgress/> : <BilboardButton
                             onClick={ () => handleAnswerQuestion() }
-                            width="100px" fontSize="11px" text="Submit Answer"/>
+                            width="100px" fontSize="11px" text="Submit Answer"/>}
                     </Grid>
                 </Grid>
             </DialogContent>
@@ -131,6 +143,30 @@ const AnswerQuestionDialog = ( { question, open, setOpen } ) => {
                     } }
                 >Cancel</Button>
             </DialogActions>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ success !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setSuccess( '' ) }
+            >
+                <Alert onClose={ () => setSuccess( '' ) }
+                       severity={ "success" }
+                >
+                    { success }
+                </Alert>
+            </Snackbar>
         </Dialog>
     )
 }

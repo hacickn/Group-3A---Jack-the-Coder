@@ -19,28 +19,34 @@ const Register = () => {
 
     async function handleRegisterRequest() {
         setSubmitted( true )
-        axios.post( process.env.REACT_APP_URL + 'auth/signUp', {
-            "name": name,
-            "surname": surname,
-            "email": email,
-            "bilkentId": ID,
-            "password": password,
-            "type": email.includes( "ug" ) ? "student" : "academic",
-            "university": "1"
-        } )
-             .then( function ( response ) {
-                 setName( "" )
-                 setSurname( "" )
-                 setEmail( "" )
-                 setID( "" )
-                 setPassword( "" )
-                 setSubmitted( false )
-                 setSuccess( "Confirmation code is sent! Check your email box!" )
-             } )
-             .catch( function ( error ) {
-                 setError( "Email or id in usage! Please contact with system admin!" )
-                 setSubmitted( false )
-             } )
+
+        if ( email.includes( "bilkent.edu.tr" ) ) {
+            axios.post( process.env.REACT_APP_URL + 'auth/signUp', {
+                "name": name,
+                "surname": surname,
+                "email": email,
+                "bilkentId": ID,
+                "password": password,
+                "type": email.includes( "ug" ) ? "student" : "academic",
+                "university": "1"
+            } )
+                 .then( function ( response ) {
+                     setName( "" )
+                     setSurname( "" )
+                     setEmail( "" )
+                     setID( "" )
+                     setPassword( "" )
+                     setSubmitted( false )
+                     setSuccess( "Confirmation code is sent! Check your email box!" )
+                 } )
+                 .catch( function ( error ) {
+                     setError( "Email or id in usage! Please contact with system admin!" )
+                     setSubmitted( false )
+                 } )
+        }else{
+            setError("Please enter a valid Bilkent email!")
+        }
+
     }
 
     const handleKeyDown = (event) => {

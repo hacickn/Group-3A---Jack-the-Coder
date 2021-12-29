@@ -17,32 +17,46 @@ const AdminAddClubScreen = ( props ) => {
 
     async function handleClubAddition() {
         setSubmitted( true )
-        let headers = {
-            "Content-Type": "application/json",
-            'Authorization': 'Bearer ' + Env.TOKEN
-        }
+        let checkExist = false
+        props.clubs.forEach(club=>{
+            if(club.name.toLowerCase() === clubName.toLowerCase() || club.shortName.toLowerCase() === clubShortName.toLowerCase()){
+                checkExist = true
+            }
+        })
 
-        axios.post( process.env.REACT_APP_URL + 'admin/createClub', {
-            "name": clubName,
-            "shortName": clubShortName,
-            "university": "1"
-        }, { headers: headers } )
-             .then( function ( response ) {
-                 if ( response.status === 200 ) {
-                     setClubName( "" )
-                     setClubShortName( "" )
-                     setSuccess( "Successfully added!" )
-                     props.addClub( response.data )
-                     setSubmitted( false )
-                 } else {
+        if(checkExist){
+            setError("This name or shortname is taken already!")
+            setSubmitted(false)
+        }else{
+            let headers = {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + Env.TOKEN
+            }
+
+            axios.post( process.env.REACT_APP_URL + 'admin/createClub', {
+                "name": clubName,
+                "shortName": clubShortName,
+                "university": "1"
+            }, { headers: headers } )
+                 .then( function ( response ) {
+                     if ( response.status === 200 ) {
+                         setClubName( "" )
+                         setClubShortName( "" )
+                         setSuccess( "Successfully added!" )
+                         response.data.president = null
+                         response.data.advisor = null
+                         props.addClub( response.data )
+                         setSubmitted( false )
+                     } else {
+                         setSubmitted( false )
+                         setError( "Could not added!" )
+                     }
+                 } )
+                 .catch( function ( error ) {
                      setSubmitted( false )
                      setError( "Could not added!" )
-                 }
-             } )
-             .catch( function ( error ) {
-                 setSubmitted( false )
-                 setError( "Could not added!" )
-             } )
+                 } )
+        }
     }
 
     return (

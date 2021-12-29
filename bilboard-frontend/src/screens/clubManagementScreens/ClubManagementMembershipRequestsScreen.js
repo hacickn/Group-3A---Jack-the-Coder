@@ -10,7 +10,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const ClubManagementMembershipRequestsScreen = ( { club } ) => {
+const ClubManagementMembershipRequestsScreen = ( { club,functionList } ) => {
     const classes = useStyles();
     return (
         <div>
@@ -39,6 +39,7 @@ const ClubManagementMembershipRequestsScreen = ( { club } ) => {
                                     if ( request.status === "created" ) {
                                         return <Grid item xs={ 12 }>
                                             <RequestedMembership
+                                                functionList={functionList}
                                                 requestId={ request.id }
                                                 name={ request.user.name }
                                                 surname={ request.user.surname }
@@ -69,10 +70,12 @@ const ClubManagementMembershipRequestsScreen = ( { club } ) => {
                                     { club.enrollRequests.map( ( request ) => {
                                         if ( request.status === "pending" ) {
                                             return <Grid item xs={ 12 }>
-                                                <PendingMembership requestId={ request.id }
-                                                                   name={ request.user.name }
-                                                                   surname={ request.user.surname }
-                                                                   ID={ request.user.bilkentId }/>
+                                                <PendingMembership
+                                                    functionList={functionList}
+                                                    requestId={ request.id }
+                                                    name={ request.user.name }
+                                                    surname={ request.user.surname }
+                                                    ID={ request.user.bilkentId }/>
                                             </Grid>
                                         }
                                     } ) }

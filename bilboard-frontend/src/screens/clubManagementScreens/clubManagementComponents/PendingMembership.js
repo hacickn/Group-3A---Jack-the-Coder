@@ -16,7 +16,7 @@ const useStyles = makeStyles( {
     },
 } );
 
-const PendingMembership = ( { requestId, name, surname, ID } ) => {
+const PendingMembership = ( { requestId, name, surname, ID,functionList } ) => {
     const classes = useStyles();
     const [error, setError] = React.useState("")
 
@@ -28,7 +28,11 @@ const PendingMembership = ( { requestId, name, surname, ID } ) => {
 
         axios.post(process.env.REACT_APP_URL + "club/enrollment/respond?enrollmentId=" + requestId + "&status=" + status, {}, {headers:headers})
             .then(function (response) {
-                // todo
+                if(response.data.operationResult === "SUCCESS"){
+                    functionList.handleMembershipRequest(requestId,status)
+                }else{
+                    setError("Something went wrong!")
+                }
             })
             .catch( function (error) {setError("Something went wrong!")})
     }

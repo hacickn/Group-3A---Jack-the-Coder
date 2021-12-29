@@ -344,7 +344,7 @@ const AdminManageClubScreen = ( { allClubs, getClubs, clubLoading, setClub } ) =
                                                         return option.id === newPresident.id;
                                                     } }
                                                     getOptionLabel={ ( option ) => option.name.trim() + " " +
-                                                        option.surname.trim() + " " + option.id }
+                                                        option.surname.trim() + " " + option.bilkentId }
                                                     options={ options }
                                                     loading={ loading }
                                                     renderInput={ ( params ) => (

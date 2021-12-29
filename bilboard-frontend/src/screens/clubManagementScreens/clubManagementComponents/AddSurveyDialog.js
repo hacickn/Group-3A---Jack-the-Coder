@@ -11,7 +11,7 @@ import BilboardTextField from "../../../components/BilboardTextField";
 import axios from "axios";
 import Env from "../../../utils/Env";
 import Colors from "../../../utils/Colors";
-import { Alert, Card, Snackbar, TextField } from "@mui/material";
+import { Alert, Card, CircularProgress, Snackbar, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import {
   AddAlert,
@@ -36,6 +36,8 @@ const AddSurveyDialog = (props) => {
   const [endDate, setEndDate] = React.useState("");
   const [success, setSuccess] = React.useState("");
   const [error, setError] = React.useState("");
+  const [submitted,setSubmitted] = React.useState(false)
+  const [activeMemberPoint,setActiveMemberPoint] = React.useState(0)
 
   let headers = {
     "Content-Type": "application/json",
@@ -43,6 +45,7 @@ const AddSurveyDialog = (props) => {
   };
 
   const handleAddSurvey = () => {
+      setSubmitted(true)
     axios
       .post(
         process.env.REACT_APP_URL + "survey",
@@ -56,8 +59,8 @@ const AddSurveyDialog = (props) => {
             new Date().getDate(),
           endDate: endDate.substring(0, endDate.indexOf("T")),
           status: "active",
-          point: 0,
-          forActiveMembers: false,
+          point: activeMemberPoint,
+          forActiveMembers: activeMemberPoint !== 0,
           questions: allQandA,
           club: props.club.id,
         },
@@ -65,10 +68,13 @@ const AddSurveyDialog = (props) => {
       )
       .then(function (response) {
         props.setOpen(false);
+        props.functionList.handleSurveyAddition(response.data)
         setSuccess("Survey added successfully");
+        setSubmitted(false)
       })
       .catch(function (error) {
         setError("Error occurred while adding survey");
+          setSubmitted(false)
       });
   };
 
@@ -190,6 +196,47 @@ const AddSurveyDialog = (props) => {
           onChange={(e) => setEndDate(e.target.value)}
         />
       </Grid>
+        <Grid item xs={12}>
+            <p
+                style={{
+                    color: Colors.BILBOARD_LIGHT_GREY,
+                    fontSize: "18px",
+                    marginTop: "10px",
+                    marginBottom: "1px",
+                    fontFamily: Constants.OXYGEN_FONT_FAMILY,
+                    align: "center",
+                    letterSpacing: "1px",
+                    display: "flex",
+                    justifyContent: "center",
+                }}
+            >
+               Meeting Point
+            </p>
+        </Grid>
+        <Grid
+            item
+            xs={12}
+            style={{
+                marginTop: "10px",
+                marginBottom: "10px",
+                align: "center",
+                display: "flex",
+                justifyContent: "center",
+            }}
+        >
+            <BilboardTextField
+                width={"300px"}
+                type={"number"}
+                value={activeMemberPoint}
+                onChange={(e) => {
+                    if ( e.target.value < 0 ) {
+                        setActiveMemberPoint(0)
+                    }else{
+                        setActiveMemberPoint(e.target.value)
+                    }
+                }}
+            />
+        </Grid>
       <Grid
         item
         xs={12}
@@ -199,13 +246,13 @@ const AddSurveyDialog = (props) => {
           justifyContent: "center",
         }}
       >
-        <BilboardButton
-          width="200px"
-          fontSize="14px"
-          text="Add Survey"
-          disabled={isAddSurveyDisabled}
-          onClick={() => handleAddSurvey()}
-        />
+          {submitted ? <CircularProgress/> : <BilboardButton
+              width="200px"
+              fontSize="14px"
+              text="Add Survey"
+              disabled={isAddSurveyDisabled}
+              onClick={() => handleAddSurvey()}
+          />}
       </Grid>
       <DialogActions>
         <Button

@@ -45,9 +45,15 @@ const ClubManagementGeneralScreen = ( {
 
     let totalPoint = 0;
 
-    club.events.forEach( ( event ) => {
-        totalPoint = totalPoint + event.averageRate;
-    } );
+
+    let point = 0;
+    let totalParticipant = 0;
+    if ( club !== null ) {
+        club.events.forEach( ( eventOfList ) => {
+            point = point + eventOfList.averageRate * eventOfList.rateCount;
+            totalParticipant = totalParticipant + eventOfList.rateCount;
+        } );
+    }
 
     let headers = {
         "Content-Type": "application/json",
@@ -177,7 +183,7 @@ const ClubManagementGeneralScreen = ( {
                     <div/>
                     <Rating
                         name="read-only"
-                        defaultValue={ totalPoint / club.events.length }
+                        defaultValue={ totalParticipant !== 0 ? point / totalParticipant : 0 }
                         style={ { marginTop: "20px" } }
                         readOnly
                         size="large"

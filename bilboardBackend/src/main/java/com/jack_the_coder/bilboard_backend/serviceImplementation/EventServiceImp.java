@@ -215,20 +215,15 @@ public class EventServiceImp implements EventService {
     @Override
     public Boolean attendToEvent ( EventParticipantDto eventParticipantDto ) {
         try {
-            ModelMapper modelMapper = new ModelMapper();
-            eventParticipantDto.setAttended( true );
-            ClubMemberEntity clubMemberEntity =
-                    clubMemberRepository.findByClubAndUser( eventParticipantDto.getEvent().getClub() ,
-                            eventParticipantDto.getUser() );
-            if ( clubMemberEntity != null ) {
-                clubMemberEntity
-                        .setGePoint( clubMemberEntity.getGePoint() + eventParticipantDto.getEvent().getGePoint() );
-                clubMemberEntity.setAttendedEventCount( clubMemberEntity.getAttendedEventCount() + 1 );
-                clubMemberRepository.save( clubMemberEntity );
+            if(eventParticipantDto.getEvent().getEventCodeExpire() !=
+                    null && (new Date().before( eventParticipantDto.getEvent().getEventCodeExpire() ))){
+                ModelMapper modelMapper = new ModelMapper();
+                eventParticipantDto.setAttended( true );
+                eventParticipantRepository.save( modelMapper.map( eventParticipantDto , EventParticipantEntity.class ) );
+                return true;
+            }else{
+                return false;
             }
-            eventParticipantRepository.save( modelMapper.map( eventParticipantDto , EventParticipantEntity.class ) );
-
-            return true;
         } catch ( Exception e ) {
             return false;
         }
@@ -281,7 +276,7 @@ public class EventServiceImp implements EventService {
                 eventParticipantDto.setPointGiven( true );
                 eventParticipantDto.setPoint( point );
                 eventDto.setAverageRate(
-                        ( eventDto.getAverageRate() * eventDto.getRateCount() + point ) / eventDto.getRateCount() + 1 );
+                        ( eventDto.getAverageRate() * eventDto.getRateCount() + point ) / (eventDto.getRateCount() + 1 ));
                 eventDto.setRateCount( eventDto.getRateCount() + 1 );
                 eventRepository.save( modelMapper.map( eventDto,EventEntity.class ) );
                 eventParticipantRepository

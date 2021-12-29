@@ -50,7 +50,7 @@ const ClubManagementMembersScreen = ( { club, functionList } ) => {
                           <MemberComponent
                               setError={ ( val ) => setError( val ) }
                               setSuccess={ ( val ) => setSuccess( val ) }
-
+                              user={ member.user }
                               functionList={ functionList } name={ member.user.name }
                               surname={ member.user.surname }
                               ID={ member.user.bilkentId } eventCount={ member.attendedEventCount }

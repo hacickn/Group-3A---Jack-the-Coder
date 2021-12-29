@@ -84,7 +84,7 @@ const MemberComponent = ( {
                 </Grid>
                 <Grid item xs={ 1 } style={ { marginTop: "30px" } }>
                     <div style={ { fontSize: "24px", fontFamily: "Oxygen, sans-serif" } }>
-                        { gePoint }
+                        { geTaken ? gePoint : "-" }
                     </div>
                 </Grid>
                 <Grid item xs={ 2 } style={ { marginTop: "30px" } }>

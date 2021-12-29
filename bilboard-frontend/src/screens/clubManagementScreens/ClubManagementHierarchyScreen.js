@@ -265,7 +265,7 @@ const ClubManagementHierarchyScreen = ( { club, functionList } ) => {
                                                         "   " +
                                                         boardMember.user.bilkentId }
                                                     </Grid>
-                                                    <Grid
+                                                    {club.president.id.toString() === Env.PUBLIC_ID.toString() && <Grid
                                                         item
                                                         xs={ 1 }
                                                         style={ {
@@ -285,14 +285,14 @@ const ClubManagementHierarchyScreen = ( { club, functionList } ) => {
                                                         >
                                                             <DeleteForever/>
                                                         </IconButton>
-                                                    </Grid>
+                                                    </Grid>}
                                                 </Grid>
                                             </Card>
                                         </Grid>
                                     );
                                 } ) }
                             </Grid>
-                            <Grid
+                            {club.president.id.toString() === Env.PUBLIC_ID.toString() && <Grid
                                 container
                                 className={ classes.rowGrid }
                                 style={ {
@@ -327,7 +327,7 @@ const ClubManagementHierarchyScreen = ( { club, functionList } ) => {
                                         getOptionSelected={ ( option, value ) => {
                                             return option.name === searchText.name;
                                         } }
-                                        getOptionLabel={ ( option ) => option.name }
+                                        getOptionLabel={ ( option ) =>  option.bilkentId + " " + option.name + " " +  option.surname   }
                                         options={ options }
                                         loading={ loading }
                                         renderInput={ ( params ) => (
@@ -350,8 +350,8 @@ const ClubManagementHierarchyScreen = ( { club, functionList } ) => {
                                         ) }
                                     />
                                 </Grid>
-                            </Grid>
-                            <Grid
+                            </Grid>}
+                            {club.president.id.toString() === Env.PUBLIC_ID.toString() && <Grid
                                 container
                                 style={ {
                                     display: "flex",
@@ -365,7 +365,7 @@ const ClubManagementHierarchyScreen = ( { club, functionList } ) => {
                                     onClick={ () => handleAddBoardMember() }
                                     width={ "200px" }
                                 />
-                            </Grid>
+                            </Grid>}
                         </Grid>
                     </Grid>
                 </Grid>

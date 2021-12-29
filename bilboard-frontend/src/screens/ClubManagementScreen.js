@@ -54,30 +54,35 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
                    } )
     }
 
-
+    if(latestId !== currentClubId && !loading){
+        setLoading(true)
+    }
+    console.log(latestClub)
     if ( Program.getClub( currentClubId ) === undefined || latestClub === null ) {
         handleClubResponse( currentClubId )
     } else if ( Program.getClub( currentClubId ) !== undefined && loading ) {
         setLatestClub( Program.getClub( currentClubId ) )
         setLoading( false )
         setLatestId( currentClubId )
-    } else {
     }
     const functionList = {
         handleNewSponsorAddition: function handleNewSponsorAddition( newResponse ) {
             let temp = { ...latestClub }
             temp.clubSponsorships.push( newResponse )
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
         },
         handleWpLinkUpdate: function handleWpLinkUpdate( newWpLink ) {
             let temp = { ...latestClub }
             temp.wpLink = newWpLink
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
         },
         handleInstaLinkUpdate: function handleInstaLinkUpdate( newInstaLink ) {
             let temp = { ...latestClub }
             temp.instaLink = newInstaLink
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
         },
         handleSponsorDeletion: function handleSponsorDeletion( sponsorId ) {
             let temp = { ...latestClub }
@@ -92,11 +97,15 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
             temp.clubSponsorships = tempList
 
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
         },
         handleBoardMemberAddition: function handleBoardMemberAddition( response ) {
             let temp = { ...latestClub }
             temp.clubBoardMembers.push( response )
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
         },
         handleBoardMemberDeletion: function handleBoardMemberDeletion( boardMemberId ) {
             let temp = { ...latestClub }
@@ -110,6 +119,8 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
 
             temp.clubBoardMembers = tempList
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
         },
         handleFeedbackChange: function handleFeedbackChange( feedbackId, newStatus ) {
             let temp = { ...latestClub }
@@ -127,6 +138,7 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
 
             temp.clubFeedbacks = tempList
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
 
         },
         handleMemberRemoval: function handleMemberRemoval( memberID ) {
@@ -142,6 +154,8 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
             temp.clubMembers = tempList
 
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
         },
         handleEventAddition: function handleEventAddition( eventResponse ) {
             let temp = { ...latestClub }
@@ -152,6 +166,8 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
             temp.events.push( eventResponse )
 
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
         },
         handleEventRemoval: function handleEventRemoval( eventId ) {
             let temp = { ...latestClub }
@@ -166,6 +182,27 @@ const ClubManagementScreen = ( { currentClubId, program, currentEvent, setCurren
             temp.events = tempList
 
             setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
+        },
+        handleSurveyAddition: function handleSurveyAddition( surveyResponse ){
+            let temp = { ...latestClub }
+            temp.surveys.push( surveyResponse )
+            setLatestClub( temp )
+            Program.addClub(temp,temp.id)
+
+        },
+        handleMembershipRequest: function handleMembershipRequest( requestId,status ) {
+            let temp = {...latestClub}
+
+            temp.enrollRequests.forEach(request=>{
+                if(request.id === requestId ){
+                    request.status = status
+                }
+            })
+            setLatestClub(temp)
+            Program.addClub(temp,temp.id)
+
         }
     }
 

@@ -68,7 +68,7 @@ const ClubProfileScreen = ({
         setSuccess("Your request has been sent successfully");
       })
       .catch(function (error) {
-        setError("Something went wrong!");
+        setError("You already sent a request!");
       });
   }
 
@@ -116,16 +116,18 @@ const ClubProfileScreen = ({
             } );
     }
 
+  if(clubFullData !== null && currentClub.id !== clubFullData.id && !loading){
+      setLoading(true)
+  }
   if (Program.getClub(currentClub.id) === undefined) {
-    handleClubResponse(currentClub.id);
-  } else if (Program.getClub(currentClub.id) !== null && loading) {
-    setLoading(false);
-    setClubFullData(Program.getClub(currentClub.id));
-  } else {
+      handleClubResponse(currentClub.id);
+  } else if (Program.getClub(currentClub.id) !== undefined && loading) {
+      setLoading(false);
+      setClubFullData(Program.getClub(currentClub.id));
   }
 
   let point = 0;
-  let totalParticipant = 1;
+  let totalParticipant = 0;
   if (clubFullData !== null) {
     clubFullData.events.forEach((eventOfList) => {
       point = point + eventOfList.averageRate * eventOfList.rateCount;
@@ -176,7 +178,7 @@ const ClubProfileScreen = ({
           <div></div>
           <Rating
             name="read-only"
-            defaultValue={point / totalParticipant}
+            defaultValue={totalParticipant !== 0 ? point / totalParticipant : 0}
             style={{ marginTop: "20px" }}
             readOnly
             size="large"

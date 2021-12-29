@@ -12,6 +12,8 @@ import Colors from "../utils/Colors";
 import Env from "../utils/Env";
 import axios from "axios";
 import VoteToQuestion from "./VoteToQuestion";
+import { CircularProgress, Snackbar } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 /**
  * Vote To Question Dialog
@@ -21,9 +23,11 @@ import VoteToQuestion from "./VoteToQuestion";
  */
 
 const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOpen } ) => {
-    const [ isDialogOpen, setIsDialogOpen ] = useState( true );
 
     const [ selectedChoices, setSelectedChoices ] = React.useState( [] )
+    const [submitted, setSubmitted] = useState(false)
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
 
     let headers = {
         "Content-Type": "application/json",
@@ -31,6 +35,7 @@ const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOp
       };
 
     const handleSubmitAnswers = () => {
+        setSubmitted(true)
         if(survey.questions.length !== selectedChoices.length) {
             alert("Please answer all questions!")
         }
@@ -40,11 +45,18 @@ const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOp
                 survey: survey.id,
                 choices: selectedChoices
             }, { headers: headers }).then(function(response){
-                setOpen(false);
-                setIsDialogOpen(false);
+                if(response.data.operationResult === "SUCCESS"){
+                    setOpen(false);
+                    setSuccess("Your responses are saved!")
+                }else{
+                    setError("You can not vote anymore!")
+                }
+                setSubmitted(false)
             }).catch(function(error){
-                // todo
                 console.log(error)
+                setError("You can not vote anymore!")
+                setSubmitted(false)
+
             })
         }
     }
@@ -97,7 +109,7 @@ const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOp
                         display: "flex",
                         justifyContent: "center"
                     } }>
-                        <BilboardButton width="100px" fontSize="14px" text="Submit" onClick={handleSubmitAnswers}/>
+                        {submitted ? <CircularProgress/> :  <BilboardButton width="100px" fontSize="14px" text="Submit" onClick={handleSubmitAnswers}/>}
                     </Grid>
                 </Grid>
             </DialogContent>
@@ -110,6 +122,30 @@ const VoteToQuestionDialog = ( {program, survey, surveyParticipants, open, setOp
                     } }
                 >Cancel</Button>
             </DialogActions>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ error !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setError( '' ) }
+            >
+                <Alert onClose={ () => setError( '' ) }
+                       severity={ "warning" }
+                >
+                    { error }
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={ { vertical: "bottom", horizontal: "center", } }
+                open={ success !== '' }
+                autoHideDuration={ 2000 }
+                onClose={ () => setSuccess( '' ) }
+            >
+                <Alert onClose={ () => setSuccess( '' ) }
+                       severity={ "success" }
+                >
+                    { success }
+                </Alert>
+            </Snackbar>
         </Dialog>
     )
 }

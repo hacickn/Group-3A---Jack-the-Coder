@@ -38,7 +38,7 @@ public class StorageServiceImp implements StorageService {
 
             long millis = System.currentTimeMillis();
             AWSCredentials credentials =
-                    new BasicAWSCredentials( "AKIAYZNHCDMMVNUAYCOY" , "Iv5QLogCJQlyx42xQjoQomsIMvphNilHSPS1P8ho" );
+                    new BasicAWSCredentials( "sc key" , "sc key" );
             AmazonS3 s3client = AmazonS3ClientBuilder
                     .standard()
                     .withCredentials( new AWSStaticCredentialsProvider( credentials ) )
@@ -75,7 +75,7 @@ public class StorageServiceImp implements StorageService {
 
 
             AWSCredentials credentials =
-                    new BasicAWSCredentials( "AKIAYZNHCDMMVNUAYCOY" , "Iv5QLogCJQlyx42xQjoQomsIMvphNilHSPS1P8ho" );
+                    new BasicAWSCredentials( "sc key" , "sc key" );
             AmazonS3 s3client = AmazonS3ClientBuilder
                     .standard()
                     .withCredentials( new AWSStaticCredentialsProvider( credentials ) )

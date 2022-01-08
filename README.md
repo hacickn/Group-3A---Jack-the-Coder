@@ -65,8 +65,5 @@ Backend Side
 + ✅**Presentationt**
 + ✅**Iteration-2 Analysis Report**
 + ✅**Iteration-2 Design Report**
-+ ⏳**Final Report**      
-+ ⏳**Final Presentation**                     
-
-## Database Design at 09.11.2021 - 11:45 made by Hacı Çakın
-![Mysql Table Design](/mysql_models.png)
++ ✅**Final Report**      
++ ✅**Final Presentation**                     
